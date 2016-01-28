@@ -6,7 +6,7 @@
 	<!-- Basic Page Needs
 	================================================== -->
 	<meta charset="utf-8">
-	<title>Handyman - Job Board HTML Template</title>
+	<title>WeAssist - Job Board HTML Template</title>
 
 
 	<!-- Mobile Specific Metas
