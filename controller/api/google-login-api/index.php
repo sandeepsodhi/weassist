@@ -90,7 +90,7 @@ if (isset($authUrl)){
 	echo '<div align="center">';
 //	echo '<h3>Login with Google -- Demo</h3>';
 //	echo '<div>Please click login button to connect to Google.</div>';
-//	echo '<a class="login" href="' . $authUrl . '"><img src="images/google.png" /></a>';
+	echo '<a class="login" href="' . $authUrl . '"><img src="images/google.png" /></a>';
 	//echo '<a class="login" href="<script>
  // window.open(' .$authUrl. ', "", "width=200, height=100");
 //</script>" ><img src="images/google.png" /></a>';
@@ -108,23 +108,36 @@ echo '</div>';
 
 	$user = $service->userinfo->get(); //get user info 
 	//echo '<pre>';
-	
 	//echo '<img src="'.$user->picture.'" style="float: right;margin-top: 33px;" />';
-	//print_r($user);
+	
+	print_r($user);
+	
 	$fname = $user->givenName;  //firstname
 	$lname = $user->familyName; //lastname
 	$email = $user->email;		//email
+	//echo '</pre>';
 
-	$result = $conn->prepare("call google_login(?,?,?)");
+
+	$result = $conn->prepare("call social_login(?,?,?)");
 	$result->bind_param("sss",$fname,$lname,$email);
 	$result->execute();
 
-	echo "<script>
-	opener.location.href = '../../../view/handy/job-dashboard.html';
-	close();
-	</script>
-	";
-
+	if($result)
+	{
+		echo "<script>
+		opener.location.href = '../../../view/user/';
+		close();
+		</script>
+		";
+	}
+	else
+	{
+		echo "<script>
+		opener.location.href = '../../../view/handy/';
+		close();
+		</script>
+		";
+	}
 
 	//echo '</pre>';
 }	

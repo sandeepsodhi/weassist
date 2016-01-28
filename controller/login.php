@@ -22,7 +22,7 @@
       //  $_SESSION['mobile'] = $ans['mobile'];
       //  $_SESSION['usr_type'] = $ans['usr_type'];
       echo "<body onload = 'alert(\"logged in successful!!!\");'></body> ";
-      header("location:../view/handy/page-services.php");
+      header("location:../view/user/");
            
     } else {
         echo "<body onload='alert(\"LOGIN FAILED !!! TRY AGAIN WITH CORRECT CREDENTIAL\");'></body> ";

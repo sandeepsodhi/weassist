@@ -18,17 +18,52 @@ if(!$fbuser){
 //	print_r($user_profile['picture']['data']['url']);
 	//echo implode("",$path);
 	if(!empty($user_profile)){
-		$output = '<h1>Facebook Profile Details </h1>';
-		$output .= '<img src="' .$user_profile['picture']['data']['url']. '">';
-     // 	$output .= '<img src="implode("",$path)">';
-	  $output .= '<br/>Facebook ID : ' . $user_profile['id'];
-        $output .= '<br/>Name : ' . $user_profile['first_name'].' '.$user_profile['last_name'];
-        $output .= '<br/>Email : ' . $user_profile['email'];
-        $output .= '<br/>Gender : ' . $user_profile['gender'];
-        $output .= '<br/>Locale : ' . $user_profile['locale'];
-        $output .= '<br/>You are login with : Facebook';
+		//$output = '<h1>Facebook Profile Details </h1>';
+	//	$output .= '<img src="' .$user_profile['picture']['data']['url']. '">';
+     //	 	$output .= '<img src="implode("",$path)">';
+//	  $output .= '<br/>Facebook ID : ' . $user_profile['id'];
+  //      $output .= '<br/>Name : ' . $user_profile['first_name'].' '.$user_profile['last_name'];
+    //    $output .= '<br/>Email : ' . $user_profile['email'];
+  //     $output .= '<br/>Gender : ' . $user_profile['gender'];
+    //    $output .= '<br/>Locale : ' . $user_profile['locale'];
+       // $output .= '<br/>You are login with : Facebook';
 //        $output .= '<br/>Logout from <a href="logout.php?logout">Facebook</a>'; 
-	}else{
+
+		
+		require_once '../../../model/dbConnect.php';
+
+		echo $firstname = $user_profile['first_name'];
+		echo $lastname = $user_profile['last_name'];
+		echo $email = $user_profile['email'];
+
+		$result = $conn->prepare("call social_login(?,?,?)");
+		$result->bind_param("sss",$firstname,$lastname,$email);
+		$result->execute();
+
+		$_SESSION['f_name'] = ['first_name']; 
+
+		if($result)
+		{
+			echo "<script>
+			opener.location.href = '../../../view/user/';
+			close();
+			</script>
+			";
+		}
+		else
+		{
+			echo "<script>
+			opener.location.href = '../../../view/handy/';
+			close();
+			</script>
+			";
+		}
+
+
+
+
+
+		}else{
 		$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
 	}
 }
@@ -36,14 +71,14 @@ if(!$fbuser){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Login with Facebook using PHP by CodexWorld</title>
+<title>Login with Facebook</title>
 <style type="text/css">
 h1{font-family:Arial, Helvetica, sans-serif;color:#999999;}
 </style>
 </head>
 <body >
 <div>
-<?php echo $output; ?>
+<?php //echo $output; ?>
 </div>
 
 </body>
