@@ -1,33 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
 <?php
 
 	require_once '../model/dbConnect.php';
 
 	$u_name = mysqli_escape_string($conn,$_POST["u_name"]);
-	$pswd = mysqli_escape_string($conn,$_POST["pswd"]);//
+	$pswd = mysqli_escape_string($conn,$_POST["pswd"]);
 	$f_name = mysqli_escape_string($conn,$_POST["f_name"]);
 	$l_name = mysqli_escape_string($conn,$_POST["l_name"]);
-	//$city = mysqli_escape_string($_POST["city"]);
-	$contact = mysqli_escape_string($conn,$_POST["contact"]);
 
+$u_type=$_POST["u_type"];
+
+	//$city = mysqli_escape_string($_POST["city"]);
+//   	$contact = mysqli_escape_string($conn,$_POST["contact"]);
+     
 	
 	/*
 	$result = $conn->prepare("call already_register()");
     $result->bind_param("ssssd",$u_name,$f_name,$l_name,$pswd,$contact);
     $result->execute();
 	*/
-	$c = 0;
+	$c = 0;   //counter for checking existing user emailid
 
-	$qa = mysqli_query($conn,"select u_name from users");
-	while($rs=mysqli_fetch_assoc($qa))
-	{
-		if($rs['u_name']==$u_name)
-		{
+	//$qa = mysqli_query($conn,"select u_name from users");
+	//while($rs=mysqli_fetch_assoc($qa))
+	//{
+
+//if($rs['u_name']==$u_name)
+	//	{
 		//	echo "Email is already registered with us ";
-			echo "<script>alert('already_registered');</script>";
+	//	echo "<script>alert('already_registered');</script>";
 			$c = 1;
-			header("location:../view/handy/");
-		}
-	}
+		//	header("location:../view/handy/");
+		//echo "<script>$(document).ready(function(){  $(document).ajaxSuccess(function(){ alert("AJAX request successfully completed"); });}); </script>";
+/*echo "
+<script type='text/javascript'>
+    alert('The email address  is already registered.');
+    history.back();
+  </script>		";*/
+/*		echo "<script>
+$(document).ready(function(){
+    $(document).ajaxSuccess(function(){
+        alert('AJAX request successfully completed');
+    });
+    });
+</script>
+"	;	
+	*/	
+		//}
+	//}
 
 
    /*
@@ -71,17 +95,29 @@
 	{	*/
     
 
-	if($c == 0)
+
+//$u_type=$_POST['u_type'];
+		if(isset($u_type) )
+			{
+		$checked = 'checked';
+	  $u_type ='agent' ;
+	  }
+		else
+		{
+		$checked = false;
+		$u_type = 'customer';
+		}
+	if($c == 1)
 	{
 	//$result = $conn->prepare("INSERT INTO users (u_name,pswd,f_name,l_name,contact) values (?,?,?,?,?)");
     $result = $conn->prepare("call insdata(?,?,?,?,?)");
-    $result->bind_param("ssssd",$u_name,$f_name,$l_name,$pswd,$contact);
+    $result->bind_param("ssssd",$u_name,$f_name,$l_name,$pswd,$u_type);
     $result->execute();
 
 	    if($result)
 		{
 		    echo '<br>'.'Account Created Sunccessfully';
-			//header('location:../view/handy/index.php');
+			
 		}
 	    else 
 		{ 
@@ -89,3 +125,5 @@
 		}
 	}
 ?>
+</body>
+</html>
