@@ -31,7 +31,7 @@
 	  $_SESSION['l_name']=$res['l_name'];
 	  $_SESSION['email']=$res['u_name'];
        //echo $_SESSION['fname'];   
-	  	  header("location:../view/user/");
+	  	  header("location:../view/user/index.php");
 	  
 >>>>>>> 897d5244ea11e8a959cd604eeb8f267bb29ffc8d
            
