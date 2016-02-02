@@ -14,26 +14,15 @@ require_once '../../../model/dbConnect.php';
  $lname = $content['person']['last-name'];
  $uname = $content['person']['email-address'];
 
-$result = $conn->prepare("call social_login(?,?,?)");
+$result = $conn->prepare("call linkedin_login(?,?,?)");
 $result->bind_param("sss",$uname,$fname,$lname);
 $result->execute();
 
-  if($result)
-  {
-    echo "<script>
-    opener.location.href = '../../../view/user/';
-    close();
-    </script>
-    ";
-  }
-  else
-  {
-    echo "<script>
-    opener.location.href = '../../../view/handy/';
-    close();
-    </script>
-    ";
-  }
+echo "<script>
+      opener.location.href = '../../../view/handy/job-dashboard.html';
+      close();
+      </script>      
+      ";
 
 
 ?>

@@ -22,10 +22,10 @@
 	{
 		if($rs['u_name']==$u_name)
 		{
-		//	echo "Email is already registered with us ";
-			echo "<script>alert('already_registered');</script>";
+			echo "Email is already registered with us ";
+			echo "<body><script>alert('already_registered');</script></body>";
 			$c = 1;
-			header("location:../view/handy/");
+		//	header("location:../view/handy/");
 		}
 	}
 
