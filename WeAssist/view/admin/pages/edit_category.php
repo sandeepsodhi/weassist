@@ -1,3 +1,4 @@
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,14 +25,9 @@
   
 
   </head>
-<body class="hold-transition skin-red-light sidebar-mini">
+<body class="hold-transition skin-blue-light sidebar-mini">
 <div class="wrapper">
-
-  <?php 
-    session_start();
-    include 'header.php';
-  ?>
-  <!-- Content Wrapper. Contains page content -->
+ <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -44,28 +40,23 @@
     </section>
 
     <!-- Main content -->
-    <section class="content" style="margin-top:20px;">
+    <section class="content" style="margin-top:20px;min-height:900px">
    
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Edit Categories</h3>
-              <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </div>
             </div>
             <!-- /.box-header -->
-            <form method="POST" action="../../../controller/update_category.php" enctype="multipart/form-data">
+            <?php if (isset($_GET['cat_id'])) { ?>
+            
+            <form method="POST" action="../../../controller/update_category.php?cat_id=<?php echo $_GET['cat_id']; ?>" enctype="multipart/form-data">
             <div class="box-body no-padding">
               <table class="table table-hover">
                 <tbody>
                 <?php
+                    $cat_id = $_GET['cat_id']; 
                     include  '../../../model/dbConnect.php';
-                    $row = mysqli_fetch_row(mysqli_query($conn,"select cat_name,cat_image,cat_desc from category where cat_id=".$_SESSION['id']));
+                    $row = mysqli_fetch_row(mysqli_query($conn,"select cat_name,cat_image,cat_desc from category where cat_id=$cat_id"));
                     
                  echo "<tr>
                   <td>Category Name</td>
@@ -77,22 +68,50 @@
                 </tr>
                 <tr>
                   <td>Category Image</td>
-                  <td><img src='../../image/$row[1]' width='50' height='50' alt=''  style='position:absolute;  z-index:1;' id='cat_image' />
-                      <input type='file' name='image' style='width:50px; height:50px; position:relative;  z-index:2; opacity:0;' onchange='readURL(this)' />
+                  <td><img src='../../image/$row[1]' width='100' height='100' alt=''  style='position:absolute;  z-index:1;' id='cat_image' />
+                      <input type='file' name='image' style='width:100px; height:100px; position:relative;  z-index:2; opacity:0;' onchange='readURL(this)' />
                   </td>
                 </tr>
                 <tr>
-                  <td><input class='btn btn-primary' type='submit' value='Update'></td>
+                  <td colspan='2'><input class='btn btn-primary' type='submit' value='Update'></td>
                 <tr>
                 "; ?>
              </tbody></table>
             </div>
             <!-- /.box-body -->
             <form>
+          <?php }
+          else
+            { ?>
+
+            <form method="POST" action="../../../controller/update_category.php" enctype="multipart/form-data">
+            <div class="box-body no-padding">
+              <table class="table table-hover">
+                <tbody>
+                <tr>
+                  <td>Category Name</td>
+                  <td><input type='text' name='cat_name'></td>
+                </tr>
+                <tr>
+                <td>Category Description</td>
+                  <td><textarea name='cat_desc' cols=120 rows=8></textarea>
+                </tr>
+                <tr>
+                  <td>Category Image</td>
+                  <td><img src='../../image/NewCandidateImage.jpg' width='100' height='100' alt=''  style='position:absolute;  z-index:1;' id='cat_image' />
+                      <input type='file' name='image' style='width:100px; height:100px; position:relative;  z-index:2; opacity:0;' onchange='readURL(this)' />
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='2'><input class='btn btn-primary' type='submit' value='Update'></td>
+                <tr>
+             </tbody></table>
+            </div>
+            <!-- /.box-body -->
+            <form>
+          <?php } ?>
           </div>
           <!-- /.box -->
-        
-
     </section>
     <!-- /.content -->
   </div>
@@ -129,8 +148,8 @@
                 reader.onload = function (e) {
                     $('#cat_image')
                         .attr('src', e.target.result)
-                        .width(150)
-                        .height(200);
+                        .width(100)
+                        .height(100);
                 };
 
                 reader.readAsDataURL(input.files[0]);

@@ -28,8 +28,7 @@
 <body class="hold-transition skin-red-light sidebar-mini">
 <div class="wrapper">
 
-  <?php include 'header.php';
-  ?>
+  <?php include 'header.php';  ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -47,7 +46,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Categories</h3>
-
+              <a href="edit_category.php"><h5>Create Category</h5></a> 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
@@ -67,32 +66,6 @@
                   <th>Category Description</th>
                   <th>Update</th>
                 </tr>
-                <!--
-                <tr>
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>image over here</td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>219</td>
-                  <td>Alexander Pierce</td>
-                  <td>image over here</td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>657</td>
-                  <td>Bob Doe</td>
-                  <td>image over here</td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>175</td>
-                  <td>Mike Doe</td>
-                  <td>image over here</td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                -->
                 <?php
                 include  '../../../model/dbConnect.php';
                 $rs = mysqli_query($conn,"select cat_id,cat_name,cat_image,cat_desc from category");
@@ -103,10 +76,9 @@
                       <td>$row[1]</td>
                       <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[2]'>
                       <td>$row[3]</td>
-                      <td><button type='button' class='form-control' id='edit' onclick='window.location.href=\"edit_category.php\" '>edit</button></td>
+                      <td><button type='button' class='form-control' id='edit' onclick='window.location.href=\"edit_category.php?cat_id=$row[0]\"'>edit</button></td>
                     <tr> 
                     ";
-                  $_SESSION['id'] = $row[0] ;
               }
               ?>
 
