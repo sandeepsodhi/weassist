@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>WeAssist | Categories</title>
+  <title>WeAssist | Sub-categories</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -17,13 +17,11 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-  <!-- data table files --> 
+
   <link href="css/jquery.dataTables.min.css" rel="stylesheet" />
   <link href="css/dataTables.bootstrap.min.css" rel="stylesheet" />
   <link href="css/dataTables.jqueryui.min.css" rel="stylesheet" />
   <link href="css/dataTables.foundation.min.css" rel="stylesheet" />
-
-
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,7 +40,7 @@
     <section class="content-header">
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Categories</li>
+        <li class="active">Sub-categories</li>
       </ol>
     </section>
 
@@ -51,39 +49,43 @@
    
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Categories</h3>
-              <h5><a href="edit_subcategory.php">Create new category</a></h5> 
+              <h3 class="box-title">Sub-categories</h3>
+              <h5><a href="edit_subcategory.php">Create new Sub-category</a></h5> 
             </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-striped table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Category Name</th>
-                  <th>Category Image</th>
-                  <th>Category Description</th>
-                  <th>Update</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php
-                include  '../../../model/dbConnect.php';
-                $rs = mysqli_query($conn,"select cat_id,cat_name,cat_image,cat_desc from category");
-                while($row=mysqli_fetch_row($rs))
-                {   
-                echo "<tr>
-                        <td>$row[0]</td>
-                        <td>$row[1]</td>
-                        <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[2]'>
-                        <td>$row[3]</td>
-                        <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_category.php?cat_id=$row[0]\"'>
-                        <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"../../../controller/delete_category.php?cat_id=$row[0]\"'></td>
-                      </tr> 
-                      ";
-                }
-                ?>
-              </tbody></table>
+            <div class="box-body table-reponsive no padding">
+            <table class='table table-striped table-bordered table-hover'>
+            <thead>
+              <tr>
+                <th>Category Name</th>
+                <th>Sub-Category Name</th>
+                <th>Sub-Category Image</th>
+                <th>Sub-Category Description</th>
+                <th>Sub-Category City</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+        <?php
+          include '../../../model/dbConnect.php';
+          $sql="select a.cat_name,b.subcat_name,b.subcat_image,b.subcat_desc,b.subcat_city,b.subcat_id from category a join sub_category b on a.cat_id = b.cat_id";
+          $result = mysqli_query($conn,$sql);
+          while($row = mysqli_fetch_row($result))
+          {
+     echo "<tr>
+            <td>$row[0]</td>
+            <td>$row[1]</td>
+            <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[2]'></td>
+            <td>$row[3]</td>
+            <td>$row[4]</td>
+            <td><input type='button' value='Edit' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' onclick='window.location.href=\"edit_subcategory.php?subcat_id=$row[5]\"'>
+            <input type='button' value='Delete' class='btn btn-primary' onclick='window.location.href=\"../../../controller/delete_subcategory.php?subcat_id=$row[5]\"'>
+            </td>
+          </tr>";
+}
+?>
+
+            </tbody>
+            </table>
             </div>
             <!-- /.box-body -->
           </div>
@@ -115,23 +117,24 @@
 <script src="../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
-<script type="text/javascript">
-  function change(){
-   $('#cat_name').prop("readonly",false);
-  }
-</script>
 
 <!-- data tables --> 
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>
 <script src="js/dataTables.jqueryui.min.js"></script>
 <script src="js/dataTables.foundation.min.js"></script>
+
+
 <script>
     $(document).ready(function () {
         $(".table").dataTable();
     });
 </script>
 
-
+<script type="text/javascript">
+  function change(){
+   $('#cat_name').prop("readonly",false);
+  }
+</script>
 </body>
 </html>

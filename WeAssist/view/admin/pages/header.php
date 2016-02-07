@@ -299,8 +299,14 @@
         </li>
         <li class="treeview">
           <a href="categories.php">
-            <i class="fa fa-list"></i>
+            <i class="fa fa-align-justify"></i>
             <span>Categories</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="sub_categories.php">
+            <i class="fa fa-list"></i>
+            <span>Sub-Categories</span>
           </a>
         </li>
         <li class="treeview">

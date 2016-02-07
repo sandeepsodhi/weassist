@@ -1,0 +1,42 @@
+<html>
+<head>
+ <link href="css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="css/dataTables.bootstrap.min.css" rel="stylesheet" />
+  <link href="css/dataTables.jqueryui.min.css" rel="stylesheet" />
+  <link href="css/dataTables.foundation.min.css" rel="stylesheet" />
+</head>
+<body>
+<table class="table">
+<thead>
+	<tr>
+	<th>Name</th>
+	<th>Roll</th>
+	</tr>
+</thead>
+<tbody>
+<tr>
+	<td>Sandeep Sodhi</td>
+	<td>1002</td>
+</tr>
+<tr>
+	<td>Ritesh Tandon</td>
+	<td>1903</td>
+</tr>
+</tbody>
+</table>
+
+<!--Javascripts-->
+
+<!--Javascript code-->
+<script src="js/jquery.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.bootstrap.min.js"></script>
+<script src="js/dataTables.jqueryui.min.js"></script>
+<script src="js/dataTables.foundation.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".table").dataTable();
+    });
+</script>
+</body>
+</html>
