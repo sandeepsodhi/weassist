@@ -23,20 +23,12 @@
   <link rel="stylesheet" href="../dist/css/profilelabel.css">
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
   
-  <script type="text/javascript">
-  function changefname(){
-	 $('#f_name').prop("readonly",false);
-  }
-  function changelname(){
-	 $('#l_name').prop("readonly",false);
-  }
-  function changeemail(){
-	 $('#email').prop("readonly",false);
-	 }
-	 function changephone(){
-	 $('#phone').prop("readonly",false);
-	 }
-  </script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+  
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -49,304 +41,9 @@ font-family: monospace; }
 
 </style>
   </head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
 
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <?php echo $_SESSION['f_name'];
-			  ?>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                <p>
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-
-        <div class="pull-left info">
-          <p><?php echo $_SESSION['f_name']; 
-		  ?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-<?php include('../sidebar.php');
-     // include('../../../');
- ?>      
-
-	  </section>
-    <!-- /.sidebar -->
-  </aside>
+<?php include('header.php');?>
 <div class="content-wrapper"> 
  <section class="content">
   <div class="box box-primary">
@@ -365,14 +62,15 @@ font-family: monospace; }
         <div class="col-md-7">
 		<br/>
      
-    	<form class="form-inline"  id="editprofile" method="post" action="updateprofile.php">
+    	<form class="form-inline"  id="editprofile"  method="post" action="updateprofile.php" enctype="multipart/form-data">
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="f_name">First Name:</label> </div>
-	    <div class="col-md-8"><input  type="text" class="form-control" name="f_name" id="f_name" size="26%" value="<?php echo $_SESSION['f_name']; ?>" readonly ></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="f_name" id="f_name" onkeyup="isalphanum(this)"  size="28%" value="<?php echo $_SESSION['f_name']; ?>" readonly required></div>
          <div class="col-md-1">
-		<a href="#">
-          <span class="glyphicon glyphicon-pencil"></span>
+		 
+		<a href="#" onclick="changefname()">
+          <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
         </a>
 		</div>
 	   
@@ -388,8 +86,13 @@ font-family: monospace; }
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="l_name">Last Name:</label></div>
-	    <div class="col-md-7"><input  type="text" class="form-control" name="l_name" id="l_name" size="30%" value="<?php echo $_SESSION['l_name']; ?>" readonly ></div>
-	    </div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="l_name" id="l_name" size="28%" value="<?php echo $_SESSION['l_name'];  ?>" onkeyup="isalphanum(this)" required readonly ></div>
+        <div class="col-md-1">	    
+		<a href="#" onclick="changelname()">
+          <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
+        </a>
+         </div>
+		</div>
 		</div>
  	    
 		<br/>
@@ -397,41 +100,59 @@ font-family: monospace; }
 	
 	  	<div class="row">
 		<div class="form-group" >
-		<div class="col-md-3"><label id="profile-label"  for="email">Email :  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  </label></div>
-	    <div class="col-md-7"><input  type="text" class="form-control" name="email" id="email" size="30%" value="<?php echo $_SESSION['email']; ?>" readonly ></div>
-	    </div>
+		<div class="col-md-3"><label id="profile-label"  for="email">Email :  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  </label></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="email" id="email" size="28%" value="<?php echo $_SESSION['email']; ?>" onkeyup="isalphanum(this)" required readonly ></div>
+	     <div class="col-md-1">		
+		<a href="#" onclick="changeemail()">
+          <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
+        </a>
+          </div>
+		</div>
 	    </div>
      	<br/>
 	    
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="phone">Phone No :&nbsp</label></div>
-	    <div class="col-md-7"><input  type="text" class="form-control" name="phone" id="phone" size="30%" value="<?php echo $_SESSION['l_name']; ?>" readonly ></div>
-	    </div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="phone" id="phone" size="28%" value="<?php echo $_SESSION['l_name']; ?>"  onkeyup="isalphanum(this)" required readonly ></div>
+	     <div class="col-md-1">		
+		<a href="#" onclick="changephone()">
+          <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
+        </a>
+        </div>
+		</div>
 		</div>
 	    <br/>
 	 
-
-       
-
-
+		<div class="row">
+		<div class="form-group" >
+		<div class="col-md-3"><label id="profile-label"  for="city">City :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+		</div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="city" id="city" size="28%" placeholder="Enter Your City" ></div>
+	    </div>
+		</div>
+	    
+		
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-4"><label id="profile-label"  for="image">Picture :&nbsp&nbsp&nbsp&nbsp</label></div>
         <div class="col-md-7">
-    	 <input type="file" class="form-control" id="image" name="image" style="padding:0px;" accept=".jpg,.jpeg,.png," >	
+    	 <input type="file" class="form-control" id="image" name="image"  style="padding:0px;" accept=".jpg,.jpeg,.png," >	
         </div>       
 		<div class="col-md-2">
 		</div>
 	    </div>
 		</div>
 	    <br/>
-	
+	    
+		
+
         
 		<div class="row">
 		<div class="form-group" >
 	    
-		<button style="width:80%; margin-left:70%;  "type="submit" id="btnupdate" name="btnupdate"  class="btn btn-info btn-primary">Update</button>
+		<button type="submit" style="width:80%; margin-left:69%;  "type="submit" id="btnupdate" name="btnupdate"  class="btn btn-info btn-primary">Update</button>
     	</div>
 		</div>
  	    </form>	
@@ -441,14 +162,21 @@ font-family: monospace; }
 
 	</div>
 <div class="col-md-2">
+<?php 
+include('../../../model/dbConnect.php');
+$res=mysqli_query($conn,"select profile_pic from users where u_name='".$_SESSION['email']."'");
+$rs=mysqli_fetch_row($res);
+?>
 <br/>
-<img class="profile-user-img img-responsive img-circle" src="user_default1.png" alt="User profile picture"  >
+<img class="profile-user-img img-responsive img-circle" src="image/<?php echo $rs[0];?>"  alt="User profile picture"  >
 				</div>
 	
 		
 		
 		</div>
-	
+	<input  type="hidden"  name="State" id="State"  size="0px"  ></div>
+		<input  type="hidden"  name="Country" id="Country" size="0px"    ></div>
+		
 	
 		</div>
 	
@@ -472,20 +200,64 @@ font-family: monospace; }
   </div>
 
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.2
-    </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+   <?php include 'footer_sidebar.php'; ?>
 
-  <!-- Control Sidebar -->
-  <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
+
+
+<!--Javascript Map-->
+<script type="text/javascript">
+    function initialize() {
+	    var options = {
+            types: ['(cities)'],
+            //componentRestrictions: {country: "in"}
+        };
+        var input = document.getElementById('city');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+          	
+		//console.log(autocomplete);
+	}
+	
+	//$("#city").val(function(){alert("kuch hua");});
+	
+  $('input[name=city]').change(function () {
+		    setTimeout(function () {
+            console.log($("#city").val());
+            console.log(($("#city").val().match(/,/g) || []).length); //logs 3
+            var val=[];
+            if(($("#city").val().match(/,/g) || []).length==2)
+            {
+                //All City, State, Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val(val[1]);
+                $("#Country").val(val[2]);
+            }
+            else if (($("#city").val().match(/,/g) || []).length == 1)
+            {
+                //Only City and Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val('NA');
+                $("#Country").val(val[1]);
+            }
+
+        }, 1000);
+    });
+
+    $('input[name=city]').click(function () {
+        document.getElementById('city').value = '';
+        document.getElementById('State').value = '';
+        document.getElementById('Country').value = '';
+    });
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+<!--End of javascript map-->
 
 <!-- ./wrapper -->
 
@@ -501,5 +273,66 @@ font-family: monospace; }
 <script src="../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+<script type="text/javascript">
+  function changefname(){
+	 $('#f_name').prop("readonly",false);
+  }
+  function changelname(){
+	 $('#l_name').prop("readonly",false);
+  }
+  function changeemail(){
+	 $('#email').prop("readonly",false);
+	 }
+	 function changephone(){
+	 $('#phone').prop("readonly",false);
+	 }
+  </script>
+  <script>
+  $('#editprofile').submit(function(){
+ return false;
+});
+ 
+$('#btnupdate').click(function(){
+ $.post( 
+ $('#editprofile').attr('action'),
+ $('#editprofile :input').serializeArray()
+ );
+});
+</script>
+<script>
+
+$(document).ready(function() { 
+
+  $('#btnupdate').click(function() {  
+
+    $(".error").hide();
+    var hasError = false;
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    var emailblockReg =
+     /^([\w-\.]+@(?!yahoo.com)(?!hotmail.com)([\w-]+\.)+[\w-]{2,4})?$/;
+
+    var emailaddressVal = $("#email").val();
+    if(emailaddressVal == '') {
+    //  $("#email").after('<span class="error">Please enter your email address.</span>');
+      alert("Enter your Email Address");
+	  hasError = true;
+    }
+
+    else if(!emailReg.test(emailaddressVal)) {
+      $("#email").after('<span class="error"><font color="red">?</span>');
+      hasError = true;
+    }
+
+    else if(!emailblockReg.test(emailaddressVal)) {
+      $("#email").after('<span class="error">No yahoo, gmail or hotmail emails.</span>');
+      hasError = true
+    } 
+
+    if(hasError == true) { return false; }
+
+    });
+});
+</script>
+
 </body>
 </html>

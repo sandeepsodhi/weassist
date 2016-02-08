@@ -1,0 +1,49 @@
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+<script type="text/javascript">
+    function initialize() {
+	    var options = {
+            types: ['(cities)'],
+            //componentRestrictions: {country: "in"}
+        };
+        var input = document.getElementById('city');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+          	
+		//console.log(autocomplete);
+	}
+	
+	//$("#city").val(function(){alert("kuch hua");});
+	
+  $('input[name=city]').change(function () {
+		    setTimeout(function () {
+            console.log($("#city").val());
+            console.log(($("#city").val().match(/,/g) || []).length); //logs 3
+            var val=[];
+            if(($("#city").val().match(/,/g) || []).length==2)
+            {
+                //All City, State, Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val(val[1]);
+                $("#Country").val(val[2]);
+            }
+            else if (($("#city").val().match(/,/g) || []).length == 1)
+            {
+                //Only City and Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val('NA');
+                $("#Country").val(val[1]);
+            }
+
+        }, 1000);
+    });
+
+    $('input[name=city]').click(function () {
+        document.getElementById('city').value = '';
+        document.getElementById('State').value = '';
+        document.getElementById('Country').value = '';
+    });
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>

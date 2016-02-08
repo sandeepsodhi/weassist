@@ -1,5 +1,10 @@
-<?php session_start(); ?> 
+<?php //session_start();
+ ?> 
 <!-- header to be called if page is in admin folder -->
+
+<!-- header to be called if page is in admin folder -->
+<body class="hold-transition skin-red sidebar-mini">
+<div class="wrapper">
 
 <header class="main-header">
     <!-- Logo -->
@@ -48,7 +53,7 @@
                         <img src="../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        Customer Design Team
+                        AdminLTE Design Team
                         <small><i class="fa fa-clock-o"></i> 2 hours</small>
                       </h4>
                       <p>Why not buy a new awesome theme?</p>
@@ -223,7 +228,7 @@
                 <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Customer
+                 Customer
                  <!-- <small>Member since Nov. 2012</small>-->
                 </p>
               </li>
@@ -299,7 +304,7 @@
           </ul>
         </li>
    <li class="treeview">
-          <a href="#">
+          <a href="index.php">
             <i class="fa fa-fw fa-home"></i>
             <span>HOME</span>
             
@@ -309,6 +314,11 @@
           <a href="profile.php">
             <i class="fa fa-th"></i> <span>My Profile</span>
             <small class="label pull-right bg-green">new</small>
+          </a>
+        </li>
+		<li>
+          <a href="jobcreation.php">
+            <i class="fa fa-th"></i> <span>Job Creation</span>
           </a>
         </li>
         <li class="treeview">
