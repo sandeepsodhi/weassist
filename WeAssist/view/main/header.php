@@ -99,13 +99,13 @@
 
 		        <div class="tab-content">
 		            <div id="login" class="tab-pane fade in active">
-		                <form class="form-horizontal" action="../../controller/login.php" method="POST">
+		                <form class="form-horizontal"  action="../../controller/login.php" method="POST">
 		                    <div class="form-group">
 		                        <div style="margin-top:22px;" class="input-group dialog-s col-xs-10 col-sm-10">
 		                            <div class="input-group-addon">
 		                                <i class="fa fa-user"></i>
 		                            </div>
-                                            <input type="text" class="form-control" id="u_name" name="u_name" placeholder="Username" required>
+                                            <input type="email" class="form-control" id="u_name" name="u_name" placeholder="Username" onclick="showUser(this.value)" required>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
@@ -135,7 +135,7 @@
 		            </div> 
 		         
 		            <div id="signup" class="tab-pane fade">
-                                <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="../../controller/register.php" onsubmit="return validateform">
+						<form class="form-horizontal" enctype="multipart/form-data" method="POST" action="../../controller/register.php" onsubmit="return validateform">
 		                    <div class="form-group">
 		                        <div style="margin-top:22px;"class="input-group col-xs-10 col-sm-10 dialog-s ">
 		                            <div class="input-group-addon">
@@ -164,25 +164,45 @@
                                            <input type="password" class="form-control" id="pswd" name="pswd" placeholder="Password" required>
 		                        </div>
 		                    </div>
-		                    
-		                    <!--
-		                    <div class="form-group">
-		                        <div class="input-group col-xs-10 col-sm-10 dialog-s">
+							 <div class="form-group">
+	 	                       <div class="input-group col-xs-10 col-sm-10 dialog-s">
 		                            <div class="input-group-addon">
-		                                <i class="fa fa-file-photo-o"></i>
+		                                <i class="fa fa-lock"></i>
 		                            </div>
-                                    <input type="file" class="form-control" id="image" name="image" style="padding:0px;" accept=".jpg,.jpeg,.png,">
+                                           <input type="text" class="form-control" id="r_user" name="r_user" placeholder="Reference user">
 		                        </div>
 		                    </div>
-		                    -->
-		                    <div class="form-group">
-                                <label class="control-label col-xs-5" style="font-size:19px">Register as an agent?</label>
-		                        <div class="input-group col-xs-10 col-sm-10 dialog-s">
-		                        	<div class="bs-docs-masthead" style="margin-left:410px;margin-top:-30px">
-							            <input id="u_type" name="u_type" type="checkbox" class="form-control" onchange="if(this.checked) this.value='agent'; else this.value='customer';">
-									</div>
-		                        </div>
-		                    </div>
+	
+
+		
+		                    					
+<div class="clear">&nbsp;</div>
+		<div class="btn-group" data-toggle="buttons"></div>
+								<div class="clear">
+							
+								<table cellpadding="0" cellspacing="0" border="0" width="100%">
+									<td class="btn btn-radio" width="" >
+														<span class="glyphicon"></span>
+<input  type="radio"  name="u_type" id="agent" value="agent" onclick="if(this.checked) this.value='agent'; " required autocomplete="off" chacked>agent</td>
+
+										<td class="btn btn-radio" width="">
+														<span class="glyphicon"></span>
+<input  type="radio" name="u_type" id="customer" value="customer" onclick="if(this.checked) this.value='customer'; "  chacked required autocomplete="off">customer</td>
+
+										<td class="btn btn-radio"width="" >
+														<span class="glyphicon"></span>
+<input  type="radio" name="u_type" id="worker" value="worker" onclick="if(this.checked) this.value='worker'; " chacked required autocomplete="off">worker</td>	
+
+
+
+
+					</table>
+</div>					
+										
+
+											
+
+                                
 		                    <div class="form-group">
 		                        <div class="col-xs-offset-3 col-xs-6">
 		                            <button style="width:120px;margin-left:-30px"type="submit" class="btn btn-info btn-primary">SignUp</button>

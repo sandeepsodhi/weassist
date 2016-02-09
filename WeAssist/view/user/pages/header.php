@@ -2,10 +2,6 @@
  ?> 
 <!-- header to be called if page is in admin folder -->
 
-<!-- header to be called if page is in admin folder -->
-<body class="hold-transition skin-red sidebar-mini">
-<div class="wrapper">
-
 <header class="main-header">
     <!-- Logo -->
     <a href="index.php" class="logo">
@@ -53,7 +49,7 @@
                         <img src="../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        AdminLTE Design Team
+                        Customer Design Team
                         <small><i class="fa fa-clock-o"></i> 2 hours</small>
                       </h4>
                       <p>Why not buy a new awesome theme?</p>
@@ -228,7 +224,7 @@
                 <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                 Customer
+                  Customer
                  <!-- <small>Member since Nov. 2012</small>-->
                 </p>
               </li>
@@ -304,12 +300,18 @@
           </ul>
         </li>
    <li class="treeview">
-          <a href="index.php">
+          <a href="#">
             <i class="fa fa-fw fa-home"></i>
             <span>HOME</span>
             
           </a>
                   </li>
+ <li class="treeview">
+		 <a href="worker_reg.php">
+		 <i class="fa fa-user-plus"></i>
+			<span>Add User</span>
+				</a>
+</li>
         <li>
           <a href="profile.php">
             <i class="fa fa-th"></i> <span>My Profile</span>
@@ -318,8 +320,8 @@
         </li>
 		<li>
           <a href="jobcreation.php">
-            <i class="fa fa-th"></i> <span>Job Creation</span>
-          </a>
+            <i class="menu-icon fa fa-file-code-o bg-green"></i> <span>Job Creation</span>
+            </a>
         </li>
         <li class="treeview">
           <a href="#">
