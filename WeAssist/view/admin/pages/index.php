@@ -29,6 +29,9 @@
   <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker-bs3.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <!-- Our WebRTC application styling -->
+  <link rel="stylesheet" type="text/css" href="style/datachannel-demo.css">
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -125,22 +128,6 @@
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
-          <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-              <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-              <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-            </ul>
-            <div class="tab-content no-padding">
-              <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-            </div>
-          </div>
-          <!-- /.nav-tabs-custom -->
-
           <!-- Chat box -->
           <div class="box box-success">
             <div class="box-header">
@@ -152,78 +139,46 @@
                 <div class="btn-group" data-toggle="btn-toggle">
                   <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
                   </button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
                 </div>
               </div>
             </div>
             <div class="box-body chat" id="chat-box">
               <!-- chat item -->
               <div class="item">
-                <img src="../dist/img/user4-128x128.jpg" alt="user image" class="online">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                    Mike Doe
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-                <div class="attachment">
-                  <h4>Attachments:</h4>
-
-                  <p class="filename">
-                    Theme-thumbnail-image.jpg
-                  </p>
-
-                  <div class="pull-right">
-                    <button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
+               <!-- WebRTC demo -->
+                  <div class="demo">
+                    <div class="demo-connect">
+                      <input type="text" class="demo-chat-channel-input form-control" placeholder="Channel name"></input>
+                      <button class="demo-chat-create btn btn-primary">Create</button>
+                      <button class="demo-chat-join btn btn-warning">Join</button>
+                    </div>
+                    <div class="demo-chat inactive">
+                      <ul class="demo-chat-messages list-group">
+                        <li class="list-group-item" data-remove="true">No chat messages available</li>
+                      </ul>
+                     <!-- <input name="message" class="demo-chat-message-input form-control" placeholder="Message"></input>
+                      --> <!-- <div class="demo-chat-input">
+                        <input name="message" class="demo-chat-message-input form-control" placeholder="Message"></input>
+                        <button class="demo-chat-send btn btn-primary">Send</button>
+                      </div> -->
+                    </div>
                   </div>
-                </div>
-                <!-- /.attachment -->
-              </div>
-              <!-- /.item -->
-              <!-- chat item -->
-              <div class="item">
-                <img src="../dist/img/user3-128x128.jpg" alt="user image" class="offline">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                    Alexander Pierce
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-              </div>
-              <!-- /.item -->
-              <!-- chat item -->
-              <div class="item">
-                <img src="../dist/img/user2-160x160.jpg" alt="user image" class="offline">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-                    Susan Doe
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-              </div>
+                  <!-- /End WebRTC demo -->
+              </div>  
               <!-- /.item -->
             </div>
             <!-- /.chat -->
             <div class="box-footer">
-              <div class="input-group">
-                <input class="form-control" placeholder="Type message...">
-
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                </div>
+              <div class="demo-chat-input">
+                     <input name="message" class="demo-chat-message-input form-control" placeholder="Message"></input>
+                     <button style="margin-left:89%;margin-top:-58px;width:65px " class="demo-chat-send btn btn-primary">Send</button>
               </div>
+              <!-- <div class="input-group">
+                <input class="form-control" placeholder="Type message...">
+                  <div class="input-group-btn">
+                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                  </div>
+              </div> -->
             </div>
           </div>
           <!-- /.box (chat box) -->
@@ -600,5 +555,40 @@
 <script src="../dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+<!-- Web rtc -->
+<!-- Zepto for AJAX -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.3/zepto.min.js"></script>
+<!-- Pusher for WebRTC signalling -->
+<script src="//js.pusher.com/2.2/pusher.js"></script>
+<!-- DataChannel.js for WebRTC functionality -->
+<script src="//webrtc-experiment.com/DataChannel.js"></script>
+<!-- Our WebRTC application -->
+<script src="js/datachannel-demo.js"></script>
+<!-- Fill channel name -->
+<script>
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  var channel = getParameterByName("channel");
+
+  if (channel) {
+    document.querySelector(".demo-chat-channel-input").value = channel;
+  }
+</script>
+<script>
+//$(".demo").scrollTop($(document).height());
+
+// window.setInterval(function(){
+//   var elem = document.getElementById('demo');
+//   elem.scrollTop = elem.scrollHeight;
+// },1000);
+
+$("demo").scrollTop(0);
+
+</script>
 </body>
 </html>

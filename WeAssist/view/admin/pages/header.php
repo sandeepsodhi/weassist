@@ -310,6 +310,18 @@
           </a>
         </li>
         <li class="treeview">
+          <a href="users.php">
+            <i class="fa fa-user"></i>
+            <span>Users</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="ref_users.php">
+            <i class="fa fa-user"></i>
+            <span>Referred-Users</span>
+          </a>
+        </li>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Layout Options</span>

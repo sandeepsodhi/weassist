@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>WeAssist | Categories</title>
+  <title>WeAssist | Referred-Users</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -42,7 +42,7 @@
     <section class="content-header">
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Categories</li>
+        <li class="active">Users</li>
       </ol>
     </section>
 
@@ -51,32 +51,33 @@
    
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Categories</h3>
-              <h5><a href="edit_category.php">Create new category</a></h5> 
+              <h3 class="box-title">Users</h3><br><br>
+            <!--  <h5><a href="edit_subcategory.php">Create new category</a></h5> --> 
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
               <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Category Name</th>
-                  <th>Category Image</th>
-                  <th>Category Description</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Profile Image</th>
+                  <th>Referred Agent</th>
                   <th>Update</th>
                   </tr>
                 </thead>
                 <tbody>
                 <?php
                 include  '../../../model/dbConnect.php';
-                $rs = mysqli_query($conn,"select cat_id,cat_name,cat_image,cat_desc from category");
+                $rs = mysqli_query($conn,"select a.f_name,a.l_name,a.r_user,a.profile_pic,concat(b.f_name,' ',b.l_name) from users a join users b where a.u_type='worker' and a.r_user=b.r_code
+");
                 while($row=mysqli_fetch_row($rs))
                 {   
                 echo "<tr>
                         <td>$row[0]</td>
                         <td>$row[1]</td>
-                        <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[2]'>
-                        <td>$row[3]</td>
+                        <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[3]'></td>
+                        <td>$row[4]</td>
                         <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_category.php?cat_id=$row[0]\"'>
                         <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"../../../controller/delete_category.php?cat_id=$row[0]\"'></td>
                       </tr> 
@@ -104,7 +105,6 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery 2.2.0 -->
 <script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
