@@ -1,4 +1,4 @@
-<?php session_start()
+<?php session_start();
  ?>
 <!DOCTYPE html>
 <html>
@@ -37,14 +37,25 @@
   <![endif]-->
 <style>
 input[type='text'] { font-size: 140%;
-font-family: monospace; }
+font-family: monospace; 
+color:black;
+}
 
 </style>
   </head>
 
 
 <?php include('header.php');?>
+
 <div class="content-wrapper"> 
+
+  <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">My Profile</li>
+      </ol>
+    </section>
+	<br/>
  <section class="content">
   <div class="box box-primary">
    <div class="box-header with-border">
@@ -62,7 +73,7 @@ font-family: monospace; }
         <div class="col-md-7">
 		<br/>
      
-    	<form class="form-inline"  id="editprofile"  method="post" action="updateprofile.php" enctype="multipart/form-data">
+    	<form class="form-inline"  id="editprofile"  method="post"  enctype="multipart/form-data" action="updateprofile.php">
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="f_name">First Name:</label> </div>
@@ -114,7 +125,7 @@ font-family: monospace; }
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="phone">Phone No :&nbsp</label></div>
-	    <div class="col-md-8"><input  type="text" class="form-control" name="phone" id="phone" size="28%" value="<?php echo $_SESSION['l_name']; ?>"  onkeyup="isalphanum(this)" required readonly ></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="phone" id="phone" size="28%" value="<?php echo $_SESSION['contact']; ?>"  onkeyup="isalphanum(this)" required readonly ></div>
 	     <div class="col-md-1">		
 		<a href="#" onclick="changephone()">
           <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
@@ -128,8 +139,10 @@ font-family: monospace; }
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="city">City :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+  <input  type="hidden"  name="State" id="State"  size="0px"  >
+    <input  type="hidden"  name="Country" id="Country" size="0px"    >
 		</div>
-	    <div class="col-md-8"><input  type="text" class="form-control" name="city" id="city" size="28%" placeholder="Enter Your City" ></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="city" id="city" size="28%" value="<?php $_SESSION['city']; ?>" placeholder="Enter Your City" ></div>
 	    </div>
 		</div>
 	    
@@ -151,8 +164,7 @@ font-family: monospace; }
         
 		<div class="row">
 		<div class="form-group" >
-	    
-		<button type="submit" style="width:80%; margin-left:69%;  "type="submit" id="btnupdate" name="btnupdate"  class="btn btn-info btn-primary">Update</button>
+	 	<button type="submit" style="width:90%; margin-left:70%;  "type="submit" id="btnupdate" name="btnupdate"  class="btn btn-info btn-primary">Update</button>
     	</div>
 		</div>
  	    </form>	
@@ -168,14 +180,13 @@ $res=mysqli_query($conn,"select profile_pic from users where u_name='".$_SESSION
 $rs=mysqli_fetch_row($res);
 ?>
 <br/>
-<img class="profile-user-img img-responsive img-circle" src="image/<?php echo $rs[0];?>"  alt="User profile picture"  >
+<img class="profile-user-img img-responsive img-circle" src="image/<?php echo $_SESSION['image']?>"  alt="User profile picture"  >
 				</div>
 	
 		
 		
 		</div>
-	<input  type="hidden"  name="State" id="State"  size="0px"  ></div>
-		<input  type="hidden"  name="Country" id="Country" size="0px"    ></div>
+
 		
 	
 		</div>
@@ -235,6 +246,7 @@ $rs=mysqli_fetch_row($res);
                 $("#city").val(val[0]);
                 $("#State").val(val[1]);
                 $("#Country").val(val[2]);
+          //     console.log($("#Country").val());
             }
             else if (($("#city").val().match(/,/g) || []).length == 1)
             {
@@ -243,6 +255,7 @@ $rs=mysqli_fetch_row($res);
                 $("#city").val(val[0]);
                 $("#State").val('NA');
                 $("#Country").val(val[1]);
+
             }
 
         }, 1000);
@@ -288,16 +301,16 @@ $rs=mysqli_fetch_row($res);
 	 }
   </script>
   <script>
-  $('#editprofile').submit(function(){
+  /*$('#editprofile').submit(function(){
  return false;
-});
+});*/
  
-$('#btnupdate').click(function(){
+/*$('#btnupdate').click(function(){
  $.post( 
  $('#editprofile').attr('action'),
  $('#editprofile :input').serializeArray()
  );
-});
+});*/
 </script>
 <script>
 

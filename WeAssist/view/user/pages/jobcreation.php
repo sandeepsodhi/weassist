@@ -1,4 +1,4 @@
-<?php session_start()
+<?php session_start();
  ?>
 <!DOCTYPE html>
 <html>
@@ -64,71 +64,77 @@ select option { padding: 1px 5px 1px 3px;}
 
 <?php include('header.php');?>
 <div class="content-wrapper"> 
+  <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Job Creation</li>
+      </ol>
+    </section>
+	<br/>
+ 
  <section class="content">
   <div class="box box-primary">
    <div class="box-header with-border">
           
-		  <h >Create Job .....</h>	<hr>	
+	 
+		  <h1 >Create Job </h1>	<hr>	
 		
         <!-- left column -->
 	 </div>
+	<div class="row" style="margin:0% 5% 0% 5%"">
 	
-	<form class="form-horizontal"  id="editjob"  method="post" action="updateprofile.php" enctype="multipart/form-data">
-	<div class="row">
-	<div class="form-group" >
-	<div class="col-sm-2">
-	</div>
-		<div class="col-md-2"><label id="profile-label"  for="jobcateg">Job Category</label>
-		</div>
-	    	<div class="col-sm-5">
+
+	<form class="form-horizontal"  id="editjob"  method="post"  enctype="multipart/form-data" action="insertjob.php">
+   	<div class="form-group">
+	<label id="profile-label"  for="jobcateg" style="margin-left:5%;width:11%" size="10%">Job Category</label>
 	
-   <select name="jobcateg">
-     <option value=""></option>
-    <option value="Doctor">Doctor</option>
-    <option value="Plumber">Plumber</option>
-    <option value="Carpenter">Carpenter</option>
-    <option value="Painter">Painter</option>
+  <select class="btn" name="jobcateg" id="jobcateg" style="border:1px solid grey; color:black ; width:25%; margin-left:3%" >
+     <option value=''disabled='' select=''>-- Select Option --</option>
+   <?php 	require_once '../../../model/dbConnect.php'; 
+   $select=mysqli_query($conn,"select cat_name,cat_id from category");
+  //  echo $select->cat_name;
+   while($row=mysqli_fetch_array($select,MYSQLI_ASSOC))
+   {
+	   echo "<option value=".$row['cat_id'].">".$row['cat_name']."</option>" ; 
+   }
+   
+   ?>
   </select>
+ 
+	<label id="profile-label"  for="subcateg" style="margin-left:5%; width:11%">Sub Category</label> 
+ <select class="btn" name="subcateg" id="subcateg" style="border:1px solid grey; color:black ; width:25%; margin-left:3%">
+ <option value=''disabled='' select=''>-- Select Option --</option>
   
-	</div>
-	</div>
-	</div>
-	
+</select>
+  </div>
+  <div class="form-group">
+  <label id="profile-label"  for="jobtitle" style="margin-left:5%; width:11%" size="10%">Job Title</label>
+  <input type="text" id="jobtitle" name="jobtitle" placeholder="Job Title" style="border:1px solid grey; color:black ;width:25% ; text; margin-left:3%">
+</div>
+<div class="form-group">
+
+<label id="profile-label"  for="jobdesc" style="margin-left:5%; width:11% ; margin-top:-50% "; >Job Description</label>
+<textarea  rows="5" cols="110"  id="jobdesc" name="jobdesc" style="border:1px solid grey; color:black ; margin-left:3%" ></textarea>
+
+</div>
+<div class="form-group">
+<label id="profile-label"  for="jobphoto" style="margin-left:6%; width:11%" >Upload Photo</label>
+ <input type="file" class="btn-primary" id="jobphoto" name="jobphoto" style="background-color:white;border:1px solid grey; color:black ;width:25%; margin-left:19%; margin-top:-3%"  accept=".jpg,.jpeg,.png," onchange="readURL(this)">	
+</div>
+<div class="form-group" style="margin-left:19%;width:20%;height:5%">
+<img id="jobshow"/ src="image/NewCandidateImage.jpg" style="width:50%;height:30%;">  
+</div>
 <br/>
-<div class="row">
-	<div class="form-group" >
-	<div class="col-sm-2">
-	</div>
-		<div class="col-md-2"><label id="profile-label"  for="subcateg">Sub Category</label>
-		</div>
-	    	<div class="col-sm-5">
-	 <select name="subcateg">
-     <option value=""></option>
-    <option value="Doctor">Doctor</option>
-    <option value="Plumber">Plumber</option>
-    <option value="Carpenter">Carpenter</option>
-    <option value="Painter">Painter</option>
-  </select>
-	</div>	</div>	
-	</div>
-	
-	</form>
+<div class="form-group">
+<button type="submit" class="btn btn-info btn-primary" name="btnupdate" id="btnupdate"  style="width:20%; margin-left:20%;  " >Submit</button></div>
+  </div>
 	 </div>
-	 </div>
+	  </div>
 	   </section>	   
-</div>    
+  
 	   
 	   </div>
    
-      <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <!-- Main content -->
-      <!-- /.row (main row) -->
-
-    </section>
-    <!-- /.content -->
-  </div>
 
   <!-- /.content-wrapper -->
    <?php include 'footer_sidebar.php'; ?>
@@ -139,56 +145,6 @@ select option { padding: 1px 5px 1px 3px;}
 </div>
 
 
-<!--Javascript Map-->
-<script type="text/javascript">
-    function initialize() {
-	    var options = {
-            types: ['(cities)'],
-            //componentRestrictions: {country: "in"}
-        };
-        var input = document.getElementById('city');
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-          	
-		//console.log(autocomplete);
-	}
-	
-	//$("#city").val(function(){alert("kuch hua");});
-	
-  $('input[name=city]').change(function () {
-		    setTimeout(function () {
-            console.log($("#city").val());
-            console.log(($("#city").val().match(/,/g) || []).length); //logs 3
-            var val=[];
-            if(($("#city").val().match(/,/g) || []).length==2)
-            {
-                //All City, State, Country Exists
-                val=$("#city").val().split(',');
-                $("#city").val(val[0]);
-                $("#State").val(val[1]);
-                $("#Country").val(val[2]);
-            }
-            else if (($("#city").val().match(/,/g) || []).length == 1)
-            {
-                //Only City and Country Exists
-                val=$("#city").val().split(',');
-                $("#city").val(val[0]);
-                $("#State").val('NA');
-                $("#Country").val(val[1]);
-            }
-
-        }, 1000);
-    });
-
-    $('input[name=city]').click(function () {
-        document.getElementById('city').value = '';
-        document.getElementById('State').value = '';
-        document.getElementById('Country').value = '';
-    });
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-</script>
-<!--End of javascript map-->
 
 <!-- ./wrapper -->
 
@@ -204,66 +160,48 @@ select option { padding: 1px 5px 1px 3px;}
 <script src="../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+
+//for selecting subcategory
 <script type="text/javascript">
-  function changefname(){
-	 $('#f_name').prop("readonly",false);
-  }
-  function changelname(){
-	 $('#l_name').prop("readonly",false);
-  }
-  function changeemail(){
-	 $('#email').prop("readonly",false);
-	 }
-	 function changephone(){
-	 $('#phone').prop("readonly",false);
-	 }
-  </script>
-  <script>
-  $('#editprofile').submit(function(){
- return false;
+$(document).ready(function(){
+$("#jobcateg").change(function()
+{
+var id=$(this).val();
+console.log(id);
+var dataString = 'id='+ id;
+console.log(dataString);
+$.ajax
+({
+type: "POST",
+url: "retrievesubcateg.php",
+data: dataString,
+cache: false,
+success: function(html)
+{
+$("#subcateg").html(html);
+
+} 
 });
- 
-$('#btnupdate').click(function(){
- $.post( 
- $('#editprofile').attr('action'),
- $('#editprofile :input').serializeArray()
- );
-});
+});	
+	});
+</script>    
+<script  type="text/javascript">
+function readURL(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#jobshow')
+                        .attr('src', e.target.result)
+                        .width(100)
+                        .height(100);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+
+
+}
 </script>
-<script>
-
-$(document).ready(function() { 
-
-  $('#btnupdate').click(function() {  
-
-    $(".error").hide();
-    var hasError = false;
-    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    var emailblockReg =
-     /^([\w-\.]+@(?!yahoo.com)(?!hotmail.com)([\w-]+\.)+[\w-]{2,4})?$/;
-
-    var emailaddressVal = $("#email").val();
-    if(emailaddressVal == '') {
-    //  $("#email").after('<span class="error">Please enter your email address.</span>');
-      alert("Enter your Email Address");
-	  hasError = true;
-    }
-
-    else if(!emailReg.test(emailaddressVal)) {
-      $("#email").after('<span class="error"><font color="red">?</span>');
-      hasError = true;
-    }
-
-    else if(!emailblockReg.test(emailaddressVal)) {
-      $("#email").after('<span class="error">No yahoo, gmail or hotmail emails.</span>');
-      hasError = true
-    } 
-
-    if(hasError == true) { return false; }
-
-    });
-});
-</script>
-
 </body>
 </html>

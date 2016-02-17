@@ -1,6 +1,8 @@
-<?php //session_start();
- ?> 
 <!-- header to be called if page is in admin folder -->
+
+<!-- header to be called if page is in admin folder -->
+<body class="hold-transition skin-red sidebar-mini">
+<div class="wrapper">
 
 <header class="main-header">
     <!-- Logo -->
@@ -49,7 +51,7 @@
                         <img src="../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        Customer Design Team
+                        AdminLTE Design Team
                         <small><i class="fa fa-clock-o"></i> 2 hours</small>
                       </h4>
                       <p>Why not buy a new awesome theme?</p>
@@ -215,16 +217,16 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Customer</span>
+              <img src="image/<?php  echo $_SESSION['image']; ?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $_SESSION['f_name']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="image/<?php  echo $_SESSION['image']; ?>" class="img-circle" alt="User Image">
 
                 <p>
-                  Customer
+                 <?php echo $_SESSION['f_name']; ?>
                  <!-- <small>Member since Nov. 2012</small>-->
                 </p>
               </li>
@@ -269,10 +271,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="image/<?php echo $_SESSION['image']; ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Customer</p>
+          <p><?php echo $_SESSION['f_name']; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -300,18 +302,12 @@
           </ul>
         </li>
    <li class="treeview">
-          <a href="#">
+          <a href="index.php">
             <i class="fa fa-fw fa-home"></i>
             <span>HOME</span>
             
           </a>
                   </li>
- <li class="treeview">
-		 <a href="worker_reg.php">
-		 <i class="fa fa-user-plus"></i>
-			<span>Add User</span>
-				</a>
-</li>
         <li>
           <a href="profile.php">
             <i class="fa fa-th"></i> <span>My Profile</span>
@@ -320,9 +316,15 @@
         </li>
 		<li>
           <a href="jobcreation.php">
-            <i class="menu-icon fa fa-file-code-o bg-green"></i> <span>Job Creation</span>
-            </a>
+            <i class="fa fa-th"></i> <span>Job Creation</span>
+          </a>
         </li>
+        <li>
+          <a href="joblist.php">
+            <i class="fa fa-th"></i> <span>Job List</span>
+          </a>
+        </li>
+        
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
