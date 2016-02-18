@@ -32,7 +32,7 @@
 				    if($name)
 					{	move_uploaded_file($temp,"image/".$name);	
 
-	                    $conn->query("CALL insertjob('$jobcateg','$subcateg','$jobtitle','$jobdesc','$name','$uname')");
+  	                    $conn->query("CALL insertjob('$jobcateg','$subcateg','$jobtitle','$jobdesc','$name','$uname')");
                     }
 
                }

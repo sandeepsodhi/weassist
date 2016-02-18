@@ -96,8 +96,8 @@ select option { padding: 1px 5px 1px 3px;}
    
    $res=mysqli_query($conn,"select cat_name from category where cat_id='$jobcategory'");
                   $ress=mysqli_fetch_row($res);
- $jobcategory=$ress[0];
-$_SESSION['jobcategory']=$jobcategory;
+ $jobcateg=$ress[0];
+$_SESSION['jobcategory']=$jobcateg;
 
   if(!empty($_FILES['jobphoto']) || $_FILES['jobphoto']['size']>0){
     $name = mysqli_escape_string($conn,$_FILES['jobphoto']['name']);
@@ -129,7 +129,7 @@ $_SESSION['jobcategory']=$jobcategory;
                                      photo='$name'  
                                      where subcat_id='$cat_id' " );
                                   //   $_SESSION['image']=$name;
-                            //   include('emailagain.php');
+                              include('emailagain.php');
                                echo "<h>Job Updated </h>";
           
           }

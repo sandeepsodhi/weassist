@@ -106,7 +106,7 @@ select option { padding: 1px 5px 1px 3px;}
                 include  '../../../model/dbConnect.php';
                 $uname=$_SESSION['email'];
                 $rs = mysqli_query($conn,"select * from createjob where uname='$uname'");
-
+                  
                 while($row=mysqli_fetch_row($rs))
                 {   
                   $res=mysqli_query($conn,"select cat_name from category where cat_id='$row[1]'");
