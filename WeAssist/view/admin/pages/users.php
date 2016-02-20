@@ -61,6 +61,7 @@
                 <tr>
                   <th>First Name</th>
                   <th>Last Name</th>
+                  <th>User Type</th>
                   <th>Profile Image</th>
                   <th>Update</th>
                   </tr>
@@ -68,15 +69,16 @@
                 <tbody>
                 <?php
                 include  '../../../model/dbConnect.php';
-                $rs = mysqli_query($conn,"select f_name,l_name,profile_pic from users");
+                $rs = mysqli_query($conn,"select f_name,l_name,u_type,profile_pic,u_id from users");
                 while($row=mysqli_fetch_row($rs))
                 {   
                 echo "<tr>
                         <td>$row[0]</td>
                         <td>$row[1]</td>
-                        <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[2]'></td>
-                        <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_category.php?cat_id=$row[0]\"'>
-                        <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"../../../controller/delete_category.php?cat_id=$row[0]\"'></td>
+                        <td>$row[2]</td>
+                        <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[3]'></td>
+                        <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_users.php?u_id=$row[4]\"'>
+                        <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"../../../controller/delete_category.php?u_id=$row[4]\"'></td>
                       </tr> 
                       ";
                 }

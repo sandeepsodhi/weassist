@@ -1,0 +1,14 @@
+<html>
+<script type="text/javascript" src="jquery.min.js"></script>
+<div style="width:250px;position: fixed;bottom: 0px;right: 0px; padding: 2px 2px 2px 2px">
+	<div onclick="show()" style="background-color: #acacac"><div>Help & Support</div></div>
+	<div style="display: none" id="hbar">
+		<div>Content is this and the content will be placed here. We need to place the content in this box</div>
+		<div><input type="text" style="width:180px" placeholder="Enter Comment"/><input type="button" value="Send"></input></div>
+	</div>
+</div>
+<script type="text/javascript">
+function show(){
+	$("#hbar").toggle({animate:1000});
+}
+</script>
