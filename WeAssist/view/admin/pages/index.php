@@ -31,22 +31,18 @@
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- Our WebRTC application styling -->
   <link rel="stylesheet" type="text/css" href="style/datachannel-demo.css">
+  
+  <script type="text/javascript" src="jquery.min.js"></script>
 
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
-<div class="wrapper">
 
+<div class="wrapper">
 <?php include 'header.php'; ?> 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+
     <section class="content-header">
       <h1>
         Dashboard
@@ -129,60 +125,7 @@
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
           <!-- Chat box -->
-          <div class="box box-success">
-            <div class="box-header">
-              <i class="fa fa-comments-o"></i>
-
-              <h3 class="box-title">Chat</h3>
-
-              <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                <div class="btn-group" data-toggle="btn-toggle">
-                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="box-body chat" id="chat-box">
-              <!-- chat item -->
-              <div class="item">
-               <!-- WebRTC demo -->
-                  <div class="demo">
-                    <div class="demo-connect">
-                      <input type="text" class="demo-chat-channel-input form-control" placeholder="Channel name"></input>
-                      <button class="demo-chat-create btn btn-primary">Create</button>
-                      <button class="demo-chat-join btn btn-warning">Join</button>
-                    </div>
-                    <div class="demo-chat inactive">
-                      <ul class="demo-chat-messages list-group">
-                        <li class="list-group-item" data-remove="true">No chat messages available</li>
-                      </ul>
-                     <!-- <input name="message" class="demo-chat-message-input form-control" placeholder="Message"></input>
-                      --> <!-- <div class="demo-chat-input">
-                        <input name="message" class="demo-chat-message-input form-control" placeholder="Message"></input>
-                        <button class="demo-chat-send btn btn-primary">Send</button>
-                      </div> -->
-                    </div>
-                  </div>
-                  <!-- /End WebRTC demo -->
-              </div>  
-              <!-- /.item -->
-            </div>
-            <!-- /.chat -->
-            <div class="box-footer">
-              <div class="demo-chat-input">
-                     <input name="message" class="demo-chat-message-input form-control" placeholder="Message"></input>
-                     <button style="margin-left:89%;margin-top:-58px;width:65px " class="demo-chat-send btn btn-primary">Send</button>
-              </div>
-              <!-- <div class="input-group">
-                <input class="form-control" placeholder="Type message...">
-                  <div class="input-group-btn">
-                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                  </div>
-              </div> -->
-            </div>
-          </div>
-          <!-- /.box (chat box) -->
-
+          <!--  -->
           <!-- TO DO List -->
           <div class="box box-primary">
             <div class="box-header">
@@ -578,17 +521,6 @@
   if (channel) {
     document.querySelector(".demo-chat-channel-input").value = channel;
   }
-</script>
-<script>
-//$(".demo").scrollTop($(document).height());
-
-// window.setInterval(function(){
-//   var elem = document.getElementById('demo');
-//   elem.scrollTop = elem.scrollHeight;
-// },1000);
-
-$("demo").scrollTop(0);
-
 </script>
 </body>
 </html>

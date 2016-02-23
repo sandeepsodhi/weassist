@@ -1,3 +1,39 @@
+body {
+  background: #f4f4f4;
+  padding-bottom: 40px;
+}
+
+.container {
+  max-width: 600px;
+}
+
+.navbar {
+  background: #27343d;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  height: 60px;
+}
+
+.navbar .brand {
+  display: inline-block;
+  float: left;
+  height: 37px;
+  line-height: 60px;
+  margin-top: -3px;
+  width: 111px;
+}
+
+.navbar span {
+  color: #909BA2;
+  font-size: 20px;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  line-height: 60px;
+  margin-left: 10px;
+  text-transform: uppercase;
+}
+
 .navbar .btn {
   background-color: #eb0752;
   color: #FFFFFF;
@@ -13,6 +49,48 @@
   outline: 0;
 }
 
+h2 {
+  margin-top: 20px;
+}
+
+h3 {
+  margin-top: 30px;
+}
+
+ul, ol {
+  margin: 20px 0 30px;
+}
+
+p, li {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 200;
+}
+
+li {
+  font-style: italic;
+  margin-bottom: 0; 
+}
+
+p.intro {
+  font-size: 21px;
+}
+
+hr {
+  border-color: #ccc;
+}
+
+header h1 {
+  border-bottom: 1px solid #666;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  margin: 20px 0;
+  overflow: auto;
+}
+
 .buttons .btn {
   float: left;
   font-size: larger;
@@ -25,6 +103,7 @@
   }
 
 .demo {
+  background: #ddd;
   border-radius: 6px;
   margin: 20px 0;
   padding: 15px;
