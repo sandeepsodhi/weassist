@@ -1,12 +1,16 @@
 <?php
     session_start();
 	require_once '../../../model/dbConnect.php';
-    $jobcateg=mysqli_escape_string($conn,$_POST["jobcateg"]);
+    $jobcategory=mysqli_escape_string($conn,$_POST["jobcateg"]);
     //$subcateg=mysqli_escape_string($conn,$_POST["id"]);
     $subcateg=mysqli_escape_string($conn,$_POST["subcateg"]);
     $jobtitle=mysqli_escape_string($conn,$_POST["jobtitle"]);
     $jobdesc=mysqli_escape_string($conn,$_POST["jobdesc"]);
     $uname=$_SESSION['email'];
+   $res=mysqli_query($conn,"select cat_name from category where cat_id='$jobcategory'");
+                  $ress=mysqli_fetch_row($res);
+ $jobcateg=$ress[0];
+$_SESSION['jobcategory']=$jobcateg;
 
     if(!empty($_FILES['jobphoto']) || $_FILES['jobphoto']['size']>0){
 		$name = mysqli_escape_string($conn,$_FILES['jobphoto']['name']);
@@ -21,7 +25,9 @@
 	//	$res = $conn->prepare("call updatedetails(?,?,?,?,?,?,?,?)");
     //$res->bind_param("sssdssss",$f_name,$l_name,$email,$phone,$city,$uname,$state,$country);
     //echo $res->execute();	
-	
+	           echo "frfr";
+                       $conn->query("CALL insertjobs('$jobcategory','$subcateg','$jobtitle','$jobdesc','$uname')");
+
 		}
 		else
 		{
@@ -32,7 +38,12 @@
 				    if($name)
 					{	move_uploaded_file($temp,"image/".$name);	
 
-  	                    $conn->query("CALL insertjob('$jobcateg','$subcateg','$jobtitle','$jobdesc','$name','$uname')");
+  	                    $conn->query("CALL insertjob('$jobcategory','$subcateg','$jobtitle','$jobdesc','$name','$uname')");
+                    }
+                    else
+                    {  
+                       echo "frfr";
+                       $conn->query("CALL insertjobs('$jobcateg','$subcateg','$jobtitle','$jobdesc','$uname')");
                     }
 
                }
@@ -40,7 +51,9 @@
            }
         }
          else {
-                       $conn->query("CALL insertjob('$jobcateg','$subcateg','$jobtitle','$jobdesc','','$uname')");
+                       
+//                       $conn->query("CALL insertjobs('$jobcateg','$subcateg','$jobtitle','$jobdesc','$uname')");
          }  
 
+     include('emailagain.php');
 ?>

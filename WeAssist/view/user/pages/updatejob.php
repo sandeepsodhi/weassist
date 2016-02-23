@@ -112,7 +112,11 @@ $_SESSION['jobcategory']=$jobcateg;
   //  $res = $conn->prepare("call updatedetails(?,?,?,?,?,?,?,?)");
     //$res->bind_param("sssdssss",$f_name,$l_name,$email,$phone,$city,$uname,$state,$country);
     //echo $res->execute(); 
-  
+        echo "frfr1";
+        $sql=mysqli_query($conn,"Update createjob set jobcategory='$jobcategory',subcategory='$subcateg',jobtitle='$jobtitle',jobdesc='$jobdesc'
+                                     where subcat_id='$cat_id' " );
+          include('emailagain.php');
+ 
     }
     else
     {
@@ -130,8 +134,16 @@ $_SESSION['jobcategory']=$jobcateg;
                                      where subcat_id='$cat_id' " );
                                   //   $_SESSION['image']=$name;
                               include('emailagain.php');
+                      
                                echo "<h>Job Updated </h>";
           
+          }
+          else
+          {
+                    $sql=mysqli_query($conn,"Update createjob set jobcategory='$jobcategory',subcategory='$subcateg',jobtitle='$jobtitle',jobdesc='$jobdesc',
+                                     where subcat_id='$cat_id' " );
+          include('emailagain.php');
+echo "frfr2";
           }
       }
     }
@@ -141,10 +153,11 @@ $_SESSION['jobcategory']=$jobcateg;
 /*  $res = $conn->prepare("call updatedetails(?,?,?,?,?,?,?,?)");
     $res->bind_param("sssdssss",$f_name,$l_name,$email,$phone,$city,$uname,$state,$country);
      $res->execute(); 
-  //*/          $sql=mysqli_query($conn,"Update users set f_name='$f_name',l_name='$l_name',u_name='$email',contact='$phone',city='$city',
-    //          state='$state',country='$country' 
-      //          where u_name='$uname' " );
-
+  //*/     
+  echo "frfr3";  
+       $sql=mysqli_query($conn,"Update createjob set jobcategory='$jobcategory',subcategory='$subcateg',jobtitle='$jobtitle',jobdesc='$jobdesc',
+                                     where subcat_id='$cat_id' " );
+          include('emailagain.php');
 
   }
 

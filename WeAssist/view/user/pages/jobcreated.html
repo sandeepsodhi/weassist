@@ -1,65 +1,50 @@
-<?php session_start(); ?>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
- <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
-    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="plugins/morris/morris.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-  <!-- Date Picker -->
-  <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
+<html> 
+       <head>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body >
+<a href-"index.php">
 <div class="container" >
-<div class= "row" >
-<div class="col-sm-10" style="background-color: #dd4b39;">
-<header class="main-header">
-   <a href="index.php" class="logo" >
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      
-      <!-- logo for regular state and mobile devices -->
-    
-      <span class="logo-lg" style="color: white"><b>We</b>Assist</span>
-    </a>
+<div class= "row"  >
+<div class="col-sm-8" style="background-color: #d7370f; ">
+<header class="main-header" style="height:40px">
+ 
+      <span class="logo-lg" style="color:white;font-size:30px;margin-left: 5%"><b>We</b>Assist</span>
+   
     </header>
+<br/>
+</div>
+</div>
 
-</div>
-<hr>
-</div>
-<div class="row">
-<div class="col-sm-10" style="background-color: #ecf0f5;">
-<h4 style="margin-left: 5%;margin-top:2%">Dear User, </h4><br/>
-<h4 style="margin-left: 5%;margin-top:1%">You Have sucessfully created a Job below are the details : </h4>
-  <div class="box box-primary" style="margin-left:5%;margin-top:1%;background-color: white;height: 20%;width: 70%">
-             
+<div class="row" >
+<div class="col-sm-8" style="padding-bottom: 1%;background-color: #d7370f;" >
+<div style="margin-left:5%">
+<p style="padding-top: 2%;color:white;font-family:Helvetica;font-size:15px">Dear <b> {{fname}} </b>, 
 
+</p><br/>
+<p  style="color:white;font-family:sans-serif;font-size:15px;margin-top: 1%">You Have sucessfully created a Job of   <b><u>  jobcat </u></b>   for <b><u> 
+  </u></b> with description <b><u> {{jobdesc}}  </u></b> on   </p>
+<p  style="color:white;font-family:sans-serif;font-size:15px;margin-top: 1%"> We have a comitted team and will reach you in 24 hours. </p><br/>
+<p  style="color:white;font-family:sans-serif;font-size:15px;margin-top: 1%"> Thank you.</p><br/>
+ </div>
 </div>
 </div>
-</div>
-<div class="row">
-<div class="col-sm-10" style="background-color: grey;height:3%;padding:2%"  >
-    <footer class="main-f" >
+<div class="row" >
+<div class="col-sm-8" style="height:3%;padding:2%;background-color:#d7370f"  >
+    <footer class="main-footer" style="color:white;font-size: 10px" >
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.2
+      <b style="color:white;">Version</b> 2.3.2
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="../../main/" style="color:white">WeAssist</a>.</strong> All rights
+    <strong style="color:white;"> Copyright &copy; 2014-2015 <a href="../../main/" style="color:white;">WeAssist</a>.</strong> All rights
     reserved.
   </footer>
-
-
-  
 </div>
 </div>
 </div>
+</body>
+</head> 
+</html>
