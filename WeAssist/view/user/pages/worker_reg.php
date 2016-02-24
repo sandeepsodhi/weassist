@@ -1,8 +1,14 @@
-  <?php session_start()
+  <?php //session_start();
  ?>
+ <?php include 'header.php';?>  
+
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="jquery.dreamalert.js"></script>
+<link href="jquery.dreamalert.css"rel="stylesheet">
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 2 | Widgets</title>
@@ -75,6 +81,34 @@
     google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
+ <script>
+  function initialize() {
+		
+        var options = {
+            types: ['(signup)'],
+            //componentRestrictions: {country: "in"}
+        };
+        var input = document.getElementById('signup');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+          	
+		//console.log(autocomplete);
+	}
+            
+            function show_code(obj) {
+                $(obj).parent().next().slideDown();
+            }
+            
+            $(document).ready(function() {
+
+                $('#button2').click(function(){
+                    $.dreamAlert({
+                        'type'      :   'success',
+                        'message'   :   'Operation completed!'
+                    });
+                });
+              
+        </script>
+        </div>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -87,20 +121,22 @@ font-family: monospace; }
 
 </style>
   </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-red-light sidebar-mini">
+
 <div class="wrapper">
 
-<?php include('header.php');?>  
 
 	 
 <div class="content-wrapper"> 
  <section class="content">
   <div class="box box-primary">
    <div class="box-header with-border">
-		                            <div class="label-addon ">
+		                            <div class="label-addon">
           								 <i class="fa fa-user-plus"></i>
 
-		  <h >Add User</h>	<hr>	
+		  <h >Add User</h>		
+		  				<h5>	<a href="profession.php">Add Professional Details</a><h5>
+<hr>
 		</div>
         <!-- left column -->
 		
@@ -254,26 +290,7 @@ font-family: monospace; }
                                            <input type="password" class="form-control" id="pswd" name="pswd"  required>
 		                        </div>
 		                    </div>
-							<div class="form-group">
-	 	                       <div class="input-group col-xs-10 col-sm-10 dialog-s">
-		                            <div class="input-group-addon">
-		                                <i class="fa fa-phone"></i>
-		                            </div>
-                                           <input type="contact" class="form-control" id="contact" name="contact"  required>
-		                        </div>
-		                    </div>
-
-					<br>
 					
-							  <div class="form-group">
-                        <div class="input-group col-xs-10 col-sm-10 dialog-s">
-                            <div class="input-group-addon">
-                                <i class="fa fa-photo"></i>
-                            </div>
-                            <input type="file" class="form-control" name="image" id="image"  accept=".jpg,.jpeg,.png">
-                        </div>
-                    </div>
-					<br>
 						
 					
 					<div class="form-group">
@@ -350,5 +367,14 @@ font-family: monospace; }
 <script src="../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+
+$.dreamAlert({
+
+	  'type'      :   'signup',
+
+	  'message'   :   'Completed!'
+
+	});
+	$.dreamAlert.close();
 </body>
 </html>

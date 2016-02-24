@@ -1,8 +1,6 @@
+<?php //session_start();
+ ?> 
 <!-- header to be called if page is in admin folder -->
-
-<!-- header to be called if page is in admin folder -->
-<body class="hold-transition skin-red sidebar-mini">
-<div class="wrapper">
 
 <header class="main-header">
     <!-- Logo -->
@@ -14,6 +12,9 @@
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
+	<!-- Navigation -->
+				
+						
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
@@ -21,6 +22,14 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+
+						<li class="active"><a href="index.php">Home</a></li>
+						  <li class="dropdown">
+         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Services <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://www.codecademy.com/learn/php">Shop</a></li>
+          </ul>
+        </li>
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -51,7 +60,7 @@
                         <img src="../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        AdminLTE Design Team
+                        Customer Design Team
                         <small><i class="fa fa-clock-o"></i> 2 hours</small>
                       </h4>
                       <p>Why not buy a new awesome theme?</p>
@@ -217,16 +226,16 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="image/<?php  echo $_SESSION['image']; ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $_SESSION['f_name']; ?></span>
+              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Customer</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="image/<?php  echo $_SESSION['image']; ?>" class="img-circle" alt="User Image">
+                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                 <?php echo $_SESSION['f_name']; ?>
+                  Customer
                  <!-- <small>Member since Nov. 2012</small>-->
                 </p>
               </li>
@@ -271,10 +280,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="image/<?php echo $_SESSION['image']; ?>" class="img-circle" alt="User Image">
+          <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $_SESSION['f_name']; ?></p>
+          <p>Customer</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -308,6 +317,12 @@
             
           </a>
                   </li>
+ <li class="treeview">
+		 <a href="worker_reg.php">
+		 <i class="fa fa-user-plus"></i>
+			<span>Add User</span>
+				</a>
+</li>
         <li>
           <a href="profile.php">
             <i class="fa fa-th"></i> <span>My Profile</span>
@@ -316,15 +331,9 @@
         </li>
 		<li>
           <a href="jobcreation.php">
-            <i class="fa fa-th"></i> <span>Job Creation</span>
-          </a>
+            <i class="menu-icon fa fa-file-code-o bg-green"></i> <span>Job Creation</span>
+            </a>
         </li>
-        <li>
-          <a href="joblist.php">
-            <i class="fa fa-th"></i> <span>Job List</span>
-          </a>
-        </li>
-        
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
