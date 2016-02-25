@@ -51,7 +51,7 @@ select {
     font-size:14pt;
   width: 50%;
     letter-spacing:0.07em;
-    color:#FFFFFF;
+    color:#000000;
     background:transparent;
     border: solid 1px #808080;
     padding:3px;
@@ -149,6 +149,7 @@ select option { padding: 1px 5px 1px 3px;}
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.0 -->
+
 <script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="../bootstrap/js/bootstrap.min.js"></script>
@@ -161,7 +162,7 @@ select option { padding: 1px 5px 1px 3px;}
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 
-//for selecting subcategory
+
 <script type="text/javascript">
 $(document).ready(function(){
 $("#jobcateg").change(function()
