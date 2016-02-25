@@ -69,7 +69,7 @@
                 <tbody>
                 <?php
                 include  '../../../model/dbConnect.php';
-                $rs = mysqli_query($conn,"select a.f_name,a.l_name,a.r_user,a.profile_pic,concat(b.f_name,' ',b.l_name) from users a join users b where a.u_type='worker' and a.r_user=b.r_code
+                $rs = mysqli_query($conn,"select a.f_name,a.l_name,a.r_user,a.profile_pic,concat(b.f_name,' ',b.l_name),a.u_id from users a join users b where a.u_type='worker' and a.r_user=b.r_code
 ");
                 while($row=mysqli_fetch_row($rs))
                 {   
@@ -78,8 +78,8 @@
                         <td>$row[1]</td>
                         <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[3]'></td>
                         <td>$row[4]</td>
-                        <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_category.php?cat_id=$row[0]\"'>
-                        <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"../../../controller/delete_category.php?cat_id=$row[0]\"'></td>
+                        <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_refUsers.php?u_id=$row[5]\"'>
+                        <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"../../../controller/delete_refUsers.php?u_id=$row[5]\"'></td>
                       </tr> 
                       ";
                 }
