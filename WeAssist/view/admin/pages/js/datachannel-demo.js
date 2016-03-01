@@ -133,7 +133,7 @@ var onMessageKeyDown = function(event) {
   }
 };
 
-var addMessage = function(message, userId, self) {
+  var addMessage = function(message, userId, self) {
   var messages = messageList.getElementsByClassName("list-group-item");
 
   // Check for any messages that need to be removed
@@ -150,10 +150,17 @@ var addMessage = function(message, userId, self) {
   newMessage.classList.add("list-group-item");
 
   if (self) {
+    var d = new Date();
     newMessage.classList.add("self");
-    newMessage.innerHTML = "<span class='badge'>You</span><p>" + message + "</p>";
+    newMessage.innerHTML = "<span class='badge'>You</span><p>" + message +"</p>\n"+"<i>"+d.getDate()+"/"+(d.getMonth()+1)+" "+d.getHours()+":"+d.getMinutes()+"</i>";
+    
+
   } else {
-    newMessage.innerHTML = "<span class='badge'>" + userId + "</span><p>" + message + "</p>"
+    var d = new Date();
+    //newMessage.innerHTML = "<span class='badge'>" + userId + "</span><p>" + message + "</p>"
+      newMessage.innerHTML = "<span class='badge'>Sender</span><p>" + message + "</p>\n"+"<i>"+d.getDate()+"/"+(d.getMonth()+1)+" "+d.getHours()+":"+d.getMinutes()+"</i>";
+   // newMessage.innerHTML = "<p>" + message + "</p>"
+
   }
 
   messageList.appendChild(newMessage);

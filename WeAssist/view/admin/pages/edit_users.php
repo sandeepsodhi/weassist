@@ -53,22 +53,22 @@
                     $row = mysqli_fetch_row(mysqli_query($conn,"select f_name,l_name,contact,city,profile_pic from users where u_id=$u_id"));
                     
                  echo "<tr>
-                  <td>First Name</style></td>
-                  <td><input type='text' class='btn btn-border' name='f_name' value='$row[0]' onkeyup='showUser(this.value)' required><div id='txtHint'></div></td>
+                  <td class='col-xs-2'>First Name</style></td>
+                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='f_name' value='$row[0]' required></td>
                 </tr>
                 <tr>
-                <td>Last Name</td>
-                  <td><input type='text' name='l_name' value='$row[1]' required></td>
+                <td class='col-xs-2'>Last Name</td>
+                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='l_name' value='$row[1]' required></td>
                 </tr>
-                <td>Contact</td>
-                  <td><input type='text' name='contact' value='$row[2]' required></td>
+                <td class='col-xs-2'>Contact</td>
+                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='contact' value='$row[2]' required></td>
                 </tr>
-                <td>City</td>
-                  <td><input type='text' name='city' value='$row[3]' required></td>
+                <td class='col-xs-2'>City</td>
+                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='city' value='$row[3]' required></td>
                 </tr>
                 <tr>
-                  <td>Profile picture</td>
-                  <td><img src='../../image/$row[4]' width='100' height='100' alt=''  style='border-radius:10px;position:absolute;  z-index:1;' id='cat_image' />
+                  <td class='col-xs-2'>Profile picture</td>
+                  <td><img src='../../image/$row[4]' width='100' height='100' alt='NoImage'  style='border-radius:10px;position:absolute;  z-index:1;' id='cat_image' />
                       <input type='file' name='image' style='border-radius:20px;width:100px; height:100px; position:relative;  z-index:2; opacity:0;' onchange='readURL(this)' />
                   </td>
                 </tr>

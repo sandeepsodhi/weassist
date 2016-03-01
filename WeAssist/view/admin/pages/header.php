@@ -486,8 +486,8 @@
                 <!-- /.chat -->
                 <div class="box-footer">
                   <div class="demo-chat-input">
-                         <input name="message" style="width:80%" class="demo-chat-message-input form-control" onkeyup="javscript: if (event.keyCode==13) { scroll();/*$('.demo').scrollTop=$('.demo').scrollHeight;*/}"placeholder="Message" on></input>
-                         <button style="margin-left:78%;margin-top:-58px;width:20%px " onclick="scroll();" class="demo-chat-send btn btn-primary">Send</button>
+                         <input name="message" style="width:80%" class="demo-chat-message-input form-control" onkeyup="javscript: if (event.keyCode==13) { sc_roll();/*$('.demo').scrollTop=$('.demo').scrollHeight;*/}"placeholder="Message" on></input>
+                         <button style="margin-left:78%;margin-top:-58px;width:20%px " onclick="sc_roll();" class="demo-chat-send btn btn-primary">Send</button>
                   </div>
                 </div>
               </div>
@@ -528,13 +528,10 @@
 }
 
 
-function scroll()
+function sc_roll()
 {
-alert('scroll');
  var dem = document.getElementById('demo');
- console.log('before '+dem.scrollTop);
  dem.scrollTop  =dem.scrollHeight-dem.clientHeight;
- console.log(dem.scrollTop);
 }
 </script>
 

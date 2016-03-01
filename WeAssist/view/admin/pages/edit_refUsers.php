@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>WeAssist | Sub-categories</title>
+  <title>WeAssist | Referred Users</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -28,8 +28,8 @@
     <section class="content-header">
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Sub-categories</a></li>
-        <li class="active">Edit Sub-category</li>
+        <li><a href="#">Referred Users</a></li>
+        <li class="active">Edit referred users</li>
       </ol>
     </section>
 
@@ -37,90 +37,86 @@
     <section class="content" style="margin-top:20px;min-height:900px">
    
           <div class="box">
-            <!-- /.box-header -->
-            <?php if (isset($_GET['subcat_id'])) { ?>
             <div class="box-header">
-              <h3 class="box-title">Edit Sub-category</h3>
+              <h3 class="box-title">Edit Referred User</h3>
             </div>
-            <form method="POST" action="../../../controller/update_subcategory.php?subcat_id=<?php echo $_GET['subcat_id']; ?>" enctype="multipart/form-data">
+            <!-- /.box-header -->
+            <?php if (isset($_GET['u_id'])) { ?>
+            
+            <form method="POST" action="../../../controller/update_refUser.php?u_id=<?php echo $_GET['u_id']; ?>" enctype="multipart/form-data">
             <div class="box-body no-padding">
               <table class="table table-hover">
                 <tbody>
                 <?php
-                    $subcat_id = $_GET['subcat_id']; 
+                    $u_id = $_GET['u_id']; 
                     include  '../../../model/dbConnect.php';
-                    $row = mysqli_fetch_row(mysqli_query($conn,"select subcat_name,subcat_image,subcat_desc,subcat_city from sub_category where subcat_id=$subcat_id"));
+                    $row = mysqli_fetch_row(mysqli_query($conn,"select a.f_name,a.l_name,a.contact,a.city,concat(b.f_name,' ',b.l_name),a.profile_pic from users a join users b on a.u_type='worker' and a.r_user=b.r_code where a.u_id=$u_id"));
                     
                  echo "<tr>
-                  <td class='col-xs-2 col-sm-2'>Sub-category Name</td>
-                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='subcat_name' value='$row[0]' onkeyup='showUser(this.value)' required><div id='txtHint'></div></td>
+                  <td class='col-xs-2'>First Name</style></td>
+                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='f_name' value='$row[0]' required></td>
                 </tr>
                 <tr>
-                <td class='col-xs-2 col-sm-2'>Sub-category Description</td>
-                  <td><textarea class='col-xs-10 col-sm-8 btn btn-border' name='subcat_desc' cols=100 rows=8>$row[2]</textarea>
+                <td class='col-xs-2'>Last Name</td>
+                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='l_name' value='$row[1]' required></td>
+                </tr>
+                <td class='col-xs-2'>Contact</td>
+                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='contact' value='$row[2]' required></td>
                 </tr>
                 <tr>
-                  <td class='col-xs-2 col-sm-2'>Sub-category Image</td>
-                  <td><img src='../../image/$row[1]' width='100' height='100' alt=''  style='border-radius:10px;position:absolute;  z-index:1;' id='subcat_image' />
+                <td class='col-xs-2'>City</td>
+                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='city' value='$row[3]' required></td>
+                </tr>
+                <tr>
+                <td class='col-xs-2'>Referred Agent</td>
+                  <td>";
+                 echo "  <select name='ref_user' class='col-xs-10 col-sm-4 btn btn-border' required>
+                    <option value=''  selected >$row[4]</option>";
+                    $rs=mysqli_query($conn,"select concat('f_name', ,'l_name') from users");
+                    while($row1=mysqli_fetch_assoc($rs))
+                    {
+                        echo "<option>".$row1[0]."</option>";
+                    }
+
+                //  echo "<input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='city' value='$row[4]' required>";
+
+                   echo "</td>
+                </tr>
+                <tr>
+                  <td class='col-xs-2'>Profile picture</td>
+                  <td><img src='../../image/$row[5]' width='100' height='100' alt='NoImage'  style='border-radius:10px;position:absolute;  z-index:1;' id='cat_image' />
                       <input type='file' name='image' style='border-radius:20px;width:100px; height:100px; position:relative;  z-index:2; opacity:0;' onchange='readURL(this)' />
                   </td>
                 </tr>
                 <tr>
-                  <td class='col-xs-2 col-sm-2'>Sub-category City</td>
-                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='subcat_city' value='$row[3]' required></td>
-                </tr>
-                <tr>
-                  <td colspan=2><input style='width:90px;margin-left:180px' class='btn btn-primary' type='submit' value='Update'><input style='width:90px;margin-left:20px' class='btn btn-primary' type='button' value='Delete' onclick='window.location.href=\"../../../controller/delete_subcategory.php?subcat_id=".$_GET['subcat_id']."\"'></td>
+                  <td colspan=2><input style='width:90px;margin-left:180px' class='btn btn-primary' type='submit' value='Update'><input style='width:90px;margin-left:20px' class='btn btn-primary' type='button' value='Delete' onclick='window.location.href=\"../../../controller/delete_user.php?u_id=".$_GET['u_id']."\"'></td>
                 <tr>
                 "; ?>
              </tbody></table>
             </div>
-            <!-- /.box-body --> 
+            <!-- /.box-body -->
             <form>
           <?php }
           else
-            { 
-              include  '../../../model/dbConnect.php';
-            ?>
-            </select>
-            <div class="box-header">
-              <h3 class="box-title">Create Sub-category</h3>
-            </div>
-            <form method="POST" action="../../../controller/update_subcategory.php" enctype="multipart/form-data">
+            { ?>
+
+            <form method="POST" action="../../../controller/update_category.php" enctype="multipart/form-data">
             <div class="box-body no-padding">
               <table class="table table-hover">
                 <tbody>
                 <tr>
-                  <td class='col-xs-2 col-sm-2'>Categoty Name</td>
-                  <td>
-                  <?php
-                     echo "<select name='cat_id'  class='col-xs-10 col-sm-4 btn btn-border' required>
-                    <option value=''  selected disabled>Select Category</option>";
-                    $rs=mysqli_query($conn,"select cat_id,cat_name from category");
-                    while($row=mysqli_fetch_assoc($rs))
-                    {
-                        echo "<option value=".$row['cat_id'].">".$row['cat_name']."</option>";
-                    }
-                  ?>
-                  </td>
+                  <td>Category Name</td>
+                  <td><input type='text' name='cat_name' id='cat_name' onkeyup="showUser(this.value)" required><div id="txtHint"></div></td> 
                 </tr>
                 <tr>
-                  <td class='col-xs-2 col-sm-2'>Sub-category Name</td>
-                  <td><input  type='text' class='col-xs-10 col-sm-4 btn btn-border' name='subcat_name' id='subcat_name' onkeyup="showUser(this.value)" required><div id="txtHint"></div></td> 
+                <td>Category Description</td>
+                  <td><textarea name='cat_desc' cols=100 rows=8></textarea>
                 </tr>
                 <tr>
-                <td class='col-xs-2 col-sm-2'>Sub-category Description</td>
-                  <td><textarea class='col-xs-10 col-sm-8 btn btn-border' name='subcat_desc' cols=100 rows=8></textarea>
-                </tr>
-                <tr>
-                  <td class='col-xs-2 col-sm-2'>Sub-category Image</td>
-                  <td><img src='../../image/NewCandidateImage.jpg' width='100' height='100' alt=''  style='border-radius:20px;position:absolute;  z-index:1;' id='subcat_image' />
+                  <td>Category Image</td>
+                  <td><img src='../../image/NewCandidateImage.jpg' width='100' height='100' alt=''  style='border-radius:20px;position:absolute;  z-index:1;' id='cat_image' />
                       <input type='file' name='image' style='width:100px; height:100px; position:relative;  z-index:2; opacity:0;' onchange='readURL(this)' />
                   </td>
-                </tr>
-                <tr>
-                  <td class='col-xs-2 col-sm-2'>Sub-category City</td>
-                  <td><input class='col-xs-10 col-sm-4 btn btn-border' type='text' name='subcat_city' required></td>
                 </tr>
                 <tr>
                   <td colspan="2"><input style='width:100px;width:90px;margin-left:160px' class='btn btn-primary' type='submit' value='Update'></td>
@@ -166,7 +162,7 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#subcat_image')
+                    $('#cat_image')
                         .attr('src', e.target.result)
                         .width(100)
                         .height(100);
@@ -192,7 +188,7 @@
                   document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
               }
           };
-          xmlhttp.open("GET","../../../controller/registered_subcategory.php?subcat_name="+str,true);
+          xmlhttp.open("GET","../../../controller/registered_category.php?cat_name="+str,true);
           xmlhttp.send();
       }
   }

@@ -60,6 +60,7 @@
 }
 
 ul.demo-chat-messages {
+  border-top: 1px solid #aaa;
   margin: 10px 0 0;
   padding-top: 10px;
 }

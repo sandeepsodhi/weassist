@@ -78,7 +78,7 @@
                         <td>$row[2]</td>
                         <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[3]'></td>
                         <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_users.php?u_id=$row[4]\"'>
-                        <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"../../../controller/delete_category.php?u_id=$row[4]\"'></td>
+                        <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"../../../controller/delete_user.php?u_id=$row[4]\"'></td>
                       </tr> 
                       ";
                 }
