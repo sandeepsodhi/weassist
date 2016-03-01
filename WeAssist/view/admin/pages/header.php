@@ -508,6 +508,32 @@
 <script src="js/datachannel-demo.js"></script>
 <!-- Fill channel name -->
 <script>
+
+
+function createChannel()
+{
+var datachannel = new DataChannel();
+//Create a new channel
+
+//Create
+datachannel.open("Hello");
+console.log(datachannel);
+
+//Join
+datachannel.connect("Hello");
+
+
+//Send a message
+datachannel.send("This is the first hello");
+
+
+//Receive a message
+datachannel.onmessage = function (message, userId) {
+  addMessage(message, userId);
+};
+
+}
+
   function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
