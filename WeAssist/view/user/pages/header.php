@@ -326,6 +326,12 @@
         </li>
         
         <li class="treeview">
+          <a href="searchjob.php">
+            <i class="fa fa-pie-chart"></i>
+            <span>Search Job</span>
+             </a>
+           </li>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>My Orders</span>

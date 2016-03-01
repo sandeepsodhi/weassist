@@ -29,8 +29,8 @@ $mytemp=str_replace("{{date}}",$time,$mytemp);
 $sendgrid = new SendGrid("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");
 $email    = new SendGrid\Email();
 print_r($mytemp);
-/*$email->addTo("anchitmittal04@gmail.com")
-      ->setFrom("sushmalpu@gmail.com")
+/*$email->addTo("shuvam.jha007@gmail.com")
+      ->setFrom("shuviru219@gmail.com")
       ->setSubject("Sucessfully Created job  "."  " . $jobtitle)
       ->setHtml($mytemp);
 */
