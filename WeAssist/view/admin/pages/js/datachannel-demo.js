@@ -2,7 +2,6 @@
 var datachannel = new DataChannel();
 
 // Set the userid based on what has been defined by DataChannel
-// https://github.com/muaz-khan/WebRTC-Experiment/tree/master/DataChannel#use-custom-user-ids
 datachannel.userid = window.userid;
 
 // Open a connection to Pusher
@@ -91,22 +90,43 @@ var onCreateChannel = function() {
   }
 
   disableConnectInput();
-
   datachannel.open(channelName);
+
+ // if (!this.channels[channelName]) {
+ //  datachannel.open(channelName);
+ //  console.log("in open");
+ //  }else{
+ //     datachannel.connect(channelName);
+ //     console.log("in connect")
+ //  }
+
 };
 
 var onJoinChannel = function() {
-  var channelName = cleanChannelName(channelInput.value);
-
+ 
+  $.getJSON("my.json",function(data){
+  //console.log(data);
+  var channelName = data;
+  //console.log(channelInput);
+  //var channelName = cleanChannelName(channelInput.value);
+  console.log(channelName);
   if (!channelName) {
     console.log("No channel name given");
     return;
   }
-
   disableConnectInput();
-
   // Search for existing data channels
   datachannel.connect(channelName);
+  });
+  
+  // var channelName = cleanChannelName(channelInput.value);
+  // if (!channelName) {
+  //   console.log("No channel name given");
+  //   return;
+  // }
+  // disableConnectInput();
+  // datachannel.connect(channelName);
+
 };
 
 var cleanChannelName = function(channel) {
@@ -167,9 +187,10 @@ var onMessageKeyDown = function(event) {
 };
 
 var disableConnectInput = function() {
-  channelInput.disabled = true;
+  //channelInput.disabled = true;
   createChannelBtn.disabled = true;
   joinChannelBtn.disabled = true;
+  console.log('in disabled connect input');
 };
 
 // Demo DOM elements

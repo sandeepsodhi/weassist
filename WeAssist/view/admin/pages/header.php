@@ -1,3 +1,7 @@
+  <?php
+  $_SESSION['chat']='admin'
+  ?>
+
   <!-- Our WebRTC application styling -->
   <link rel="stylesheet" type="text/css" href="style/datachannel-demo.css">
 
@@ -226,7 +230,6 @@
 
                 <p>
                   Admin
-                 <!-- <small>Member since Nov. 2012</small>-->
                 </p>
               </li>
               <!-- Menu Body -->
@@ -247,14 +250,16 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" style="background-color:#3c8dbc;color:white" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" style="background-color:#3c8dbc;color:white"class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
           </li>
+
+
           <!-- Control Sidebar Toggle Button -->
           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
@@ -454,7 +459,7 @@
     <!-- /.sidebar -->
   </aside>
 
-
+<!--class ="demo-chat-create" for conneting -->
 <div style="position:fixed;z-index:20;width:280px;bottom:0px;right:2px;padding:2px;scroll-behavior:auto;">
           <div onclick="show()" style="border-radius:4px;background-color:#3c8dbc;color:white;height:25px"><div><strong><center>Help & Support</center></strong></div></div>
           <div style="display: none" id="hbar">
@@ -469,9 +474,45 @@
                    <!-- WebRTC demo -->
                       <div class="demo" id="demo" style="min-height: 100px;height: 200px; overflow-y:auto">
                         <div class="demo-connect">
-                          <input type="text" style="width:100%"class="demo-chat-channel-input form-control" placeholder="Channel name"></input>
-                          <button class="demo-chat-create btn btn-primary">Create</button>
-                          <button class="demo-chat-join btn btn-warning">Join</button>
+                          <!-- <li class="list-group-item" data-remove="true"><br>&nbsp&nbspConnecting...</li> -->
+                          <?php
+                          include '../../../model/dbConnect.php';
+                              $ch = mysqli_fetch_row(mysqli_query($conn,"select channel from chat_user"));    
+                              //echo "<input type='hidden' value='".$ch[0]."' class='demo-chat-channel-input'></input>";
+                            
+                              //category select statement
+                              echo "<select name='cat_id' id='cat_id'  class='col-xs-12 col-sm-12 btn btn-border' required>
+                              <option value=''  selected disabled><center>Select Category</center></option>";
+                              $rs=mysqli_query($conn,"select cat_id,cat_name from category");
+                              while($row=mysqli_fetch_assoc($rs))
+                              {
+                                  echo "<option value=".$row['cat_id'].">".$row['cat_name']."</option>";
+                              }
+                              echo "</select>";
+                             
+                              //subcategory select statement 
+                            //   echo "<select name='subcat_id' style='margin-top:7px' class='col-xs-12 col-sm-12 btn btn-border' required>
+                            //   <option value=''  selected disabled><center>Select SubCategory</center></option>";
+                            //   $rs=mysqli_query($conn,"select subcat_id,subcat_name from sub_category");
+                            //   while($row=mysqli_fetch_assoc($rs))
+                            //   {
+                            //       echo "<option value=".$row['subcat_id'].">".$row['subcat_name']."</option>";
+                            //   }
+                            // echo "</select>";
+                            
+                            ?>
+                            <div id='subcat'></div>
+                                <div id='city'></div>
+
+                            <!-- <select name='subcat_id' id='subcat' style='margin-top:7px' class='col-xs-12 col-sm-12 btn btn-border' required>
+                            <option value=''  selected disabled><center>Select SubCategory</center></option>";
+                            </select>
+ -->
+                          <!-- <input type="text" style="width:100%"class="demo-chat-channel-input form-control" placeholder="Channel name"></input> -->
+                           <input type='hidden' class="demo-chat-create btn btn-primary" value='Create'></input>
+
+                        
+                          <button style='margin-top:5px' class="demo-chat-join btn btn-warning col-xs-4 col-sm-4 pull-right">Join</button>
                         </div>
                         <div class="demo-chat inactive">
                           <ul class="demo-chat-messages list-group">
@@ -492,8 +533,9 @@
                 </div>
               </div>
               <!-- /.box (chat box)  javascript:$('#demo').scrollTop=$('#demo').scrollHeight -->
+          <div id="sh" visibility="hidden"></div>
           </div></div>  
-
+          
 
 <!-- Web rtc -->
 <!-- Zepto for AJAX -->
@@ -507,17 +549,66 @@
 <!-- Our WebRTC application -->
 <script src="js/datachannel-demo.js"></script>
 <!-- Fill channel name -->
-<script>
 
+
+<script type="text/javascript">
+$(document).ready(function(){
+$("#cat_id").change(function()
+{
+var cat_id=$(this).val();
+var dataString = 'cat_id='+ cat_id;
+$.ajax
+({
+type: "POST",
+url: "retrieve_subcat.php",
+data: dataString,
+cache: false,
+success: function(html)
+{
+$("#subcat").html(html);
+} 
+});
+}); 
+});
+
+
+
+</script>    
+<script  type="text/javascript">
+function readURL(input){
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $('#jobshow')
+              .attr('src', e.target.result)
+              .width(100)
+              .height(100);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
+
+<script>
+/*
+var datachannel = new DataChannel();
+
+if (!channelName) {
+  //Create
+    datachannel.open("hello");
+    console.log(datachannel);
+//    return;
+  }
 
 function createChannel()
 {
-var datachannel = new DataChannel();
+//var datachannel = new DataChannel();
 //Create a new channel
 
 //Create
-datachannel.open("Hello");
-console.log(datachannel);
+//datachannel.open("Hello");
+//console.log(datachannel);
 
 //Join
 datachannel.connect("Hello");
@@ -532,7 +623,7 @@ datachannel.onmessage = function (message, userId) {
   addMessage(message, userId);
 };
 
-}
+}*/
 
   function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -558,6 +649,8 @@ function sc_roll()
 {
  var dem = document.getElementById('demo');
  dem.scrollTop  =dem.scrollHeight-dem.clientHeight;
+
 }
 </script>
 
+  
