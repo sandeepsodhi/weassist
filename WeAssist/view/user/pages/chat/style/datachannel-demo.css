@@ -1,0 +1,99 @@
+.navbar .btn {
+  background-color: #eb0752;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  float: right;
+  margin-top: 9px;
+  padding: 10px 25px;
+}
+
+.navbar button.btn:focus,
+.demo button.btn:focus {
+  outline: 0;
+}
+
+.buttons .btn {
+  float: left;
+  font-size: larger;
+  padding: 0.8em 1.5em;
+  width: 49%;
+}
+
+  .buttons .btn:last-child {
+    margin-left: 2%;
+  }
+
+.demo {
+  border-radius: 6px;
+  margin: 20px 0;
+  padding: 15px;
+}
+
+.demo button.btn {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 0 5px;
+  padding: 7px 20px;
+  line-height: normal;
+}
+
+.demo .form-control {
+  display: inline-block;
+  float: left;
+  width: 372px;
+}
+
+.demo .demo-chat-message-input {
+  height: 34px;
+  width: 459px;
+}
+
+.demo-connect,
+.demo-chat-input {
+  overflow: auto;
+}
+
+.demo-connect .btn {
+  float: left;
+}
+
+ul.demo-chat-messages {
+  margin: 10px 0 0;
+  padding-top: 10px;
+}
+
+  ul.demo-chat-messages li {
+    
+  }
+
+  ul.demo-chat-messages li p {
+    font-size: 16px;
+    margin: 5px 0 0;
+  }
+
+  ul.demo-chat-messages li .badge {
+    float: none;
+  }
+
+  ul.demo-chat-messages li.self {
+    text-align: right;
+  }
+
+  ul.demo-chat-messages li.self .badge {
+    
+  }
+
+.demo footer {
+  border-top: 1px solid #aaa;
+  color: #666;
+  font-family: Arial, sans-serif;
+  font-size: smaller;
+  margin-top: 10px;
+  padding-top: 5px;
+}
+
+.demo .inactive {
+  display: none;
+}

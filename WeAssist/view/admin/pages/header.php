@@ -1,7 +1,3 @@
-  <?php
-  $_SESSION['chat']='admin'
-  ?>
-
   <!-- Our WebRTC application styling -->
   <link rel="stylesheet" type="text/css" href="style/datachannel-demo.css">
 
@@ -566,6 +562,7 @@ cache: false,
 success: function(html)
 {
 $("#subcat").html(html);
+console.log("he");
 } 
 });
 }); 
@@ -591,39 +588,6 @@ function readURL(input){
 </script>
 
 <script>
-/*
-var datachannel = new DataChannel();
-
-if (!channelName) {
-  //Create
-    datachannel.open("hello");
-    console.log(datachannel);
-//    return;
-  }
-
-function createChannel()
-{
-//var datachannel = new DataChannel();
-//Create a new channel
-
-//Create
-//datachannel.open("Hello");
-//console.log(datachannel);
-
-//Join
-datachannel.connect("Hello");
-
-
-//Send a message
-datachannel.send("This is the first hello");
-
-
-//Receive a message
-datachannel.onmessage = function (message, userId) {
-  addMessage(message, userId);
-};
-
-}*/
 
   function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

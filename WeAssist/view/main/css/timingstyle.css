@@ -1,0 +1,40 @@
+.datetimepicker { 
+                  width:500px   }
+#boxtiming {
+
+	border: 1px solid #b0b0b0;
+    border-radius: 15px;
+    box-shadow: 0 1px 4px #b0b0b0 inset, 0 3px 3px #999999;
+    padding: 50px 20px 20px;
+    margin-left: 150px;
+    width: 450px;
+    height: 400px;
+}
+.ptime {
+    float: left;
+    margin: 25px 0 0;
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+}
+.ptime li{
+border-bottom: 1px solid #cdcdcd;
+    float: left;
+    font-size: 14px;
+    margin: 0 27px 20px;
+    padding: 0 0 5px;
+    width: 70px;
+}
+a {
+    color: #1274c0;
+    text-decoration: none;
+}
+.timehead
+{
+color: #424242;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+     text-align: center;
+
+}

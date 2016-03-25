@@ -100,16 +100,16 @@ select option { padding: 1px 5px 1px 3px;}
    
    ?>
   </select>
- 
-	<label id="profile-label"  for="subcateg" style="margin-left:5%; width:11%">Sub Category</label> 
- <select class="btn" name="subcateg" id="subcateg" style="border:1px solid grey; color:black ; width:25%; margin-left:3%">
+  <label id="profile-label"  for="subcateg" style="margin-left:5%; width:11%">Sub Category</label> 
+<select class="btn" name="subcateg" id="subcateg" style="border:1px solid grey; color:black ; width:25%; margin-left:3%">
  <option value=''disabled='' select=''>-- Select Option --</option>
-  
+ 
 </select>
   </div>
   <div class="form-group">
   <label id="profile-label"  for="jobtitle" style="margin-left:5%; width:11%" size="10%">Job Title</label>
-  <input type="text" id="jobtitle" name="jobtitle" placeholder="Job Title" style="border:1px solid grey; color:black ;width:25% ; text; margin-left:3%">
+  <input type="text" id="jobtitle" name="jobtitle" placeholder="Job Title" style="border:1px solid grey; color:black ;width:25% ;font-family:none;font-size:130%;font-color:black;
+    margin-left:3%">
 </div>
 <div class="form-group">
 
@@ -179,7 +179,7 @@ data: dataString,
 cache: false,
 success: function(html)
 {
-$("#subcateg").html(html);
+  $("#subcateg").html(html);
 
 } 
 });

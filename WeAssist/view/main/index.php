@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(!isset($_SESSION['u_name']))
+$_SESSION['u_name']='';
+$_SESSION['u_name']='';
+$_SESSION['test']=$_SESSION['u_name'];
+?>
 <!DOCTYPE html>
 <html class="not-ie no-js" lang="en">  
 
@@ -6,7 +13,7 @@
 	<!-- Basic Page Needs
 	================================================== -->
 	<meta charset="utf-8">
-	<title>Handyman - Job Board HTML Template</title>
+	<title>WeAssist </title>
 
 
 	<!-- Mobile Specific Metas
@@ -31,6 +38,9 @@
 	<!-- slider button-->
 	<link href="css/bootstrap-switch.css" rel="stylesheet">
     	
+    <!--  calendar -->
+    <link rel="stylesheet" href="example-page_files/dateTimePicker.css">
+
 	<!-- Theme CSS-->
 	<link rel="stylesheet" href="css/theme.css">
 	<link rel="stylesheet" href="css/theme-elements.css">
@@ -56,6 +66,49 @@
 	<link rel="apple-touch-icon" sizes="120x120" href="images/favicons/favicon-120.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="images/favicons/favicon-152.png">
 	
+<!-- timing display css -->
+	<link rel="stylesheet" href="css/timingstyle.css">
+
+<style>
+#myModl{
+height: 900px;
+width: 80%;
+margin-left: 140px;
+/*margin-right: 60px;*/
+margin-bottom: 20px;
+margin-top: 20px;
+
+
+}
+.algolia-autocomplete {
+  width: 100%;
+}
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 100%;
+}
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-top: none;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #B2D7FF;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
 </head>
 <body>
 
@@ -86,40 +139,19 @@
 						<div class="container">
 							<div class="search-box-inner">
 								<h1>Search for Professionals</h1>
-								<form action="http://handyman.dan-fisher.com/job-professionals.html" method="POST" role="form">
+								<form  method="POST" role="form">
 
-									<div class="row">
-										<div class="col-md-3 col-md-offset-1">
+									<div class="row" style="margin-left: 21%">
+										<div class="col-md-8">
+										<font   color="black">
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="All Professionals">
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Any Location">
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="form-group">
-												<div class="select-style">
-													<select class="form-control">
-														<option>All Services</option>
-														<option>Handiwork</option>
-														<option>Painting</option>
-														<option>Decks</option>
-														<option>Electrical</option>
-														<option>Plumbing</option>
-														<option>Plaster &amp; Drywall</option>
-														<option>Flooring</option>
-														<option>Kitchen Design</option>
-														<option>Welding</option>
-													</select>
-												</div>
+												<input type="text" id="search-input" class="form-control" placeholder="Search For Job">
 											</div>
 										</div>
 										<div class="col-md-1">
-											<button type="submit" class="btn btn-primary btn-block"><i class="fa fa-search"></i></button>
+											<button type="button" id="btnsearch" name="btnsearch" class="btn btn-primary btn-block"><i class="fa fa-search"></i></button>
 										</div>
+										</font>
 									</div>
 								</form>
 							</div>
@@ -127,12 +159,18 @@
 					</div>
 				</div>
 			</section>
-			<!-- Slider / End -->
+			<div class="title-bordered" id="searchtitle" >
+			<br/>
+						<h2 visibility="hidden">Search Result<small>Here</small></h2>
+					</div>
 
-			<!-- Page Content -->
-			<section class="page-content">
+				<div id="loc"  visibility="hidden"  ><!--  data-toggle="modal" data-target="#myModl" > --> 
+										
+				</div>
+
+			<section class="page-content" id="pagec">
 				<div class="container">
-
+                	
 					<!-- Stats -->
 					<div class="section-light section-nomargin">
 						<div class="section-inner">
@@ -186,7 +224,7 @@
 					</div>
 					<!-- Stats / End -->
 
-					<div class="spacer-xl"></div>
+						<div class="spacer-xl"></div>
 
 					<!-- Listings -->
 					<div class="title-bordered">
@@ -750,11 +788,133 @@
 				</div>
 			</footer>
 			<!-- Footer / End -->
-			
+			<div id="myModl" class="modal fade" role="dialog">
+<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+      </div>
+      <div class="modal-body">
+       <div class="row">
+       <div class="col-sm-4" id="callab">  
+       <div class="row" id="box" style="margin-left: 40%">
+        
+<br/>
+       <div class="row" >
+         <div class="col-sm-4">
+         <div id="box1"></div></div>
+      <div class="col-sm-6">
+      <br/>
+           <b>Not Available</b>        </div></div>
+                <div class="row" >
+         <div class="col-sm-4">
+
+         <div id="box2"></div></div>
+      
+      <div class="col-sm-6">
+            <br/>
+           <b> Available</b>        
+      </div>
+         
+        </div>
+ 
+        
+ </div>
+ </div>
+       <div class="col-sm-4" id="caldis">
+          <div id="glob-data" data-toggle="calendar" >
+          <div class="datetimepicker" ><div class="paging">
+          <span class="prev"><i class="prev"></i></span>
+          <div class="month-name">March, 2016</div>
+          <span class="next"><i class="next"></i></span></div>
+          <table><thead><td>Su</td><td>Mo</td><td>Tu</td><td>We</td><td>Th</td><td>Fr</td><td>Sa</td></thead>
+          <tbody><tr><td class="available near-month">28</td><td class="available near-month">29</td>
+          <td class="available cur-month">1</td><td class="available cur-month">2</td>
+          <td class="available cur-month">3</td><td class="available cur-month">4</td>
+          <td class="available cur-month">5</td></tr><tr><td class="available cur-month">6</td>
+          <td class="available cur-month">7</td><td class="unavailable cur-month">8</td>
+          <td class="available cur-month">9</td><td class="unavailable cur-month">10</td>
+          <td class="available cur-month">11</td><td class="available cur-month">12</td></tr>
+          <tr><td class="available cur-month">13</td><td class="available cur-month">14</td>
+          <td class="available cur-month">15</td><td class="available cur-month">16</td>
+          <td class="available cur-month">17</td><td class="available cur-month">18</td>
+          <td class="available cur-month">19</td></tr><tr><td class="available cur-month">20</td>
+          <td class="available cur-month">21</td><td class="available cur-month">22</td>
+          <td class="available cur-month">23</td><td class="available cur-month">24</td>
+          <td class="available cur-month">25</td><td class="available cur-month">26</td></tr>
+          <tr><td class="available cur-month">27</td><td class="available cur-month">28</td>
+          <td class="available cur-month">29</td><td class="available cur-month">30</td>
+          <td class="available cur-month">31</td><td class="available near-month">1</td>
+          <td class="available near-month">2</td></tr><tr><td class="available near-month">3</td>
+          <td class="available near-month">4</td><td class="available near-month">5</td>
+          <td class="available near-month">6</td><td class="available near-month">7</td>
+          <td class="unavailable near-month">8</td><td class="available near-month">9</td>
+          </tr></tbody></table></div></div>
+        </div>
+        <div class="col-sm-3" id="tspace" style="display: none;">
+                    </div>
+        <div class="col-sm-4" id="tdis" style="display: none;">
+                      <div id="boxtiming">
+                      
+                      <h class="timehead"> Pick your Timings</h>
+                      
+                     <ul class="ptime">
+                        <li>
+                       <a onclick="" href="javascript:;">9:00 AM</a>
+                       </li>              
+                   
+                       <li>
+                       <a onclick="timedis('10')" href="javascript:;" id="tid">10:00 AM</a>
+                       </li>                   
+                       <li>
+                       <a onclick="timedis('11')" href="javascript:;" id="tid">11:00 AM</a>
+                       </li>              
+                       <li>
+                       <a onclick="timedis('12')" href="javascript:;" id="tid">12:00 PM</a>
+                       </li>              
+                       <li>
+                       <a onclick="timedis('13')" href="javascript:;" id="tid">13:00 PM</a>
+                       </li>              
+                    <li>
+                       <a onclick="timedis('14')" href="javascript:;" id="tid">14:00 PM</a>
+                       </li>              
+                    <li>
+                       <a onclick="timedis('15')" href="javascript:;" id="tid">15:00 PM</a>
+                       </li>              
+                      <li>
+                       <a onclick="timedis('16')" href="javascript:;" id="tid">16:00 PM</a>
+                       </li>              
+                      <li>
+                       <a onclick="timedis('17')" href="javascript:;" id="tid">17:00 PM</a>
+                       </li>              
+                   <li>
+                       <a onclick="timedis('18')" href="javascript:;" id="tid">18:00 PM</a>
+                       </li>              
+                   <li>
+                       <a onclick="timedis('19')" href="javascript:;" id="tid">19:00 PM</a>
+                       </li>              
+                   <li>
+                       <a onclick="timedis('20')" href="javascript:;" id="tid">20:00 PM</a>
+                       </li>              
+                   <li>
+                       <a onclick="timedis('21')" href="javascript:;" id="tid">21:00 PM</a>
+                       </li>              
+                  
+                    </ul>  
+                  </div>
+    
+        </div>
+      </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+</div>
 		</div>
 		<!-- Main / End -->
 	</div>
-	
 	
 	
 	
@@ -777,13 +937,17 @@
 	<script src="vendor/jquery.stellar.min.js"></script>
 	<script src="vendor/flexslider/jquery.flexslider-min.js"></script>
 	<script src="vendor/jquery.countTo.js"></script>
-
+	<script src="js/jquery-ui.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 	<!-- slider button -->
 	<script src="js/highlight.js"></script>
     <script src="js/bootstrap-switch.js"></script>
     <script src="js/main.js"></script>
 
-
+<!-- calendar js -->
+    <script src="js/dateTimePicker.js"></script> 
+ 
 
 
 
@@ -791,7 +955,9 @@
 	<script src="vendor/jquery.validate.js"></script>
 	<script src="js/newsletter.js"></script>
 
+
 	<script src="js/custom.js"></script>
+
 
 	<script>
 		jQuery(function($){
@@ -799,6 +965,7 @@
 		});
 		
 		$(window).load(function(){
+			$('#searchtitle').hide();
 			$('.flexslider').flexslider({
 				animation: "fade",
 				controlNav: true,
@@ -811,9 +978,251 @@
 			});
 		});
 	</script>
-	  
-      
-	
+
+
+
+<!--  algolia searching script start -->
+
+<script>
+  var client = algoliasearch("IWAHMM52HK", "194fa6150b9718afc0236eb74f5e7fb8");
+  var index = client.initIndex('category');
+ var res = client.initIndex('category');
+  var params={hitsPerPage:5};
+  autocomplete('#search-input', { hint: false }, [
+    {
+      source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+      displayKey: 'cat_name',
+      templates: {
+        suggestion: function(suggestion) {
+  for (var i = 0; i < 5; ++i) {
+    // return suggestion._highlightResult.cat_name.value;
+     return suggestion._highlightResult.cat_name.value;
+        }
+      }
+    } }
+  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+    console.log(suggestion, dataset);
+  });
+var det  =[];
+var htm='';
+var htm1='';
+var size;
+var cont= [ [],[],[],[] ,[] ];
+ 
+//for(var i=0;i<4;i++)
+
+//button code
+var ch="";
+var j=0;
+var inp,workname;
+$('#btnsearch').click(function(){
+     
+     $('#pagec').hide();
+	$('#searchtitle').show();		
+
+     $('#loc').show();
+
+htm1='';
+console.log(ch + "chhh");
+index.search(
+ $('#search-input').val(), {
+    hitsPerPage: 5, facets: '*'
+  },
+  searchCallback
+);
+function searchCallback(err, content) {
+  if (err) {
+    return err;
+  }
+
+  content.hits.forEach(function(hit) {
+  //  det.push(hit);
+// $("#namec").append(hit.cat_name);
+//alert($('#search-input').serialize());
+if(ch!=$('#search-input').val())
+{
+ inp=$('#search-input').val();
+$.post('catret.php', {cat:inp}, function(response) {
+ size=response.length;
+ //alert(size);
+for(var i=0;i<response.length;i++)
+{ 
+  //cont[i]=[];
+  cont[i][0]=response[i].f_name;
+  cont[i][1]=response[i].l_name;
+   cont[i][2]=response[i].subcat_name;
+  cont[i][3]=response[i].city;
+  cont[i][4]=response[i].profile_pic;
+  cont[i][5]=response[i].u_name;
+  for(j=0;j<6;j++ )
+   console.log(cont[i][j]  + i);
+
+  htm+=	           '<div class="job_listings" id="a" style="margin-right:10px;margin-left: 10px" '+' onclick="javascript:fun('+i+')">' +
+						'<ul class="job_listings" id="b">'+
+						'	<li class="job_listing" id="c">'+
+								'<a >'+
+								'	<div class="job_img" >'+
+								'	<img src="images/'+ cont[i][4] +'" alt="" class="company_logo">'+
+								'	</div>'+
+								'	<div class="position" id="d"  style="height:100%;width:30%">'+
+								'		<h3 id="namec" style="margin-left:10%">' + cont[i][0] + "  " + cont[i][1] +'</h3>'+
+								'	</div>'+
+                             	'	<div class="location" >'+
+								'		<i class="fa fa-location-arrow"></i>' + cont[i][3] +
+								'	</div>'+
+
+								'	<div class="rating">'+
+								'		<div class="rating-stars">'+
+								'			<i class="fa fa-star"></i>'+
+								'			<i class="fa fa-star"></i>'+
+								'			<i class="fa fa-star"></i>'+
+								'			<i class="fa fa-star"></i>'+
+								'			<i class="fa fa-star-half-o"></i>'+
+								'		</div>'+
+								'		<div class="reviews-num">12 Reviews</div>'+
+								'	</div>'+
+								'	<ul class="meta" style="font-weight:bold">'+
+								'		<li class="job-type">'+'<b>' +inp+'</b>'  + '</li>'+
+								'		<div class="company" style="margin-left:10%;font-weight:bold">'+
+								'			<strong>' + "Deals in " + '<b>' + cont[i][2] +'</b>' +'</strong>'+
+								'		</div>'+
+        						'	</ul>'+
+								'</a>'+
+							'</li>'+
+
+'</ul>'+
+'</div>';
+
+    htm1+= htm+'<br/>' ;
+    htm='';
+ $('#loc').html(htm1);
+}
+}, 'json');
+}
+ch=$('#search-input').val();
+
+    console.log(hit);
+
+  });
+}
+});
+</script>
+<script type="text/javascript">
+//	$('#a').click(function(){
+//    $('#myModl').modal('show'); 
+  //   });
+var uid,pwd,subname;
+ function fun(dsa)
+ {
+workname=cont[dsa][5];
+subname=cont[dsa][2];
+//$('#myModl').modal('show'); 
+if( '<?php echo $_SESSION['test'] ?>')
+{
+$('#myModl').modal('show'); 
+console.log("true"+'<?php echo $_SESSION['test'] ?>');
+
+}
+else   
+{
+	$('#myModal').modal('show'); 
+	$('#btnsub').click(function(){
+$('#logform').submit(function () {
+// sendContactForm();
+
+ return false;
+});
+
+uid=$('#u_name').val();
+pwd=$('#pswd').val();
+$.post('../../controller/loginsearch.php',{uname:uid,pw:pwd},function(response){
+if(response==1)
+	{
+         $('#myModl').modal('show'); 
+
+		//alert('valid');
+	}
+else
+	alert('Invalid');
+
+})
+
+ //$('#myModl').modal('show'); 
+    //alert('desrf');
+
+	}) ;
+console.log("false"+'<?php echo $_SESSION['test'] ?>');
+ }}
+
+
+</script>
+<script type="text/javascript">
+//function fun(dsa)
+{
+	//alert("dede"+dsa);
+}
+ // 	$('#a').click(function() {
+	// 	alert('deded');
+	// });
+// 	$('#loc').click(function() {
+// console.log('dekjknrefejfke');
+// //alert('hogya');
+// //$('#myModl').s;
+// });
+
+
+</script>
+
+<!--   algolia end -->
+
+    <script type="text/javascript">
+var dym;
+    $(document).ready(function()
+    {
+      $('#basic').calendar();
+      $('#glob-data').calendar(
+      {
+        unavailable: ['*-*-8', '*-*-10'],
+                onSelectDate: function(date, month, year)
+        { 
+        	 dym=[year, month, date].join('-') ;
+        	console.log('dym'+dym);
+          $('#callab').css("display","none");  
+          $('#caldis').css("display","none"); 
+          $('#tdis').css("display","block");
+           $('#tspace').css("display","block");	
+          //alert([year, month, date].join('-') + ' is: ' + this.isAvailable(date, month, year));
+        }
+
+      });
+    });
+function timedis(tdis)
+{
+console.log('time'+tdis+ dym);
+var tim=tdis+':'+'00'+':'+'00'+':'+'0000';
+console.log('time'+tim);
+//alert(uid);
+  $.post('uploadjob.php',{
+   cat_name:inp,
+   timec:tim,
+   datec:dym,
+   uname:uid,
+   subcat:subname,
+   reg_name:workname
+  }
+  ,function(response){
+
+//alert(response);
+window.location.href = "../customer/pages/index.php";
+
+
+//$('#tid').attr('href','../../user/pages/index.php');
+  });
+
+}
+
+
+    </script>
 </body>
 
 <!-- Mirrored from handyman.dan-fisher.com/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 22 Jan 2016 06:55:11 GMT -->

@@ -18,6 +18,10 @@
 	================================================== -->
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
 	
+
+	<!-- slider button-->
+	<link href="css/bootstrap-switch.css" rel="stylesheet">
+    	
 	
 	
 	<!-- CSS
@@ -413,7 +417,10 @@
 	<script src="js/newsletter.js"></script>
 
 	<script src="js/custom.js"></script>
-
+<!--  sliding button -->
+<script src="js/highlight.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/main.js"></script>
 
 	
 </body>

@@ -5,11 +5,16 @@ require_once '../../../model/dbConnect.php';
 if($_POST['id'])
 {
 $id=$_POST['id'];
-$sql=mysqli_query($conn,"select sub_cat from category where cat='$id'");
-	while($row=mysqli_fetch_array($sql,MYSQL_ASSOC))
+$sql=mysqli_query($conn,"select subcat_name from sub_category where cat_id='".$id."'");
+       //echo "<option value='' disabled='' select=''>-- Select Option --</option>";
+        while($row=mysqli_fetch_array($sql,MYSQL_ASSOC))
 	{
-	$data=$row['sub_cat'];
+	$data=$row['subcat_name'];
 	echo '<option value="'.$data.'">'.$data.'</option>';
 	}
+	//console.log($data);
 }
 ?>
+
+
+

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="example-page_files/style.css">
+    <link rel="stylesheet" href="example-page_files/dateTimePicker.css">
+  </head>
+  <body>
+    <div class="container">
+      <h2>Basic Inline Calendar</h2>
+      <div class="row">
+        <div class="col-xss-4">
+          <div id="basic" data-toggle="calendar"><div class="datetimepicker"><div class="paging"><span class="prev"><i class="prev"></i></span><div class="month-name">March, 2016</div><span class="next"><i class="next"></i></span></div><table><thead><td>Su</td><td>Mo</td><td>Tu</td><td>We</td><td>Th</td><td>Fr</td><td>Sa</td></thead><tbody><tr><td class="available near-month">28</td><td class="available near-month">29</td><td class="available cur-month">1</td><td class="available cur-month">2</td><td class="available cur-month">3</td><td class="available cur-month">4</td><td class="available cur-month">5</td></tr><tr><td class="available cur-month">6</td><td class="available cur-month">7</td><td class="available cur-month">8</td><td class="available cur-month">9</td><td class="available cur-month">10</td><td class="available cur-month">11</td><td class="available cur-month">12</td></tr><tr><td class="available cur-month">13</td><td class="available cur-month">14</td><td class="available cur-month">15</td><td class="available cur-month">16</td><td class="available cur-month">17</td><td class="available cur-month">18</td><td class="available cur-month">19</td></tr><tr><td class="available cur-month">20</td><td class="available cur-month">21</td><td class="available cur-month">22</td><td class="available cur-month">23</td><td class="available cur-month">24</td><td class="available cur-month">25</td><td class="available cur-month">26</td></tr><tr><td class="available cur-month">27</td><td class="available cur-month">28</td><td class="available cur-month">29</td><td class="available cur-month">30</td><td class="available cur-month">31</td><td class="available near-month">1</td><td class="available near-month">2</td></tr><tr><td class="available near-month">3</td><td class="available near-month">4</td><td class="available near-month">5</td><td class="available near-month">6</td><td class="available near-month">7</td><td class="available near-month">8</td><td class="available near-month">9</td></tr></tbody></table></div></div>
+        </div>
+        <div class="col-xss-8">
+          <pre>$('[data-toggle=calendar]').calendar();</pre>
+        </div>
+      </div>
+      <hr>
+      <h2>Recurring unavailable dates</h2>
+      <div class="row">
+        <div class="col-xss-4">
+          <div id="glob-data" data-toggle="calendar"><div class="datetimepicker"><div class="paging"><span class="prev"><i class="prev"></i></span><div class="month-name">March, 2016</div><span class="next"><i class="next"></i></span></div><table><thead><td>Su</td><td>Mo</td><td>Tu</td><td>We</td><td>Th</td><td>Fr</td><td>Sa</td></thead><tbody><tr><td class="available near-month">28</td><td class="available near-month">29</td><td class="available cur-month">1</td><td class="available cur-month">2</td><td class="available cur-month">3</td><td class="available cur-month">4</td><td class="available cur-month">5</td></tr><tr><td class="available cur-month">6</td><td class="available cur-month">7</td><td class="unavailable cur-month">8</td><td class="available cur-month">9</td><td class="unavailable cur-month">10</td><td class="available cur-month">11</td><td class="available cur-month">12</td></tr><tr><td class="available cur-month">13</td><td class="available cur-month">14</td><td class="available cur-month">15</td><td class="available cur-month">16</td><td class="available cur-month">17</td><td class="available cur-month">18</td><td class="available cur-month">19</td></tr><tr><td class="available cur-month">20</td><td class="available cur-month">21</td><td class="available cur-month">22</td><td class="available cur-month">23</td><td class="available cur-month">24</td><td class="available cur-month">25</td><td class="available cur-month">26</td></tr><tr><td class="available cur-month">27</td><td class="available cur-month">28</td><td class="available cur-month">29</td><td class="available cur-month">30</td><td class="available cur-month">31</td><td class="available near-month">1</td><td class="available near-month">2</td></tr><tr><td class="available near-month">3</td><td class="available near-month">4</td><td class="available near-month">5</td><td class="available near-month">6</td><td class="available near-month">7</td><td class="unavailable near-month">8</td><td class="available near-month">9</td></tr></tbody></table></div></div>
+        </div>
+        <div class="col-xss-8">
+          <pre>$('[data-toggle=calendar]').calendar({
+          unavailable: ['*-*-8', '*-*-10']
+});				
+			</pre>
+        </div>
+      </div>
+      <hr>
+      <h2>First Day = Tuesday</h2>
+      <div class="row">
+        <div class="col-xss-4">
+          <div id="custom-first-day" data-toggle="calendar"><div class="datetimepicker"><div class="paging"><span class="prev"><i class="prev"></i></span><div class="month-name">March, 2016</div><span class="next"><i class="next"></i></span></div><table><thead><td>Tu</td><td>We</td><td>Th</td><td>Fr</td><td>Sa</td><td>Su</td><td>Mo</td></thead><tbody><tr><td class="available cur-month">1</td><td class="available cur-month">2</td><td class="available cur-month">3</td><td class="available cur-month">4</td><td class="available cur-month">5</td><td class="available cur-month">6</td><td class="available cur-month">7</td></tr><tr><td class="available cur-month">8</td><td class="available cur-month">9</td><td class="available cur-month">10</td><td class="available cur-month">11</td><td class="available cur-month">12</td><td class="available cur-month">13</td><td class="available cur-month">14</td></tr><tr><td class="available cur-month">15</td><td class="available cur-month">16</td><td class="available cur-month">17</td><td class="available cur-month">18</td><td class="available cur-month">19</td><td class="available cur-month">20</td><td class="available cur-month">21</td></tr><tr><td class="available cur-month">22</td><td class="available cur-month">23</td><td class="available cur-month">24</td><td class="available cur-month">25</td><td class="available cur-month">26</td><td class="available cur-month">27</td><td class="available cur-month">28</td></tr><tr><td class="available cur-month">29</td><td class="available cur-month">30</td><td class="available cur-month">31</td><td class="available near-month">1</td><td class="available near-month">2</td><td class="available near-month">3</td><td class="available near-month">4</td></tr><tr><td class="available near-month">5</td><td class="available near-month">6</td><td class="available near-month">7</td><td class="available near-month">8</td><td class="available near-month">9</td><td class="available near-month">10</td><td class="available near-month">11</td></tr></tbody></table></div></div>
+        </div>
+        <div class="col-xss-8">
+          <pre>$('[data-toggle=calendar]').calendar({
+          day_first: 2,
+          unavailable: ['2014-07-10']
+});				
+			</pre>
+        </div>
+      </div>
+      <hr>
+      <h2>Custom day names, month names (Vietnamese)</h2>
+      <div class="row">
+        <div class="col-xss-4">
+          <div id="custom-name" data-toggle="calendar"><div class="datetimepicker"><div class="paging"><span class="prev"><i class="prev"></i></span><div class="month-name">Tháng Ba, 2016</div><span class="next"><i class="next"></i></span></div><table><thead><td>CN</td><td>Hai</td><td>Ba</td><td>Tư</td><td>Năm</td><td>Sáu</td><td>Bảy</td></thead><tbody><tr><td class="available near-month">28</td><td class="available near-month">29</td><td class="available cur-month">1</td><td class="available cur-month">2</td><td class="available cur-month">3</td><td class="available cur-month">4</td><td class="available cur-month">5</td></tr><tr><td class="available cur-month">6</td><td class="available cur-month">7</td><td class="available cur-month">8</td><td class="available cur-month">9</td><td class="available cur-month">10</td><td class="available cur-month">11</td><td class="available cur-month">12</td></tr><tr><td class="available cur-month">13</td><td class="available cur-month">14</td><td class="available cur-month">15</td><td class="available cur-month">16</td><td class="available cur-month">17</td><td class="available cur-month">18</td><td class="available cur-month">19</td></tr><tr><td class="available cur-month">20</td><td class="available cur-month">21</td><td class="available cur-month">22</td><td class="available cur-month">23</td><td class="available cur-month">24</td><td class="available cur-month">25</td><td class="available cur-month">26</td></tr><tr><td class="available cur-month">27</td><td class="available cur-month">28</td><td class="available cur-month">29</td><td class="available cur-month">30</td><td class="available cur-month">31</td><td class="available near-month">1</td><td class="available near-month">2</td></tr><tr><td class="available near-month">3</td><td class="available near-month">4</td><td class="available near-month">5</td><td class="available near-month">6</td><td class="available near-month">7</td><td class="available near-month">8</td><td class="available near-month">9</td></tr></tbody></table></div></div>
+        </div>
+        <div class="col-xss-8">
+          <pre>$('[data-toggle=calendar]').calendar({
+          day_name: ['CN', 'Hai', 'Ba', 'Tư', 'Năm', 'Sáu', 'Bảy'],
+          month_name: ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 'Tháng Bảy', 'Tháng Tám', 'Tháng Chín', 'Tháng Mười', 'Tháng Mười Một', 'Tháng Mười Hai'],
+          unavailable: ['2014-07-10']
+});				
+			</pre>
+        </div>
+      </div>
+      <hr>
+      <h2>3 months with recurring unavailable dates</h2>
+      <div class="row">
+        <div class="col-xss-12">
+          <div id="show-next-month" data-toggle="calendar"><div class="datetimepicker"><div class="paging"><span class="prev"><i class="prev"></i></span><div class="month-name">February, 2016</div><span class="next"><i class="next"></i></span></div><table><thead><td>Su</td><td>Mo</td><td>Tu</td><td>We</td><td>Th</td><td>Fr</td><td>Sa</td></thead><tbody><tr><td class="available near-month">31</td><td class="available cur-month">1</td><td class="available cur-month">2</td><td class="available cur-month">3</td><td class="available cur-month">4</td><td class="available cur-month">5</td><td class="available cur-month">6</td></tr><tr><td class="available cur-month">7</td><td class="available cur-month">8</td><td class="unavailable cur-month">9</td><td class="unavailable cur-month">10</td><td class="available cur-month">11</td><td class="available cur-month">12</td><td class="available cur-month">13</td></tr><tr><td class="available cur-month">14</td><td class="available cur-month">15</td><td class="available cur-month">16</td><td class="available cur-month">17</td><td class="available cur-month">18</td><td class="available cur-month">19</td><td class="available cur-month">20</td></tr><tr><td class="available cur-month">21</td><td class="available cur-month">22</td><td class="available cur-month">23</td><td class="available cur-month">24</td><td class="available cur-month">25</td><td class="available cur-month">26</td><td class="available cur-month">27</td></tr><tr><td class="available cur-month">28</td><td class="available cur-month">29</td><td class="available near-month">1</td><td class="available near-month">2</td><td class="available near-month">3</td><td class="available near-month">4</td><td class="available near-month">5</td></tr><tr><td class="available near-month">6</td><td class="available near-month">7</td><td class="available near-month">8</td><td class="unavailable near-month">9</td><td class="unavailable near-month">10</td><td class="available near-month">11</td><td class="available near-month">12</td></tr></tbody></table></div><div class="datetimepicker"><div class="paging"><span class="prev"><i class="prev"></i></span><div class="month-name">March, 2016</div><span class="next"><i class="next"></i></span></div><table><thead><td>Su</td><td>Mo</td><td>Tu</td><td>We</td><td>Th</td><td>Fr</td><td>Sa</td></thead><tbody><tr><td class="available near-month">28</td><td class="available near-month">29</td><td class="available cur-month">1</td><td class="available cur-month">2</td><td class="available cur-month">3</td><td class="available cur-month">4</td><td class="available cur-month">5</td></tr><tr><td class="available cur-month">6</td><td class="available cur-month">7</td><td class="available cur-month">8</td><td class="unavailable cur-month">9</td><td class="unavailable cur-month">10</td><td class="available cur-month">11</td><td class="available cur-month">12</td></tr><tr><td class="available cur-month">13</td><td class="available cur-month">14</td><td class="available cur-month">15</td><td class="available cur-month">16</td><td class="available cur-month">17</td><td class="available cur-month">18</td><td class="available cur-month">19</td></tr><tr><td class="available cur-month">20</td><td class="available cur-month">21</td><td class="available cur-month">22</td><td class="available cur-month">23</td><td class="available cur-month">24</td><td class="available cur-month">25</td><td class="available cur-month">26</td></tr><tr><td class="available cur-month">27</td><td class="available cur-month">28</td><td class="available cur-month">29</td><td class="available cur-month">30</td><td class="available cur-month">31</td><td class="available near-month">1</td><td class="available near-month">2</td></tr><tr><td class="available near-month">3</td><td class="available near-month">4</td><td class="available near-month">5</td><td class="available near-month">6</td><td class="available near-month">7</td><td class="available near-month">8</td><td class="unavailable near-month">9</td></tr></tbody></table></div><div class="datetimepicker"><div class="paging"><span class="prev"><i class="prev"></i></span><div class="month-name">April, 2016</div><span class="next"><i class="next"></i></span></div><table><thead><td>Su</td><td>Mo</td><td>Tu</td><td>We</td><td>Th</td><td>Fr</td><td>Sa</td></thead><tbody><tr><td class="available near-month">27</td><td class="available near-month">28</td><td class="available near-month">29</td><td class="available near-month">30</td><td class="available near-month">31</td><td class="available cur-month">1</td><td class="available cur-month">2</td></tr><tr><td class="available cur-month">3</td><td class="available cur-month">4</td><td class="available cur-month">5</td><td class="available cur-month">6</td><td class="available cur-month">7</td><td class="available cur-month">8</td><td class="unavailable cur-month">9</td></tr><tr><td class="unavailable cur-month">10</td><td class="available cur-month">11</td><td class="available cur-month">12</td><td class="available cur-month">13</td><td class="available cur-month">14</td><td class="available cur-month">15</td><td class="available cur-month">16</td></tr><tr><td class="available cur-month">17</td><td class="available cur-month">18</td><td class="available cur-month">19</td><td class="available cur-month">20</td><td class="available cur-month">21</td><td class="available cur-month">22</td><td class="available cur-month">23</td></tr><tr><td class="available cur-month">24</td><td class="available cur-month">25</td><td class="available cur-month">26</td><td class="available cur-month">27</td><td class="available cur-month">28</td><td class="available cur-month">29</td><td class="available cur-month">30</td></tr><tr><td class="available near-month">1</td><td class="available near-month">2</td><td class="available near-month">3</td><td class="available near-month">4</td><td class="available near-month">5</td><td class="available near-month">6</td><td class="available near-month">7</td></tr></tbody></table></div></div>
+        </div>
+        <div class="col-xss-12">
+          <pre>$('[data-toggle=calendar]').calendar({
+          num_next_month: 1,
+          num_prev_month: 1,
+          unavailable: ['*-*-8', '*-*-10']
+});				
+			</pre>
+        </div>
+      </div>
+      
+  </div>
+    <script type="text/javascript" src="example-page_files/jquery.js"></script>
+    <script type="text/javascript" src="example-page_files/dateTimePicker.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+      $('#basic').calendar();
+      $('#glob-data').calendar(
+      {
+        unavailable: ['*-*-8', '*-*-10']
+      });
+      $('#custom-first-day').calendar(
+      {
+        day_first: 2,
+        unavailable: ['2014-07-10'],
+        onSelectDate: function(date, month, year)
+        {
+          alert([year, month, date].join('-') + ' is: ' + this.isAvailable(date, month, year));
+        }
+      });
+      $('#custom-name').calendar(
+      {
+        day_name: ['CN', 'Hai', 'Ba', 'Tư', 'Năm', 'Sáu', 'Bảy'],
+        month_name: ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 'Tháng Bảy', 'Tháng Tám', 'Tháng Chín', 'Tháng Mười', 'Tháng Mười Một', 'Tháng Mười Hai'],
+        unavailable: ['2014-07-10']
+      });
+      $('#dynamic-data').calendar(
+      {
+        adapter: 'http://localhost/2014/jquery-availability-calendar/src/server/adapter.php'
+      });
+      $('#show-next-month').calendar(
+      {
+        num_next_month: 1,
+        num_prev_month: 1,
+        unavailable: ['*-*-9', '*-*-10']
+      });
+    });
+    </script>
+  
+</body></html>

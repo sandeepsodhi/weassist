@@ -1,3 +1,4 @@
+<?php include '../../../model/dbConnect.php'  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,7 @@
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
@@ -84,7 +85,7 @@
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
@@ -92,14 +93,18 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
-
+              <h3>
+              	<?php 
+              	$c = mysqli_fetch_row(mysqli_query($conn,"select count(u_id) from users"));
+              	echo $c[0];
+              	?>
+              </h3>
               <p>User Registrations</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
@@ -114,130 +119,14 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
       </div>
       <!-- /.row -->
       <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
-          <!-- Chat box -->
-          <!--  -->
-          <!-- TO DO List -->
-          <div class="box box-primary">
-            <div class="box-header">
-              <i class="ion ion-clipboard"></i>
-
-              <h3 class="box-title">To Do List</h3>
-
-              <div class="box-tools pull-right">
-                <ul class="pagination pagination-sm inline">
-                  <li><a href="#">&laquo;</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">&raquo;</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <ul class="todo-list">
-                <li>
-                  <!-- drag handle -->
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <!-- checkbox -->
-                  <input type="checkbox" value="" name="">
-                  <!-- todo text -->
-                  <span class="text">Design a nice theme</span>
-                  <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                  <!-- General tools such as edit or delete-->
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Make the theme responsive</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Check your messages and notifications</span>
-                  <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix no-border">
-              <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-            </div>
-          </div>
-          <!-- /.box -->
-
+      <div class="row col-xs-12 col-lg-8">
           <!-- quick email widget -->
           <div class="box box-info">
             <div class="box-header">
@@ -254,200 +143,107 @@
             <div class="box-body">
               <form action="#" method="post">
                 <div class="form-group">
-                  <input type="email" class="form-control" name="emailto" placeholder="Email to:">
+                  <input type="email" class="form-control" id = "emailfrom" name="emailfrom" placeholder="Email from:">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject">
+                  <input type="email" class="form-control" id="emailto" name="emailto" placeholder="Email to:">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                 </div>
                 <div>
-                  <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                  <textarea name="message" id="message" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
               </form>
             </div>
-            <div class="box-footer clearfix">
-              <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                <i class="fa fa-arrow-circle-right"></i></button>
+            <div id="email"class="box-footer clearfix">
+              <button type="button" class="pull-right btn btn-default" id="sendEmail">
+              	<i class="fa fa-arrow-circle-right"></i></button>
             </div>
           </div>
+	  </div>
+	  
+	  <div class="col-lg-4 col-xs-12">
+	   
 
-        </section>
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-5 connectedSortable">
+	      <!-- USERS LIST -->
+	      <div class="box box-danger">
+	        <div class="box-header with-border">
+	          <h3 class="box-title">Latest Members</h3>
 
-          <!-- Map box -->
-          <div class="box box-solid bg-light-blue-gradient">
-            <div class="box-header">
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range">
-                  <i class="fa fa-calendar"></i></button>
-                <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
-                  <i class="fa fa-minus"></i></button>
-              </div>
-              <!-- /. tools -->
+	          <div class="box-tools pull-right">
+	            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+	            </button>
+	            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+	            </button>
+	          </div>
+	        </div>
+	        <!-- /.box-header -->
+	        
 
-              <i class="fa fa-map-marker"></i>
 
-              <h3 class="box-title">
-                Visitors
-              </h3>
-            </div>
-            <div class="box-body">
-              <div id="world-map" style="height: 250px; width: 100%;"></div>
-            </div>
-            <!-- /.box-body-->
-            <div class="box-footer no-border">
-              <div class="row">
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <div id="sparkline-1"></div>
-                  <div class="knob-label">Visitors</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <div id="sparkline-2"></div>
-                  <div class="knob-label">Online</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center">
-                  <div id="sparkline-3"></div>
-                  <div class="knob-label">Exists</div>
-                </div>
-                <!-- ./col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.box -->
+	        <div class="box-body no-padding">
+	          <ul class="users-list clearfix">
 
-          <!-- solid sales graph -->
-          <div class="box box-solid bg-teal-gradient">
-            <div class="box-header">
-              <i class="fa fa-th"></i>
+        <?php 
+	        
+	        for($i=0;$i<8;$i++)
+	        {
 
-              <h3 class="box-title">Sales Graph</h3>
+	        $info = mysqli_fetch_row(mysqli_query($conn,"select f_name,profile_pic,datediff(now(),date(activation_date)) as pend from users order by pend limit 1 offset $i"));
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="box-body border-radius-none">
-              <div class="chart" id="line-chart" style="height: 250px;"></div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer no-border">
-              <div class="row">
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
+	        if($info[2] == null)
+	        {
+	        	break;
+	        }
 
-                  <div class="knob-label">Mail-Orders</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
+	        // $start_date = mysqli_fetch_row(mysqli_query($conn,"select current_timestamp from dual"));
+	        // $end_date = mysqli_fetch_row(mysqli_query($conn,"select entry_date from users where u_id='$info[0]'")); 
+		    // $days = floor((strtotime($start_date[0]) - strtotime($end_date[0])) / (60 * 60 * 24));
+	        
+	    ?>
 
-                  <div class="knob-label">Online</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                  <div class="knob-label">In-Store</div>
-                </div>
-                <!-- ./col -->
-              </div>
-              <!-- /.row -->
-            </div>
-            <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
+	            <li>
+	              <img style="width:60px;height:60px" src="../../image/<?php echo $info[1];?>" alt="User Image">
+	              <div class="user-list-name"> <?php echo $info[0];   ?></div>
+	              <!-- <a class="users-list-name" href="#">Alexander Pierce</a> -->
+	              <span class="users-list-date"><?php   
+	         if($info[2]==0)
+		    	{echo "Today";}
+		    elseif($info[2]==1)
+		    	{echo "Yesterday";}
+		    else
+		    	{echo $info[2]."days ago";}
+		    	 ?></span>
+	            </li>
+	          
+		<?php
+	       }
+        ?>
 
-          <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
 
-              <h3 class="box-title">Calendar</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bars"></i></button>
-                  <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#">Add new event</a></li>
-                    <li><a href="#">Clear events</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View calendar</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 100%"></div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- Progress bars -->
-                  <div class="clearfix">
-                    <span class="pull-left">Task #1</span>
-                    <small class="pull-right">90%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                  </div>
 
-                  <div class="clearfix">
-                    <span class="pull-left">Task #2</span>
-                    <small class="pull-right">70%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-6">
-                  <div class="clearfix">
-                    <span class="pull-left">Task #3</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
+	          </ul>
+	          <!-- /.users-list -->
+	        </div>
+	        <!-- /.box-body -->
+	        
 
-                  <div class="clearfix">
-                    <span class="pull-left">Task #4</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.box -->
+	        <div class="box-footer text-center">
+	          <a href="javascript::" class="uppercase">View All Users</a>
+	        </div>
+	        <!-- /.box-footer -->
+	      </div>
+	      <!-- /.box -->
 
-        </section>
-        <!-- right col -->
-      </div>
-      <!-- /.row (main row) -->
 
-    </section>
+        </div>
+            <!-- /.col -->
+       </div>
+          <!-- /.row -->
+
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -522,5 +318,32 @@
     document.querySelector(".demo-chat-channel-input").value = channel;
   }
 </script>
+<script type="text/javascript">
+	
+    $("#email").click(function(){
+        // alert("da");
+       // var txt = $("input").val();
+        var emailFrom = $("#emailfrom").val();
+        var emailTo = $("#emailto").val();
+	    var subject = $("#subject").val();
+		var message = $("#message").val();
+
+		console.log(message);
+
+        $.post("sendemail.php", {from:emailFrom,to:emailTo,subjectt:subject,messagee:message}, function(result){
+            //alert("d");
+            // $("span").html(result);
+        	// document.getElementById("curBidUser"+bidID); 
+        	$("#emailfrom").val("");// = "";
+			$("#emailto").val("");//= null;
+        	$("#subject").val(""); //= null;
+        	$("#message").val(""); //= null;
+        });
+    });
+
+</script>
+
+
+
 </body>
 </html>

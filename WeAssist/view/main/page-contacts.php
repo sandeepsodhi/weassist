@@ -348,8 +348,12 @@
 	<script src="vendor/jquery.countTo.js"></script>
 
 	<script src="js/custom.js"></script>
-
-
+ <script src="js/bootstrap-switch.js"></script>
+<!--  slider button   -->
+    <script src="js/highlight.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/main.js"></script>
+<!-- slider end -->
 	<!-- Contact Page specific scripts
 	================================================== -->
 

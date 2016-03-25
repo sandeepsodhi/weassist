@@ -99,7 +99,7 @@
 
 		        <div class="tab-content">
 		            <div id="login" class="tab-pane fade in active">
-		                <form class="form-horizontal"  action="../../controller/login.php" method="POST">
+		                <form class="form-horizontal" id="logform"  action="../../controller/login.php" method="POST">
 		                    <div class="form-group">
 		                        <div style="margin-top:22px;" class="input-group dialog-s col-xs-10 col-sm-10">
 		                            <div class="input-group-addon">
@@ -119,7 +119,7 @@
 		                                    
 		                    <div class="form-group">
 		                        <div class="col-xs-offset-3 col-xs-6">
-		                            <button style="width:120px;margin-left:-30px"type="submit" class="btn btn-info btn-primary">Login</button>
+		                            <button style="width:120px;margin-left:-30px"type="submit" class="btn btn-info btn-primary" id="btnsub">Login</button>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
@@ -173,37 +173,32 @@
 		                        </div>
 		                    </div>
 	
+	                    <div class="form-group" >
 
-		
-		                    					
-<div class="clear">&nbsp;</div>
-		<div class="btn-group" data-toggle="buttons"></div>
-								<div class="clear">
-							
-								<table cellpadding="0" cellspacing="0" border="0" width="100%">
-									<td class="btn btn-radio" width="" >
-														<span class="glyphicon"></span>
-<input  type="radio"  name="u_type" id="agent" value="agent" onclick="if(this.checked) this.value='agent'; " required autocomplete="off" chacked>agent</td>
+	
+			<div class="row" >
+		   <div class="col-sm-1" ></div>
+		   <div class="col-sm-3" >
+<p style="color: black"><b>Agent </b></p>
+<input  type="radio"  name="u_type" id="u_type"  value="agent"  onclick="if(this.checked) this.value='agent'; " required autocomplete="off" chacked>
+</div>
+									   <div class="col-sm-3">						
+	<p style="color: black"><b>Customer</b></p>
+<input  type="radio" name="u_type" id="u_type" value="customer"  onclick="if(this.checked) this.value='customer'; "  chacked required autocomplete="off"></div>
+	   <div class="col-sm-3">
+	<p style="color: black"><b>Worker</b></p>
+<input  type="radio" name="u_type" id="u_type" value="worker"  onclick="if(this.checked) this.value='worker'; " chacked required autocomplete="off"></div>
 
-										<td class="btn btn-radio" width="">
-														<span class="glyphicon"></span>
-<input  type="radio" name="u_type" id="customer" value="customer" onclick="if(this.checked) this.value='customer'; "  chacked required autocomplete="off">customer</td>
-
-										<td class="btn btn-radio"width="" >
-														<span class="glyphicon"></span>
-<input  type="radio" name="u_type" id="worker" value="worker" onclick="if(this.checked) this.value='worker'; " chacked required autocomplete="off">worker</td>	
+		   <div class="col-sm-1" ></div>
 
 
-
-
-					</table>
 </div>					
 										
-
+</div>
 											
 
                                 
-		                    <div class="form-group">
+		                    <div class="form-group" syle="margin-top:">
 		                        <div class="col-xs-offset-3 col-xs-6">
 		                            <button style="width:120px;margin-left:-30px"type="submit" class="btn btn-info btn-primary">SignUp</button>
 		                        </div>

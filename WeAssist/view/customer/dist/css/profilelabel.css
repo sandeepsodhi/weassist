@@ -1,0 +1,74 @@
+hr {
+display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;	
+	color:#fefefe;
+	
+}
+.glyphicon glyphicon-pencil{
+	
+	margin:0 auto;
+}
+#profile-label {
+font-size: 120%;
+font-weight:normal;
+}
+#f_name
+{
+	font-size:140%;
+}
+h
+{
+font-size: 190%;	
+}
+#fnameedit{
+background-image:url(../img/btnicon.png);
+ max-width:100%;
+background-position:50% 50%; 
+background-repeat:no-repeat; 
+-moz-background-size:cover; 
+-webkit-background-size:cover; 
+background-size:cover;	
+}
+#lnameedit{
+background-image:url(../img/btnicon.png);
+ max-width:100%;
+background-position:50% 50%; 
+background-repeat:no-repeat; 
+-moz-background-size:cover; 
+-webkit-background-size:cover; 
+background-size:cover;	
+}
+#emailedit{
+background-image:url(../img/btnicon.png);
+ max-width:100%;
+background-position:50% 50%; 
+background-repeat:no-repeat; 
+-moz-background-size:cover; 
+-webkit-background-size:cover; 
+background-size:cover;	
+}
+#phoneedit{
+background-image:url(../img/btnicon.png);
+ max-width:100%;
+background-position:50% 50%; 
+background-repeat:no-repeat; 
+-moz-background-size:cover; 
+-webkit-background-size:cover; 
+background-size:cover;	
+}
+#btnupdate
+{
+	display:block;
+   width:350%;
+   margin:0 auto;
+}
+h1
+{
+	
+font-size: 150%;	
+}
