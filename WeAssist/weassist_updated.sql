@@ -17,64 +17,64 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `weassist`
+-- Database: `u489936667_we`
 --
 
 DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `agent`(IN `fname` VARCHAR(30), IN `lname` VARCHAR(30), IN `uname` VARCHAR(100), IN `pass` VARCHAR(255), IN `utype` VARCHAR(50), IN `rcode` VARCHAR(30), IN `ruser` VARCHAR(30))
+CREATE  PROCEDURE `agent`(IN `fname` VARCHAR(30), IN `lname` VARCHAR(30), IN `uname` VARCHAR(100), IN `pass` VARCHAR(255), IN `utype` VARCHAR(50), IN `rcode` VARCHAR(30), IN `ruser` VARCHAR(30))
 INSERT INTO users(f_name,l_name,u_name,pswd,u_type,r_code,r_user)  VALUES(fname,lname,uname,pass,utype,rcode,ruser)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_profile`(IN `f_name` VARCHAR(255), IN `l_name` VARCHAR(255), IN `profile_pic` VARCHAR(255), IN `city` VARCHAR(255), IN `u_name` VARCHAR(255), IN `contact` INT(255))
+CREATE  PROCEDURE `edit_profile`(IN `f_name` VARCHAR(255), IN `l_name` VARCHAR(255), IN `profile_pic` VARCHAR(255), IN `city` VARCHAR(255), IN `u_name` VARCHAR(255), IN `contact` INT(255))
     NO SQL
 update users SET f_name=f_name,l_name=l_name,profile_pic=profile_pic,city=city,u_name=u_name,contact=contact where u_name=u_name$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insdata`(IN `uname` VARCHAR(50), IN `fname` VARCHAR(50), IN `lname` VARCHAR(50), IN `pswdd` VARCHAR(50), IN `utype` VARCHAR(50))
+CREATE  PROCEDURE `insdata`(IN `uname` VARCHAR(50), IN `fname` VARCHAR(50), IN `lname` VARCHAR(50), IN `pswdd` VARCHAR(50), IN `utype` VARCHAR(50))
 INSERT INTO users(u_name,f_name,l_name,pswd,u_type) VALUES (uname,fname,lname,pswdd,utype)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertjob`(IN `jobcateg` VARCHAR(50), IN `subcateg` VARCHAR(50), IN `jobtitles` VARCHAR(100), IN `jobdesc` VARCHAR(255), IN `jobphoto` VARCHAR(120), IN `u_name` VARCHAR(50))
+CREATE  PROCEDURE `insertjob`(IN `jobcateg` VARCHAR(50), IN `subcateg` VARCHAR(50), IN `jobtitles` VARCHAR(100), IN `jobdesc` VARCHAR(255), IN `jobphoto` VARCHAR(120), IN `u_name` VARCHAR(50))
     NO SQL
 INSERT into createjob (jobcategory,subcategory,jobtitle,jobdesc,photo,uname)
 VALUES(jobcateg,subcateg,jobtitles,jobdesc,jobphoto,u_name)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertjobs`(IN `jobcateg` VARCHAR(50), IN `subcateg` VARCHAR(50), IN `jobtitles` VARCHAR(100), IN `jobdesc` VARCHAR(255), IN `u_name` VARCHAR(50))
+CREATE  PROCEDURE `insertjobs`(IN `jobcateg` VARCHAR(50), IN `subcateg` VARCHAR(50), IN `jobtitles` VARCHAR(100), IN `jobdesc` VARCHAR(255), IN `u_name` VARCHAR(50))
     NO SQL
 INSERT into createjob (jobcategory,subcategory,jobtitle,jobdesc,uname)
 VALUES(jobcateg,subcateg,jobtitles,jobdesc,u_name)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(IN `uname` VARCHAR(50), IN `pswdd` VARCHAR(50))
+CREATE  PROCEDURE `login`(IN `uname` VARCHAR(50), IN `pswdd` VARCHAR(50))
 select u_id,f_name,l_name,u_name,contact,city,profile_pic from users where u_name = uname AND pswd = pswdd$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `login_admin`(IN `u_namee` VARCHAR(20), IN `pswdd` VARCHAR(255))
+CREATE  PROCEDURE `login_admin`(IN `u_namee` VARCHAR(20), IN `pswdd` VARCHAR(255))
     NO SQL
 SELECT u_id from admin  where u_name = u_namee and pswd=pswdd$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `profession`(IN `u_id` INT(30), IN `cat_id` INT(30), IN `subcat_id` INT(30), IN `u_name` VARCHAR(30))
+CREATE  PROCEDURE `profession`(IN `u_id` INT(30), IN `cat_id` INT(30), IN `subcat_id` INT(30), IN `u_name` VARCHAR(30))
 insert into profession(u_id,cat_id,subcat_id,u_name)
 
 values(u_id,cat_id,subcat_id,u_name)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ruser`(IN `u_namee` VARCHAR(50), IN `pswdd` VARCHAR(50))
+CREATE  PROCEDURE `ruser`(IN `u_namee` VARCHAR(50), IN `pswdd` VARCHAR(50))
 select r_code from users where u_name=u_namee AND pswd=pswdd$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `search`(IN `category` VARCHAR(255), IN `sub_category` VARCHAR(255), IN `city` VARCHAR(255))
+CREATE  PROCEDURE `search`(IN `category` VARCHAR(255), IN `sub_category` VARCHAR(255), IN `city` VARCHAR(255))
 insert into search (category,sub_category,city)values(category,sub_category,city)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `social_login`(IN `fname` VARCHAR(50), IN `lname` VARCHAR(50), IN `uname` VARCHAR(50))
+CREATE  PROCEDURE `social_login`(IN `fname` VARCHAR(50), IN `lname` VARCHAR(50), IN `uname` VARCHAR(50))
 insert into users(f_name,l_name,u_name) values(fname,lname,uname)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updatedetail`(IN `fname` VARCHAR(50), IN `lname` VARCHAR(50), IN `email` VARCHAR(50), IN `phone` BIGINT(50), IN `citys` VARCHAR(50), IN `uname` VARCHAR(50), IN `pic` VARCHAR(100), IN `states` VARCHAR(50), IN `countrys` VARCHAR(50))
+CREATE  PROCEDURE `updatedetail`(IN `fname` VARCHAR(50), IN `lname` VARCHAR(50), IN `email` VARCHAR(50), IN `phone` BIGINT(50), IN `citys` VARCHAR(50), IN `uname` VARCHAR(50), IN `pic` VARCHAR(100), IN `states` VARCHAR(50), IN `countrys` VARCHAR(50))
     NO SQL
 UPDATE users SET f_name=fname,l_name=lname,uname=email,contact=phone,city=citys, state=states,country=countrys,profile_pic=pic where u_name=uname$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updatedetails`(IN `fname` VARCHAR(50), IN `lname` VARCHAR(50), IN `email` VARCHAR(50), IN `phone` BIGINT(50), IN `city` VARCHAR(50), IN `uname` VARCHAR(50), IN `state` VARCHAR(50), IN `country` VARCHAR(50))
+CREATE  PROCEDURE `updatedetails`(IN `fname` VARCHAR(50), IN `lname` VARCHAR(50), IN `email` VARCHAR(50), IN `phone` BIGINT(50), IN `city` VARCHAR(50), IN `uname` VARCHAR(50), IN `state` VARCHAR(50), IN `country` VARCHAR(50))
     NO SQL
 UPDATE users SET f_name=fname,l_name=lname,uname=email,contact=phone,city=city,
 state=state,country=country where u_name=uname$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `worker`(IN `fname` VARCHAR(30), IN `lname` VARCHAR(30), IN `uname` VARCHAR(30), IN `pass` VARCHAR(30), IN `contact` VARCHAR(30), IN `utype` VARCHAR(30), IN `image` VARCHAR(255), IN `rcode` VARCHAR(255), IN `ruser` VARCHAR(50))
+CREATE  PROCEDURE `worker`(IN `fname` VARCHAR(30), IN `lname` VARCHAR(30), IN `uname` VARCHAR(30), IN `pass` VARCHAR(30), IN `contact` VARCHAR(30), IN `utype` VARCHAR(30), IN `image` VARCHAR(255), IN `rcode` VARCHAR(255), IN `ruser` VARCHAR(50))
 INSERT INTO users(f_name,l_name,u_name,pswd,contact,u_type,image_upload,r_code,r_user)VALUE(fname,lname,uname,pass,contact,utype,image,rcode,ruser)$$
 
 DELIMITER ;
