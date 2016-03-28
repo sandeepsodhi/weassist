@@ -21,7 +21,7 @@ require_once ('libraries/Google/autoload.php');
 //You can get it from : https://console.developers.google.com/
 $client_id = '122120274303-us18a5vafcf6p797b22hf7ajq71ookah.apps.googleusercontent.com'; 
 $client_secret = 'u4-VPsc6Et7jFvKoJkiiqDNO';
-$redirect_uri = 'http://localhost/WeAssist/controller/api/google-login-api/index.php';
+$redirect_uri = 'http://weassist.esy.es/WeAssist/controller/api/google-login-api/index.php';
 
 //database
 /*
