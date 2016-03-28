@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2016 at 10:36 PM
+-- Generation Time: Mar 26, 2016 at 09:03 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -42,6 +42,7 @@ VALUES(jobcateg,subcateg,jobtitles,jobdesc,jobphoto,u_name)$$
 CREATE  PROCEDURE `insertjobs`(IN `jobcateg` VARCHAR(50), IN `subcateg` VARCHAR(50), IN `jobtitles` VARCHAR(100), IN `jobdesc` VARCHAR(255), IN `u_name` VARCHAR(50))
     NO SQL
 INSERT into createjob (jobcategory,subcategory,jobtitle,jobdesc,uname)
+
 VALUES(jobcateg,subcateg,jobtitles,jobdesc,u_name)$$
 
 CREATE  PROCEDURE `login`(IN `uname` VARCHAR(50), IN `pswdd` VARCHAR(50))
@@ -110,20 +111,23 @@ CREATE TABLE IF NOT EXISTS `category` (
   `cat_desc` text,
   `cat_image` varchar(255) NOT NULL DEFAULT 'NewCandidateImage.jpg',
   `cat_isactive` varchar(10) NOT NULL DEFAULT 'YES'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`cat_id`, `cat_name`, `cat_desc`, `cat_image`, `cat_isactive`) VALUES
+(1, 'doctor', 'yu', '3dskylinemodelbyekletti1ez.jpg', 'YES'),
 (2, 'painter', 'hkhkhkhkj', 'photo1.png', 'YES'),
 (3, 'plumber', 'testing for new catgory', 'photo1.png', 'YES'),
 (4, 'Electrician', 'again', 'photo1.png', 'YES'),
+(5, 'one more time', 'last time', '3d108hha8.jpg', 'YES'),
 (6, 'carpenter', 'docter ', 'photo1.png', 'YES'),
 (7, 'worker', 'yes', 'photo1.png', 'YES'),
 (8, 'doctor', 'yu', 'photo1.png', 'YES'),
-(9, 'designer ', 'building', 'photo1.png', 'YES');
+(9, 'category 9', 'category 1 description over her', 'abstract6.jpg', 'YES'),
+(11, 'category 11', ' test description for the category', '2 (2).jpg', 'YES');
 
 -- --------------------------------------------------------
 
@@ -202,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `profession` (
   `cat_id` int(10) NOT NULL,
   `subcat_id` int(10) NOT NULL,
   `u_name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `profession`
@@ -211,7 +215,11 @@ CREATE TABLE IF NOT EXISTS `profession` (
 INSERT INTO `profession` (`pr_id`, `u_id`, `cat_id`, `subcat_id`, `u_name`) VALUES
 (0, 2, 8, 1, 'sandeep@gmail.com'),
 (2, 5, 6, 3, 'sodhi@mailinator.com'),
-(3, 22, 8, 1, 'sandeeppp@gmail.com');
+(3, 21, 11, 6, 'sumanjeet46@gmail.com'),
+(42, 14, 9, 2, 'infotechtraining1761@gmail.com'),
+(43, 18, 11, 6, 'vickysodhi15@gmail.com'),
+(100, 2, 8, 1, 'sandeep@gmail.com'),
+(101, 5, 6, 3, 'sodhi@mailinator.com');
 
 -- --------------------------------------------------------
 
@@ -328,11 +336,18 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`u_id`, `u_type`, `r_code`, `r_user`, `u_name`, `pswd`, `profile_pic`, `f_name`, `l_name`, `contact`, `city`, `state`, `country`, `is_active`, `entry_date`, `activation_date`) VALUES
 (2, 'Customer 	', '8LZ8dug6', 'NULL', 'sandeep@gmail.com', 'sodhi', 'img1.jpg', 'sandeep', 'sodhi', 9287536780, 'Kapurthala', ' Himachal Pradesh', ' India', 'YES', '2016-03-17 21:36:49', '2016-01-27 06:30:50'),
 (5, 'Customer 	', '8LZ8dug7', '8LZ8dug6', 'sodhi@mailinator.com', 'sodhi', 'avatar04.png', 'sodhi', 'sandeep', 325023, 'Delhi', '', '', 'YES', '2016-03-17 21:36:52', '2016-01-27 09:40:49'),
-(14, 'agent', '8LZ8dug9', '8LZ8dug6', 'infotechtraining1761@gmail.com', '', 'avatar04.png', 'Infotech', 'Training', 0, '', '', '', 'YES', '2016-03-17 21:36:59', '2016-01-27 14:19:03'),
-(18, 'agent', '8LZ8dug8', 'NULL', 'vickysodhi15@gmail.com', 'sodhi', 'avatar04.png', 'Sandeep', 'Sodhi', 0, '', '', '', 'YES', '2016-03-17 21:37:05', '2016-01-27 16:07:30'),
+(14, 'Customer', '', '', 'infotechtraining176@gmail.com', '', 'NewCandidateImage.jpg', 'Infotech', 'Training', 328493850943, 'Ludhiana', '', '', 'YES', '2016-03-26 02:26:38', '2016-01-27 08:49:03'),
+(15, 'agent', '8LZ8dug9', '8LZ8dug6', 'infotechtraining1761@gmail.com', '', 'avatar04.png', 'Infotech', 'Training', 0, '', '', '', 'YES', '2016-03-26 07:56:21', '2016-01-27 14:19:03'),
+(17, 'agent', '8LZ8dug8', 'NULL', 'vickysodhi155@gmail.com', 'sodhi', 'avatar04.png', 'Sandeep', 'Sodhi', 0, '', '', '', 'YES', '2016-03-26 08:02:20', '2016-01-27 16:07:30'),
+(18, 'Customer', '', '', 'vickysodhi15@gmail.com', 'sodhi', 'abstract6.jpg', 'Sandeep', 'Sodhi', 0, 'Jalandhar', '', '', 'YES', '2016-03-26 02:27:56', '2016-01-27 10:37:30'),
 (20, 'worker', '8LZ8dug60', '8LZ8dug6', 'infotechtraining2016@gmail.com', '', 'avatar04.png', 'Infotech', 'Singh', 0, '', '', '', 'YES', '2016-03-17 21:37:10', '2016-01-28 04:35:44'),
+(21, 'agent', '8LZ8dug6', 'NULL', 'sumanjeet46@gmail.com', 'suman', '4em0.jpg', 'suman', 'jeet', 534678, 'Jalandhar', '', '', 'YES', '2016-03-24 11:23:53', '2016-02-13 07:32:20'),
 (22, 'worker', '8LZ8dug1', 'NULL', 'sandeeppp@gmail.com', 'ssss', 'avatar04.png', 'shy', 'sude', 0, 'jallandhar', '', '', 'YES', '2016-03-17 21:37:15', '2016-02-26 23:43:35'),
-(23, '', '', '', 'shuvamjha@gmail.com', 'shuvam', 'image/NewCandidateImage.jpg', 'shuvam', 'jha', 0, '', '', '', 'YES', '2016-03-18 16:29:48', '2016-03-18 16:29:48'),
+(23, '', '', '', 'shuvamjha@gmail.com', 'shuvam', 'NewCandidateImage.jpg', 'shuvam', 'jha', 0, '', '', '', 'YES', '2016-03-26 07:46:06', '2016-03-18 16:29:48'),
+(24, 'agent', 'oACkoMzv', 'NULL', 'sodhi@sodhi.com', 'sodhi', '3.jpg', 'Sandeep ', 'sodhi', 0, '', '', '', 'YES', '2016-03-24 11:22:57', '2016-02-26 04:41:03'),
+(25, 'worker', 'NULL', '8LZ8dug6', 'sukhneet@gmail.com', 'sukh', 'logo.jpg', 'sukh', 'neet', 531234678, 'Ludhiana', '', '', 'YES', '2016-03-26 02:31:32', '2016-02-13 07:34:58'),
+(26, 'worker', 'NULL', 'oACkoMzv', 'sodhi1@sodhi.com', 'sodhi', '1.jpg', 'sodhi', 'sandeep', 0, '', '', '', 'YES', '2016-03-24 11:22:18', '2016-02-26 04:43:58'),
+(28, 'worker', 'NULL', '8LZ8dug6', 'abc@abc.com', 'abc', '5o6Jvky.jpg', '123abc', 'def', 1123456, 'jalandhar', '', '', 'YES', '2016-03-26 02:31:17', '2016-02-13 07:37:03'),
 (32, 'agent', '', '', 'sssandeep@gmail.com', 'sodhi', 'NewCandidateImage.jpg', 'Shivam', 'jha', 0, '', '', '', 'YES', '2016-03-25 19:10:54', NULL);
 
 -- --------------------------------------------------------
@@ -418,7 +433,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `cat_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `createjob`
 --
@@ -428,7 +443,7 @@ ALTER TABLE `createjob`
 -- AUTO_INCREMENT for table `profession`
 --
 ALTER TABLE `profession`
-  MODIFY `pr_id` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `pr_id` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=102;
 --
 -- AUTO_INCREMENT for table `search`
 --

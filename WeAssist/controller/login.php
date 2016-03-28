@@ -18,16 +18,20 @@ if (!filter_var($u_name, FILTER_VALIDATE_EMAIL)) {
 	$lo = mysqli_fetch_assoc($login);	
 	 
     if (mysqli_num_rows($login) == 1) {
-		$_SESSION['u_name']=$_POST['u_name'];
 		
-          $_SESSION['f_name']=$lo['f_name'];
-	      $_SESSION['l_name']=$lo['l_name'];
-	      $_SESSION['f_name']=$lo['f_name'];
+          $_SESSION['u_name']=$_POST['u_name'];
+		      $_SESSION['f_name']=$lo['f_name'];
+	        $_SESSION['l_name']=$lo['l_name'];
+	        $_SESSION['f_name']=$lo['f_name'];
           $_SESSION['l_name']=$lo['l_name'];
           $_SESSION['contact']=$lo['contact'];
           $_SESSION['city']=$lo['city'];
           $_SESSION['profile_pic']=$lo['profile_pic'];
-	   header("location:../view/customer/pages/index.php");
+          $_SESSION['u_type'] = $lo['u_type'];
+
+    
+     
+	   header("location:../view/user/pages/index.php");
            
     } else {
         echo "<body onload='alert(\"LOGIN FAILED !!! TRY AGAIN WITH CORRECT CREDENTIAL\");'></body> ";
