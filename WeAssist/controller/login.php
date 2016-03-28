@@ -29,6 +29,8 @@ if (!filter_var($u_name, FILTER_VALIDATE_EMAIL)) {
           $_SESSION['profile_pic']=$lo['profile_pic'];
           $_SESSION['u_type'] = $lo['u_type'];
 
+    
+     
 	   header("location:../view/user/pages/index.php");
            
     } else {

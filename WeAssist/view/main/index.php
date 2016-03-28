@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['u_name']))
 $_SESSION['u_name']='';
-$_SESSION['u_name']='';
+//$_SESSION['u_name']='';
 $_SESSION['test']=$_SESSION['u_name'];
 ?>
 <!DOCTYPE html>
