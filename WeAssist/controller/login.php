@@ -2,7 +2,7 @@
 
     require_once '../model/dbConnect.php';  //this is used to call once data.
 	
-	session_start();
+	session_start(); 
 	
     $u_name = mysqli_real_escape_string($conn,$_POST['u_name']);
 if (!filter_var($u_name, FILTER_VALIDATE_EMAIL)) {
@@ -28,11 +28,12 @@ if (!filter_var($u_name, FILTER_VALIDATE_EMAIL)) {
           $_SESSION['city']=$lo['city'];
           $_SESSION['profile_pic']=$lo['profile_pic'];
           $_SESSION['u_type'] = $lo['u_type'];
-
+         $_SESSION['u_id']=$lo['u_id'];
     
-     
+     if($_SESSION['u_type']=="worker"||$_SESSION['u_type']=='agent')     
 	   header("location:../view/user/pages/index.php");
-           
+           else 
+            header("location:../view/customer/pages/index.php");
     } else {
         echo "<body onload='alert(\"LOGIN FAILED !!! TRY AGAIN WITH CORRECT CREDENTIAL\");'></body> ";
 		header("location:../view/main/index.php");
