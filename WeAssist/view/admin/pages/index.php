@@ -152,7 +152,9 @@
                   <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                 </div>
                 <div>
+
                   <textarea name="message" id="message" class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+
                 </div>
               </form>
             </div>
@@ -192,7 +194,7 @@
 
 	        $info = mysqli_fetch_row(mysqli_query($conn,"select f_name,profile_pic,datediff(now(),date(activation_date)) as pend from users order by pend limit 1 offset $i"));
 
-	        if($info[2] == null)
+	        if($info[1] == null)
 	        {
 	        	break;
 	        }
@@ -321,8 +323,6 @@
 <script type="text/javascript">
 	
     $("#email").click(function(){
-        // alert("da");
-       // var txt = $("input").val();
         var emailFrom = $("#emailfrom").val();
         var emailTo = $("#emailto").val();
 	    var subject = $("#subject").val();
@@ -331,11 +331,11 @@
 		console.log(message);
 
         $.post("sendemail.php", {from:emailFrom,to:emailTo,subjectt:subject,messagee:message}, function(result){
-            //alert("d");
-            // $("span").html(result);
+          //alert("d");
+          // $("span").html(result);
         	// document.getElementById("curBidUser"+bidID); 
         	$("#emailfrom").val("");// = "";
-			$("#emailto").val("");//= null;
+    			$("#emailto").val("");//= null;
         	$("#subject").val(""); //= null;
         	$("#message").val(""); //= null;
         });

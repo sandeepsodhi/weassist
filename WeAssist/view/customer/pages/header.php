@@ -1,4 +1,8 @@
+<?php include '../../../model/dbConnect.php'; 
 
+?>
+
+                    
 <!-- Our WebRTC application styling -->
 <link rel="stylesheet" type="text/css" href="chat/style/datachannel-demo.css">
 
@@ -25,199 +29,6 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -282,29 +93,9 @@
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.php"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index2.php"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>
    <li class="treeview">
           <a href="index.php">
             <i class="fa fa-fw fa-home"></i>
@@ -325,38 +116,10 @@
         </li>
         <li>
           <a href="joblist.php">
-            <i class="fa fa-th"></i> <span>Job List</span>
+            <i class="fa fa-th"></i> <span>My Job</span>
           </a>
         </li>
         
-        <li class="treeview">
-          <a href="searchjob.php">
-            <i class="fa fa-pie-chart"></i>
-            <span>Search Job</span>
-             </a>
-           </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>My Orders</span>
-             </a>
-           </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>My Feedback</span>
-            </a>
-           </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-credit-card"></i> <span>Payments</span>
-            </a>
-           </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Coupons</span>
-           </a>
-        </li>
         <li>
           <a href="pages/calendar.html">
             <i class="fa fa-calendar"></i> <span>Logout</span>
@@ -367,89 +130,22 @@
     <!-- /.sidebar -->
   </aside>
 <?php
-if($_SESSION['u_type']=='Customer')
+if(isset($_SESSION['u_type'])=='Customer')
 {
 ?> 
 <!--class ="demo-chat-create" for conneting -->
 <div style="position:fixed;z-index:20;width:280px;bottom:0px;right:2px;padding:2px;scroll-behavior:auto;">
-          <div onclick="show()" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px"><div><strong><center>Help & Support</center></strong></div></div>
-          <div style="display: none" id="hbar">
-              <div class="box box-success">
-                <div class="box-header">
-                  <i class="fa fa-comments-o"></i>
-                  <h3 class="box-title">Chat</h3>
-                </div>
-                <div class="box-body chat" id="chat-box">
-                  <!-- chat item -->
-                  <div class="item">
-                   <!-- WebRTC demo -->
-                      <div class="demo" id="demo" style="min-height: 100px;height: 200px; overflow-y:auto">
-                        <div class="demo-connect">
-                          <!-- <li class="list-group-item" data-remove="true"><br>&nbsp&nbspConnecting...</li> -->
-                          <?php
-                          include '../../../model/dbConnect.php';
-                              // $ch = mysqli_fetch_row(mysqli_query($conn,"select channel from chat_user"));    
-                              //echo "<input type='hidden' value='".$ch[0]."' class='demo-chat-channel-input'></input>";
-                            
-                              //category select statement
-                              echo "<select name='cat_id' id='cat_id' style='border:1px solid grey' class='col-xs-12 col-sm-12 btn btn-border' required>
-                              <option value=''  selected disabled><center>Select Category</center></option>";
-                              $rs=mysqli_query($conn,"select cat_id,cat_name from category");
-                              while($row=mysqli_fetch_assoc($rs))
-                              {
-                                  echo "<option value=".$row['cat_id'].">".$row['cat_name']."</option>";
-                              }
-                              echo "</select>";
-                              //subcategory select statement 
-                            //   echo "<select name='subcat_id' style='margin-top:7px' class='col-xs-12 col-sm-12 btn btn-border' required>
-                            //   <option value=''  selected disabled><center>Select SubCategory</center></option>";
-                            //   $rs=mysqli_query($conn,"select subcat_id,subcat_name from sub_category");
-                            //   while($row=mysqli_fetch_assoc($rs))
-                            //   {
-                            //       echo "<option value=".$row['subcat_id'].">".$row['subcat_name']."</option>";
-                            //   }
-                            // echo "</select>";
-                            
-                            ?>
-                            <div id='subcat'></div>
-                                <div id='city'></div>
-
-                            <!-- <select name='subcat_id' id='subcat' style='margin-top:7px' class='col-xs-12 col-sm-12 btn btn-border' required>
-                            <option value=''  selected disabled><center>Select SubCategory</center></option>";
-                            </select>
- -->
-                          <!-- <input type="text" style="width:100%"class="demo-chat-channel-input form-control" placeholder="Channel name"></input> -->
-                           <input type='hidden' class="demo-chat-create btn btn-primary" value='Create'></input>
-
-                        
-                          <button style='margin-top:5px' class="demo-chat-join btn btn-warning col-xs-4 col-sm-4 pull-right">Join</button>
-                        </div>
-                        <div class="demo-chat inactive">
-                          <ul class="demo-chat-messages list-group">
-                            <li class="list-group-item" data-remove="true">No chat messages available</li>
-                          </ul>
-                        </div>
-                      </div>
-                      <!-- /End WebRTC demo -->
-                  </div>  
-                  <!-- /.item -->
-                </div>
-                <!-- /.chat -->
-
-                <div class="box-footer">
-                  <div class="demo-chat-input">
-                         <input name="message" style="width:80%" class="demo-chat-message-input form-control" onkeyup="javscript: if (event.keyCode==13) { sc_roll();/*$('.demo').scrollTop=$('.demo').scrollHeight;*/}"placeholder="Message" on></input>
-                         <button style="background-color:#dd4b39;margin-left:78%;margin-top:-58px;width:20%px " onclick="sc_roll();" class="demo-chat-send btn btn-primary">Send</button>
-                  </div>
-                </div>
-              </div>
-              <!-- /.box (chat box)  javascript:$('#demo').scrollTop=$('#demo').scrollHeight -->
-             <div id="sh" visibility="hidden"></div>
-          </div>
+  <!-- <div onclick="show()" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px"> -->
+  <div onclick="window.open('chat.php','width=100px', 'height=370px')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
+    <div>
+      <strong><center>Help & Support</center></strong>
+    </div>
+  </div>
+  <!-- here chat window code -->
 </div>  
 <?php 
 }
-elseif($_SESSION['u_type']=='agent'){
+elseif($_SESSION['u_type']=='agent' || $_SESSION['u_type']=='worker'){
 ?>
 <!--class ="demo-chat-create" for conneting -->
 <div  onclick="onCreateChannel()" style="position:fixed;z-index:20;width:280px;bottom:0px;right:2px;padding:2px;scroll-behavior:auto;">
