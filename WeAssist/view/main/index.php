@@ -14,8 +14,14 @@ $_SESSION['test']=$_SESSION['u_name'];
 	================================================== -->
 	<meta charset="utf-8">
 	<title>WeAssist </title>
+<!-- validation
+	================================================== -->
+	
 
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" media="screen">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.css" rel="stylesheet"/>	
 
+    
 	<!-- Mobile Specific Metas
 	================================================== -->
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
@@ -1223,6 +1229,7 @@ window.location.href = "../customer/pages/index.php";
 
 
     </script>
+	
 </body>
 
 <!-- Mirrored from handyman.dan-fisher.com/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 22 Jan 2016 06:55:11 GMT -->

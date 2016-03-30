@@ -29,86 +29,6 @@
   <link rel="stylesheet" href="../dist/css/profilelabel.css">
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
   
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
-  
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
-<script type="text/javascript">
-    function initialize() {
-		
-        var options = {
-            types: ['(cities)'],
-            //componentRestrictions: {country: "in"}
-        };
-        var input = document.getElementById('city');
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-          	
-		//console.log(autocomplete);
-	}
-  $('input[name=city]').change(function () {
-		alert("done");
-        setTimeout(function () {
-            console.log($("#city").val());
-            console.log(($("#city").val().match(/,/g) || []).length); //logs 3
-            var val=[];
-            if(($("#city").val().match(/,/g) || []).length==2)
-            {
-                //All City, State, Country Exists
-                val=$("#city").val().split(',');
-                $("#city").val(val[0]);
-                $("#State").val(val[1]);
-                $("#Country").val(val[2]);
-            }
-            else if (($("#city").val().match(/,/g) || []).length == 1)
-            {
-                //Only City and Country Exists
-                val=$("#city").val().split(',');
-                $("#city").val(val[0]);
-                $("#State").val('NA');
-                $("#Country").val(val[1]);
-            }
-
-        }, 1000);
-    });
-
-    $('input[name=city]').click(function () {
-        document.getElementById('city').value = '';
-        document.getElementById('State').value = '';
-        document.getElementById('Country').value = '';
-    });
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-</script>
- <script>
-  function initialize() {
-		
-        var options = {
-            types: ['(signup)'],
-            //componentRestrictions: {country: "in"}
-        };
-        var input = document.getElementById('signup');
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-          	
-		//console.log(autocomplete);
-	}
-            
-            function show_code(obj) {
-                $(obj).parent().next().slideDown();
-            }
-            
-            $(document).ready(function() {
-
-                $('#button2').click(function(){
-                    $.dreamAlert({
-                        'type'      :   'success',
-                        'message'   :   'Operation completed!'
-                    });
-                });
-              
-        </script>
-        </div>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -383,7 +303,7 @@ alert("You have left  attempt;");
 }
 
 </script>
-
+<script>
 $.dreamAlert({
 
 	  'type'      :   'signup',
@@ -392,5 +312,86 @@ $.dreamAlert({
 
 	});
 	$.dreamAlert.close();
+	</script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+  
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+<script type="text/javascript">
+    function initialize() {
+		
+        var options = {
+            types: ['(cities)'],
+            //componentRestrictions: {country: "in"}
+        };
+        var input = document.getElementById('city');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+          	
+		//console.log(autocomplete);
+	}
+  $('input[name=city]').change(function () {
+		alert("done");
+        setTimeout(function () {
+            console.log($("#city").val());
+            console.log(($("#city").val().match(/,/g) || []).length); //logs 3
+            var val=[];
+            if(($("#city").val().match(/,/g) || []).length==2)
+            {
+                //All City, State, Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val(val[1]);
+                $("#Country").val(val[2]);
+            }
+            else if (($("#city").val().match(/,/g) || []).length == 1)
+            {
+                //Only City and Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val('NA');
+                $("#Country").val(val[1]);
+            }
+
+        }, 1000);
+    });
+
+    $('input[name=city]').click(function () {
+        document.getElementById('city').value = '';
+        document.getElementById('State').value = '';
+        document.getElementById('Country').value = '';
+    });
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+ <script>
+  function initialize() {
+		
+        var options = {
+            types: ['(signup)'],
+            //componentRestrictions: {country: "in"}
+        };
+        var input = document.getElementById('signup');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+          	
+		//console.log(autocomplete);
+	}
+            
+            function show_code(obj) {
+                $(obj).parent().next().slideDown();
+            }
+            
+            $(document).ready(function() {
+
+                $('#button2').click(function(){
+                    $.dreamAlert({
+                        'type'      :   'success',
+                        'message'   :   'Operation completed!'
+                    });
+                });
+              
+        </script>
+
 </body>
 </html>

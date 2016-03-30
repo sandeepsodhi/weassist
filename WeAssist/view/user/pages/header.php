@@ -26,19 +26,19 @@
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+           <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+             <!-- <span class="label label-success">4</span>-->
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+           <!--   <li class="header">You have 4 messages</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li><!-- start message -->
-                    <a href="#">
+              <!--      <a href="#">-->
                       <div class="pull-left">
-                        <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                   <!--     <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
                       </div>
                       <h4>
                         Support Team
@@ -103,10 +103,10 @@
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+         <!--   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">10</span>
-            </a>
+            </a>-->
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
               <li>
@@ -145,10 +145,10 @@
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
           <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <!--  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
               <span class="label label-danger">9</span>
-            </a>
+            </a>-->
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
               <li>
@@ -217,12 +217,16 @@
               </li>
             </ul>
           </li>
+
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
+
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $_SESSION['f_name']; ?></span>
             </a>
+					<!--	  <li>		  		  						<a href="logout.php">Logout  </a></li>-->
+
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
@@ -233,8 +237,9 @@
                  <!-- <small>Member since Nov. 2012</small>-->
                 </p>
               </li>
+
               <!-- Menu Body -->
-              <li class="user-body">
+     <!--         <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
@@ -254,7 +259,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../../../controller/sign_out.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../../main/index.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -262,6 +267,7 @@
           <!-- Control Sidebar Toggle Button -->
           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+
           </li>
         </ul>
       </div>
@@ -281,7 +287,7 @@
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-      <!-- search form -->
+      <!-- search form --
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -295,73 +301,45 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.php"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index2.php"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>
-   <li class="treeview">
-          <a href="index.php">
+       
+  <li class="active treeview">
+          <a href="index1.php">
             <i class="fa fa-fw fa-home"></i>
             <span>HOME</span>
             
           </a>
                   </li>
+ <li class="treeview">
+		 <a href="worker_reg.php">
+		 <i class="fa fa-user-plus"></i>
+			<span>Add User</span>
+				</a>
+</li>
+
+<li>
+          <a href="jobcreation.php">
+            <i class="fa fa-edit"></i> <span>Job Creation</span>
+          </a>
+        </li>
         <li>
           <a href="profile.php">
-            <i class="fa fa-th"></i> <span>My Profile</span>
+            <i class="fa fa-user"></i> <span>My Profile</span>
             <small class="label pull-right bg-green">new</small>
           </a>
         </li>
-    <li>
-          <a href="jobcreation.php">
-            <i class="fa fa-th"></i> <span>Job Creation</span>
+		        <li>
+          <a href="myjobs.php">
+            <i class="fa fa-th"></i> <span>My Jobs</span>
           </a>
         </li>
-        <li>
-          <a href="joblist.php">
-            <i class="fa fa-th"></i> <span>Job List</span>
-          </a>
-        </li>
-        
-        <li class="treeview">
+		
+      <!--  <li class="treeview">
           <a href="searchjob.php">
             <i class="fa fa-pie-chart"></i>
             <span>Search Job</span>
              </a>
-           </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>My Orders</span>
-             </a>
-           </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>My Feedback</span>
-            </a>
-           </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-credit-card"></i> <span>Payments</span>
-            </a>
-           </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Coupons</span>
-           </a>
-        </li>
-        <li>
-          <a href="pages/calendar.html">
-            <i class="fa fa-calendar"></i> <span>Logout</span>
-          </a>
-        </li>
-      </ul>
+           </li>-->
+   </ul>
      </section>
     <!-- /.sidebar -->
   </aside>

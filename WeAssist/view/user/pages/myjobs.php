@@ -64,8 +64,8 @@
               <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
-                   <th>Job Date</th>
-                  <th>Target Date</th>
+                   <th>Job Date/Time</th>
+                  <th>Target Date/Time</th>
                   <th>Worker Name</th>
                   <th>Image</th>
 				  

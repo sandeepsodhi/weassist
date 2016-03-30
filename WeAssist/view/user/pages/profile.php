@@ -66,7 +66,7 @@ $(document).ready(function()
                 var images = ["personal-details-icon.png","account-details.png","contact-details.png"];
                 $('.rhino-bullet').each(function(index)
 				{
-                    $(this).html('<p style="margin: 0pt; font-size: 13px; font-weight: bold;"><img src="../img/'+
+                    $(this).html('<p style="margin: 0pt; font-size: 13px; font-weight: bold;"><img src="./img/'+
                         images[index]+'"></p><p class="bullet-desc">'+info[index]+'</p></a>');
                 });
             });
@@ -354,7 +354,7 @@ $(document).ready(function()
 	<div id="page">
             <div id="wrapper">
 
-                <h3><b style="color:black">Complete Your Profile</b></h3>
+                <h3><b>Complete Your Profile</b></h3>
 				<div> &nbsp; </div>
                 <form action="../../../controller/profile_conn.php" id="profileform" method="POST" enctype='multipart/form-data'>
 				<div> &nbsp; </div>
@@ -559,7 +559,33 @@ function removetag(n)
 
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-
+<script>
+$(document).ready(function() {
+    $('#profileform')
+        .formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                phoneNumber: {
+                    validators: {
+                        phone: {
+                            country: 'city',
+                            message: 'The value is not valid %s phone number'
+                        }
+                    }
+                }
+            }
+        })
+        // Revalidate phone number when changing the country
+        .on('change', '[name="city"]', function(e) {
+            $('#profileform').formValidation('revalidateField', 'contact');
+        });
+});
+</script>
 
 
 

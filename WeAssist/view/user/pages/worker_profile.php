@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -62,13 +62,14 @@
 	
 
               <?php
-
+//session_start();
                 include  '../../../model/dbConnect.php';
-				
+			//	$sql=mysqli_fetch_assoc(mysqli_query($conn,"select channel from chat_user where pr_id in(select pr_id from profession where cat_id='$cat_id' and subcat_id='$subcat_id' and u_id in(select u_id from users where city='$subcat_city'))"));
 				
 				               // $rs = mysqli_query($conn,"select job_date,target_date,uname,photo from createjob");
+//$rs=mysqli_query($conn,"select a.profile_pic,a.f_name,a.city,a.contact,b.f_name from users a join  b on a.uname=b.u_name where b.f_name='".$_SESSION['f_name']."' ");
+$rs=mysqli_query($conn,"select a.profile_pic,a.f_name,a.city,a.contact,a.u_type from users a join profession b on a.u_id=b.u_id where ((select cat_name from category where cat_name='".$_SESSION['category']."' AND (select subcat_name from sub_category where subcat_name='".$_SESSION['sub_category']."' AND a.city='".$_SESSION['city']."') ");
 
-$rs=mysqli_query($conn,"select image,f_name,city,contact,u_type from users where cat_name='".$_SESSION['category']."' AND subcat_name='".$_SESSION['sub_category']."' AND city='".$_SESSION['city']."' ");
            while($row=mysqli_fetch_row($rs))
               {   
               echo 
@@ -80,7 +81,6 @@ $rs=mysqli_query($conn,"select image,f_name,city,contact,u_type from users where
                     <td>$row[2]</td>
                     <td>$row[3]</td>  
                     <td>$row[4]</td>               
-					                    <td>$row[4]</td>               
 
                </tr>
 			   <br>

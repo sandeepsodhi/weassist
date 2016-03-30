@@ -16,10 +16,13 @@
 
 			<!-- Navigation -->
 			<nav class="nav-main">
+	<!--		<a href="logout.php">Logout</a>
+			/
+		<a href="logout.php">Go To Dashboard</a>-->
 				<div class="nav-main-inner">
 					<ul data-breakpoint="992" class="flexnav">
 						<li class="active"><a href="index.php">Home</a></li>
-						<li><a href="#">Pages</a>
+						<!--<li><a href="#">Pages</a>
 							<ul>
 								<li><a href="page-about.php">About Us</a></li>
 								<li><a href="page-services.php">Services</a></li>
@@ -32,8 +35,8 @@
 								<li><a href="page-login.php">Login &amp; Register</a></li>
 								<li><a href="page-404.php">404</a></li>
 							</ul>
-						</li>
-						<li><a href="#">Features</a>
+						</li>-->
+						<!--<li><a href="#">Features</a>
 							<ul>
 								<li><a href="features-shortcodes.php">Shortcodes</a></li>
 								<li><a href="features-pricing-tables.php">Pricing Tables</a></li>
@@ -41,33 +44,32 @@
 								<li><a href="features-columns.php">Columns</a></li>
 								<li><a href="features-icons.php">Icons</a></li>
 							</ul>
-						</li>
+						</li>-->
 						<li><a href="#">Jobs</a>
 							<ul>
-								<li><a href="job-post-profile.php">Post a Profile</a></li>
-								<li><a href="job-post-job.php">Post a Job</a></li>
-								<li><a href="job-professionals.php">Professionals</a></li>
-								<li><a href="job-dashboard.php">Dashboard</a></li>
-								<li><a href="job-profile.php">Profile</a></li>
+						<!--		<li><a href="job-post-profile.php">Post a Profile</a></li>-->
+								<li><a href="../user/pages/jobcreation.php">Post a Job</a></li>
+								<li><a href="professional.php">Professionals</a></li>
+								<!--<li><a href="job-dashboard.php">Dashboard</a></li>
+								<li><a href="job-profile.php">Profile</a></li>-->
 							</ul>
 						</li>
-						<li><a href="blog-right-sidebar.html">Blog</a>
+					<!--	<li><a href="blog-right-sidebar.html">Blog</a>
 							<ul>
 								<li><a href="blog-right-sidebar.php">Blog Right Sidebar</a></li>
 								<li><a href="blog-left-sidebar.php">Blog Left Sidebar</a></li>
 								<li><a href="blog-fullwidth.php">Blog Full Width</a></li>
 								<li><a href="blog-post.php">Single Post</a></li>
 							</ul>
-						</li>
-						<li><a href="page-contacts.php">Contacts</a></li>
+						</li>-->
+						<li><a href="#">Category</a></li>
 						<li>
-								<a href data-toggle="modal" data-target="#myModal"  class="btn btn-sm"><i class="fa fa-sign-in"></i> Login/Register</a>
-			
+							<a href data-toggle="modal" data-target="#myModal"  class="btn btn-sm"><i class="fa fa-sign-in"></i> Login/Register</a>
+				
 						</li>
-
-
 
 					</ul>
+				
 				</div>
 			</nav>
 			<!-- Navigation / End -->
@@ -99,7 +101,7 @@
 
 		        <div class="tab-content">
 		            <div id="login" class="tab-pane fade in active">
-		                <form class="form-horizontal" id="logform"  action="../../controller/login.php" method="POST">
+		                <form class="form-horizontal" id="logform" name="logform" action="../../controller/login.php"  method="POST">
 		                    <div class="form-group">
 		                        <div style="margin-top:22px;" class="input-group dialog-s col-xs-10 col-sm-10">
 		                            <div class="input-group-addon">
@@ -135,17 +137,18 @@
 		            </div> 
 		         
 		            <div id="signup" class="tab-pane fade">
-						<form class="form-horizontal" enctype="multipart/form-data" method="POST" action="../../controller/register.php" onsubmit="return validateform">
+						<form class="form-horizontal" enctype="multipart/form-data" name="signup" id="signup" method="POST" action="../../controller/register.php" onsubmit="return validateform">
 		                    <div class="form-group">
 		                        <div style="margin-top:22px;"class="input-group col-xs-10 col-sm-10 dialog-s ">
 		                            <div class="input-group-addon">
 		                                <i class="fa fa-user"></i>
 		                            </div>
-                                            <input type="text" class="form-control" id="f_name" name="f_name" placeholder="First Name" onkeyup="isalphanum(this)" required>
+                                            <input type="text" class="form-control" id="f_name" name="f_name" placeholder="First Name" onclick="isalpha(this.value)"  required>
+											
 		                            <div class="input-group-addon">
 		                            	<i class="fa fa-user"></i>
 		                            </div>
-                                            <input type="text" class="form-control" style="width:210px" name="l_name" id="l_name" placeholder="LastName" onkeyup="isalphanum(this)">
+                                            <input type="text" class="form-control" style="width:210px" name="l_name" id="l_name" placeholder="LastName" onkeyup="isalpha(this.value)">
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
@@ -161,6 +164,7 @@
 		                            <div class="input-group-addon">
 		                                <i class="fa fa-lock"></i>
 		                            </div>
+									
                                            <input type="password" class="form-control" id="pswd" name="pswd" placeholder="Password" required>
 		                        </div>
 		                    </div>
@@ -231,6 +235,7 @@
        		</div>
     		</div> <!-- end of container--> 
 
+
 			  <script>
             function showUser(str) {
                 if (str == "") {
@@ -253,4 +258,68 @@
                     xmlhttp.send();
                 }
             }
+			
+
         </script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.js"></script>
+    <script>
+$('#signup').bootstrapValidator({
+container: "popover",
+message: 'This value is not valid',
+	feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+	fields: {
+            f_name: {
+                validators: {
+                    notEmpty: {
+                        message: "You're required to fill in a first name!"
+                    		  }, // notEmpty
+				    regexp: {
+                        regexp: /^[A-Za-z\s.'-]+$/,
+                        message: "Alphabetical characters, hyphens and spaces"
+							}
+                } // validators
+                      },
+					  // firstname
+            l_name: {
+                validators: {
+                    notEmpty: {
+                        message: "You've forgotten to provide your last name!"
+                    		  },
+					regexp: {
+                        regexp: /^[A-Za-z\s.'-]+$/,
+                        message: "Alphabetical characters, hyphens and spaces"
+                    }							  // notEmpty
+                			} // validators
+                      },  // lastname
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: "An email address is mandatory."
+                    		  }, // notEmpty
+					emailAddress: {
+                        message: "This is not a valid email address"
+                    				} // emailAddress		  
+                			} // validators
+                      } // email
+            
+			} // fields
+			});
+	$('#myModal').on('shown.bs.modal', function() {
+    $('#signup').bootstrapValidator('resetForm', true);
+	});
+    </script>
+	<script>
+		 showNotification(){
+                            message: "This is Auto Close notification. Message will close after 2 seconds",
+                            autoClose: true,
+                            duration: 2
+                        }
+</script>
+  
