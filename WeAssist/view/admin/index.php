@@ -1,3 +1,4 @@
+<?php  session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,6 +54,15 @@
 						<input class="m-wrap placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
 					</div>
 				</div>
+				<?php
+					if(isset($_SESSION['wrong'])=='r')
+					{
+						echo "<div style='height:25px;background-color:red;color:white;margin-top:10px;padding-top:5px;padding-left:50px'><b>Wrong Username or password</b></div>";
+					}
+
+					unset($_SESSION['wrong']);
+				?>
+
 			</div>
 			<div class="form-actions">
 				<button type="submit" class="btn blue pull-right">
@@ -65,7 +75,7 @@
 	<!-- END LOGIN -->
 	<!-- BEGIN COPYRIGHT -->
 	<div class="copyright">
-	   &copy;<a href="../main/">WeAssist </a>2016 
+	   &copy;<a href="../main/" style="color:white">WeAssist </a> 2016 
 	</div>
 	<!-- END COPYRIGHT -->
 	<!-- BEGIN CORE PLUGINS -->
