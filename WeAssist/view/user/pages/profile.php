@@ -493,9 +493,9 @@ $("#dropdown").html(html);
 }
 });
 
-function addtag(name,id)
+function addtag(name)
 {
-$("#cats").append("<div id='t_"+name+"' name='t_"+id+"' onclick='removetag(\""+name+"\")' class='btn btn-info'  style='margin-left:5px'>"+name+" </div>");
+$("#cats").append("<div id='t_"+name+"' onclick='removetag(\""+name+"\")' class='btn btn-info'  style='margin-left:5px'>"+name+" </div>");
 $("#subcategories").val(id);
 $("#tag_"+name).remove(); 
 console.log($("#t_"+name).data("cat_id"));
@@ -559,33 +559,7 @@ function removetag(n)
 
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-<script>
-$(document).ready(function() {
-    $('#profileform')
-        .formValidation({
-            framework: 'bootstrap',
-            icon: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                phoneNumber: {
-                    validators: {
-                        phone: {
-                            country: 'city',
-                            message: 'The value is not valid %s phone number'
-                        }
-                    }
-                }
-            }
-        })
-        // Revalidate phone number when changing the country
-        .on('change', '[name="city"]', function(e) {
-            $('#profileform').formValidation('revalidateField', 'contact');
-        });
-});
-</script>
+
 
 
 

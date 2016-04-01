@@ -66,7 +66,7 @@
                 <tr>
                    <th>Job Date/Time</th>
                   <th>Target Date/Time</th>
-                  <th>Worker Name</th>
+                  <th>Customer Name</th>
                   <th>Image</th>
 				  
                   </tr>
@@ -75,15 +75,15 @@
                 <?php
                   include  '../../../model/dbConnect.php';
 	//			echo $_SESSION['f_name'];
-$rs=mysqli_query($conn,"select a.job_date,a.target_date,a.photo,b.f_name from createjob a join users b on a.uname=b.u_name where b.f_name='".$_SESSION['f_name']."' ");
-               // $rs = mysqli_query($conn,"select job_date,target_date,uname,photo from createjob");
+$rs=mysqli_query($conn,"select a.job_date,a.target_date,a.photo,b.f_name from createjob a join users b on a.uname=b.u_name ");
+               // $rs = mysqli_query($conn,"select job_date,target_date,f_name,photo from createjob ");
                 while($row=mysqli_fetch_row($rs))
                 {   
                 echo "<tr>
                          <td>$row[0]</td>
                         <td>$row[1]</td>
 						<td>$row[3]</td>
-						<td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[2]'></td>
+						<td><img style='border-radius:10px;width:60px;height:50px;' src='image/$row[2]'></td>
 
 
                       </tr> 

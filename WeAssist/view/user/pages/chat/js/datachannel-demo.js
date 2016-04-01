@@ -1,4 +1,3 @@
-console.log("datachannel-demo js loaded");
 // Initialise DataChannel.js
 var datachannel = new DataChannel();
 
