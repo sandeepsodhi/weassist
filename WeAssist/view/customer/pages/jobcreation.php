@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Widgets</title>
+  <title>Customer | Jobs Create</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -22,12 +22,11 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../dist/css/profilelabel.css">
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-  
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
-  
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+  <!-- for claendar -->
+      <link href="css/custom.css" rel="stylesheet">
+ 
+    <link href="css/green.css" rel="stylesheet">
+    <!--  -->
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -118,14 +117,45 @@ select option { padding: 1px 5px 1px 3px;}
 
 </div>
 <div class="form-group">
-<label id="profile-label"  for="jobphoto" style="margin-left:6%; width:11%" >Upload Photo</label>
- <input type="file" class="btn-primary" id="jobphoto" name="jobphoto" style="background-color:white;border:1px solid grey; color:black ;width:25%; margin-left:19%; margin-top:-3%"  accept=".jpg,.jpeg,.png," onchange="readURL(this)">	
-<img id="jobshow"/ src="image/NewCandidateImage.jpg" style="width:8%;height:5%;">  
+<label id="profile-label"  for="jobprice" style="margin-left:5%; width:11%" size="10%">Enter Price</label>
+  <i class="fa fa-rupee" style="font-size:24px;margin-left:1%"></i>
+  <input type="number" id="jobprice" name="jobprice" placeholder="" style="border:1px solid grey; color:black ;width:25% ;font-family:none;font-size:130%;font-color:black;
+    margin-left:5px">
+
 </div>
-<!-- <div class="form-group" style="margin-left:19%;width:20%;height:5%">
+<div class="form-group">
+<label id="profile-label"  for="Edate" style="margin-left:5%; width:11%" size="10%">Select date</label>
+        <input type="text" name="Edate"  id="Edate" placeholder="select Date"   style="width:25%;margin-left:3%">
+        <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="false"></span>
+  <label id="profile-label"  for="tapp" style="margin-left:5%; width:11%">Select Time</label>         
+<select class="btn" name="tapp" id="tapp" style="border:1px solid grey; color:black ; width:7%; margin-left:1%">
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+</select>
+
+        </div>
+
+
+
+
+<div class="form-group">
+<label id="profile-label"  for="jobphoto" style="margin-left:5%; width:11%" >Upload Job Photo</label>
+ <input type="file" class="btn-primary" id="jobphoto" name="jobphoto" style="background-color:white;border:1px solid grey; color:black ;width:25%; margin-left:19%; margin-top:-3%"  accept=".jpg,.jpeg,.png," onchange="readURL(this)">	
+</div>
+ <div class="form-group" style="margin-left:19%;width:20%;height:5%">
 <img id="jobshow"/ src="image/NewCandidateImage.jpg" style="width:50%;height:30%;">  
 </div>
- --><br/>
+ <br/>
 <div class="form-group">
 <button type="submit" class="btn btn-info btn-primary" name="btnupdate" id="btnupdate"  style="width:20%; margin-left:20%;  " >Submit</button></div>
   </div>
@@ -147,7 +177,7 @@ select option { padding: 1px 5px 1px 3px;}
 
 
 
-<!-- ./wrapper -->
+<!-- wrapper -->
 
 <!-- jQuery 2.2.0 -->
 
@@ -163,6 +193,14 @@ select option { padding: 1px 5px 1px 3px;}
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+  
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+<!-- calenadr -->
+<script type="text/javascript" src="js/moment.min2.js"></script>
+  <script type="text/javascript" src="js/daterangepicker.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -206,5 +244,17 @@ function readURL(input){
 
 }
 </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Edate').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_1"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+            
+        });
+    </script>
+
 </body>
 </html>

@@ -1,9 +1,14 @@
 <?php 
 session_start();
-if(!isset($_SESSION['u_name']))
-$_SESSION['u_name']='';
-//$_SESSION['u_name']='';
+//session_destroy();
+//echo isset($_SESSION['u_name']); 
+if(isset($_SESSION['u_name']))
 $_SESSION['test']=$_SESSION['u_name'];
+else
+$_SESSION['test']='';
+//$_SESSION['u_name']='';
+
+
 ?>
 <!DOCTYPE html>
 <html class="not-ie no-js" lang="en">  
@@ -14,14 +19,8 @@ $_SESSION['test']=$_SESSION['u_name'];
 	================================================== -->
 	<meta charset="utf-8">
 	<title>WeAssist </title>
-<!-- validation
-	================================================== -->
-	
 
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" media="screen">
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.css" rel="stylesheet"/>	
 
-    
 	<!-- Mobile Specific Metas
 	================================================== -->
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
@@ -77,7 +76,7 @@ $_SESSION['test']=$_SESSION['u_name'];
 
 <style>
 #myModl{
-height: 900px;
+height: 1000px;
 width: 80%;
 margin-left: 140px;
 /*margin-right: 60px;*/
@@ -145,13 +144,14 @@ margin-top: 20px;
 						<div class="container">
 							<div class="search-box-inner">
 								<h1>Search for Professionals</h1>
-								<form  method="POST" role="form">
+								<form  >
 
 									<div class="row" style="margin-left: 21%">
 										<div class="col-md-8">
 										<font   color="black">
 											<div class="form-group">
-												<input type="text" id="search-input" class="form-control" placeholder="Search For Job">
+												<input type="text" id="search-input" class="form-control" placeholder="Search For Job"
+												 onKeydown="javascript: if (event.keyCode==13) ressearch();">
 											</div>
 										</div>
 										<div class="col-md-1">
@@ -168,10 +168,11 @@ margin-top: 20px;
 			<div class="title-bordered" id="searchtitle" >
 			<br/>
 						<h2 visibility="hidden">Search Result<small>Here</small></h2>
+					    
 					</div>
 
 				<div id="loc"  visibility="hidden"  ><!--  data-toggle="modal" data-target="#myModl" > --> 
-										
+						<!-- <h4  id="nosearch" style="display: none;" >Sorry No Data Found</h4>				 -->
 				</div>
 
 			<section class="page-content" id="pagec">
@@ -231,241 +232,6 @@ margin-top: 20px;
 					<!-- Stats / End -->
 
 						<div class="spacer-xl"></div>
-
-					<!-- Listings -->
-					<div class="title-bordered">
-						<h2>Our Professionals <small>Latest added</small></h2>
-					</div>
-					<div class="job_listings">
-						<ul class="job_listings">
-							<li class="job_listing">
-								<a href="#">
-									<div class="job_img">
-										<img src="images/samples/person1.jpg" alt="" class="company_logo">
-									</div>
-									<div class="position">
-										<h3>Debbie Bidart</h3>
-										<div class="company">
-											<strong>Paint Removal from Exterior or Interior Surfaces</strong>
-										</div>
-									</div>
-									<div class="location">
-										<i class="fa fa-location-arrow"></i> Melbourne, AU
-									</div>
-									<div class="rating">
-										<div class="rating-stars">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star-half-o"></i>
-										</div>
-										<div class="reviews-num">12 Reviews</div>
-									</div>
-									<ul class="meta">
-										<li class="job-type">Painting</li>
-										<li class="date">
-											Posted 1 month ago
-										</li>
-									</ul>
-								</a>
-							</li>
-							<li class="job_listing">
-								<a href="#">
-									<div class="job_img">
-										<img src="images/samples/person2.jpg" alt="" class="company_logo">
-									</div>
-									<div class="position">
-										<h3>Construction Inc.</h3>
-										<div class="company">
-											<strong>Strives to meet the consumers needs.</strong>
-										</div>
-									</div>
-									<div class="location">
-										<i class="fa fa-location-arrow"></i> New York, US
-									</div>
-									<div class="rating">
-										<div class="rating-stars">
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-										</div>
-									</div>
-									<ul class="meta">
-										<li class="job-type">Bathroom Design</li>
-										<li class="date">
-											Posted 2 months ago
-										</li>
-									</ul>
-								</a>
-							</li>
-							<li class="job_listing job_position_featured">
-								<a href="#">
-									<div class="job_img">
-										<img src="images/samples/person3.jpg" alt="" class="company_logo">
-									</div>
-									<div class="position">
-										<h3>C &amp; G Plastering</h3>
-										<div class="company">
-											<strong>Quality Jobs You Can Afford</strong>
-										</div>
-									</div>
-									<div class="location">
-										<i class="fa fa-location-arrow"></i> London, UK
-									</div>
-									<div class="rating">
-										<div class="rating-stars">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="reviews-num">5 Reviews</div>
-									</div>
-									<ul class="meta">
-										<li class="job-type">Plaster &amp; Drywall</li>
-										<li class="date">
-											Posted 2 months ago
-										</li>
-									</ul>
-								</a>
-							</li>
-							<li class="job_listing">
-								<a href="#">
-									<div class="job_img">
-										<img src="images/samples/person4.jpg" alt="" class="company_logo">
-									</div>
-									<div class="position">
-										<h3>White &amp; Sons</h3>
-										<div class="company">
-											<strong>Apply Concrete Floor Coating</strong>
-										</div>
-									</div>
-									<div class="location">
-										<i class="fa fa-location-arrow"></i> Melbourne, AU
-									</div>
-									<div class="rating">
-										<div class="rating-stars">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star-half-o"></i>
-											<i class="fa fa-star-o"></i>
-										</div>
-										<div class="reviews-num">4 Reviews</div>
-									</div>
-									<ul class="meta">
-										<li class="job-type">Painting</li>
-										<li class="date">
-											Posted 3 months ago
-										</li>
-									</ul>
-								</a>
-							</li>
-							<li class="job_listing">
-								<a href="#">
-									<div class="job_img">
-										<img src="images/samples/person5.jpg" alt="" class="company_logo">
-									</div>
-									<div class="position">
-										<h3>Tim's Plastering</h3>
-										<div class="company">
-											<strong>We pride ourselves in excellent workmanship.</strong>
-										</div>
-									</div>
-									<div class="location">
-										<i class="fa fa-location-arrow"></i> Houston, TX
-									</div>
-									<div class="rating">
-										<div class="rating-stars">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star-o"></i>
-										</div>
-										<div class="reviews-num">1 Review</div>
-									</div>
-									<ul class="meta">
-										<li class="job-type">Plaster &amp; Drywall</li>
-										<li class="date">
-											Posted 2 months ago
-										</li>
-									</ul>
-								</a>
-							</li>
-							<li class="job_listing">
-								<a href="#">
-									<div class="job_img">
-										<img src="images/samples/person6.jpg" alt="" class="company_logo">
-									</div>
-									<div class="position">
-										<h3>Crystal Glass Ltd</h3>
-										<div class="company">
-											<strong>Bring the best customer service</strong>
-										</div>
-									</div>
-									<div class="location">
-										<i class="fa fa-location-arrow"></i> New York, US
-									</div>
-									<div class="rating">
-										<div class="rating-stars">
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-										</div>
-									</div>
-									<ul class="meta">
-										<li class="job-type">Furniture Repair &amp; Refinish</li>
-										<li class="date">
-											Posted 3 months ago
-										</li>
-									</ul>
-								</a>
-							</li>
-						</ul>
-					</div>
-
-					<div class="spacer"></div>
-
-					<div class="row">
-						<div class="col-md-4 col-md-offset-4">
-							<a class="btn btn-default btn-block" href="#">View All Professionals</a>
-						</div>
-					</div>
-
-					<!-- Listings / End -->
-
-					<div class="spacer-xxl"></div>
-
-					<!-- Promobox -->
-					<div class="promobox" data-stellar-background-ratio="0.5">
-						<div class="row">
-							<div class="col-md-4 promobox-item">
-								<h4><span>For</span> Designers</h4>
-								<img src="images/samples/worker3.png" alt="" class="img-responsive">
-								<a href="#" class="btn btn-primary btn-sm">See Here</a>
-							</div>
-							<div class="col-md-4 promobox-item">
-								<h4><span>For</span> Plumbers</h4>
-								<img src="images/samples/worker1.png" alt="" class="img-responsive">
-								<a href="#" class="btn btn-primary btn-sm">See Here</a>
-							</div>
-							<div class="col-md-4 promobox-item">
-								<h4><span>For</span> Builders</h4>
-								<img src="images/samples/worker2.png" alt="" class="img-responsive">
-								<a href="#" class="btn btn-primary btn-sm">See Here</a>
-							</div>
-						</div>
-					</div>
-					<!-- Promobox / End -->
-
-					<div class="spacer-lg"></div>
 
 					<!-- Services -->
 					<div class="title-bordered">
@@ -796,17 +562,37 @@ margin-top: 20px;
 			<!-- Footer / End -->
 			<div id="myModl" class="modal fade" role="dialog">
 <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="height: 70px">
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        
+    <p style="float: left;font-size: 22px;color: black"> Book your Appointment . </p>        
+ 
       </div>
       <div class="modal-body">
+<!--       <div class="row">
+<div class="col-sm-3" ></div>
+<div class="col-sm-4" ><p style="font-size: 15px;color: black">Select Date</div>
+      </div>
+ -->    
+      <div class="row" id="conf" style="display: none;">
+       <div class="col-sm-3"></div>
+       <div class="col-sm-6"><h4 style="color: black">You have Sucessfully Booked Your Appointment</h4>
+       <input type="button" id="btnconf" class="btn btn-info" style="width: 200px;height: 60px;color:black;font-size:18px;background-color: #ff3200" 
+              value="Go To Dashboard">
+       </div>
+       </div>
+       
+       <div class="col-sm-3"></div>
+       </div>
        <div class="row">
        <div class="col-sm-4" id="callab">  
+<br/>
        <div class="row" id="box" style="margin-left: 40%">
         
 <br/>
+
        <div class="row" >
+        
          <div class="col-sm-4">
          <div id="box1"></div></div>
       <div class="col-sm-6">
@@ -828,6 +614,7 @@ margin-top: 20px;
  </div>
  </div>
        <div class="col-sm-4" id="caldis">
+          <b style="font-size: 18px;float: left;margin-left:15px;color: black">Select Date</b>
           <div id="glob-data" data-toggle="calendar" >
           <div class="datetimepicker" ><div class="paging">
           <span class="prev"><i class="prev"></i></span>
@@ -857,10 +644,15 @@ margin-top: 20px;
           <td class="unavailable near-month">8</td><td class="available near-month">9</td>
           </tr></tbody></table></div></div>
         </div>
-        <div class="col-sm-3" id="tspace" style="display: none;">
-                    </div>
-        <div class="col-sm-4" id="tdis" style="display: none;">
-                      <div id="boxtiming">
+
+        <div class="col-sm-3" id="tspace" style="display: none;padding-left: 50px;padding-top: 40px">
+                    <h5 >Selected Date : </h5><p id="seldate" style="color: black;"></p>
+
+                                        </div>
+        <div class="col-sm-5" id="tdis" style="display: none;">
+                     
+                      <a href="#" id="backcal" onclick="backtocal()" style="color: #1274c0;margin-right: 60%">ReSelect Date</a>
+                      <div id="boxtiming" style="margin-left: 30px">
                       
                       <h class="timehead"> Pick your Timings</h>
                       
@@ -912,7 +704,7 @@ margin-top: 20px;
         </div>
       </div>
 
-      </div>
+      <!-- </div> -->
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
@@ -972,6 +764,7 @@ margin-top: 20px;
 		
 		$(window).load(function(){
 			$('#searchtitle').hide();
+			$('#nosearch').hide();
 			$('.flexslider').flexslider({
 				animation: "fade",
 				controlNav: true,
@@ -1014,7 +807,7 @@ var htm='';
 var htm1='';
 var size;
 var cont= [ [],[],[],[] ,[] ];
- 
+ var f=0;
 //for(var i=0;i<4;i++)
 
 //button code
@@ -1024,8 +817,14 @@ var inp,workname;
 $('#btnsearch').click(function(){
      
      $('#pagec').hide();
-	$('#searchtitle').show();		
+	$('#searchtitle').show();	
 
+ // var dem = document.getElementById('btnsearch');
+ // dem.scrollTop  =dem.scrollHeight-dem.clientHeight;
+//$('#btnsearch').scrollTop(100);
+$('html,body').animate({scrollTop:600});
+
+     //$('#btnsearch').scrollTop="123px";
      $('#loc').show();
 
 htm1='';
@@ -1051,6 +850,10 @@ if(ch!=$('#search-input').val())
 $.post('catret.php', {cat:inp}, function(response) {
  size=response.length;
  //alert(size);
+ //$('#nosearch').hide();
+
+if(size>=1)
+{
 for(var i=0;i<response.length;i++)
 { 
   //cont[i]=[];
@@ -1067,14 +870,20 @@ for(var i=0;i<response.length;i++)
 						'<ul class="job_listings" id="b">'+
 						'	<li class="job_listing" id="c">'+
 								'<a >'+
-								'	<div class="job_img" >'+
+								'	<div class="job_img" style="width:15%" >'+
 								'	<img src="images/'+ cont[i][4] +'" alt="" class="company_logo">'+
 								'	</div>'+
-								'	<div class="position" id="d"  style="height:100%;width:30%">'+
-								'		<h3 id="namec" style="margin-left:10%">' + cont[i][0] + "  " + cont[i][1] +'</h3>'+
+								'	<div class="position" id="d"  style="height:100%;width:20%">'+
+								'		<h3 id="namec" style="margin-left:4%">' + cont[i][0] + "  " + cont[i][1] +'</h3>'+
 								'	</div>'+
-                             	'	<div class="location" >'+
-								'		<i class="fa fa-location-arrow"></i>' + cont[i][3] +
+                                '	<ul class="meta" style="font-weight:bold;width:10%">'+
+								'		<li class="job-type">'+'<b>' +inp+'</b>'  + '</li>'+
+								'		<div class="company" style="font-weight:bold">'+
+								'			<strong>' + "Deals in " + '<b>' + cont[i][2] +'</b>' +'</strong>'+
+								'		</div>'+
+        						'	</ul>'+                             
+						     	'	<div class="location" style="margin-left:20%;" >'+
+								'		<i class="fa fa-location-arrow" style="margin-left:50%;"></i>' + cont[i][3] +
 								'	</div>'+
 
 								'	<div class="rating">'+
@@ -1087,12 +896,7 @@ for(var i=0;i<response.length;i++)
 								'		</div>'+
 								'		<div class="reviews-num">12 Reviews</div>'+
 								'	</div>'+
-								'	<ul class="meta" style="font-weight:bold">'+
-								'		<li class="job-type">'+'<b>' +inp+'</b>'  + '</li>'+
-								'		<div class="company" style="margin-left:10%;font-weight:bold">'+
-								'			<strong>' + "Deals in " + '<b>' + cont[i][2] +'</b>' +'</strong>'+
-								'		</div>'+
-        						'	</ul>'+
+								
 								'</a>'+
 							'</li>'+
 
@@ -1103,6 +907,16 @@ for(var i=0;i<response.length;i++)
     htm='';
  $('#loc').html(htm1);
 }
+}
+else
+{
+
+var ht;
+ht="<h4>Sorry No Data Found </h4>";
+$('#loc').html(ht);
+
+
+}
 }, 'json');
 }
 ch=$('#search-input').val();
@@ -1111,8 +925,165 @@ ch=$('#search-input').val();
 
   });
 }
+
+// if(f==0)
+// { 
+
+// $('#nosearch').show();
+// }
+// else
+// $('#nosearch').hide();
+// f=0;
+
 });
+
 </script>
+<script>
+//$('#search-input').keyup(function(e){
+//if(e.keyCode==13){
+//e.preventDefault();
+var f;
+function ressearch(){
+f=0;
+ $('#pagec').hide();
+	$('#searchtitle').show();	
+  // var dem = document.getElementById('btnsearch');
+ // dem.scrollTop  =dem.scrollHeight-dem.clientHeight;
+//$('#btnsearch').scrollTop(100);
+$('html,body').animate({scrollTop:600});
+
+     //$('#btnsearch').scrollTop="123px";
+     $('#loc').show();
+
+htm1='';
+//$('#loc').html(htm1);
+console.log(ch + "chhh");
+index.search(
+ $('#search-input').val(), {
+    hitsPerPage: 5, facets: '*'
+  },
+  searchCallback
+);
+function searchCallback(err, content) {
+  if (err) {
+    return err;
+  }
+
+  content.hits.forEach(function(hit) {
+  //  det.push(hit);
+// $("#namec").append(hit.cat_name);
+//alert($('#search-input').serialize());
+if(ch!=$('#search-input').val())
+{
+ inp=$('#search-input').val();
+$.post('catret.php', {cat:inp}, function(response) {
+ size=response.length;
+ //alert(size);
+// f++;
+//$('#loc').html('');
+if(size>=1)
+{
+ console.log("s"+size);
+
+for(var i=0;i<response.length;i++)
+{ 
+  //cont[i]=[];
+  cont[i][0]=response[i].f_name;
+  cont[i][1]=response[i].l_name;
+   cont[i][2]=response[i].subcat_name;
+  cont[i][3]=response[i].city;
+  cont[i][4]=response[i].profile_pic;
+  cont[i][5]=response[i].u_name;
+  for(j=0;j<6;j++ )
+   console.log(cont[i][j]  + i);
+
+  htm+=	           '<div class="job_listings" id="a" style="margin-right:10px;margin-left: 10px" '+' onclick="javascript:fun('+i+')">' +
+						'<ul class="job_listings" id="b">'+
+						'	<li class="job_listing" id="c">'+
+								'<a >'+
+								'	<div class="job_img" style="width:15%" >'+
+								'	<img src="images/'+ cont[i][4] +'" alt="" class="company_logo">'+
+								'	</div>'+
+								'	<div class="position" id="d"  style="height:100%;width:20%">'+
+								'		<h3 id="namec" style="margin-left:4%">' + cont[i][0] + "  " + cont[i][1] +'</h3>'+
+								'	</div>'+
+                                '	<ul class="meta" style="font-weight:bold;width:10%">'+
+								'		<li class="job-type">'+'<b>' +inp+'</b>'  + '</li>'+
+								'		<div class="company" style="font-weight:bold">'+
+								'			<strong>' + "Deals in " + '<b>' + cont[i][2] +'</b>' +'</strong>'+
+								'		</div>'+
+        						'	</ul>'+                             
+						     	'	<div class="location" style="margin-left:20%;" >'+
+								'		<i class="fa fa-location-arrow" style="margin-left:50%;"></i>' + cont[i][3] +
+								'	</div>'+
+
+								'	<div class="rating">'+
+								'		<div class="rating-stars">'+
+								'			<i class="fa fa-star"></i>'+
+								'			<i class="fa fa-star"></i>'+
+								'			<i class="fa fa-star"></i>'+
+								'			<i class="fa fa-star"></i>'+
+								'			<i class="fa fa-star-half-o"></i>'+
+								'		</div>'+
+								'		<div class="reviews-num">12 Reviews</div>'+
+								'	</div>'+
+								
+								'</a>'+
+							'</li>'+
+
+'</ul>'+
+'</div>';
+
+    htm1+= htm+'<br/>' ;
+    htm='';
+ $('#loc').html(htm1);
+//console.log("fr"+f);
+}
+
+}
+else
+{
+//document.getElementById('loc').innerHTML="";	
+//		 $('#loc').html('');
+//$('#loc').css("display",'block');
+//$('#loc').html($('#nosearch').html());
+//$('#nosearch').show();	
+var ht;
+ht="<h4>Sorry No Data Found </h4>";
+$('#loc').html(ht);
+}
+
+}, 'json');
+}
+else
+
+ch=$('#search-input').val();
+
+    console.log(hit);
+console.log("fr"+f);
+  });
+}
+/*
+if(f==0)
+{ 
+//document.getElementById("loc").innerHTML='';
+//$('#loc').hide();
+console.log("f"+f);
+$('#nosearch').show();
+}
+else
+{
+$('#nosearch').hide();
+f=0;
+}*/
+f=0;
+
+
+}
+//});
+</script>
+
+
 <script type="text/javascript">
 //	$('#a').click(function(){
 //    $('#myModl').modal('show'); 
@@ -1120,6 +1091,7 @@ ch=$('#search-input').val();
 var uid,pwd,subname;
  function fun(dsa)
  {
+	 console.log("uid="+uid);
 workname=cont[dsa][5];
 subname=cont[dsa][2];
 //$('#myModl').modal('show'); 
@@ -1127,7 +1099,9 @@ if( '<?php echo $_SESSION['test'] ?>')
 {
 $('#myModl').modal('show'); 
 console.log("true"+'<?php echo $_SESSION['test'] ?>');
-
+uid='<?php echo $_SESSION['test'] ?>';
+pwd=$('#pswd').val();
+console.log("uid="+uid);
 }
 else   
 {
@@ -1139,6 +1113,7 @@ $('#logform').submit(function () {
  return false;
 });
 
+console.log("testing "+"<?php echo $_SESSION['test'] ?>");
 uid=$('#u_name').val();
 pwd=$('#pswd').val();
 $.post('../../controller/loginsearch.php',{uname:uid,pw:pwd},function(response){
@@ -1198,6 +1173,7 @@ var dym;
           $('#tdis').css("display","block");
            $('#tspace').css("display","block");	
           //alert([year, month, date].join('-') + ' is: ' + this.isAvailable(date, month, year));
+          $('#seldate').html(dym);
         }
 
       });
@@ -1219,17 +1195,33 @@ console.log('time'+tim);
   ,function(response){
 
 //alert(response);
-window.location.href = "../customer/pages/index.php";
-
+//window.location.href = "../customer/pages/index.php";
+$('#conf').show();
+$('#tdis').hide();
 
 //$('#tid').attr('href','../../user/pages/index.php');
+  })
+    .fail(function() {
+    alert( "error" );
   });
 
 }
 
+$('#btnconf').click(function(){
+window.location.href = "../customer/pages/index.php";
 
+});
     </script>
-	
+   <!-- back to calendar -->
+   <script type="text/javascript">
+   	function backtocal()
+   	{
+   	  $('#tdis').hide();	
+      $('#caldis').show();
+      $('#callab').show();
+
+   	}
+   </script>
 </body>
 
 <!-- Mirrored from handyman.dan-fisher.com/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 22 Jan 2016 06:55:11 GMT -->

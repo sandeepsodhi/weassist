@@ -6,10 +6,22 @@
     $subcateg=mysqli_escape_string($conn,$_POST["subcateg"]);
     $jobtitle=mysqli_escape_string($conn,$_POST["jobtitle"]);
     $jobdesc=mysqli_escape_string($conn,$_POST["jobdesc"]);
+//    $jobdate=mysqli_escape_string($conn,$_POST["Edate"]);
+  $jobdat=$_POST["Edate"];
+   $jobdate=date_create($jobdat);
+   $jobdate=date_format($jobdate,"Y-m-d");
+
+    $jobtime=mysqli_escape_string($conn,$_POST["tapp"]);
+   $jobprice=mysqli_escape_string($conn,$_POST["jobprice"]);
+   $jobtodaydate=date("Y-m-d");
+   $jobtime=$jobtime.":"."00".":"."00"."000000";
     $uname=$_SESSION['u_name'];
    $res=mysqli_query($conn,"select cat_name from category where cat_id='$jobcategory'");
                   $ress=mysqli_fetch_row($res);
  $jobcateg=$ress[0];
+   $res4=mysqli_query($conn,"select subcat_id from sub_category where subcat_name='$subcateg'");
+                  $ress4=mysqli_fetch_row($res4);
+ $subcategid=$ress4[0];
 $_SESSION['jobcategory']=$jobcateg;
 
     if(!empty($_FILES['jobphoto']) || $_FILES['jobphoto']['size']>0){
@@ -25,9 +37,16 @@ $_SESSION['jobcategory']=$jobcateg;
 	//	$res = $conn->prepare("call updatedetails(?,?,?,?,?,?,?,?)");
     //$res->bind_param("sssdssss",$f_name,$l_name,$email,$phone,$city,$uname,$state,$country);
     //echo $res->execute();	
-	           echo "frfr";
-                       $conn->query("CALL insertjobs('$jobcategory','$subcateg','$jobtitle','$jobdesc','$uname')");
+	           //echo "frfr";
+          $conn->query("CALL insertjobs('$jobcategory','$subcateg','$jobtitle','$jobdesc','$uname','$jobprice','$jobtodaydate','$jobdate','$jobtime')");
+         
+                            $query1="select subcat_id from createjob where jobcategory='$jobcategory' AND subcategory='$subcateg' AND uname='$uname' AND job_date='$jobtodaydate'" ;
 
+ $result1 = mysqli_query($conn, $query1); 
+$row1 =mysqli_fetch_assoc($result1);
+$jobid=$row1['subcat_id'];
+                        $conn->query("CALL insertstatus('$jobid','$jobcategory','$subcategid')");
+ 
 		}
 		else
 		{
@@ -38,22 +57,39 @@ $_SESSION['jobcategory']=$jobcateg;
 				    if($name)
 					{	move_uploaded_file($temp,"image/".$name);	
 
-  	                    $conn->query("CALL insertjob('$jobcategory','$subcateg','$jobtitle','$jobdesc','$name','$uname')");
+  	                    $conn->query("CALL insertjob('$jobcategory','$subcateg','$jobtitle','$jobdesc','$name','$uname','$jobprice','$jobtodaydate','$jobdate','$jobtime')");
+                    $query1="select subcat_id from createjob where jobcategory='$jobcategory' AND subcategory='$subcateg' AND uname='$uname' AND job_date='$jobtodaydate'" ;
+
+ $result1 = mysqli_query($conn, $query1); 
+$row1 =mysqli_fetch_assoc($result1);
+$jobid=$row1['subcat_id'];
+                        $conn->query("CALL insertstatus('$jobid','$jobcategory','$subcategid')");
+
                     }
                     else
-                    {  
-                       echo "frfr";
-                       $conn->query("CALL insertjobs('$jobcateg','$subcateg','$jobtitle','$jobdesc','$uname')");
+                    {
+
+                       $conn->query("CALL insertjobs('$jobcateg','$subcateg','$jobtitle','$jobdesc','$uname','$jobprice','$jobtodaydate','$jobdate','$jobtime')");
+                         $query1="select subcat_id from createjob where jobcategory='$jobcategory' AND subcategory='$subcateg' AND uname='$uname' AND job_date='$jobtodaydate'" ;
+
+ $result1 = mysqli_query($conn, $query1); 
+$row1 =mysqli_fetch_assoc($result1);
+$jobid=$row1['subcat_id'];
+                        $conn->query("CALL insertstatus('$jobid','$jobcategory','$subcategid')");
+
+
                     }
 
+  
                }
-
            }
+       
         }
+
+
          else {
                        
-//                       $conn->query("CALL insertjobs('$jobcateg','$subcateg','$jobtitle','$jobdesc','$uname')");
          }  
 
-     include('emailagain.php');
+//     include('emailagain.php');
 ?>

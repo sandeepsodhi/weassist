@@ -92,11 +92,16 @@ select option { padding: 1px 5px 1px 3px;}
   $jobid=$_SESSION['jobid'];
   $jobtitle=$_POST['jobtitle'];
   $jobdesc=$_POST['jobdesc'];
-  $cat_id=$_SESSION['subcatid'];
+  $jobid=$_SESSION['jobi_d'];
    
    $res=mysqli_query($conn,"select cat_name from category where cat_id='$jobcategory'");
                   $ress=mysqli_fetch_row($res);
  $jobcateg=$ress[0];
+   $res4=mysqli_query($conn,"select subcat_id from sub_category where subcat_name='$subcateg'");
+                  $ress4=mysqli_fetch_row($res4);
+ $subcategid=$ress4[0];
+
+
 $_SESSION['jobcategory']=$jobcateg;
 
   if(!empty($_FILES['jobphoto']) || $_FILES['jobphoto']['size']>0){
@@ -113,8 +118,10 @@ $_SESSION['jobcategory']=$jobcateg;
     //$res->bind_param("sssdssss",$f_name,$l_name,$email,$phone,$city,$uname,$state,$country);
     //echo $res->execute(); 
         echo "frfr1";
-        $sql=mysqli_query($conn,"Update createjob set jobcategory='$jobcategory',subcategory='$subcateg',jobtitle='$jobtitle',jobdesc='$jobdesc'
-                                     where subcat_id='$cat_id' " );
+                    $sql=mysqli_query($conn,"Update createjob set jobcategory='$jobcategory',subcategory='$subcateg',jobtitle='$jobtitle',jobdesc='$jobdesc'
+                                     where subcat_id='$jobid' " );
+        $sql=mysqli_query($conn,"Update job_status set cat_id='$jobcategory',subcat_id='$subcategid'
+                                     where job_id='$jobid' " );
           include('emailagain.php');
  
     }
@@ -131,8 +138,10 @@ $_SESSION['jobcategory']=$jobcateg;
         $res->execute();*/
             $sql=mysqli_query($conn,"Update createjob set jobcategory='$jobcategory',subcategory='$subcateg',jobtitle='$jobtitle',jobdesc='$jobdesc',
                                      photo='$name'  
-                                     where subcat_id='$cat_id' " );
-                                  //   $_SESSION['image']=$name;
+                                     where subcat_id='$jobid' " );
+            $sql=mysqli_query($conn,"Update job_status set cat_id='$jobcategory',subcat_id='$subcategid'
+                                     where job_id='$jobid' " );
+                                   //   $_SESSION['image']=$name;
                               include('emailagain.php');
                       
                                echo "<h>Job Updated </h>";
@@ -141,9 +150,12 @@ $_SESSION['jobcategory']=$jobcateg;
           else
           {
                     $sql=mysqli_query($conn,"Update createjob set jobcategory='$jobcategory',subcategory='$subcateg',jobtitle='$jobtitle',jobdesc='$jobdesc',
-                                     where subcat_id='$cat_id' " );
+                                     where subcat_id='$jobid' " );
+            $sql=mysqli_query($conn,"Update job_status set cat_id='$jobcategory',subcat_id='$subcategid'
+                                     where job_id='$jobid' " );
+     
           include('emailagain.php');
-echo "frfr2";
+//echo "frfr2";
           }
       }
     }
@@ -154,9 +166,12 @@ echo "frfr2";
     $res->bind_param("sssdssss",$f_name,$l_name,$email,$phone,$city,$uname,$state,$country);
      $res->execute(); 
   //*/     
-  echo "frfr3";  
+//  echo "frfr3";  
        $sql=mysqli_query($conn,"Update createjob set jobcategory='$jobcategory',subcategory='$subcateg',jobtitle='$jobtitle',jobdesc='$jobdesc',
-                                     where subcat_id='$cat_id' " );
+                                     where subcat_id='$jobid' " );
+            $sql=mysqli_query($conn,"Update job_status set cat_id='$jobcategory',subcat_id='$subcategid'
+                                     where job_id='$jobid' " );
+     
           include('emailagain.php');
 
   }
