@@ -20,12 +20,12 @@
   {
       $_SESSION['u_name']=$_POST['username'];
       $_SESSION['u_id'] = '1';
-  //    header("location:../view/admin/pages/index.php");
+     header("location:../view/admin/pages/index.php");
   }
   else
   {
     echo $_SESSION['wrong'] = 'r';
-   // header("location:../view/admin/");
+   header("location:../view/admin/");
   } 
 ?>
 

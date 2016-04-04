@@ -84,7 +84,7 @@ select option { padding: 1px 5px 1px 3px;}
 		
         <!-- left column -->
 	 </div>
-	<div class="row" style="margin:0% 1% 0% 1%"">
+	<div class="row" style="margin:0% 1% 0% 1%">
 	
             <div class="box-body table-responsive no-padding">
               <table class="table table-striped table-bordered table-hover">
