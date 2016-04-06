@@ -64,19 +64,16 @@ $_SESSION['test']='';
 	<!-- Head Libs -->
 	<script src="vendor/modernizr.js"></script>
 
-	<!-- validation -->
-	    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" media="screen">
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.css" rel="stylesheet"/>	
-
-
-
-
 	
 	<!-- Favicons
 	================================================== -->
 	<link rel="shortcut icon" href="images/favicons/favicon.ico">
 	<link rel="apple-touch-icon" sizes="120x120" href="images/favicons/favicon-120.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="images/favicons/favicon-152.png">
+
+   	<!-- validation -->
+	    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" media="screen">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.css" rel="stylesheet"/>	
 	
 <!-- timing display css -->
 	<link rel="stylesheet" href="css/timingstyle.css">
