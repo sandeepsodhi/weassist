@@ -64,6 +64,13 @@ $_SESSION['test']='';
 	<!-- Head Libs -->
 	<script src="vendor/modernizr.js"></script>
 
+	<!-- validation -->
+	    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" media="screen">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.css" rel="stylesheet"/>	
+
+
+
+
 	
 	<!-- Favicons
 	================================================== -->
