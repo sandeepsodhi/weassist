@@ -66,7 +66,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../../../controller/sign_out.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -89,6 +89,7 @@
           <img src="image/<?php echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
+          <!-- <p>Customer</p> -->
           <p><?php echo $_SESSION['f_name']; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -121,7 +122,7 @@
         </li>
         
         <li>
-          <a href="pages/calendar.html">
+          <a href="../../../controller/sign_out.php">
             <i class="fa fa-calendar"></i> <span>Logout</span>
           </a>
         </li>
