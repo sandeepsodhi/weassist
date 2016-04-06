@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Widgets</title>
+  <title>Customer | Profile</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -133,7 +133,15 @@ color:black;
         </div>
 		</div>
 		</div>
+
 	    <br/>
+        <div class="row">
+    <div class="form-group" >
+    <div class="col-md-4"><label id="profile-label"  for="changepwd">Change Password :</label></div>
+      <div class="col-md-8"><input  type="password" class="form-control" name="changepwd" id="changepwd" size="44%" value=""   ></div>
+    </div>
+    </div>
+<br/>
 	 
 		<div class="row">
 		<div class="form-group" >

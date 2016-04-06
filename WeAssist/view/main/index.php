@@ -144,7 +144,7 @@ margin-top: 20px;
 						<div class="container">
 							<div class="search-box-inner">
 								<h1>Search for Professionals</h1>
-								<form  >
+								<form action="#">
 
 									<div class="row" style="margin-left: 21%">
 										<div class="col-md-8">
@@ -564,7 +564,7 @@ margin-top: 20px;
 <div class="modal-content">
       <div class="modal-header" style="height: 70px">
 
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" id="mclose" data-dismiss="modal">&times;</button>
     <p style="float: left;font-size: 22px;color: black"> Book your Appointment . </p>        
  
       </div>
@@ -575,14 +575,20 @@ margin-top: 20px;
       </div>
  -->    
       <div class="row" id="conf" style="display: none;">
-       <div class="col-sm-3"></div>
+               <div style="padding-left: 30px;padding-top: 0px" class="col-sm-4">
+                
+                    <h5 style="display: inline;">Selected Date : </h5><p id="seldate" style="display: inline;color:black">2016-4-19</p><br/>
+                    <h5 style="display: inline;">Selected Time : </h5><p style="color: black;display: inline;" id="seltime">16:00</p>
+
+                                         </div>
+
+       
        <div class="col-sm-6"><h4 style="color: black">You have Sucessfully Booked Your Appointment</h4>
        <input type="button" id="btnconf" class="btn btn-info" style="width: 200px;height: 60px;color:black;font-size:18px;background-color: #ff3200" 
               value="Go To Dashboard">
        </div>
        </div>
        
-       <div class="col-sm-3"></div>
        </div>
        <div class="row">
        <div class="col-sm-4" id="callab">  
@@ -646,7 +652,7 @@ margin-top: 20px;
         </div>
 
         <div class="col-sm-3" id="tspace" style="display: none;padding-left: 50px;padding-top: 40px">
-                    <h5 >Selected Date : </h5><p id="seldate" style="color: black;"></p>
+                    <h5 >Selected Date : </h5><p id="seldates" style="color: black;"></p>
 
                                         </div>
         <div class="col-sm-5" id="tdis" style="display: none;">
@@ -706,7 +712,7 @@ margin-top: 20px;
 
       <!-- </div> -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" id="mclosed" data-dismiss="modal">Close</button>
       </div>
     </div>
 </div>
@@ -954,7 +960,14 @@ $('html,body').animate({scrollTop:600});
 
      //$('#btnsearch').scrollTop="123px";
      $('#loc').show();
+if($('#search-input').val()=='')
+{
+   var ht;
+ht="<h4>Sorry No Data Found </h4>";
+$('#loc').html(ht);
 
+	return false;
+}
 htm1='';
 //$('#loc').html(htm1);
 console.log(ch + "chhh");
@@ -1174,6 +1187,7 @@ var dym;
            $('#tspace').css("display","block");	
           //alert([year, month, date].join('-') + ' is: ' + this.isAvailable(date, month, year));
           $('#seldate').html(dym);
+          $('#seldates').html(dym);
         }
 
       });
@@ -1181,7 +1195,11 @@ var dym;
 function timedis(tdis)
 {
 console.log('time'+tdis+ dym);
+
 var tim=tdis+':'+'00'+':'+'00'+':'+'0000';
+var tims=tdis+':'+'00';
+          $('#seltime').html(tims);
+
 console.log('time'+tim);
 //alert(uid);
   $.post('uploadjob.php',{
@@ -1198,7 +1216,7 @@ console.log('time'+tim);
 //window.location.href = "../customer/pages/index.php";
 $('#conf').show();
 $('#tdis').hide();
-
+$('#tspace').hide();
 //$('#tid').attr('href','../../user/pages/index.php');
   })
     .fail(function() {
@@ -1219,8 +1237,27 @@ window.location.href = "../customer/pages/index.php";
    	  $('#tdis').hide();	
       $('#caldis').show();
       $('#callab').show();
-
+      $('#tspace').hide();
    	}
+   </script>
+   <!-- after closing model -->
+   <script type="text/javascript">
+   	$('#mclose').click(function(){
+   		//$('#box').show();
+   	 	$('#caldis').show();
+   	    $('#tspace').hide();   
+   	    $('#tdis').hide();
+   	    $('#callab').show();
+   	    $('#conf').hide();
+   	});
+   	$('#mclosed').click(function(){
+   		//$('#box').show();
+   	 	$('#caldis').show();
+   	    $('#tspace').hide();   
+   	    $('#tdis').hide();
+   	    $('#callab').show();
+   	    $('#conf').hide();
+   	});
    </script>
 </body>
 

@@ -4,7 +4,7 @@
 	$f_name = mysqli_escape_string($conn,$_POST["f_name"]);
 	$l_name = mysqli_escape_string($conn,$_POST["l_name"]);
 	$email = mysqli_escape_string($conn,$_POST["email"]);
-
+    $pwd=mysqli_escape_string($conn,$_POST["changepwd"]);
 	$city = mysqli_escape_string($conn,$_POST["city"]);
    if($city)
    {
@@ -40,13 +40,25 @@
 			if($size > 10000000)
 				echo "Format not allowed or file size is too big!";
 			elseif (substr($type,0,5)=='image') {
-				    if($name)
-					{	move_uploaded_file($temp,"image/".$name);	
+				if($name)
+			    {	move_uploaded_file($temp,"image/".$name);	
 		
-            $sql=mysqli_query($conn,"Update users set f_name='$f_name',l_name='$l_name',u_name='$email',contact='$phone',city='$city',
-            	state='$state',country='$country',profile_pic='$name' 
-                where u_name='$uname' " );
-                 $_SESSION['profile_pic']=$name;
+		          if($pwd)
+		          {
+                  $sql=mysqli_query($conn,"Update users set f_name='$f_name',l_name='$l_name',u_name='$email',contact='$phone',city='$city',
+            	  tate='$state',country='$country',profile_pic='$name' ,pswd='$pwd'
+                  where u_name='$uname' " );
+                  $_SESSION['profile_pic']=$name;
+    			  }
+    			  else
+    			  {
+    			  $sql=mysqli_query($conn,"Update users set f_name='$f_name',l_name='$l_name',u_name='$email',contact='$phone',city='$city',
+            	  tate='$state',country='$country',profile_pic='$name' 
+                  where u_name='$uname' " );
+                  $_SESSION['profile_pic']=$name;
+
+                    
+    			  }
     			}
     			else 
     			{
@@ -59,9 +71,19 @@
 		
 		}
 		        //working
-				$sql=mysqli_query($conn,"Update users set f_name='$f_name',l_name='$l_name',u_name='$email',contact='$phone',city='$city',
-            	state='$state',country='$country' 
-                where u_name='$uname' " );
+		        if($pwd)
+		        {
+       				$sql=mysqli_query($conn,"Update users set f_name='$f_name',l_name='$l_name',u_name='$email',contact='$phone',city='$city',
+                	state='$state',country='$country',pswd='$pwd' 
+                    where u_name='$uname' " );
+                }
+                else
+                {   
+                    $sql=mysqli_query($conn,"Update users set f_name='$f_name',l_name='$l_name',u_name='$email',contact='$phone',city='$city',
+                	state='$state',country='$country' 
+                    where u_name='$uname' " );
+                
+                }
 
 	}
 	else
