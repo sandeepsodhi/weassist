@@ -10,7 +10,7 @@
 </div>
 <header class="main-header">
     <!-- Logo -->
-    <a href="index1.php" class="logo">
+    <a href="index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>W</b>A</span>
       <!-- logo for regular state and mobile devices -->
@@ -118,7 +118,7 @@
         <li class="header">MAIN NAVIGATION</li>
        
   <li class="active treeview">
-          <a href="index.php">
+          <a href="home.php">
             <i class="fa fa-fw fa-home"></i>
             <span>HOME</span>
             
@@ -128,14 +128,14 @@
 		 <a href="worker_reg.php">
 		 <i class="fa fa-user-plus"></i>
 			<span>Add User</span>
-				</a>
+		</a>
 </li>
 
-<li>
+<!--<li>
           <a href="jobcreation.php">
             <i class="fa fa-edit"></i> <span>Job Creation</span>
           </a>
-        </li>
+        </li>-->
         <li>
           <a href="profile.php">
             <i class="fa fa-user"></i> <span>My Profile</span>
@@ -158,7 +158,6 @@
      </section>
     <!-- /.sidebar -->
   </aside>
-  
 <?php
 if($_SESSION['u_type']=='Customer')
 {
@@ -255,5 +254,4 @@ function sc_roll()
  dem.scrollTop  =dem.scrollHeight-dem.clientHeight;
 }
 </script>
-
 </body>
