@@ -1,3 +1,6 @@
+<?php
+// session_start(); 
+?>
 <style>
 .col-sm-3
 {
@@ -10,12 +13,14 @@
 }
 </style>
 
+<link href="assets/css/bootstrapValidator.css" rel="stylesheet"/>	
+
 <header class="header header-menu-fullw">
 	<div class="header-main">
 		<div class="container">
 			<!-- Logo -->
 			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="Handyman"></a>
+				<a href="index.php"><img src="images/logo.png" alt="WeAssist"></a>
 				<!-- <h1><a href="index.html"><span>Handy</span>Man</a></h1> -->
 			</div>
 			<!-- Logo / End -->
@@ -74,8 +79,27 @@
 						</li>-->
 						<li><a href="#">Category</a></li>
 						<li>
-							<a href data-toggle="modal" data-target="#myModal"  class="btn btn-sm"><i class="fa fa-sign-in"></i> Login/Register</a>
-				
+							<?php 
+							if(isset($_SESSION['f_name']))
+							{
+								echo "<a>".$_SESSION['f_name']."</a>
+								<ul>";
+								if($_SESSION['u_type']=='agent')
+									echo "<li><a href='../agent/pages/profile.php'>My Profile</a></li>";
+								elseif($_SESSION['u_type']=='worker')
+									echo "<li><a href='../worker/pages/profile.php'>My Profile</a></li>";
+								elseif($_SESSION['u_type']=='Customer')
+									echo "<li><a href='../customer/pages/profile.php'>My Profile</a></li>";
+								
+								echo  "<li><a href='../../controller/sign_out.php'>Sign Out</a></li>
+								</ul>
+								";
+							}	
+							else
+							{
+								echo "<a href data-toggle='modal' data-target='#myModal'  class='btn btn-sm'><i class='fa fa-sign-in'></i> Login/Register</a>";
+							}
+							?>
 						</li>
 
 					</ul>
@@ -89,258 +113,299 @@
 	
 </header>
 <div class="container">
-			    <!-- Trigger the modal with a button -->
-    			<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+	<!-- Modal -->
+    <div class="modal fade modal-admin" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+		<!-- Modal content-->
+    	<div class="modal-content">
 
-      			<!-- Modal -->
-	        <div class="modal fade modal-admin" id="myModal" role="dialog">
-    	    <div class="modal-dialog">
-    
-        	<!-- Modal content-->
-        	<div class="modal-content">
-    
-	   		    <div class="modal-header login-modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	                <h4 class="modal-title text-center" id="loginModalLabel">LogIn to WeAssist</h4>
-	        	</div>   
+   		    <div class="modal-header login-modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="loginModalLabel">LogIn to WeAssist</h4>
+        	</div>   
 
-		        <ul class="nav nav-tabs">
-		            <li class="active"><a data-toggle="tab" href="#login">LogIn</a></li>
-		            <li><a data-toggle="tab" href="#signup">SignUp</a></li>
-		        </ul>
+	        <ul class="nav nav-tabs">
+	            <li class="active" style="width:50%;font-size:105%"><a data-toggle="tab" href="#login">LogIn</a></li>
+	            <li style="width:50%;font-size:105%"><a data-toggle="tab" href="#signup">SignUp</a></li>
+	        </ul>
 
-		        <div class="tab-content">
-		            <div id="login" class="tab-pane fade in active">
-		                <form class="form-horizontal" id="logform" name="logform" action="../../controller/login.php"  method="POST">
-		                    <div class="form-group">
-		                        <div style="margin-top:22px;" class="input-group dialog-s col-xs-10 col-sm-10">
-		                            <div class="input-group-addon">
-		                                <i class="fa fa-user"></i>
-		                            </div>
-                                            <input type="email" class="form-control" id="u_name" name="u_name" placeholder="Username" onclick="showUser(this.value)" required>
-		                        </div>
-		                    </div>
-		                    <div class="form-group">
-		                        <div class="input-group col-xs-10 col-sm-10 dialog-s">
-		                            <div class="input-group-addon">
-		                                <i class="fa fa-lock"></i>
-		                            </div>
-                                            <input type="password" class="form-control" id="pswd" name="pswd" placeholder="Password" required>
-		                        </div>
-		                    </div>
-		                                    
-		                    <div class="form-group">
-		                        <div class="col-xs-offset-3 col-xs-6">
-		                            <button style="width:120px;margin-left:-30px"type="submit" class="btn btn-info btn-primary" id="btnsub">Login</button>
-		                        </div>
-		                    </div>
-		                    <div class="form-group">
-		                      <label class="control-label col-xs-11 col-sm-7" style="font-size:17px;margin-left:-7px">or connect with</label>
-		                    </div>
-		                    
-		                </form>
-		                    <div class="form-group">
-    		                    <button  style="margin-right:23px" class="btn btn-linkedin" onclick="window.open('http://localhost/WeAssist/controller/api/linkedin/linkedin.php','width=20px', 'height=500')"><i class="fa fa-linkedin">  |</i> linkedIn</button>
-			                    <button style="margin-right:23px" class="btn btn-google-plus" onclick="window.open('https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2FWeAssist%2Fcontroller%2Fapi%2Fgoogle-login-api%2Findex.php&client_id=122120274303-us18a5vafcf6p797b22hf7ajq71ookah.apps.googleusercontent.com&scope=email+profile&access_type=online&approval_prompt=auto','width=20px', 'height=500')"><i class="fa fa-google-plus">  |</i> Google</button> 
-			                    <button style="margin-right:23px" class="btn btn-facebook" onclick="window.open('https://www.facebook.com/dialog/oauth?client_id=1499856963656095&redirect_uri=http%3A%2F%2Flocalhost%2FWeAssist%2Fcontroller%2Fapi%2Ffacebook_login_with_php%2F&state=e572c77de5a7507ae81b7546a9c24343&scope=email','width=20px', 'height=500')"><i class="fa fa-facebook">  |</i>  facebook</button> 
-		                    </div>
-		            </div> 
-		         
-		            <div id="signup" class="tab-pane fade">
-						<form class="form-horizontal" enctype="multipart/form-data" name="signupform" id="signupform" method="POST" action="../../controller/register.php">
-		                    <div class="form-group">
-		                        <div style="margin-top:22px;"class="input-group col-xs-10 col-sm-10 dialog-s ">
-		                            <div class="input-group-addon">
-		                                <i class="fa fa-user"></i>
-		                            </div>
-                                            <input type="text" class="form-control" id="f_name" name="f_name" placeholder="First Name" onclick="isalpha(this.value)"&nbsp  required>
-								
-									<div class="input-group-addon" style="margin-left:10px" &nbsp;>
-		                            	<i class="fa fa-user"></i>
-		                            </div>
-                                            <input type="text" class="form-control" style="width:210px" name="l_name" id="l_name" placeholder="LastName" onkeyup="isalpha(this.value)">
-		                        </div>
-		                    </div>
-		                    <div class="form-group">
-		                        <div class="input-group col-xs-10 col-sm-10 dialog-s">
-		                            <div class="input-group-addon">
-		                                <i class="fa fa-at"></i>
-		                            </div>
-                                            <input type="email" class="form-control" id="u_name" name="u_name" placeholder="Email" onclick="showUser(this.value)" required></p>
-		                        </div>
-		                    </div>
-		                    <div class="form-group">
-	 	                       <div class="input-group col-xs-10 col-sm-10 dialog-s">
-		                            <div class="input-group-addon">
-		                                <i class="fa fa-lock"></i>
-		                            </div>
-									
-                                           <input type="password" class="form-control" id="pswd" name="pswd" placeholder="Password" required>
-		                        </div>
-		                    </div>
-							 <div class="form-group">
-	 	                       <div class="input-group col-xs-10 col-sm-10 dialog-s">
-		                            <div class="input-group-addon">
-		                                <i class="fa fa-lock"></i>
-		                            </div>
-									
-                                           <input type="password" class="form-control" id="c_pswd" name="c_pswd" placeholder="Confirm Password" onclick="checkPasswordMatch();" required>
-		                        </div>                               
-								<div> <input type="hidden" id="error" name="error" class="form-control"></div>
-
-		                    </div>
-							 <div class="form-data" style="margin-left:-15px">
-	 	                       <div class="input-group col-xs-10 col-sm-10 dialog-s">
-		                            <div class="input-group-addon">
-		                                <i class="fa fa-user"></i>
-		                            </div>   
-									
-                                           <input  type="text" class="form-control" id="r_user" name="r_user" placeholder="Reference user">
-		                        </div>
-		                  
-	</div>
-
-<!-- This select is being replaced entirely by the jqtransorm plugin -->
-
-<div class="col-sm-3" style "float:right"> 
-<select name="u_type" id="u_type" required autocomplete="off">
-<option value="" selected="selected"> - Choose A Option  -</option>
-<option value="agent" id="u_type">Agent</option>
-<option value="worker" id="u_type" >Worker</option>
-<option value="customer" id="u_type" >Customer</option>
-</select>          
+	        <div class="tab-content">
+	            <div id="login" class="tab-pane fade in active">
+	                <form class="form-horizontal" id="logform" name="logform" action="../../controller/login.php"  method="POST">
+	                    <div class="form-group">
+	                        <div style="margin-top:22px;" class="input-group dialog-s col-xs-10 col-sm-10">
+	                            <div class="input-group-addon">
+	                                <i class="fa fa-user"></i>
+	                            </div>
+                                <input type="email" class="form-control" id="u_name" name="u_name" onkeyup="showUser(this.value);"  placeholder="Username" required>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <div class="input-group col-xs-10 col-sm-10 dialog-s">
+	                            <div class="input-group-addon">
+	                                <i class="fa fa-lock"></i>
+	                            </div>
+                                <input type="password" class="form-control" id="pswd" name="pswd" placeholder="Password" required>
+	                        </div>
+	                    </div>
+	                                    
+	                    <div class="form-group">
+	                        <div class="col-xs-offset-3 col-xs-6">
+	                            <button style="width:120px;margin-left:-30px"type="submit" class="btn btn-info btn-primary" id="btnsub">Login</button>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                      <label class="control-label col-xs-11 col-sm-7" style="font-size:17px;margin-left:-7px">or connect with</label>
+	                    </div>
+	                    
+	                </form>
+		            <div class="form-group">
+		                <button  style="margin-right:23px" class="btn btn-linkedin" onclick="window.open('http://localhost/WeAssist/controller/api/linkedin/linkedin.php','width=20px', 'height=500')"><i class="fa fa-linkedin">  |</i> linkedIn</button>
+		                <button style="margin-right:23px" class="btn btn-google-plus" onclick="window.open('https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2FWeAssist%2Fcontroller%2Fapi%2Fgoogle-login-api%2Findex.php&client_id=122120274303-us18a5vafcf6p797b22hf7ajq71ookah.apps.googleusercontent.com&scope=email+profile&access_type=online&approval_prompt=auto','width=20px', 'height=500')"><i class="fa fa-google-plus">  |</i> Google</button> 
+		                <button style="margin-right:23px" class="btn btn-facebook" onclick="window.open('https://www.facebook.com/dialog/oauth?client_id=1499856963656095&redirect_uri=http%3A%2F%2Flocalhost%2FWeAssist%2Fcontroller%2Fapi%2Ffacebook_login_with_php%2F&state=e572c77de5a7507ae81b7546a9c24343&scope=email','width=20px', 'height=500')"><i class="fa fa-facebook">  |</i>  facebook</button> 
+		            </div>
+            </div> 
+	         
+	            <div id="signup" class="tab-pane fade">
+					<form class="form-horizontal" enctype="multipart/form-data" name="signupform" id="signupform" method="POST" action="../../controller/register.php">
+	                    <div class="form-group">
+	                        <div style="margin-top:22px;"class="input-group col-xs-10 col-sm-10 dialog-s ">
+	                            <div class="input-group-addon">
+	                                <i class="fa fa-user"></i>
+	                            </div>
+                                <input type="text" class="form-control" id="f_name" name="f_name" placeholder="First Name"  required>
+								<div class="input-group-addon" style="margin-left:10px" &nbsp;>
+	                            	<i class="fa fa-user"></i>
+	                            </div>
+                                <input type="text" class="form-control" style="width:210px" name="l_name" id="l_name" placeholder="LastName" >
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <div class="input-group col-xs-10 col-sm-10 dialog-s">
+	                            <div class="input-group-addon">
+	                                <i class="fa fa-at"></i>
+	                            </div>
+                                        <input type="email" class="form-control" id="u_name" name="u_name" placeholder="Email" onkeyup="showUser(this.value)" required></p>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+ 	                       <div class="input-group col-xs-10 col-sm-10 dialog-s">
+	                            <div class="input-group-addon">
+	                                <i class="fa fa-lock"></i>
+	                            </div>
+						       <input type="password" class="form-control" id="pswdd" name="pswdd" placeholder="Password" required>
+	                        </div>
+	                    </div>
+						 <div class="form-group" id="s">
+ 	                       <div class="input-group col-xs-10 col-sm-10 dialog-s">
+	                            <div class="input-group-addon">
+	                                <i class="fa fa-lock"></i>
+	                            </div>
+				               <input type="password" class="form-control" id="c_pswd" name="c_pswd" placeholder="Confirm Password" onkeyup="checkPasswordMatch();" required>
+	                        </div>                               
+						</div>
+						<div class="form-data" style="margin-left:-15px;margin-bottom: 15px">
+ 	                       <div class="input-group col-xs-10 col-sm-10 dialog-s">
+	                            <div class="input-group-addon">
+	                                <i class="fa fa-user"></i>
+	                            </div>   
+				 	            <input  type="text" class="form-control" id="r_user" name="r_user" placeholder="Refered user">
+	                        </div>
+						</div>
+						<div class="form-group">
+					        <div class="input-group col-xs-12 col-sm-12 dialog-s" style="width: 84%"> 
+								<div class="input-group-addon">
+        	                        <i class="fa fa-user-secret"></i>
+	                            </div>   
+								<select name="u_type" id="u_type" class="form-control col-xs-10 col-xs-10">
+									<option value="" selected="selected" disabled><center>Choose User type</center></option>
+									<option value="agent" id="u_type">Agent</option>
+									<option value="worker" id="u_type" >Worker</option>
+									<option value="customer" id="u_type" >Customer</option>
+								</select>
+							</div>
+						</div>	          
 
 <!--<p style="color: black"><b>Agent </b></p>
 <input  type="radio"  name="u_type" id="u_type"  value="agent"  onclick="if(this.checked) this.value='agent'; " required autocomplete="off" chacked>
 </div>
-									   <div class="col-sm-3">			   <div class="col-sm-1" ></div>
-					
-	<p style="color: black"><b>Customer</b></p>
+								   <div class="col-sm-3">			   <div class="col-sm-1" ></div>
+				
+<p style="color: black"><b>Customer</b></p>
 <input  type="radio" name="u_type" id="u_type" value="customer"  onclick="if(this.checked) this.value='customer'; "  chacked required autocomplete="off"></div>
-	   <div class="col-sm-3">
-	<p style="color: black"><b>Worker</b></p>
+   <div class="col-sm-3">
+<p style="color: black"><b>Worker</b></p>
 <input  type="radio" name="u_type" id="u_type" value="worker"  onclick="if(this.checked) this.value='worker'; " chacked required autocomplete="off"></div>
---></div>
+-->
 
-											
-		                    <div class="form-group" syle="margin-top:">
-		                        <div class="col-xs-offset-3 col-xs-6">
-		                            <button style="width:120px;margin-left:-30px"type="submit" class="btn btn-info btn-primary">SignUp</button>
-		                        </div>
-								
-		                    </div>
-							 <div class="form-group">
-		                        <div class="input-group col-xs-10 col-sm-10 dialog-s">
-                         			<div id="txtHint"></div>
-								</div>
-		                    </div>
+										
+	                    <div class="form-group" syle="margin-top:">
+	                        <div class="col-xs-offset-3 col-xs-6">
+	                            <button style="width:120px;margin-left:-30px"type="submit" id="sign_up"class="btn btn-info btn-primary">SignUp</button>
+	                        </div>
+						</div>
+						 <div class="form-group" style="margin-top:-6%;margin-top:initial;">
+	                        <div class="input-group col-xs-10 col-sm-10 dialog-s">
+                     			<div id="txtHint"></div>
+							</div>
+	                    </div>
 
-		                    <div class="form-group">
-		                        <label class="control-label col-xs-11 col-sm-7" style="font-size:17px;margin-left:-7px">or connect with</label>
-		                    </div>
-		                </form>
-		                <div class="form-group">
-		                    <button  style="margin-right:23px" class="btn btn-linkedin" onclick="window.open('http://localhost/WeAssist/controller/api/linkedin/linkedin.php','width=20px', 'height=500')"><i class="fa fa-linkedin">  |</i> linkedIn</button>
-		                    <button style="margin-right:23px" class="btn btn-google-plus" onclick="window.open('https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2FWeAssist%2Fcontroller%2Fapi%2Fgoogle-login-api%2Findex.php&client_id=122120274303-us18a5vafcf6p797b22hf7ajq71ookah.apps.googleusercontent.com&scope=email+profile&access_type=online&approval_prompt=auto','width=20px', 'height=500')"><i class="fa fa-google-plus">  |</i> Google</button> 
-		                    <button style="margin-right:23px" class="btn btn-facebook" onclick="window.open('https://www.facebook.com/dialog/oauth?client_id=1499856963656095&redirect_uri=http%3A%2F%2Flocalhost%2FWeAssist%2Fcontroller%2Fapi%2Ffacebook_login_with_php%2F&state=e572c77de5a7507ae81b7546a9c24343&scope=email','width=20px', 'height=500')"><i class="fa fa-facebook">  |</i>  facebook</button> 
-		                </div>
-		            </div>
-            		<div id="menu3" class="tab-pane fade">
-                 <!-- without it not working-->
-            		</div>
-	   			</div>  <!--all tab content over here-->
-         
-				<!--   ending of modal content    -->
-        	</div>
-       		</div>
-       		</div>
-    		</div> <!-- end of container--> 
+	                    <div class="form-group">
+	                        <label class="control-label col-xs-11 col-sm-7" style="margin-top:-6%;font-size:17px;margin-left:-7px">or connect with</label>
+	                    </div>
+	                </form>
+	                <div class="form-group">
+	                    <button  style="margin-right:23px" class="btn btn-linkedin" onclick="window.open('http://localhost/WeAssist/controller/api/linkedin/linkedin.php','width=20px', 'height=500')"><i class="fa fa-linkedin">  |</i> linkedIn</button>
+	                    <button style="margin-right:23px" class="btn btn-google-plus" onclick="window.open('https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2FWeAssist%2Fcontroller%2Fapi%2Fgoogle-login-api%2Findex.php&client_id=122120274303-us18a5vafcf6p797b22hf7ajq71ookah.apps.googleusercontent.com&scope=email+profile&access_type=online&approval_prompt=auto','width=20px', 'height=500')"><i class="fa fa-google-plus">  |</i> Google</button> 
+	                    <button style="margin-right:23px" class="btn btn-facebook" onclick="window.open('https://www.facebook.com/dialog/oauth?client_id=1499856963656095&redirect_uri=http%3A%2F%2Flocalhost%2FWeAssist%2Fcontroller%2Fapi%2Ffacebook_login_with_php%2F&state=e572c77de5a7507ae81b7546a9c24343&scope=email','width=20px', 'height=500')"><i class="fa fa-facebook">  |</i>  facebook</button> 
+	                </div>
+	            </div>
+        		<div id="menu3" class="tab-pane fade">
+             <!-- without it not working-->
+        		</div>
+   			</div>  <!--all tab content over here-->
+     
+			<!--   ending of modal content    -->
+    	</div>
+   		</div>
+   		</div>
+</div> <!-- end of container--> 
 
-
-			  <script>
-            function showUser(str) {
-                if (str == "") {
-                    document.getElementById("txtHint").innerHTML = "";
-                    return;
-                } else {
-                    if (window.XMLHttpRequest) {
-                        // code for IE7+, Firefox, Chrome, Opera, Safari
-                        xmlhttp = new XMLHttpRequest();
-                    } else {
-                        // code for IE6, IE5
-                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange = function() {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
-                        }
-                    };
-                    xmlhttp.open("GET","../../controller/registered.php?u_name="+str,true);
-                    xmlhttp.send();
-                }
+<script>
+    function showUser(str) {
+        if (str == "") {
+            document.getElementById("txtHint").innerHTML = "";
+            // ("#sign_up").attr("disabled",true);
+            return;
+        } else {
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
-			
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+                	// ("#sign_up").attr("disabled",true);
+                }
+            };
+            xmlhttp.open("GET","../../controller/registered.php?u_name="+str,true);
+            xmlhttp.send();
+        }
+    }
+</script>
 
-        </script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="assets/js/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.js"></script>
-    <script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrapValidator.js">
+</script>
+
+<!-- for sign up -->
+<script>
 $('#signupform').bootstrapValidator({
 container: "popover",
 message: 'This value is not valid',
 	feedbackIcons: {
-           // valid: 'glyphicon glyphicon-ok',
-           // invalid: 'glyphicon glyphicon-remove',
+            // valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
 	fields: {
-            f_name: {
-                validators: {
-                    notEmpty: {
-                        message: "You're required to fill in a first name!"
-                    		  }, // notEmpty
-				    regexp: {
-                        regexp: /^[A-Za-z\s.'-]+$/,
-                        message: "Alphabetical characters, hyphens and spaces"
-							}
-                } // validators
-                      },
-					  // firstname
-            l_name: {
-                validators: {
-                    notEmpty: {
-                        message: "You've forgotten to provide your last name!"
-                    		  },
-					regexp: {
-                        regexp: /^[A-Za-z\s.'-]+$/,
-                        message: "Alphabetical characters, hyphens and spaces"
-                    }							  // notEmpty
-                			} // validators
-                      },  // lastname
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: "An email address is mandatory."
-                    		  }, // notEmpty
-					emailAddress: {
-                        message: "This is not a valid email address"
-                    				} // emailAddress		  
-                			} // validators
-                      }
-					  // email
-			
-			} // fields
+	    f_name: {
+	        validators: {
+	            notEmpty: {
+	                message: "You're required to fill in a first name!"
+	            		  }, // notEmpty
+			    regexp: {
+	                regexp: /^[A-Za-z\s.'-]+$/,
+	                message: "Alphabetical characters, hyphens and spaces"
+						}
+	        } // validators
+	              },
+				  // firstname
+	    l_name: {
+	        validators: {
+	            notEmpty: {
+	                message: "You've forgotten to provide your last name!"
+	            		  },
+				regexp: {
+	                regexp: /^[A-Za-z\s.'-]+$/,
+	                message: "Alphabetical characters, hyphens and spaces"
+	            }							  // notEmpty
+	        			} // validators
+	              },  // lastname
+	    email: {
+	        validators: {
+	            notEmpty: {
+	                message: "An email address is mandatory."
+	            		  }, // notEmpty
+				emailAddress: {
+	                message: "This is not a valid email address"
+	            				} // emailAddress		  
+	        			} // validators
+	              }
+				  // email
+		
+		}, // fields
+		pswdd: {
+	        validators: {
+	            notEmpty: {
+	                message: 'The password is required and can\'t be empty'
+	            }
+	        }
+	    },
+		c_pswd: {
+	        validators: {
+	            notEmpty: {
+	                message: 'The confirm password is required and can\'t be empty'
+	            },
+	            identical: {
+	                field: 'pswdd',
+	                message: 'The password and its confirm are not the same',
+	            }
+	        }
+	    }
+});
+</script>
+<!-- for login  -->
+<script>
+$('#logform').bootstrapValidator({
+container: "popover",
+message: 'This value is not valid',
+	feedbackIcons: {
+            // valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+	fields: {
+	    u_name: {
+	        validators: {
+	            notEmpty: {
+	                message: "An email address is mandatory."
+	            		  }, // notEmpty
+				emailAddress: {
+	                message: "This is not a valid email address"
+	            				} // emailAddress		  
+	        			} // validators
+	              }
+				  // email
+		
+		}, // fields
+		pswd: {
+	        validators: {
+	            notEmpty: {
+	                message: 'The password is required and can\'t be empty'
+	            }
+	        }
+	    }
+});
+</script>
 
-			});
-			
-	$('#myModal').on('shown.bs.modal', function() {
-   $('#signupform').bootstrapValidator('resetForm', true);
-	});
 
-    </script>
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
 <script>
 var trigger = '.trigger';
 var list = '.list';
@@ -391,7 +456,6 @@ $(document).ready(function(){
                 $(".form-data").not(".form-data").hide();
                 $(".form-data").show();
             }
-          
             else{
                 $(".form-data").hide();
             }
@@ -403,12 +467,15 @@ $(document).ready(function(){
 <script>
 
 function checkPasswordMatch() {
-    var pswd = $("#pswd").val();
+    var pswd = $("#pswdd").val();
     var c_pswd = $("#c_pswd").val();
-
     if (pswd != c_pswd)
-        $("#error").html("Passwords do not match!").css('color', 'red');
+    {
+    	$('#s').addClass("has-error");
+    }
     else
-        $("#error").html("Passwords match.").css('color', 'green');
+    {
+	   	$('#s').addClass("has-success");
+    }
 }
-  </script>
+</script>

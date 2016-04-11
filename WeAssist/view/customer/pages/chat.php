@@ -73,8 +73,8 @@
     <!-- /.chat -->
     <div class="box-footer">
       <div class="demo-chat-input">
-       <input name="message" style="width:80%" class="demo-chat-message-input form-control" onkeyup="javscript: if (event.keyCode==13) { sc_roll();/*$('.demo').scrollTop=$('.demo').scrollHeight;*/}"placeholder="Message" on></input>
-       <button style="background-color:#dd4b39;margin-left:75%;margin-top:-34px;width:20%px " onclick="sc_roll();" class="demo-chat-send btn btn-primary">Send</button>
+       <input name="message" style="width:80%" class="demo-chat-message-input form-control" onkeyup="javscript: if (event.keyCode==13) { /*$('.demo').scrollTop=$('.demo').scrollHeight;*/}"placeholder="Message" on></input>
+       <button style="background-color:#dd4b39;margin-left:79%;margin-top:-33px;width:20%"  class="demo-chat-send btn btn-primary">Send</button>
       </div>
     </div>
   </div>

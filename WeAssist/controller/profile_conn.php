@@ -89,8 +89,8 @@ require_once '../model/dbConnect.php';
 	}
 	if ($login1) {
 
-//	header('location:../view/user/pages/index.php');
-echo " done login1 ";  
+	header('location:../view/user/pages/index.php');
+// echo " done login1 ";  
 
 	} 
 	else

@@ -19,7 +19,7 @@ $result->bind_param("sss",$uname,$fname,$lname);
 $result->execute();
 
 echo "<script>
-      opener.location.href = '../../../view/handy/job-dashboard.html';
+      // opener.location.href = '../../../view/handy/job-dashboard.html';
       close();
       </script>      
       ";

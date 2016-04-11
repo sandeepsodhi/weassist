@@ -193,7 +193,12 @@ var onMessageKeyDown = function(event) {
     top.document.title="("+c+")"+" New messages";
   }
 
-  messageList.appendChild(newMessage);
+   messageList.appendChild(newMessage);
+
+   var dem = document.getElementById('demo');
+ dem.scrollTop  =dem.scrollHeight-dem.clientHeight;
+
+  //messageList.insertBefore(newMessage,messageList.firstChild)
 };
 
 var disableConnectInput = function() {

@@ -1,14 +1,5 @@
 <?php 
 session_start();
-//session_destroy();
-//echo isset($_SESSION['u_name']); 
-if(isset($_SESSION['u_name']))
-$_SESSION['test']=$_SESSION['u_name'];
-else
-$_SESSION['test']='';
-//$_SESSION['u_name']='';
-
-
 ?>
 <!DOCTYPE html>
 <html class="not-ie no-js" lang="en">  
@@ -24,14 +15,11 @@ $_SESSION['test']='';
 	<!-- Mobile Specific Metas
 	================================================== -->
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-	
-	
-	
+
 	<!-- CSS
 	================================================== -->
 	<!-- Base + Vendors CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/docs.min.css">
 	<link rel="stylesheet" href="css/fonts/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" href="css/fonts/entypo/css/entypo.css">
 	<link rel="stylesheet" href="vendor/owl-carousel/owl.carousel.css" media="screen">
@@ -55,14 +43,13 @@ $_SESSION['test']='';
 	<link href="assets/css/login.css" rel="stylesheet" />
     <link href="assets/css/social.css" rel="stylesheet" />
     <link href="assets/css/padd.css" rel="stylesheet" />
-    <link href="assets/js/validate.js" rel="stylesheet" />
         
     <!-- FONT AWESOME ICONS STYLE SHEET -->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     
 
 	<!-- Head Libs -->
-	<script src="vendor/modernizr.js"></script>
+	<!-- <script src="vendor/modernizr.js"></script> -->
 
 	
 	<!-- Favicons
@@ -72,8 +59,8 @@ $_SESSION['test']='';
 	<link rel="apple-touch-icon" sizes="152x152" href="images/favicons/favicon-152.png">
 
    	<!-- validation -->
-	    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" media="screen">
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.css" rel="stylesheet"/>	
+	    <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" media="screen"> -->
+	<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.css" rel="stylesheet"/>	 -->
 	
 <!-- timing display css -->
 	<link rel="stylesheet" href="css/timingstyle.css">
@@ -117,15 +104,24 @@ margin-top: 20px;
 }
 
 </style>
-
 </head>
 <body>
 
 	<div class="site-wrapper">
 
-<?php include('header.php'); ?>		<!-- Header / End -->
+<?php include('header.php'); ?>		
+<!-- Header / End -->
+	<?php 
+		// if(isset($_SESSION['wrong'])=='r')
+		// {
+		// 	echo "<script>alert('Wrong Username or password :v')</script>";
+		// 	// echo "<div style='height:30px;background-color:red;color:white;margin-top:10px;padding-top:5px;padding-left:50px'><b>Wrong Username or password</b></div>";
+		// }
+		// unset($_SESSION['wrong']);
 
-		<!--login/register sign-up box-->
+	?>
+
+
 					<!-- Main -->
 		<div class="main" role="main">
 
@@ -557,7 +553,7 @@ margin-top: 20px;
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-12">
-								Copyright &copy; 2015  <a href="index.html">HandyMan</a> &nbsp;| &nbsp;All Rights Reserved
+								Copyright &copy; 2015  <a href="index.php">HandyMan</a> &nbsp;| &nbsp;All Rights Reserved
 							</div>
 						</div>
 					</div>
@@ -719,19 +715,42 @@ margin-top: 20px;
         <button type="button" class="btn btn-default" id="mclosed" data-dismiss="modal">Close</button>
       </div>
     </div>
-</div>
+	</div>
 		</div>
 		<!-- Main / End -->
 	</div>
-	
+
+	<!-- Wrong password and query failed alertbox -->
+   	<?php 
+   	if(isset($_SESSION['wrong']))
+	{
+		if($_SESSION['wrong'] == 'r')
+		{
+			echo "<script>alert('Wrong Username or password.');</script>";
+			// echo "<div style='height:30px;background-color:red;color:white;margin-top:10px;padding-top:5px;padding-left:50px'><b>Wrong Username or password</b></div>";
+			unset($_SESSION['wrong']);
+		}
+	}
+
+	if(isset($_SESSION['error']))
+	{
+		if($_SESSION['error']=='e')
+		{
+			echo "<script>alert('Unable to register.');</script>";
+			unset($_SESSION['error']);
+		}
+	}	
+	?>
+
+
 	
 	
 	
 	<!-- Javascript Files
 	================================================== -->
-	<script src="vendor/jquery-1.11.0.min.js"></script>
+	<!-- <script src="vendor/jquery-1.11.0.min.js"></script> -->
 	<script src="vendor/jquery-migrate-1.2.1.min.js"></script>
-	<script src="vendor/bootstrap.js"></script>
+	<!-- <script src="vendor/bootstrap.js"></script> -->
 	<script src="vendor/jquery.flexnav.min.js"></script>
 	<script src="vendor/jquery.hoverIntent.minified.js"></script>
 	<script src="vendor/jquery.flickrfeed.js"></script>
@@ -1263,6 +1282,7 @@ window.location.href = "../customer/pages/index.php";
    	    $('#conf').hide();
    	});
    </script>
+
 </body>
 
 <!-- Mirrored from handyman.dan-fisher.com/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 22 Jan 2016 06:55:11 GMT -->

@@ -1,0 +1,2 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `register`(IN `fname` VARCHAR(30), IN `lname` VARCHAR(30), IN `uname` VARCHAR(100), IN `pass` VARCHAR(255), IN `utype` VARCHAR(50), IN `rcode` VARCHAR(30), IN `ruser` VARCHAR(30), IN `profilepic` VARCHAR(255))
+INSERT INTO users(f_name,l_name,u_name,pswd,u_type,r_code,r_user,profile_pic)  VALUES(fname,lname,uname,pass,utype,rcode,ruser,profilepic)

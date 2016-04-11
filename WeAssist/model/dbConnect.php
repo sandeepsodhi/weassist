@@ -21,5 +21,5 @@ if($conn)
 else
 	echo "Database connection failed";
 
-//session_start();
+// session_start();
 ?>
