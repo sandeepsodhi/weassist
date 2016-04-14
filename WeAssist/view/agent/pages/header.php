@@ -22,13 +22,13 @@
           <li class="dropdown user user-menu">
 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image">
+              <img src="../../image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $_SESSION['f_name']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
+                <img src="../../image/<?php  echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
                 <p>
                  <?php echo $_SESSION['f_name']; ?>
                  <!-- <small>Member since Nov. 2012</small>-->
@@ -62,7 +62,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="image/<?php echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
+          <img src="../../image/<?php echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php echo $_SESSION['f_name']; ?></p>
@@ -71,7 +71,7 @@
       </div>
     <ul class="sidebar-menu">
      <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
+        <li class="treeview">
             <a href="index.php">
                 <i class="fa fa-fw fa-home"></i>
                 <span>Home</span>
@@ -91,9 +91,15 @@
         <li>
             <a href="profile.php">
                 <i class="fa fa-user"></i> <span>My Profile</span>
-                <small class="label pull-right bg-green">new</small>
             </a>
         </li>
+        <li>
+            <a href="change_password.php">
+                <i class="fa fa-rotate-right "></i> <span>Change Password</span>
+            </a>
+        </li>
+        
+
         <li>
           <a href="myjobs.php">
             <i class="fa fa-th"></i> <span>My Jobs</span>
@@ -142,11 +148,11 @@ elseif($_SESSION['u_type']=='agent' || $_SESSION['u_type']=='worker'){
 
 <!-- Web rtc -->
 <!-- Zepto for AJAX -->
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.3/zepto.min.js"></script> -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.3/zepto.min.js"></script>
 <!-- Pusher for WebRTC signalling -->
-<!-- <script src="//js.pusher.com/2.2/pusher.js"></script> -->
+<script src="//js.pusher.com/2.2/pusher.js"></script>
 <!-- DataChannel.js for WebRTC functionality -->
-<!-- <script src="//webrtc-experiment.com/DataChannel.js"></script> -->
+<script src="//webrtc-experiment.com/DataChannel.js"></script>
 <!-- Our WebRTC application -->
 <script src="chat/js/datachannel-demo.js"></script>
 <!-- Our WebRTC application -->

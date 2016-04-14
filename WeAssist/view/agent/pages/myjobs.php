@@ -1,6 +1,5 @@
 <?php session_start();
 //echo $_SESSION['f_name'];
-
 ?>
 
 
@@ -210,18 +209,6 @@ document.getElementById('country').innerHTML=detail[5];
  
 });
 }
-
-</script>
-<script type="text/javascript">
-function  rejectfun(va)
-   {
-
-//alert(va);
- $.post('jobrej.php',{id:va},function(response){
-if(response=='1')
-  alert('hogya');
- });   	
-   }	
 
 </script>
 </body>
