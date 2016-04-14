@@ -101,7 +101,16 @@ $r=mysqli_query($conn,$result);
           <div class="small-box bg-green">
             <div class="inner">
 			
-             <h3>53<sup style="font-size: 20px">%</sup></h3>
+             <h3>
+			 <?php 	require_once '../../../model/dbConnect.php'; 
+$result=("select * from job_status where job_status.status='1' ");
+$r=mysqli_query($conn,$result);
+  $count = mysqli_num_rows($r);
+  echo $count;
+
+  
+?>
+			 </h3>
 
               <p>Completed Jobs</p>
             </div>
@@ -116,7 +125,17 @@ $r=mysqli_query($conn,$result);
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3>
+			  			 <?php 	require_once '../../../model/dbConnect.php'; 
+$result=("select * from job_status where job_status.status='0' ");
+$r=mysqli_query($conn,$result);
+  $count = mysqli_num_rows($r);
+  echo $count;
+
+  
+?>
+
+			  </h3>
 
               <p>Pending Jobs</p>
             </div>
@@ -132,9 +151,20 @@ $r=mysqli_query($conn,$result);
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+        <h3>     
+			  <?php 	require_once '../../../model/dbConnect.php'; 
+	$res = mysqli_fetch_assoc(mysqli_query($conn,"select r_code from users where u_name='".$_SESSION['u_name']."'"));
+$r_code=$res['r_code'];
+$result=("select * from users where r_user='$r_code'");
+$r=mysqli_query($conn,$result);
+  $count = mysqli_num_rows($r);
+  echo $count;
 
-              <p>Unique Visitors</p>
+  
+?>
+	</h3>		  
+
+              <p>Total Workers</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>

@@ -2,25 +2,27 @@
 
 <html>	
 <?php
-	session_start();
+    session_start();
 ?>
-    <head>
-	  <title>WeAssist | Profile</title>
+<head>
+  <title>WeAssist | Profile</title>
 
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-    <link rel="stylesheet" href="../dist/css/profilelabel.css">
+  <link rel="stylesheet" href="../dist/css/profilelabel.css">
 
+  <!-- phone number validation -->
+  <link href="css1//bootstrap-form.css" rel="stylesheet">
+  <link href="css/bootstrapValidator.css" rel="stylesheet"/> 
+ 
   <!--<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
  
 
- <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <!-- slide-->
 <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--
@@ -30,21 +32,23 @@
 
 
 
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <style type="text/css">
 body {
 }
 .stepwizard-step p {
-    margin-top: 30px;
+    margin-top: -15%;
 }
 .stepwizard-row {
     display: table-row;
 }
 .stepwizard {
+    margin-top: 7%;
+    margin-left: 11%;
     display: table;
-    width: 50%;
+    width:80%;
     position: relative;
 }
 .stepwizard-step button[disabled] {
@@ -56,131 +60,175 @@ body {
     bottom: 0;
     position: absolute;
     content: " ";
-    width: 100%;
+    width: 52%;
     height: 1px;
     background-color: #ccc;
     z-order: 0;
-	    margin-top: 30px;
+    margin-top: -12%;
+    margin-left:26%;
 
 }
 .stepwizard-step {
     display: table-cell;
     text-align: center;
     position: relative;
+    /*width: 98%;*/
 }
 .btn-circle {
-    width: 30px;
+    width: 50px;
     height: 30px;
     text-align: center;
-    padding: 6px 0;
+    /*padding: 6px 0;*/
     font-size: 12px;
     line-height: 1.428571429;
-    border-radius: 15px;
-	    margin-top: 30px;
+    border-radius: 5px;
+    margin-top: -45%;
+}
+.btn-border{
+  border: 1px solid grey;
+}
+.has-error:focus {
+        border-color:rgba(221, 75, 57, 0.87);
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(221, 75, 57, 0.37);
+}
+.has-success:focus {
+        border-color:rgba(79, 166, 0, 0.93);
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(105, 221, 57, 0.42);
+}
+.error{
+    border-color:rgba(221, 75, 57, 0.87);
+    /*box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(221, 75, 57, 0.37);*/
+    margin-top: 8px;
+}
 
-	}
 </style>
-  </head>
-    <body class="skin-red-light sidebar-mini">			 
+</head>
+
+<body class="skin-red-light sidebar-mini">			 
   <?php include 'header.php';?>  
   
 
+<div class="wrapper">
+    <!-- Content Wrapper -->
+     <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">My Profile</li>
+      </ol>
+    </section>
 
-<div class="container">
-  
+    <!-- Main content -->
+    <section class="content" style="margin-top:20px;min-height:900px">
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-header">
+                <!--<span class="fa fa-user-plus"></span>-->
+                <h3>My Profile</h3>
+            </div>
+            
+           <div style="border: 5px;">   
+            <div class="stepwizard col-md-offset-3">
+                <div class="stepwizard-row setup-panel">
+                  <div class="stepwizard-step">
+                    <a href="#step-1" type="button" style="background-color:#3c8dbc;color:white" class="btn btn-primary btn-circle">1</a>
+                    <p>Step 1</p>
+                  </div>
+                  <div class="stepwizard-step">
+                    <a href="#step-2" type="button" style="background-color:#3c8dbc;color:white" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                    <p>Step 2</p>
+                  </div>
+                </div>
+             </div>
 
-<div class="stepwizard col-md-offset-3">
-    <div class="stepwizard-row setup-panel">
-      <div class="stepwizard-step">
-        <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-        <p>Step 1</p>
-      </div>
-      <div class="stepwizard-step">
-        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-        <p>Step 2</p>
-      </div>
-      <div class="stepwizard-step">
-        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-        <p>Step 3</p>
-      </div>
-    </div>
+            <form role="form" action="../../../controller/profile_conn.php" id="profileform" method="POST" enctype='multipart/form-data'>
+                <div class="row setup-content" id="step-1">
+                  <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                    <div class="col-md-12" style="margin-bottom:10%">
+                      <h3> Step 1</h3>
+                      <div class="form-group">
+                        <label class="control-label">First Name</label>
+                        <input  maxlength="100" type="text" style="font-size:14px" required="required" class="btn btn-border form-control" id="f_name" name="f_name" placeholder="Enter first Name" value="<?php echo $_SESSION['f_name'];?>"/>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label">Last Name</label>
+                        <input maxlength="100" type="text" required="required" class="btn btn-border form-control" placeholder="Enter Last Name" id="l_name" name="l_name" value="<?php echo $_SESSION['l_name'];?>" />
+                      </div>
+                      <div class="form-group">
+                          <label class="control-label" style="margin-top:1%">Profile Pic</label>
+                        
+                        <img src='../../image/<?php echo $_SESSION['profile_pic']; ?>' width='100' height='100' alt=''  style='border-radius:10px;position:absolute; z-index:1;margin-left: 5%;margin-top:1%' id='image' />
+                        <input type='file' name='image' id="image" accept=".jpg,.jpeg,.png" style='border-radius:20px;width:100px;height:100px;position:relative;z-index:2;margin-top: -5%;opacity:0;margin-left: 19%;' onchange='readURL(this)' />
+                        <!--<input type="file" required="required" class="form-control" placeholder="Image" name="image" id="image" accept=".jpg,.jpeg,.png" >-->
+                      </div>
+                      <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row setup-content" id="step-2">
+                  <div class="col-xs-6 col-md-offset-3">
+                    <div class="col-md-12" style="margin-bottom:10%">
+                      <h3> Step 2</h3>
+                      
+                      <div class="form-group">
+                        <label class="control-label">Mobile No</label>
+                        <input maxlength="200" type="text" class="form-control btn btn-border" placeholder="Enter Contact" id="contact" name="contact" onkeyup="phonenumber(this)" sdata-error="Please give a correct phone number." />
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label">Address</label>
+                        <input type="text"  class="form-control btn btn-border" placeholder="Enter your address" id="city" name="city" >
+                        <input type="hidden" name="State" id="State"/> 
+                        <input type="hidden" name="Country" id="Country"/> 
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label">Subcategory</label>
+                        <input maxlength="200" type="text"  class="form-control btn btn-border" placeholder="Enter Subcategory" id="subcategories"  name="subcategories" />
+                      </div>
+                      <input class="btn btn-success btn-lg pull-right" style="background-color:#3c8dbc" type="submit" value="Submit">
+                    </div>
+                  </div>
+                </div>
+<!--                <div class="row setup-content" id="step-3">
+                  <div class="col-xs-6 col-md-offset-3">
+                    <div class="col-md-12">
+                      <h3> Step 3</h3>
+                      
+                    </div>
+                  </div>
+                </div>-->
+              </form>
+
+
+            </div>
+
+
+          </div>
+          <!-- /.box -->
+    </section>
+    <!-- /.content -->
   </div>
+  <!-- /.content-wrapper -->
+
+
+<?php 
+
+if(isset($_SESSION['update']))
+{
+  if($_SESSION['update'] == "failed")
+  {
+    echo "alert('Profile updation failed!!! Please try again.')";
+    unset($_SESSION['update']);
+  }
+}
+?>
   
-  <form role="form" action="../../../controller/profile_conn.php" id="profileform" method="POST" enctype='multipart/form-data'>
-    <div class="row setup-content" id="step-1">
-      <div class="col-xs-6 col-md-offset-3">
-        <div class="col-md-12">
-          <h3> Step 1</h3>
-          <div class="form-group">
-            <label class="control-label">First Name</label>
-            <input  maxlength="100" type="text" required="required" class="form-control" id="f_name" name="f_name" value="<?php echo $_SESSION['f_name'];?>"placeholder="Enter First Name"  />
-          </div>
-          <div class="form-group">
-            <label class="control-label">Last Name</label>
-            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" id="l_name" name="l_name" value="<?php echo $_SESSION['l_name'];?>" />
-          </div>
-          <div class="form-group">
-            <label class="control-label">Address</label>
-            <input type="text" required="required" class="form-control" placeholder="Enter your address" id="city" name="city" >
-			<input type="hidden" name="State" id="State"/> 
-								<input type="hidden" name="Country" id="Country"/> 
-
-          </div>
-		   <div class="form-group">
-            <label class="control-label">Profile Pic</label>
-            <input type="file" required="required" class="form-control" placeholder="Image" name="image" id="image" accept=".jpg,.jpeg,.png" >
-          </div>
-          <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
-        </div>
-      </div>
-    </div>
-    <div class="row setup-content" id="step-2">
-      <div class="col-xs-6 col-md-offset-3">
-        <div class="col-md-12">
-          <h3> Step 2</h3>
-          <div class="form-group">
-            <label class="control-label">Subcategory</label>
-            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Subcategory" id="subcategories"  name="subcategories" />
-          </div>
-          <div class="form-group">
-            <label class="control-label">Mobile No</label>
-            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Contact" id="contact" name="contact" />
-          </div>
-		  <div class="form-group">
-            <label class="control-label">Email</label>
-            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Subcategory"  id="u_name" name="u_name" value="<?php echo $_SESSION['u_name'];?>" />
-          </div>
-          <div class="form-group">
-            <label class="control-label">Password</label>
-            <input maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Cntact" id="password" name="password" value="<?php echo $_SESSION['pswd'];?>" />
-          </div>
-          <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
-        </div>
-      </div>
-    </div>
-    <div class="row setup-content" id="step-3">
-      <div class="col-xs-6 col-md-offset-3">
-        <div class="col-md-12">
-          <h3> Step 3</h3>
-          <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
-        </div>
-      </div>
-    </div>
-  </form>
-  
+<div class="control-sidebar-bg"></div>
+<?php include 'footer_sidebar.php' ?>
 </div>
-
-
-
-
-
-
-
-  <div class="control-sidebar-bg"></div>
-</div>
-
-<!-- ./wrapper -->
-
+    
+    
+    
 <!-- jQuery 2.2.0 -->
 <!--<script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
@@ -195,9 +243,108 @@ body {
 <script src="../dist/js/demo.js"></script>
 <!--<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>-->
-</div>
+<script src="js/jquery.validate.js"></script>
 
-<script type="javascript/text">
+</div>
+<!-- <script type="text/javascript" src="js/bootstrap-form.js"></script> -->
+
+<script type="text/javascript">
+    $("#profileform").validate({
+        //set this to false if you don't what to set focus on the first invalid input
+        focusInvalid: false,
+        //by default validation will run on input keyup and focusout
+        //set this to false to validate on submit only
+        onkeyup: false,
+        onfocusout: false,
+        //by default the error elements is a <label>
+        errorElement: "div",
+        //place all errors in a <div id="errors"> element
+        // errorPlacement: function(error, element) {
+        //     error.appendTo("div#errors");
+        // }, 
+        rules: {
+            "city": {
+                 required: false,
+                // minlength: 5
+            },  
+            "contact": {
+                // required: true,
+                number: true,
+                minlength: 10,
+                maxlength: 10
+                
+            },
+            "example2-zip": {
+                required: true,
+                number: true,
+                rangelength : [3, 5]
+            }
+        },
+        messages: {
+            "example2-fullname": {
+                required: "You must enter your full name",
+                minlength: "First name must be at least 5 characters long"
+            },  
+            "example2-phone": {
+                required: "You must enter your phone number",
+                number : "Phone number must contain digits only",
+                minlength:"Not a Valid number",
+                maxlength:"Not a Valid number"
+            },
+            "example2-zip": {
+                required: "You must enter your zip code",
+                number: "Zip code must contain digits only",
+                rangelength : "Zip code must have between 3 to 5 digits"
+            }
+        }
+    });
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+function phonenumber(inputtxt)  
+{  
+  var phoneno = /^\d{10}$/;  
+  if(inputtxt.value.match(phoneno))  
+  {  
+    $('#contact').removeClass("has-error");
+    $('#contact').addClass("has-success");
+    return true
+  }  
+  else  
+  {  
+
+    $('#contact').removeClass("has-success");
+    $('#contact').addClass("has-error");
+    // console.log(inputtxt.value);
+     return false;  
+  }  
+ }  
+</script>
+
+<script type="text/javascript">
+         function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image')
+                        .attr('src', e.target.result)
+                        .width(100)
+                        .height(100);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+
+
+<script type="text/javascript">
     function initialize() {
 	    var options = {
             types: ['(cities)'],

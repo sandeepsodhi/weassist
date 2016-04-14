@@ -1,66 +1,65 @@
-<!DOCTYPE html>
-
-<html>
-<body>
-
 <?php
-session_start();
-
-
+	session_start();
+	
 	require_once '../model/dbConnect.php';
- //include('login.php'); 
  
 	$u_name = mysqli_escape_string($conn,$_POST["u_name"]);
-	$pswd = mysqli_escape_string($conn,$_POST["pswd"]);
+	// $pswd = mysqli_escape_string($conn,$_POST["pswd"]);
 	$f_name = mysqli_escape_string($conn,$_POST["f_name"]);
 	$l_name = mysqli_escape_string($conn,$_POST["l_name"]);
-	$contact = mysqli_escape_string($conn,$_POST["contact"]);
+	// $contact = mysqli_escape_string($conn,$_POST["contact"]);
 	$u_type = 'worker';
 	$r_code = 'NULL';
-	$res = mysqli_fetch_assoc(mysqli_query($conn,"select r_code from users where u_name='".$_SESSION['username']."'"));
-	echo "select r_code from users where u_name='".$_SESSION['username']."'";
+	
+	$chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";//length:36
+	$worker_pswd = '';
+	for($i=0;$i<8; $i++)
+	{
+		$worker_pswd .= $chars[rand(0,strlen($chars)-1)];
+	}
+
+
+	$res = mysqli_fetch_assoc(mysqli_query($conn,"select r_code from users where u_name='".$_SESSION['u_name']."'"));
 	$r_user = $res['r_code'];
 	
+	$profile_pic = "NewCandidateImage.jpg";
 
-
-	if(!empty($_FILES['image']) && $_FILES['image']['size']>0)
-	{
-			$name=$_FILES['image']['name'];
-			$type = $_FILES['image']['type'];
-			$error = $_FILES['image']['error'];
-			$size = $_FILES['image']['size'];
-			$temp = $_FILES['image']['tmp_name'];
-
-
-			if($error > 0)
-			{
-				die("ERROR uploading file! Code $error");
-			}
-			else
-			{
-				if($size > 10000000)
-					echo "Format not allowed or file size is too big!";
-				elseif(substr($type,0,5)=='image') 
-					{
-					$in_ch=mysqli_query($conn,"call worker('".$f_name."','".$l_name."','".$u_name."','".$pswd."','".$contact."','".$u_type."','".$name."','".$r_code."','".$r_user."')"); 
-					move_uploaded_file($temp,"image/".$name);	
-
-					}		
-			}
-	}
-	else{
-		$in_ch=mysqli_query($conn,"/call worker('".$f_name."','".$l_name."','".$u_name."','".$pswd."','".$contact."','".$u_type."','".$name."','".$r_code."','".$r_user."')"); 
-	}
-
+	$in_ch=mysqli_query($conn,"call worker('".$f_name."','".$l_name."','".$u_name."','".$worker_pswd."','".$u_type."','".$profile_pic."','".$r_code."','".$r_user."')"); 
 
 	if($in_ch)
 	{
-		header('location: ../view/user/pages/index.php');
+		$_SESSION['registered'] = "success";		
+
+		$u_name_agent = $_SESSION['u_name'];
+
+		// sending email to newly registered user
+		
+		require '../view/agent/pages/sendgrid-php/vendor/autoload.php';
+
+		$mytemp=fopen("../view/agent/pages/worker_add.php","r+") ;
+
+		$mytemp=fread($mytemp,filesize("../view/agent/pages/worker_add.php"));
+		$mytemp= str_replace("{{fname}}",ucfirst($f_name." ".$l_name),$mytemp);
+		$mytemp= str_replace("{{agentname}}",$u_name_agent,$mytemp);
+		$mytemp= str_replace("{{username}}",$u_name,$mytemp);
+		$mytemp= str_replace("{{password}}",$worker_pswd,$mytemp);
+
+		$sendgrid = new SendGrid("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");
+		$email    = new SendGrid\Email();
+		//print_r($mytemp);
+		$email->addTo($u_name)
+		      ->setFrom("support-no-reply@weassist.com")
+		      ->setSubject("Congrats!!! Your Account has been successfully created  ")
+		      ->setHtml($mytemp);
+
+		$sendgrid->send($email);
+
+	
+		header('location: ../view/agent/pages/worker_reg.php');
 	}
 	else 
 	{ 
-		echo mysqli_error($conn);
+		$_SESSION['registered'] = "failed";	
+		header('location:../view/agent/pages/worker_reg.php');
 	}
-	?>
-</body>
-</html>
+?>

@@ -50,26 +50,29 @@ include 'header.php';
           <div class="box">
             <!-- /.box-header -->
             <div class="box-header">
-              <h3 class="box-title">Add Worker</h3>
+                <!--<span class="fa fa-user-plus"></span>-->
+                <h3>Add Worker</h3>
+                <!--<h1>Add Worker</h1>-->
+              <hr>
             </div>
-            <form method="POST" action="worker_conn.php" enctype="multipart/form-data">
+            <form method="POST" action="../../../controller/worker_conn.php" enctype="multipart/form-data">
             <div class="box-body no-padding" >
-              <table class="table table-hover">
+              <table class="table table-condensed" style="margin-left: 20%;margin-top: 5%;">
               <tbody>
                 <tr>
-                    <td class='col-xs-2 col-sm-2'>First Name</td>
-                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='f_name' required><div id='txtHint'></div></td>
+                    <td class='col-xs-2 col-sm-2' style="padding-bottom:3%">First Name</td>
+                  <td><input type='text' class='col-xs-8 col-sm-6 btn btn-border' name='f_name' required><div id='txtHint'></div></td>
                 </tr>
                 <tr>
-                  <td class='col-xs-2 col-sm-2'>Last Name</td>
-                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='l_name' required><div id='txtHint'></div></td>
+                  <td class='col-xs-2 col-sm-2' style="padding-bottom:3%">Last Name</td>
+                  <td><input type='text' class='col-xs-8 col-sm-6 btn btn-border' name='l_name' required><div id='txtHint'></div></td>
                 </tr>
                 <tr>
-                  <td class='col-xs-2 col-sm-2'>User Name</td>
-                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='u_name' onkeyup='showUser(this.value)' required><div id='txtHint'></div></td>
+                  <td class='col-xs-2 col-sm-2' style="padding-bottom:3%">User Name</td>
+                  <td><input type='text' class='col-xs-8 col-sm-6 btn btn-border' name='u_name' onkeyup='showUser(this.value)' required><div id='txtHint'></div></td>
                 </tr>
                 <tr>
-                  <td colspan=2><input style='width:90px;margin-left:180px' class='btn btn-primary' type='submit' value='Update'></td>
+                  <td colspan=2><input style='width:80px;margin-left:17%;margin-bottom:5%' class='btn btn-primary' type='submit' value='Add'></td>
                 </tr>
              </tbody>
              </table>
@@ -88,8 +91,21 @@ include 'header.php';
   
 <div class="control-sidebar-bg"></div>
 <?php include 'footer_sidebar.php' ?>
-
 </div>
+<?php 
+if(isset($_SESSION['registered']))
+{
+  if($_SESSION['registered'] == "success")
+    echo "<script>alert('Worker created Successfully!!!');</script>";
+  elseif($_SESSION['registered']=="failure")
+    echo "<script>alert('Failed to create a worker!!!');</script>";
+  
+  unset($_SESSION['registered']);
+}
+
+
+?>
+
 <!-- jQuery 2.2.0 -->
 <script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.5 -->

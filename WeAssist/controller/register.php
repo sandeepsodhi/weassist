@@ -91,7 +91,8 @@ if($in_ch==1)
 
 
 
- 	$_SESSION['profile_pic'] = $pic[0];
+ 	$_SESSION['profile_pic'] = $pic[1];
+ 	$_SESSION['u_id'] = $pic[0];
 
 	if($_SESSION['u_type']=="agent")     
 	{	
@@ -99,10 +100,13 @@ if($in_ch==1)
 	}
 	elseif($_SESSION['u_type']=="worker") 
  		header("location:../view/worker/pages/profile.php");
-    elseif($_SESSION['u_type']=="Customer") 	
-       header("location:../view/customer/pages/profile.php");         
-
- //  header("location:../view/main/index.php");
+    elseif($_SESSION['u_type']=="customer") 	
+       header("location:../view/customer/pages/profile.php");   
+    else
+    {
+    	$_SESSION['error'] = 'e';
+     	header("location:../view/main/index.php");
+    }
 }  
 else  
 {  
