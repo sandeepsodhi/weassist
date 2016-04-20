@@ -1,8 +1,17 @@
 <!DOCTYPE html>
-
 <html>	
 <?php
     session_start();
+    require_once '../../../model/dbConnect.php';
+    $qu = mysqli_query($conn,"select contact,city from users where u_name = '".$_SESSION['u_name']."'");
+    $fe = mysqli_fetch_assoc($qu);
+    
+    $qu1 = mysqli_query($conn,"select subcat_name from sub_category where subcat_id in (select subcat_id from profession where u_name = '".$_SESSION['u_name']."')");
+    $subcat = "";
+    while($fe1 = mysqli_fetch_assoc($qu1))
+    {
+      $subcat .= $fe1['subcat_name'].', ';
+    }
 ?>
 <head>
   <title>WeAssist | Profile</title>
@@ -173,17 +182,17 @@ body {
                       
                       <div class="form-group">
                         <label class="control-label">Mobile No</label>
-                        <input maxlength="200" type="text" class="form-control btn btn-border" placeholder="Enter Contact" id="contact" name="contact" onkeyup="phonenumber(this)" sdata-error="Please give a correct phone number." />
+                        <input maxlength="200" type="text" class="form-control btn btn-border" placeholder="Enter Contact" id="contact" name="contact" value="<?php echo $fe['contact'];?>" onkeyup="phonenumber(this)" sdata-error="Please give a correct phone number." />
                       </div>
                       <div class="form-group">
                         <label class="control-label">Address</label>
-                        <input type="text"  class="form-control btn btn-border" placeholder="Enter your address" id="city" name="city" >
+                        <input type="text" value="<?php echo $fe['city']; ?>" class="form-control btn btn-border" placeholder="Enter your address" id="city" name="city" >
                         <input type="hidden" name="State" id="State"/> 
                         <input type="hidden" name="Country" id="Country"/> 
                       </div>
                       <div class="form-group">
                         <label class="control-label">Subcategory</label>
-                        <input maxlength="200" type="text"  class="form-control btn btn-border" placeholder="Enter Subcategory" id="subcategories"  name="subcategories" />
+                        <input maxlength="200" value="<?php echo $subcat;?>" type="text"  class="form-control btn btn-border" placeholder="Enter Subcategory" id="subcategories"  name="subcategories" />
                       </div>
                       <input class="btn btn-success btn-lg pull-right" style="background-color:#3c8dbc" type="submit" value="Submit">
                     </div>

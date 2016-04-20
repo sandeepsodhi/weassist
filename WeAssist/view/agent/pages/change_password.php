@@ -57,13 +57,13 @@ include 'header.php';
             </div>
             <form method="POST" enctype="multipart/form-data">
             <div class="box-body no-padding" >
-              <table class="table table-condensed" style="margin-left: 20%;margin-top: 5%;">
+              <table class="table table-condensed" style="margin-left: 10%;margin-top: 5%;">
               <tbody>
                 <tr>
                     <td class='col-xs-2 col-sm-2' style="padding-bottom:3%">Enter Old Password: </td>
                   <td><input type='password' class='col-xs-8 col-sm-6 btn btn-border' id='opwd' required></td>
                   <td>
-                    <div id="err1" style="margin-left:1%;color: red;"></div>
+                    <div id="err1" style="margin-right:50%;color: red;"></div>
                   </td>
                 </tr>
                 <tr>
@@ -71,27 +71,28 @@ include 'header.php';
                   <td><input type='password' class='col-xs-8 col-sm-6 btn btn-border' id='pwd' onkeyup="checkl()">
                   </td>
                   <td>
-                  <div id="err2" style="margin-left:1%;color: red;margin-top:9%;"></div>
+                  <div id="err2" style="margin-left:-371%;color: red;margin-top:0%;"></div>
                   </td>
                 </tr>
                 <tr>
                   <td class='col-xs-2 col-sm-2' style="padding-bottom:3%">Re-Enter New Password:</td>
                   <td><input type='password' class='col-xs-8 col-sm-6 btn btn-border' id='cpwd' onkeyup='checkp()' required></td>
                   <td>
-                  <div id="err3" style="margin-left:1%;color: red;margin-top:9%;"></div>
+                  <div id="err3" style="margin-left:-371%;color: red;margin-top:0%;"></div>
                   </td>
                 </tr>
                 <tr>
                    <td>
                    </td>
+
                    <td>
-                     <div id="err4" style="margin-left:1%;color: red;margin-top:9%;"></div>
+                     <div id="err4" style="margin-left:0%;color: red;margin-top:0%;"></div>
                    </td>
                    <td>
                    </td>
                 </tr>
                 <tr>
-                  <td colspan=2><input type="button" style='width:100px;margin-left:17%;margin-bottom:5%' class='btn btn-primary' name='btnch' value='Change Password'  ></td>
+                  <td colspan=2><input type="button" style='width:140px;margin-left:19%;margin-bottom:5%' id="btnch" class='btn btn-primary' name='btnch' value='Change Password'  ></td>
                 </tr>
              </tbody>
              </table>
@@ -144,14 +145,16 @@ if(isset($_SESSION['registered']))
                 var opassword=$("#opwd").val();
                 var password = $("#pwd").val();
                 var confirmPassword = $("#cpwd").val();
+                console.log(opassword+password+confirmPassword);
                 if(!opassword)
                 {
-                  $('#err1').html('<p>Enter Password it is mandatory</p>');
+                //  alert('fr');
+                  $('#err4').html('<p>Enter Old Password!!</p>');
                   return false;
                 }
                 else
                 {
-                  $('#err1').html('');
+                  $('#err4').html('');
                 }
                 // if(!password)
                 // {
@@ -196,22 +199,22 @@ if(isset($_SESSION['registered']))
 
             if(!confirmPassword)
             {
-              $('#err3').html('<p><span class="glyphicon glyphicon-remove" style="margin-left:75%;margin-top:20%"></span></p>');
+              $('#err3').html('<p><span class="glyphicon glyphicon-remove" style="margin-left:0%;margin-top:1%"></span></p>');
               return false;
             }
             else
             {
-              $('#err3').html('<span class="glyphicon glyphicon-ok" style="margin-left:75%;margin-top:20%;color:blue"></span>');
+              $('#err3').html('<span class="glyphicon glyphicon-ok" style="margin-left:0%;margin-top:1%;color:blue"></span>');
             }
                  if (password != confirmPassword) {
   //                     $('#err4').html('<p>Passwords do not match.</p>');
-                 $('#err3').html('<span class="glyphicon glyphicon-remove" style="margin-left:75%;margin-top:20%"></span>');
+                 $('#err3').html('<span class="glyphicon glyphicon-remove" style="margin-left:0%;margin-top:1%"></span>');
                  //alert("Passwords do not match.");
                 return false;
             }
             else
             {
-              $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:75%;margin-top:20%;color:blue"></span>');
+              $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:0%;margin-top:1%;color:blue"></span>');
             }
 
         }
@@ -220,12 +223,12 @@ if(isset($_SESSION['registered']))
               var password = $("#pwd").val();
               if(!password)
             {
-              $('#err2').html('<span class="glyphicon glyphicon-remove" style="margin-left:75%;margin-top:20%"></span>');
+              $('#err2').html('<span class="glyphicon glyphicon-remove" style="margin-left:0%;margin-top:1%"></span>');
               return false;
             }
             else
             {
-              $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:75%;margin-top:20%;color:blue"></span>');
+              $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:0%;margin-top:1%;color:blue"></span>');
             }
       }
 </script>
