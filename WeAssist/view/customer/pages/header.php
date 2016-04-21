@@ -32,41 +32,25 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image">
+              <img src="../../image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $_SESSION['f_name']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
+                <img src="../../image/<?php  echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
 
                 <p>
                  <?php echo $_SESSION['f_name']; ?>
                  <!-- <small>Member since Nov. 2012</small>-->
                 </p>
               </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <div class="pull-left" >
+                  <a href="profile.php" class="btn  " style="background-color: #dd4b39">Profile</a>
                 </div>
-                <div class="pull-right">
-                  <a href="../../../controller/sign_out.php" class="btn btn-default btn-flat">Sign out</a>
+                <div class="pull-right" >
+                  <a href="../../../controller/sign_out.php" class="btn " style="background-color: #dd4b39">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -86,7 +70,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="image/<?php echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
+          <img src="../../image/<?php echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <!-- <p>Customer</p> -->
@@ -106,8 +90,8 @@
                   </li>
         <li>
           <a href="profile.php">
-            <i class="fa fa-th"></i> <span>My Profile</span>
-            <small class="label pull-right bg-green">new</small>
+            <i class="glyphicon glyphicon-edit"></i> <span>My Profile</span>
+
           </a>
         </li>
     <li>
@@ -117,13 +101,24 @@
         </li>
         <li>
           <a href="joblist.php">
-            <i class="fa fa-th"></i> <span>My Job</span>
+            <i class="fa fa-briefcase"></i> <span>My Job</span>
+          </a>
+        </li>
+        <li>
+          <a href="passwordchange.php">
+            <i class="fa fa-lock"></i> <span>Change Password</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="feedback.php">
+            <i class="fa fa-file-text-o"></i> <span>Feedback</span>
           </a>
         </li>
         
         <li>
           <a href="../../../controller/sign_out.php">
-            <i class="fa fa-calendar"></i> <span>Logout</span>
+            <i class="fa fa-power-off"></i> <span>Logout</span>
           </a>
         </li>
       </ul>

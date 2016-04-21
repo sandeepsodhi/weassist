@@ -70,14 +70,14 @@ color:black;
 		
 		</div>
 	
-        <div class="col-md-7">
+        <div class="col-md-7" id="forms">
 		<br/>
      
-    	<form class="form-inline"  id="editprofile"  method="post"  enctype="multipart/form-data" action="updateprofile.php">
+    	<form class="form-inline"  id="editprofile"  method="post" name="editprofile" enctype="multipart/form-data" action="updateprofile.php" style="font-style: normal">
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="f_name">First Name:</label> </div>
-	    <div class="col-md-8"><input  type="text" class="form-control" name="f_name" id="f_name" onkeyup="isalphanum(this)"  size="28%" value="<?php echo $_SESSION['f_name']; ?>" readonly required></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="f_name" id="f_name" onkeyup="isalphanum(this)"  onblur="fnamevalid()" size="28%" value="<?php echo $_SESSION['f_name']; ?>" readonly required></div>
          <div class="col-md-1">
 		 
 		<a href="#" onclick="changefname()">
@@ -97,7 +97,7 @@ color:black;
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="l_name">Last Name:</label></div>
-	    <div class="col-md-8"><input  type="text" class="form-control" name="l_name" id="l_name" size="28%" value="<?php echo $_SESSION['l_name'];  ?>" onkeyup="isalphanum(this)" required readonly ></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="l_name" id="l_name" size="28%" value="<?php echo $_SESSION['l_name'];  ?>" onkeyup="isalphanum(this)" onblur="lnamevalid()" required readonly ></div>
         <div class="col-md-1">	    
 		<a href="#" onclick="changelname()">
           <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
@@ -114,10 +114,10 @@ color:black;
 		<div class="col-md-3"><label id="profile-label"  for="email">Email :  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  </label></div>
 	    <div class="col-md-8"><input  type="text" class="form-control" name="email" id="email" size="28%" value="<?php echo $_SESSION['u_name']; ?>" onkeyup="isalphanum(this)" required readonly ></div>
 	     <div class="col-md-1">		
-		<a href="#" onclick="changeemail()">
+<!-- 		<a href="#" onclick="changeemail()">
           <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
         </a>
-          </div>
+ -->          </div>
 		</div>
 	    </div>
      	<br/>
@@ -125,7 +125,8 @@ color:black;
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="phone">Phone No :&nbsp</label></div>
-	    <div class="col-md-8"><input  type="text" class="form-control" name="phone" id="phone" size="28%" value="<?php echo $_SESSION['contact']; ?>"  onkeyup="isalphanum(this)" required readonly ></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="phone" id="phone" size="28%" value="<?php if(isset($_SESSION['contact'])){
+      echo $_SESSION['contact']; }?>"  onkeyup="isalphanum(this)" onkeyup="phonevalid()" required readonly ></div>
 	     <div class="col-md-1">		
 		<a href="#" onclick="changephone()">
           <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
@@ -134,28 +135,29 @@ color:black;
 		</div>
 		</div>
 
-	    <br/>
+<!-- 	    <br/>
         <div class="row">
     <div class="form-group" >
-    <div class="col-md-4"><label id="profile-label"  for="changepwd">Change Password :</label></div>
-      <div class="col-md-8"><input  type="password" class="form-control" name="changepwd" id="changepwd" size="44%" value=""   ></div>
+    <div ><label id="profile-label"  for="changepwd">Change Password :</label>
+    &nbsp&nbsp&nbsp&nbsp&nbsp
+    <input  type="password" class="form-control" name="changepwd" id="changepwd" style="margin-left: 0%"size="49%" value=""   ></div>
     </div>
     </div>
-<br/>
+ --><br/>
 	 
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="city">City :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
   <input  type="hidden"  name="State" id="State"  size="0px"  >
     <input  type="hidden"  name="Country" id="Country" size="0px"    >
 		</div>
-	    <div class="col-md-8"><input  type="text" class="form-control" name="city" id="city" size="28%" value="<?php $_SESSION['city']; ?>" placeholder="Enter Your City" ></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="city" id="city" size="28%" value=" " placeholder="Enter Your City" onkeydown="if (event.keyCode == 13) return false" ></div>
 	    </div>
 		</div>
 	    
 		
-		<div class="row">
+<!-- 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-4"><label id="profile-label"  for="image">Picture :&nbsp&nbsp&nbsp&nbsp</label></div>
         <div class="col-md-7">
@@ -165,9 +167,9 @@ color:black;
 		</div>
 	    </div>
 		</div>
-	    <br/>
-	    
-		
+	  
+ -->	    
+		  <br/>
 
         
 		<div class="row">
@@ -175,21 +177,25 @@ color:black;
 	 	<button type="submit" style="width:90%; margin-left:70%;  "type="submit" id="btnupdate" name="btnupdate"  class="btn btn-info btn-primary">Update</button>
     	</div>
 		</div>
- 	    </form>	
+ 	    
 	    <br/><br/><br/>
 		
 	
 
 	</div>
-<div class="col-md-2">
-<?php 
+<div class="col-md-2" style="margin-left:-4%">
+<?php
+$_SESSION['logstat']='true'; 
 include('../../../model/dbConnect.php');
 $res=mysqli_query($conn,"select profile_pic from users where u_name='".$_SESSION['u_name']."'");
 $rs=mysqli_fetch_row($res);
 ?>
 <br/>
-<img class="profile-user-img img-responsive img-circle" src="image/<?php echo $_SESSION['profile_pic']?>"  alt="User profile picture"  >
-				</div>
+<img class="profile-user-img img-responsive img-circle" src="../../image/<?php echo $_SESSION['profile_pic']?>"  width='150' height='150' alt=''  style='border-radius:30px;position:absolute;  z-index:1;'  id="pic">
+<input type='file' name='image' id="image" style='width:130px; height:110px; position:relative;  z-index:2; opacity:0;' onchange='readURL(this)'  accept=".jpg,.jpeg,.png,"/>
+
+        </div>
+</form> 
 	
 		
 		
@@ -204,20 +210,6 @@ $rs=mysqli_fetch_row($res);
 	   </section>	   
 </div>    
 	   
-	   </div>
-   </div>
-	   </section>	   
-</div>
-      <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <!-- Main content -->
-      <!-- /.row (main row) -->
-
-    </section>
-    <!-- /.content -->
-  </div>
-
   <!-- /.content-wrapper -->
    <?php include 'footer_sidebar.php'; ?>
 
@@ -228,6 +220,23 @@ $rs=mysqli_fetch_row($res);
 
 
 <!--Javascript Map-->
+<script type="text/javascript">
+         function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#pic')
+                        .attr('src', e.target.result)
+                        .width(100)
+                        .height(100);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+
 <script type="text/javascript">
     function initialize() {
 	    var options = {
@@ -319,7 +328,77 @@ $rs=mysqli_fetch_row($res);
  $('#editprofile :input').serializeArray()
  );
 });*/
+
 </script>
+<script type="text/javascript">
+  function fnamevalid()
+  {
+
+  }
+  function lnamevalid()
+  {
+    
+  }
+  function phonevalid()
+  {
+    var ph=$('phone').val();
+    
+  }
+</script>
+<script type="text/javascript">
+  //$(document).ready(function() {
+// $('#btnupdate').click(function(){
+//     $('#editprofile').bootstrapValidator({
+//         container: '#forms',
+//         feedbackIcons: {
+//             valid: 'glyphicon glyphicon-ok',
+//             invalid: 'glyphicon glyphicon-remove',
+//             validating: 'glyphicon glyphicon-refresh'
+//         },
+//         fields: {
+//             f_name: {
+//                 validators: {
+//                     notEmpty: {
+//                         message: 'The full name is required and cannot be empty'
+//                     }
+//                 }
+//             },
+//             l_name: {
+//                 validators: {
+//                     notEmpty: {
+//                         message: 'The full name is required and cannot be empty'
+//                     }
+//                 }
+//             },
+//             email: {
+//                 validators: {
+//                     notEmpty: {
+//                         message: 'The email address is required and cannot be empty'
+//                     },
+//                     emailAddress: {
+//                         message: 'The email address is not valid'
+//                     }
+//                 }
+//             },
+//             phone: {
+//                 validators: {
+//                     notEmpty: {
+//                         message: 'The content is required and cannot be empty'
+//                     },
+//                     Length: {
+//                         max: 10,
+//                         message: 'The content must be less than 500 characters long'
+//                     }
+//                 }
+//             }
+//         }
+//     });
+// });
+//});
+
+</script>
+
+<!--
 <script>
 
 $(document).ready(function() { 
@@ -354,6 +433,6 @@ $(document).ready(function() {
     });
 });
 </script>
-
+-->
 </body>
 </html>

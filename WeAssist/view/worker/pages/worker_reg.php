@@ -1,15 +1,17 @@
-  <?php session_start();
+  <?php //session_start();
  ?>
  <?php include 'header.php';?>  
 
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="jquery.dreamalert.js"></script>
 <link href="jquery.dreamalert.css"rel="stylesheet">
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>We Assist</title>
+  <title>AdminLTE 2 | Widgets</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -26,19 +28,93 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../dist/css/profilelabel.css">
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
-
-<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="jquery.dreamalert.js"></script>
+  
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
   
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
-  
+<script type="text/javascript">
+    function initialize() {
+		
+        var options = {
+            types: ['(cities)'],
+            //componentRestrictions: {country: "in"}
+        };
+        var input = document.getElementById('city');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+          	
+		//console.log(autocomplete);
+	}
+  $('input[name=city]').change(function () {
+		alert("done");
+        setTimeout(function () {
+            console.log($("#city").val());
+            console.log(($("#city").val().match(/,/g) || []).length); //logs 3
+            var val=[];
+            if(($("#city").val().match(/,/g) || []).length==2)
+            {
+                //All City, State, Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val(val[1]);
+                $("#Country").val(val[2]);
+            }
+            else if (($("#city").val().match(/,/g) || []).length == 1)
+            {
+                //Only City and Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val('NA');
+                $("#Country").val(val[1]);
+            }
+
+        }, 1000);
+    });
+
+    $('input[name=city]').click(function () {
+        document.getElementById('city').value = '';
+        document.getElementById('State').value = '';
+        document.getElementById('Country').value = '';
+    });
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+ <script>
+  function initialize() {
+		
+        var options = {
+            types: ['(signup)'],
+            //componentRestrictions: {country: "in"}
+        };
+        var input = document.getElementById('signup');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+          	
+		//console.log(autocomplete);
+	}
+            
+            function show_code(obj) {
+                $(obj).parent().next().slideDown();
+            }
+            
+            $(document).ready(function() {
+
+                $('#button2').click(function(){
+                    $.dreamAlert({
+                        'type'      :   'success',
+                        'message'   :   'Operation completed!'
+                    });
+                });
+              
+        </script>
+        </div>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 <style>
 input[type='text'] { font-size: 140%;
 font-family: monospace; }
@@ -97,7 +173,7 @@ font-family: monospace; }
 		<div class="row">
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="l_name">Last Name:</label></div>
-	    <div class="col-md-8"><input  type="text" class="form-control" name="l_name" id="l_name" size="28%" value="<?php //echo $_SESSION['l_name']; ?>" readonly ></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="l_name" id="l_name" size="28%" value="<?php echo $_SESSION['l_name']; ?>" readonly ></div>
         <div class="col-md-1">	    
 		<a href="#" onclick="changelname()">
           <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
@@ -187,7 +263,7 @@ font-family: monospace; }
 		                            <div class="input-group-addon">
 		                                <i class="fa fa-user"></i>
 		                            </div>
-                                            <input type="text" class="form-control" id="f_name" name="f_name" placeholder="First Name" onkeyup="isalphanum(this)" required>
+                                            <input type="text" class="form-control" id="f_name" name="f_name"  onkeyup="isalphanum(this)" required>
 											</div>
 											</div>
 		                           <div class="form-group">
@@ -195,7 +271,7 @@ font-family: monospace; }
 		                            <div class="input-group-addon">
 		                                <i class="fa fa-user"></i>
 		                            </div>
-                                           <input type="text" class="form-control" id="l_name" name="l_name" placeholder="Last Name"  required>
+                                           <input type="text" class="form-control" id="l_name" name="l_name"  required>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
@@ -203,7 +279,7 @@ font-family: monospace; }
 		                            <div class="input-group-addon">
 		                                <i class="fa fa-at"></i>
 		                            </div>
-                                            <input type="email" class="form-control" id="u_name" name="u_name" placeholder="Email" onclick="showUser(this.value)"  required>
+                                            <input type="email" class="form-control" id="u_name" name="u_name"  onclick="showUser(this.value)"  required>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
@@ -211,7 +287,7 @@ font-family: monospace; }
 		                            <div class="input-group-addon">
 		                                <i class="fa fa-lock"></i>
 		                            </div>
-                                           <input type="password" class="form-control" id="pswd" name="pswd" placeholder="Password" required>
+                                           <input type="password" class="form-control" id="pswd" name="pswd"  required>
 		                        </div>
 		                    </div>
 					
@@ -308,5 +384,13 @@ alert("You have left  attempt;");
 
 </script>
 
+$.dreamAlert({
+
+	  'type'      :   'signup',
+
+	  'message'   :   'Completed!'
+
+	});
+	$.dreamAlert.close();
 </body>
 </html>

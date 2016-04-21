@@ -1,5 +1,5 @@
 <?php
-    //session_start();
+    session_start();
 	require_once '../../../model/dbConnect.php';
     $jobcategory=mysqli_escape_string($conn,$_POST["jobcateg"]);
     //$subcateg=mysqli_escape_string($conn,$_POST["id"]);

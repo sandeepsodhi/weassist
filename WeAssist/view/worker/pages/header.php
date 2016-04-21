@@ -35,15 +35,15 @@
           <li class="dropdown user user-menu">
 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $_SESSION['f_name']; ?></span>
+              <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image" id="change_image3" >
+            <span class="hidden-xs"><?php echo $_SESSION['f_name']; ?></span>
             </a>
 					<!--	  <li>		  		  						<a href="logout.php">Logout  </a></li>-->
 
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
+                <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image" id="change_image4" >
 
                 <p>
                  <?php echo $_SESSION['f_name']; ?>
@@ -54,10 +54,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="profile.php" style="color:white" class="btn btn-default btn-flat">Profile</a>
+                  <a href="profile.php" style="color:white;background-color: #dd4b39" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../../../controller/sign_out.php" style="color:white" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../../../controller/sign_out.php" style="color:white;background-color: #dd4b39" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -78,13 +78,13 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-      <div class="user-panel">
+      <div class="user-panel"style="height:70px;">
         <div class="pull-left image">
-          <img src="image/<?php echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image">
+          <img src="image/<?php echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image"  id="change_imagee">
         </div>
-        <div class="pull-left info">
+        <div class="pull-left info"><b>Worker &nbsp;</b>
           <p><?php echo $_SESSION['f_name']; ?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success" ></i> Online</a>
         </div>
       </div>
       <!-- search form --
@@ -102,19 +102,13 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
        
-  <li class="active treeview">
-          <a href="home.php">
-            <i class="fa fa-fw fa-home"></i>
+  <li class=" treeview">
+          <a href="index.php">
+            <i class="fa  fa-home"></i>
             <span>HOME</span>
             
           </a>
                   </li>
- <li class="treeview">
-		 <a href="worker_reg.php">
-		 <i class="fa fa-user-plus"></i>
-			<span>Add User</span>
-		</a>
-</li>
 
 <!--<li>
           <a href="jobcreation.php">
@@ -124,12 +118,23 @@
         <li>
           <a href="profile.php">
             <i class="fa fa-user"></i> <span>My Profile</span>
-            <small class="label pull-right bg-green">new</small>
+
           </a>
         </li>
 		        <li>
           <a href="myjobs.php">
             <i class="fa fa-th"></i> <span>My Jobs</span>
+          </a>
+        </li>
+        <li>
+          <a href="passwordchange.php">
+            <i class="fa fa-th"></i> <span>Change Password</span>
+          </a>
+        </li>
+
+            <li>
+          <a href="../../../controller/sign_out.php">
+            <i class="fa fa-calendar"></i> <span>Logout</span>
           </a>
         </li>
 		

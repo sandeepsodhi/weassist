@@ -120,15 +120,16 @@ select option { padding: 1px 5px 1px 3px;}
                     $statuss='Not Assign';
                   $res=mysqli_query($conn,"select cat_name from category where cat_id='$row[1]'");
                   $ress=mysqli_fetch_row($res);
+                  $idd=$row[0];
                 echo "<tr>
                         
                         <td>$ress[0]</td>
                         <td>$row[2]</td>
                         <td>$row[3]</td>
                         <td>$row[4]</td>
-                        <td><img style='border-radius:10px;width:60px;height:50px;' src='image/$row[5]'>
-                        <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_subcategory.php?cat_id=$row[0]\"'>
-                        <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"delete_category.php?cat_id=$row[0]\"'></td>
+                        <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[5]'>
+                        <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_subcategory.php?cat_id=$row[0]\"'>";
+                echo  "<input type='button' class='btn btn-primary' value='Delete'"." onclick="."deljob('$idd')></td>
                       ";
                       if($statuss=="Not Assign")
                       echo  "<td>$statuss</td>";
@@ -209,7 +210,16 @@ select option { padding: 1px 5px 1px 3px;}
 <script src="js/dataTables.jqueryui.min.js"></script>
 <script src="js/dataTables.foundation.min.js"></script>
 
-
+<!--<script type="text/javascript">
+  function deljob(inpu)
+   { 
+   alert(inpu);                      
+  // var r = confirm(\'Are you Sure You Want to delete!\');
+  // if (r == true) 
+  // window.location.href=\"delete_category.php?cat_id=$row[0]\"  
+   }
+</script>
+-->
 
 
 
@@ -242,7 +252,16 @@ document.getElementById('state').innerHTML=detail[4];
 document.getElementById('country').innerHTML=detail[5];
  
 });
-}</script>
+}
+  function deljob(inpu)
+{
+   var r = confirm('Are you Sure You Want to delete!');
+   if (r == true) 
+   window.location.href="delete_category.php?cat_id="+inpu;  
+//  location.reload();
+  }
+  </script>
+
 </body>
 
 </html>

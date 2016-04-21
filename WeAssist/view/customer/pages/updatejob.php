@@ -86,6 +86,7 @@ select option { padding: 1px 5px 1px 3px;}
 	
   
   <?php
+  
   require_once '../../../model/dbConnect.php';
   $jobcategory=$_POST['jobcateg'];
   $subcateg=$_POST['subcateg'];
@@ -122,7 +123,6 @@ $_SESSION['jobcategory']=$jobcateg;
                                      where subcat_id='$jobid' " );
         $sql=mysqli_query($conn,"Update job_status set cat_id='$jobcategory',subcat_id='$subcategid'
                                      where job_id='$jobid' " );
-          include('emailagain.php');
  
     }
     else
@@ -132,7 +132,7 @@ $_SESSION['jobcategory']=$jobcateg;
       elseif (substr($type,0,5)=='image') {
         //$result = mysqli_query($conn,"insert into users (u_name,pswd,f_name,l_name,email,contact,profile_pic) values ('$u_name','$pswd','$f_name','$l_name','$email','$contact','$name')");
             if($name)
-          { move_uploaded_file($temp,"image/".$name); 
+          { move_uploaded_file($temp,"../../image/".$name); 
     /*  $res = $conn->prepare("call updatedetail(?,?,?,?,?,?,?,?,?)");
         $res->bind_param("sssdsssss",$f_name,$l_name,$email,$phone,$city,$uname,$name,$state,$country);
         $res->execute();*/
@@ -142,7 +142,7 @@ $_SESSION['jobcategory']=$jobcateg;
             $sql=mysqli_query($conn,"Update job_status set cat_id='$jobcategory',subcat_id='$subcategid'
                                      where job_id='$jobid' " );
                                    //   $_SESSION['image']=$name;
-                              include('emailagain.php');
+//                               include('emailagain.php');
                       
                                echo "<h>Job Updated </h>";
           
@@ -154,7 +154,6 @@ $_SESSION['jobcategory']=$jobcateg;
             $sql=mysqli_query($conn,"Update job_status set cat_id='$jobcategory',subcat_id='$subcategid'
                                      where job_id='$jobid' " );
      
-          include('emailagain.php');
 //echo "frfr2";
           }
       }
@@ -172,9 +171,10 @@ $_SESSION['jobcategory']=$jobcateg;
             $sql=mysqli_query($conn,"Update job_status set cat_id='$jobcategory',subcat_id='$subcategid'
                                      where job_id='$jobid' " );
      
-          include('emailagain.php');
 
   }
+
+  //        include('emailagain.php');
 
    ?> 
 

@@ -26,8 +26,8 @@
       <link href="css/custom.css" rel="stylesheet">
  
     <link href="css/green.css" rel="stylesheet">
-    <!--  -->
-
+    <!-- clock -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-clockpicker.min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -57,6 +57,9 @@ select {
     cursor:pointer;
 }
 select option { padding: 1px 5px 1px 3px;}
+body {
+  min-size:90%;
+}
 </style>
   </head>
 
@@ -88,7 +91,7 @@ select option { padding: 1px 5px 1px 3px;}
 	<label id="profile-label"  for="jobcateg" style="margin-left:5%;width:11%" size="10%">Job Category</label>
 	
   <select class="btn" name="jobcateg" id="jobcateg" style="border:1px solid grey; color:black ; width:25%; margin-left:3%" >
-     <option value=''disabled='' select=''>-- Select Option --</option>
+     <option value='' select=''>-- Select Category --</option>
    <?php 	require_once '../../../model/dbConnect.php'; 
    $select=mysqli_query($conn,"select cat_name,cat_id from category");
   //  echo $select->cat_name;
@@ -96,52 +99,39 @@ select option { padding: 1px 5px 1px 3px;}
    {
 	   echo "<option value=".$row['cat_id'].">".$row['cat_name']."</option>" ; 
    }
-   
-   ?>
+   $_SESSION['jvalid']='true';
+   ?>-
   </select>
   <label id="profile-label"  for="subcateg" style="margin-left:5%; width:11%">Sub Category</label> 
 <select class="btn" name="subcateg" id="subcateg" style="border:1px solid grey; color:black ; width:25%; margin-left:3%">
- <option value=''disabled='' select=''>-- Select Option --</option>
+ <option value='' select='' required>-- Select Sub-Category --</option>
  
 </select>
   </div>
   <div class="form-group">
   <label id="profile-label"  for="jobtitle" style="margin-left:5%; width:11%" size="10%">Job Title</label>
-  <input type="text" id="jobtitle" name="jobtitle" placeholder="Job Title" style="border:1px solid grey; color:black ;width:25% ;font-family:none;font-size:130%;font-color:black;
-    margin-left:3%">
+  <input type="text" id="jobtitle" name="jobtitle" placeholder="" style="border:1px solid grey; color:black ;width:25% ;font-family:none;font-size:130%;color:black;  margin-left:3%;" onkeydown="if(event.keyCode == 13) return false" required>
 </div>
 <div class="form-group">
 
 <label id="profile-label"  for="jobdesc" style="margin-left:5%; width:11% ; margin-top:-50% "; >Job Description</label>
-<textarea  rows="5" cols="110"  id="jobdesc" name="jobdesc" style="border:1px solid grey; color:black ; margin-left:3%" ></textarea>
+<textarea  rows="5" cols="110"  id="jobdesc" name="jobdesc" style="border:1px solid grey; color:black ; margin-left:3%" onkeydown="if (event.keyCode == 13) return false" required></textarea>
 
 </div>
 <div class="form-group">
-<label id="profile-label"  for="jobprice" style="margin-left:5%; width:11%" size="10%">Enter Price</label>
-  <i class="fa fa-rupee" style="font-size:24px;margin-left:1%"></i>
-  <input type="number" id="jobprice" name="jobprice" placeholder="" style="border:1px solid grey; color:black ;width:25% ;font-family:none;font-size:130%;font-color:black;
-    margin-left:5px">
+<label id="profile-label"  for="jobprice" style="margin-left:5%; width:11%" size="10%">Enter Offer Price</label>
+  <i class="fa fa-rupee" style="font-size:20px;margin-left:1%"></i>
+  <input type="number" class="row" id="jobprice"style="border:1px solid grey; color:black ;width:25% ;font-family:none;font-size:130%;font-color:black;
+    margin-left:5px" name="jobprice" placeholder="" onkeydown="if (event.keyCode == 13) return false" required >
 
 </div>
 <div class="form-group">
 <label id="profile-label"  for="Edate" style="margin-left:5%; width:11%" size="10%">Select date</label>
-        <input type="text" name="Edate"  id="Edate" placeholder="select Date"   style="width:25%;margin-left:3%">
+        <input type="text" name="Edate"  id="Edate" class="row" placeholder="select Date"   style="width:25%;margin-left:3%;font-family:none;font-size:20px" onkeydown="if (event.keyCode == 13) return false" required>
         <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="false"></span>
   <label id="profile-label"  for="tapp" style="margin-left:5%; width:11%">Select Time</label>         
-<select class="btn" name="tapp" id="tapp" style="border:1px solid grey; color:black ; width:7%; margin-left:1%">
-  <option value="10">10</option>
-  <option value="11">11</option>
-  <option value="12">12</option>
-  <option value="13">13</option>
-  <option value="14">14</option>
-  <option value="15">15</option>
-  <option value="16">16</option>
-  <option value="17">17</option>
-  <option value="18">18</option>
-  <option value="19">19</option>
-  <option value="20">20</option>
-  <option value="21">21</option>
-</select>
+<input type="text" id="tapp" name="tapp"   placeholder="E.g 00:00" style="font-family:none;" class="row"  aria-describedby="inputSuccess2Status" onkeydown="if (event.keyCode == 13) return false" required>
+                            <span class="glyphicon glyphicon-time form-control-feedback right" aria-hidden="false"></span>
 
         </div>
 
@@ -150,22 +140,21 @@ select option { padding: 1px 5px 1px 3px;}
 
 <div class="form-group">
 <label id="profile-label"  for="jobphoto" style="margin-left:5%; width:11%" >Upload Job Photo</label>
- <input type="file" class="btn-primary" id="jobphoto" name="jobphoto" style="background-color:white;border:1px solid grey; color:black ;width:25%; margin-left:19%; margin-top:-3%"  accept=".jpg,.jpeg,.png," onchange="readURL(this)">	
+ <input type="file" class="btn-primary" id="jobphoto" name="jobphoto" style="background-color:white;border:1px solid grey; color:black ;width:25%; margin-left:19%; margin-top:-3%"  accept=".jpg,.jpeg,.png," onchange="readURL(this)" >  
 </div>
  <div class="form-group" style="margin-left:19%;width:20%;height:5%">
-<img id="jobshow"/ src="image/NewCandidateImage.jpg" style="width:50%;height:30%;">  
+<img id="jobshow" src="../../image/NewCandidateImage.jpg" style="width:50%;height:30%;">  
 </div>
+
  <br/>
 <div class="form-group">
 <button type="submit" class="btn btn-info btn-primary" name="btnupdate" id="btnupdate"  style="width:20%; margin-left:20%;  " >Submit</button></div>
   </div>
-	 </div>
+	 </form>
+   </div>
 	  </div>
 	   </section>	   
   
-	   
-	   </div>
-   
 
   <!-- /.content-wrapper -->
    <?php include 'footer_sidebar.php'; ?>
@@ -226,6 +215,20 @@ success: function(html)
 });	
 	});
 </script>    
+    <!--clock-->
+    <script type="text/javascript" src="js/bootstrap-clockpicker.min.js"></script>
+    <script type="text/javascript">
+    $('.clockpicker').clockpicker()
+    .find('input').change(function(){
+        console.log(this.value);
+    });
+    var input = $('#tapp').clockpicker({
+    placement: 'bottom',
+    align: 'left',
+    autoclose: true,
+    'default': 'now'
+    });
+    </script>
 <script  type="text/javascript">
 function readURL(input){
             if (input.files && input.files[0]) {
@@ -255,6 +258,13 @@ function readURL(input){
             
         });
     </script>
-
-</body>
+<!-- <script type="text/javascript">
+$('#btnupdate').click(function(){
+if(!$('#jobprice').val())
+{
+return false;
+}  
+});
+</script>
+ --></body>
 </html>

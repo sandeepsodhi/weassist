@@ -68,27 +68,59 @@
                   <th>Target Date/Time</th>
                   <th>Customer Name</th>
                   <th>Image</th>
-				  
+                  <th>Action </th>				  
                   </tr>
                 </thead>
                 <tbody>
                 <?php
                   include  '../../../model/dbConnect.php';
 	//			echo $_SESSION['f_name'];
-$rs=mysqli_query($conn,"select a.job_date,a.target_date,a.photo,b.f_name from createjob a join users b on a.uname=b.u_name ");
-               // $rs = mysqli_query($conn,"select job_date,target_date,f_name,photo from createjob ");
-                while($row=mysqli_fetch_row($rs))
+// $rs=mysqli_query($conn,"select a.job_date,a.target_date,a.photo,b.f_name from createjob a join users b on a.uname=b.u_name where b.f_name='".$_SESSION['f_name']."' ");
+//                 $rs = mysqli_query($conn,"select job_date,target_date,uname,photo from createjob");
+  $que1=mysqli_query($conn,"select cat_id,subcat_id from profession where u_name='".$_SESSION['u_name']."'");
+  while($row1 =mysqli_fetch_assoc($que1))
+{
+$catid=$row1['cat_id'];
+ $subcatid=$row1['subcat_id'];            
+
+  $que2=mysqli_query($conn,"select job_id,status from job_status where cat_id='".$catid."' AND subcat_id='".$subcatid."'");
+  
+   
+  while($row2 =mysqli_fetch_assoc($que2))
+{ 
+ $jobid=$row2['job_id'];
+ 
+ $qrej=mysqli_query($conn,"select rej_id from reject_job where job_id='$jobid' AND u_name='".$_SESSION['u_name']."'");
+ $rowrej =mysqli_fetch_assoc($qrej);
+ if(!$rowrej)
+{ $status=$row2['status'];            
+  $que3=mysqli_query($conn,"select * from createjob where subcat_id='".$jobid."' ");
+  //echo "select * from ceatejob where subcat_id='".$jobid."' ";
+  $row3 =mysqli_fetch_assoc($que3);
+  $imag=$row3['photo'];
+  $email=$row3['uname'];
+ // echo $email;
+  $que5=mysqli_query($conn,"select * from users where u_name='$email'");
+  $row5=mysqli_fetch_assoc($que5);
+  $username=$row5['f_name']. " ". $row5['l_name'];
+  //$f_name=$row5['f_name'];
+  //$useremail=$row5['u_name'];
+              //  while($row=mysqli_fetch_row($rs))
+              if($status==0)
                 {   
-                echo "<tr>
-                         <td>$row[0]</td>
-                        <td>$row[1]</td>
-						<td>$row[3]</td>
-						<td><img style='border-radius:10px;width:60px;height:50px;' src='image/$row[2]'></td>
-
-
-                      </tr> 
-                      ";
+                echo "<tr>"
+                         ."<td>".$row3['job_date']."</td>".
+                        "<td>".$row3['target_date'].$row3['job_time']."</td>".
+						            "<td>".$username."<br/><a  "."onclick="."custdetail('$email')". " href='javascript:;' >More Details</a> "."</td>".
+						            "<td><img src='../image/$imag' style='border-radius:10px;width:60px;height:50px;'></td>".
+                        "<td><input type='button' value='Accept' class='btn btn-success' style='color:white;font-family:Arial;margin-right:1px;width:75px;margin-bottom:2px' id='btnaccept'". "onclick='acceptfun(".$jobid.")' >".
+                         "<input type='button' value='Reject'  class='btn btn-primary' style='color:white;font-family:Arial;margin-right:1px;width:75px;margin-bottom:2px' id='btnreject'". "onclick='rejectfun(".$jobid.")' >".
+                         " </td>".
+                        "</tr>" 
+                      ;
+ }
                 }
+}}
                 ?>
               </tbody></table>
             </div>
@@ -100,9 +132,37 @@ $rs=mysqli_query($conn,"select a.job_date,a.target_date,a.photo,b.f_name from cr
     </section>
     <!-- /.content -->
   </div>
+  
   <!-- /.content-wrapper -->
+<!-- model customer detail -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Customer Details :</h4>
+        </div>
+        <div class="modal-body">
+         <div id="cont" style="margin-left: 30px;margin-right: 30px;background-color: #fffff0">
+          <p style="display: inline;margin-left: 13px;font-size:18px">First Name : </p><p id="fname" style="display: inline;margin-left: 10px;font-size:18px"> </p>
+          <p style="display: inline;margin-left: 73px;font-size:18px">Last Name : </p><p id="lname" style="display: inline;margin-left: 10px;font-size:18px"> </p><br/><br/>
+          <p style="display: inline;margin-left: 13px;font-size:18px">Contact : </p><p id="contact" style="display: inline;margin-left: 30px;font-size:18px"> </p><br/><br/>
+          <p style="display: inline;margin-left: 13px;font-size:18px">City : </p><p id="city" style="display: inline;margin-left: 60px;font-size:18px"> </p><br/><br/>
+          <p style="display: inline;margin-left: 13px;font-size:18px">State : </p><p id="state" style="display: inline;margin-left: 50px;font-size:18px"></p><br/><br/>
+          <p style="display: inline;margin-left: 13px;font-size:18px">Country : </p><p id="country" style="display: inline;margin-left: 30px;font-size:18px"> </p><br/><br/>
 
+          </div>
+        </div>
+      </div>
+      
+    </div>
+</div>
+  
   <!-- adding foorer + sidebar to out page -->
+  
+
   <?php include 'footer_sidebar.php'; ?>   
 
   <!-- /.control-sidebar -->
@@ -137,8 +197,67 @@ $rs=mysqli_query($conn,"select a.job_date,a.target_date,a.photo,b.f_name from cr
     $(document).ready(function () {
         $(".table").dataTable();
     });
+
 </script>
+<script >
+     function  acceptfun(va)
+   {
+    var r = confirm("Are you Sure You Want to accept!");
+//alert(va);
+if (r == true) {
+  $.post('acceptjob.php',{id:va},function(response){
+  if(response=='true')
+  { //alert('hogya');
+     location.reload(); 
+ }
+      location.reload();
+  }); }
 
+}
+</script>
+<script type="text/javascript">
+ var detail=[];
+  var i=0;
+  function custdetail(inp)
+{
+//alert('wow'+inp);
+$.post('custdet.php',{emailid:inp},function(response){
+ size=response.length;
+ detail[0]=response[0].f_name;
+ detail[1]=response[0].l_name;
+ detail[2]=response[0].contact;
+ detail[3]=response[0].city;
+ detail[4]=response[0].state;
+ detail[5]=response[0].country;
+// alert(detail[0]);
+ $('#myModal').modal('show'); 
+document.getElementById('fname').innerHTML=detail[0];
+document.getElementById('lname').innerHTML=detail[1];
+document.getElementById('contact').innerHTML=detail[2];
+document.getElementById('city').innerHTML=detail[3];
+document.getElementById('state').innerHTML=detail[4];
+document.getElementById('country').innerHTML=detail[5];
+ 
+});
+}
 
+</script>
+<script type="text/javascript">
+function  rejectfun(va)
+   {
+   var r = confirm("Are you Sure You Want to reject!");
+if (r == true) {
+ $.post('jobrej.php',{id:va},function(response){
+if(response)
+  {
+//  alert('hogya');
+ location.reload(); 
+ }
+ location.reload(); 
+ });   	
+}
+   }	
+
+</script>
 </body>
 </html>

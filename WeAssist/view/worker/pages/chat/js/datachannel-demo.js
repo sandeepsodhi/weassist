@@ -1,4 +1,3 @@
-console.log("datachannel-demo js loaded");
 // Initialise DataChannel.js
 var datachannel = new DataChannel();
 
@@ -195,13 +194,6 @@ var onMessageKeyDown = function(event) {
   }
 
   messageList.appendChild(newMessage);
-  // messageList.insertBefore(newMessage,messageList.firstChild)
-
-   var dem = document.getElementById('demo');
- dem.scrollTop  =dem.scrollHeight-dem.clientHeight;
-
-
-
 };
 
 var disableConnectInput = function() {

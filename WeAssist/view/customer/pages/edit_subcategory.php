@@ -9,26 +9,28 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../include/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="../../include/bootstrap/css/font-awesome.min.css"> -->
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="../../include/bootstrap/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../include/bootstrap/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../dist/css/profilelabel.css">
-  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../../include/bootstrap/css/profilelabel.css">
+  <link rel="stylesheet" href="../../include/bootstrap/css/skins/_all-skins.min.css">
  <!-- for claendar -->
-      <link href="css/custom.css" rel="stylesheet">
+      <link href="../../include/bootstrap/css/calendar/custom.css" rel="stylesheet">
  
-    <link href="css/green.css" rel="stylesheet">
+    <link href="../../include/bootstrap/css/calendar/green.css" rel="stylesheet">
     <!--  -->
-
+    <!-- clock -->
+    <link rel="stylesheet" type="text/css" href="../../include/bootstrap/css/calendar/bootstrap-clockpicker.min.css">
   
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,7 +40,7 @@
   <![endif]-->
 <style>
 input[type='text'] { font-size: 140%;
-font-family: monospace; }
+font-family: none; }
 
 h1 {
 	font-size: 140%;
@@ -106,7 +108,11 @@ select option { padding: 1px 5px 1px 3px;}
    $id=$data['jobcategory'];
    $_SESSION['jobid']=$id;
    $price=$data['job_price'];
-//   $jdate=$date['target_date'];
+   $jtime=$data['job_time'];
+  $jdate=$data['target_date'];
+    $myDateTime = DateTime::createFromFormat('Y-m-d', $jdate);
+$jdate = $myDateTime->format('d-m-Y'); 
+
 
    $res=mysqli_query($conn,"select cat_name from category where cat_id='$id'");
                   $ress=mysqli_fetch_row($res);
@@ -128,7 +134,6 @@ $_SESSION['jobcategory']=$jobcategory;
    ?>
 
   </select>
- 
 	<label id="profile-label"  for="subcateg" style="margin-left:5%; width:11%">Sub Category</label> 
  <select class="btn" name="subcateg" id="subcateg" style="border:1px solid grey; color:black ; width:25%; margin-left:3%" value="<?php echo $subcateg ?>">
  <option value=''disabled='' select=''>-- Select Option --</option>
@@ -140,56 +145,44 @@ $_SESSION['jobcategory']=$jobcategory;
 
   <label id="profile-label"  for="jobtitle" style="margin-left:5%; width:11%" size="10%">Job Title</label>
   <input type="text" id="jobtitle" name="jobtitle" placeholder="Job Title" style="border:1px solid grey; color:black ;width:25% ; text; margin-left:3%"
-   value="<?php echo $jobtitle; ?>">
+   value="<?php echo $jobtitle; ?>" onkeydown="if(event.keyCode == 13) return false" required>
 </div>
 <div class="form-group">
 
 <label id="profile-label"  for="jobdesc" style="margin-left:5%; width:11% ; margin-top:-50% "; >Job Description</label>
-<textarea  rows="5" cols="110"  id="jobdesc" name="jobdesc" style="border:1px solid grey; color:black ; margin-left:3%" ><?php echo $jobdesc?></textarea>
+<textarea  rows="5" cols="110"  id="jobdesc" name="jobdesc" style="border:1px solid grey; color:black ; margin-left:3%" onkeydown="if(event.keyCode == 13) return false"  required><?php echo $jobdesc?></textarea>
 
 </div>
 <div class="form-group">
 <label id="profile-label"  for="jobprice" style="margin-left:5%; width:11%" size="10%">Enter Price</label>
   <i class="fa fa-rupee" style="font-size:24px;margin-left:1%"></i>
-  <input type="number" id="jobprice" name="jobprice" placeholder="" style="border:1px solid grey; color:black ;width:25% ;font-family:none;font-size:130%;font-color:black;
-    margin-left:5px" value="">
+  <input type="number" id="jobprice" name="jobprice" placeholder="" style="border:1px solid grey; color:black ;width:25% ;font-family:none;font-size:130%;font-color:black;  margin-left:5px" value="<?php echo  $price?>" onkeydown="if(event.keyCode == 13) return false" required>
 
 </div>
 <div class="form-group">
 <label id="profile-label"  for="Edate" style="margin-left:5%; width:11%" size="10%">Select date</label>
-        <input type="text" name="Edate"  id="Edate" placeholder="select Date"   style="width:25%;margin-left:3%" >
+        <input type="text" name="Edate"  id="Edate" placeholder="select Date"   style="width:25%;margin-left:3%" onkeydown="if(event.keyCode == 13) return false"  value=""  required>
         <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="false"></span>
   <label id="profile-label"  for="tapp" style="margin-left:5%; width:11%">Select Time</label>         
-<select class="btn" name="tapp" id="tapp" style="border:1px solid grey; color:black ; width:7%; margin-left:1%">
-  <option value="10">10</option>
-  <option value="11">11</option>
-  <option value="12">12</option>
-  <option value="13">13</option>
-  <option value="14">14</option>
-  <option value="15">15</option>
-  <option value="16">16</option>
-  <option value="17">17</option>
-  <option value="18">18</option>
-  <option value="19">19</option>
-  <option value="20">20</option>
-  <option value="21">21</option>
-</select>
-
+<input type="text" id="tapp" name="tapp"   placeholder="E.g 00:00" style="font-family:none;" class="row" value="<?php echo $jtime ?>"  aria-describedby="inputSuccess2Status" onkeydown="if(event.keyCode == 13) return false" required>
+                            <span class="glyphicon glyphicon-time form-control-feedback right" aria-hidden="false"></span>
         </div>
 
 
 <div class="form-group">
 <label id="profile-label"  for="jobphoto" style="margin-left:6%; width:11%" >Upload Job Photo</label>
- <input type="file" class="btn-primary" id="jobphoto" name="jobphoto" style="background-color:white;border:1px solid grey; color:black ;width:25%; margin-left:19%; margin-top:-3%"  accept=".jpg,.jpeg,.png," onchange="readURL(this)">	
+<!--  <input type="file" class="btn-primary" id="jobphoto" name="jobphoto" style="background-color:white;border:1px solid grey; color:black ;width:25%; margin-left:19%; margin-top:-3%"  accept=".jpg,.jpeg,.png," onchange="readURL(this)">	
 </div>
 <div class="form-group" style="margin-left:19%;width:20%;height:5%">
-<img id="jobshow"/ src="image/<?php echo $photo ?>" style="width:50%;height:30%;">  
-</div>
+<img id="jobshow" src="../../image/<?php echo $photo ?>" style="width:50%;height:30%;">  
+ -->
+   <img id="jobshow" width="100" height="100" style="border-radius:10px;position:absolute; z-index:1;margin-left: 3%;margin-top:1%" alt="" src="../../image/<?php echo $photo ?>">
+<input id="jobphoto" name="jobphoto" type="file" onchange="readURL(this)" style="border-radius:10px;width:100px;height:100px;position:relative;z-index:2;margin-top: -4%;opacity:0;margin-left: 20%;" accept=".jpg,.jpeg,.png" name="image">
 <br/>
 <div class="form-group">
 <button type="submit" class="btn btn-info btn-primary" name="btnupdate" id="btnupdate"  style="width:20%; margin-left:20%;  " >Update</button></div>
   </div>
-	 </div>
+	 </div>  
 	  </div>
 	   </section>	   
   
@@ -209,27 +202,27 @@ $_SESSION['jobcategory']=$jobcategory;
 
 <!-- ./wrapper -->
 
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+<script src="../../include/js/jquery-1.11.1.min.js"></script>
+<script src="../../include/js/jquery.validate.min.js"></script>
+<script src="../../include/js/additional-methods.min.js"></script>
   
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
 
 <!-- jQuery 2.2.0 -->
-<script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script src="../../include/js/jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../include/js/bootstrap.min.js"></script>
 <!-- Slimscroll -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../../include/js/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
+<script src="../../include/js/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../dist/js/app.min.js"></script>
+<script src="../../include/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
+<script src="../../include/js/demo.js"></script>
 <!-- calenadr -->
-<script type="text/javascript" src="js/moment.min2.js"></script>
-  <script type="text/javascript" src="js/daterangepicker.js"></script>
+<script type="text/javascript" src="../../include/js/moment.min2.js"></script>
+  <script type="text/javascript" src="../../include/js/daterangepicker.js"></script>
 
 //for selecting subcategory
 <script type="text/javascript">
@@ -285,5 +278,19 @@ function readURL(input){
         });
     </script>
 
+    <!--clock-->
+    <script type="text/javascript" src="js/bootstrap-clockpicker.min.js"></script>
+    <script type="text/javascript">
+    $('.clockpicker').clockpicker()
+    .find('input').change(function(){
+        console.log(this.value);
+    });
+    var input = $('#tapp').clockpicker({
+    placement: 'bottom',
+    align: 'left',
+    autoclose: true,
+    'default': 'now'
+    });
+    </script>
 </body>
 </html>
