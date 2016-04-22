@@ -22,17 +22,14 @@ require_once '../../../model/dbConnect.php';
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+  <link rel="stylesheet" href="../plugins/iCheck/flat/blue.css">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="plugins/morris/morris.css">
+  <link rel="stylesheet" href="../plugins/morris/morris.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <!-- <link rel="stylesheet" href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css"> -->
   <!-- Date Picker -->
-  <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -116,17 +113,16 @@ require_once '../../../model/dbConnect.php';
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3><?php
-                $q1="select count(*)  as num from users";
+                $q1="select count(*)  as num from users where u_type='worker'";
                 $r1=mysqli_query($conn,$q1);
                 $res=mysqli_fetch_assoc($r1);
                 echo $res['num'];
-          
                 $_SESSION['logstat']='false';
                 $_SESSION['jvalid']='false';
               ?>
               </h3>
 
-              <p>User Registrations</p>
+              <p>Total Worker</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -137,15 +133,23 @@ require_once '../../../model/dbConnect.php';
         <!-- ./col -->
         <div class="col-lg-4 col-xs-4">
           <!-- small box -->
-          <div class="small-box bg-red">
+          <div class="small-box bg-blue">
             <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
+                        <h3>
+              <?php
+                require_once '../../../model/dbConnect.php'; 
+                $result=("select * from job_status where job_status.status='1' ");
+                $r=mysqli_query($conn,$result);
+                $count = mysqli_num_rows($r);
+                echo $count;
+              ?>
+             </h3>
+            <p>Completed Jobs</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="ion-android-happy"></i>
             </div>
+
 <!--             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
  -->          </div>
         </div>
@@ -153,27 +157,46 @@ require_once '../../../model/dbConnect.php';
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
+              <h3>
+               <?php  require_once '../../../model/dbConnect.php'; 
+            $result=("select * from job_status where job_status.status='0' ");
+            $r=mysqli_query($conn,$result);
+              $count = mysqli_num_rows($r);
+              echo $count;
+            ?>
+              </h3>
+            <p>Pending Jobs</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-<!--             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <i class="ion-android-sad"></i>
+            </div><!--             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
  -->          </div>
         </div>
         <div class="col-lg-4 col-xs-4">
           <!-- small box -->
-          <div class="small-box bg-red">
+          <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>65</h3>
+            <h3>
+                        <?php   require_once '../../../model/dbConnect.php'; 
+   $u_idd  = $_SESSION['u_id'];
+   $uname=$_SESSION['u_name'];
+   $que = mysqli_query($conn,"select count(*) as total from users where u_type='customer' ");
 
-              <p>Unique Visitors</p>
+  $res = mysqli_fetch_assoc($que);
+echo  $res['total'];
+  
+?>
+
+
+              </h3>
+
+              <p>Total Customers</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+                    <i class="ion ion-person-add"></i>
+
             </div>
+
 <!--             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
  -->          </div>
         </div>
@@ -181,7 +204,7 @@ require_once '../../../model/dbConnect.php';
         <!-- ./col -->
 
       </div>
-      <div class="row col-xs-8 col-lg-8">
+      <div class="row col-xs-12 col-lg-12">
           <!-- quick email widget -->
           <div class="box box-info">
             <div class="box-header">
@@ -219,24 +242,27 @@ require_once '../../../model/dbConnect.php';
             </div>
           </div>
     </div>
-      <div class="row col-xs-4 col-lg-4">
+      <!-- <div class="row col-xs-12 col-lg-4" style="margin-left: 1%">
           <!-- quick email widget -->
-          <div class="box box-info">
-            <div class="box-header">
-              <i class="fa fa-envelope"></i>
+          <!-- <div class="box box-default">
 
-              <h3 class="box-title">Quick Email</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
-                  <i class="fa fa-times"></i></button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <div class="box-body">
-            </div>
-            </div>
-            </div>
+                <div class="box-header with-border">
+          <h3 class="box-title">Your Next Job Location</h3>
+
+          <div class="box-tools pull-right">
+            <button data-widget="collapse" class="btn btn-box-tool" type="button"><i class="fa fa-minus"></i></button>
+            <button data-widget="remove" class="btn btn-box-tool" type="button"><i class="fa fa-remove"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+
+        <div id="map_wrapper"  style="padding: 0%" >
+
+    <div id="map_canvas" class="mapping"></div>
+</div>
+  </div>
+</div>
+    </div> -->
           
       <!-- /.row -->
       <!-- Main row -->
@@ -253,6 +279,7 @@ require_once '../../../model/dbConnect.php';
     </section>
     <!-- /.content -->
   </div>
+
   <!-- /.content-wrapper -->
  <?php include 'footer_sidebar.php'; ?>
 
@@ -263,7 +290,7 @@ require_once '../../../model/dbConnect.php';
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.0 -->
-<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -274,31 +301,33 @@ require_once '../../../model/dbConnect.php';
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="plugins/morris/morris.min.js"></script>
+<script src="../plugins/morris/morris.min.js"></script>
 <!-- Sparkline -->
-<script src="plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="../plugins/sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
-<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<!-- <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="plugins/knob/jquery.knob.js"></script>
+ --><!-- jQuery Knob Chart -->
+<!-- <script src="plugins/knob/jquery.knob.js"></script> -->
 <!-- daterangepicker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script> -->
+<!-- <script src="plugins/daterangepicker/daterangepicker.js"></script> -->
 <!-- datepicker -->
-<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- <script src="plugins/datepicker/bootstrap-datepicker.js"></script> -->
 <!-- Bootstrap WYSIHTML5 -->
-<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
-<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
+<script src="../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
+<script src="../dist/js/app.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
+<script src="../dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="../dist/js/demo.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+
 <script type="text/javascript">
   
     $("#email").click(function(){
@@ -321,5 +350,99 @@ require_once '../../../model/dbConnect.php';
     });
 
 </script>
+<!--
+<script type="text/javascript">
+  
+  jQuery(function($) {
+    // Asynchronously Load the map API 
+    var script = document.createElement('script');
+    script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+    document.body.appendChild(script);
+});
+
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map.setTilt(45);
+        
+    var markersA = [];
+
+    <?php 
+    $uname=$_SESSION['u_name'];
+ //       include '../../model/dbConnect.php';
+//        $query = mysqli_query($conn,"select subcat_name,subcat_city,subcat_desc from sub_category limit 1,1");
+        $query = mysqli_query($conn,"select city,f_name,l_name from users   where u_name='$uname' ");
+        // (select job_id from job_status where workerassign='$uname')");
+
+        while($res = mysqli_fetch_row($query))
+        {
+
+    ?>            
+
+    var latt,lng;
+
+    var geocoder =  new google.maps.Geocoder();
+    geocoder.geocode( { 'address': '<?php echo $res[1]?>'}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            
+            latt = results[0].geometry.location.lat();
+            lng = results[0].geometry.location.lng();
+
+
+
+            // Multiple Markers
+            var markers = [
+                ['<?php echo $res[0]?>',latt,lng]
+            ];
+            console.log(markers[0]);
+
+            for( i = 0; i < markers.length; i++ ) {
+            var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+            bounds.extend(position);
+            marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: markers[i][0]
+            });
+            
+            // Allow each marker to have an info window    
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infoWindow.setContent(infoWindowContent[i][0]);
+                    infoWindow.open(map, marker);
+                }
+            })(marker, i));
+
+            // Automatically center the map fitting all markers on the screen
+            map.fitBounds(bounds);
+            }
+
+            // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+            var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+                this.setZoom(8);
+                google.maps.event.removeListener(boundsListener);
+            });
+        
+
+            var infoWindowContent = [
+                ['<div class="info_content">' +
+                '<h3><?php echo $res[0] ?></h3>' +
+                '<p><?php echo $res[2] ?></p>' +   '</div>']
+            ];
+                
+            var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+          } 
+        });
+    <?php  } ?>
+}
+</script>
+-->
 </body>
 </html>

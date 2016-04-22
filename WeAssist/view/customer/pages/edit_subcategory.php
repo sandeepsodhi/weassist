@@ -9,29 +9,26 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
-  <link rel="stylesheet" href="../../include/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="../../include/bootstrap/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="../../include/bootstrap/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../include/bootstrap/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../include/bootstrap/css/profilelabel.css">
-  <link rel="stylesheet" href="../../include/bootstrap/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../dist/css/profilelabel.css">
+  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
  <!-- for claendar -->
-      <link href="../../include/bootstrap/css/calendar/custom.css" rel="stylesheet">
+      <link href="css/custom.css" rel="stylesheet">
  
-    <link href="../../include/bootstrap/css/calendar/green.css" rel="stylesheet">
+    <link href="css/green.css" rel="stylesheet">
     <!--  -->
     <!-- clock -->
-    <link rel="stylesheet" type="text/css" href="../../include/bootstrap/css/calendar/bootstrap-clockpicker.min.css">
-  
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-clockpicker.min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -202,29 +199,28 @@ $_SESSION['jobcategory']=$jobcategory;
 
 <!-- ./wrapper -->
 
-<script src="../../include/js/jquery-1.11.1.min.js"></script>
-<script src="../../include/js/jquery.validate.min.js"></script>
-<script src="../../include/js/additional-methods.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/additional-methods.min.js"></script>
   
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+<!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script> -->
 
 <!-- jQuery 2.2.0 -->
-<script src="../../include/js/jQuery-2.2.0.min.js"></script>
+<script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
-<script src="../../include/js/bootstrap.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
 <!-- Slimscroll -->
-<script src="../../include/js/jquery.slimscroll.min.js"></script>
+<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="../../include/js/fastclick.js"></script>
+<script src="../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../../include/js/app.min.js"></script>
+<script src="../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../include/js/demo.js"></script>
+<script src="../dist/js/demo.js"></script>
 <!-- calenadr -->
-<script type="text/javascript" src="../../include/js/moment.min2.js"></script>
-  <script type="text/javascript" src="../../include/js/daterangepicker.js"></script>
+<script type="text/javascript" src="js/moment.min2.js"></script>
+  <script type="text/javascript" src="js/daterangepicker.js"></script>
 
-//for selecting subcategory
 <script type="text/javascript">
 $(document).ready(function(){
 $("#jobcateg").change(function()
