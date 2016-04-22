@@ -35,13 +35,28 @@
   
   <script type="text/javascript" src="jquery.min.js"></script>
 
+
+  <style type="text/css">
+#map_wrapper {
+    height: 500px;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+
+
 </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
 
 <div class="wrapper">
 <?php include 'header.php'; ?> 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div style="min-height: 1260px;">
+  <!-- Content Wrapper. Contains page content us -->
+  <div  class="content-wrapper"  style="min-height: 1260px;overflow: auto;" >
     <!-- Content Header (Page header) -->
 
     <section class="content-header">
@@ -57,6 +72,8 @@
 
     <!-- Main content -->
     <section class="content">
+
+    <!-- Main row -->
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-xs-6">
@@ -125,6 +142,43 @@
         <!-- ./col -->
       </div>
       <!-- /.row -->
+
+
+              <div class="row col-xs-12 col-lg-12" >
+            <!-- quick email widget -->
+            <div class="box box-info">
+              <div class="box-header">
+                <h3 class="box-title">Visitors Report</h3>
+
+                <!-- tools box -->
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+                <!-- /. tools -->
+              </div>
+              <div class="box-body">
+                <div id="map_wrapper">
+                  <div id="map_canvas" class="mapping"></div>
+                </div>
+            </div>
+          </div>
+       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <!-- Main row -->
       <div class="row col-xs-12 col-lg-8">
           <!-- quick email widget -->
@@ -166,10 +220,8 @@
 	  </div>
 	  
 	  <div class="col-lg-4 col-xs-12">
-	   
-
 	      <!-- USERS LIST -->
-	      <div class="box box-danger">
+	      <div class="box box-info">
 	        <div class="box-header with-border">
 	          <h3 class="box-title">Latest Members</h3>
 
@@ -224,8 +276,6 @@
 	       }
         ?>
 
-
-
 	          </ul>
 	          <!-- /.users-list -->
 	        </div>
@@ -233,41 +283,172 @@
 	        
 
 	        <div class="box-footer text-center">
-	          <a href="javascript::" class="uppercase">View All Users</a>
+	          <!-- <a href="javascript::" class="uppercase">View All Users</a> -->
 	        </div>
 	        <!-- /.box-footer -->
 	      </div>
 	      <!-- /.box -->
-
-
-        </div>
+      </div>
             <!-- /.col -->
+
+      <!-- Main row -->
+        <!-- <div class="row col-xs-12 col-lg-12"> -->
+            <!-- quick email widget -->
+          <!--   <div class="box box-success">
+              <div class="box-header">
+                <h3 class="box-title">Visitors Report</h3>
+ -->
+                <!-- tools box -->
+     <!--            <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+      -->           <!-- /. tools -->
+<!--               </div>
+              <div class="box-body">
+                <div id="map_wrapper">
+                  <div id="map_canvas" class="mapping"></div>
+                </div>
+            </div>
+          </div>
        </div>
-          <!-- /.row -->
-
-
+ -->          <!-- /.row -->
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+</div>
+
 
   <!-- footer for main  file -->
   <?php include 'footer_sidebar.php'; ?>
-
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery 2.2.0 -->
+
 <script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
+
+
+
+
+<script type="text/javascript">
+  
+  jQuery(function($) {
+    // Asynchronously Load the map API 
+    var script = document.createElement('script');
+    script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+    document.body.appendChild(script);
+});
+
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map.setTilt(45);
+        
+    var markersA = [];
+
+    <?php 
+
+        include '../../../model/dbConnect.php';
+        $query = mysqli_query($conn,"select subcat_name,subcat_city,subcat_desc from sub_category");
+        while($res = mysqli_fetch_row($query))
+        {
+    ?>            
+
+    var latt,lng;
+
+    var geocoder =  new google.maps.Geocoder();
+    geocoder.geocode( { 'address': '<?php echo $res[1]?>'}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            
+            latt = results[0].geometry.location.lat();
+            lng = results[0].geometry.location.lng();
+
+
+
+            // Multiple Markers
+            var markers = [
+                ['<?php echo $res[0]?>',latt,lng]
+            ];
+
+            for( i = 0; i < markers.length; i++ ) {
+            var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+            bounds.extend(position);
+            marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: markers[i][0]
+            });
+            
+            // Allow each marker to have an info window    
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infoWindow.setContent(infoWindowContent[i][0]);
+                    infoWindow.open(map, marker);
+                }
+            })(marker, i));
+
+            // Automatically center the map fitting all markers on the screen
+            map.fitBounds(bounds);
+            }
+
+            // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+            var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+                this.setZoom(8);
+                var opt = { scrollwheel:false  };
+                map.setOptions(opt);
+                google.maps.event.removeListener(boundsListener);
+       
+
+
+            });
+        
+
+            var infoWindowContent = [
+                ['<div class="info_content">' +
+                '<h3><?php echo $res[0] ?></h3>' +
+                '<p><?php echo $res[2] ?></p>' +   '</div>']
+            ];
+                
+            var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+          } 
+        });
+    <?php  } ?>
+}
 </script>
-<!-- Bootstrap 3.3.5 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <!-- Bootstrap 3.3.5 -->
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -305,6 +486,9 @@
 <script src="//webrtc-experiment.com/DataChannel.js"></script>
 <!-- Our WebRTC application -->
 <script src="js/datachannel-demo.js"></script>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+
 <!-- Fill channel name -->
 <script>
   function getParameterByName(name) {
@@ -341,6 +525,96 @@
         });
     });
 
+</script>
+
+
+
+<script type="text/javascript">
+  
+//   jQuery(function($) {
+//     // Asynchronously Load the map API 
+//     var script = document.createElement('script');
+//     script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+//     document.body.appendChild(script);
+// });
+
+// function initialize() {
+//     var map;
+//     var bounds = new google.maps.LatLngBounds();
+//     var mapOptions = {
+//         mapTypeId: 'roadmap'
+//     };
+                    
+//     // Display a map on the page
+//     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+//     map.setTilt(45);
+        
+//     var markersA = [];
+
+//     <?php 
+
+//         include '../../../model/dbConnect.php';
+//         $query = mysqli_query($conn,"select subcat_name,subcat_city,subcat_desc from sub_category");
+//         while($res = mysqli_fetch_row($query))
+//         {
+//     ?>            
+
+//     var latt,lng;
+
+//     var geocoder =  new google.maps.Geocoder();
+//     geocoder.geocode( { 'address': '<?php echo $res[1]?>'}, function(results, status) {
+//           if (status == google.maps.GeocoderStatus.OK) {
+            
+//             latt = results[0].geometry.location.lat();
+//             lng = results[0].geometry.location.lng();
+
+
+
+//             // Multiple Markers
+//             var markers = [
+//                 ['<?php echo $res[0]?>',latt,lng]
+//             ];
+
+//             for( i = 0; i < markers.length; i++ ) {
+//             var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+//             bounds.extend(position);
+//             marker = new google.maps.Marker({
+//                 position: position,
+//                 map: map,
+//                 title: markers[i][0]
+//             });
+            
+//             // Allow each marker to have an info window    
+//             google.maps.event.addListener(marker, 'click', (function(marker, i) {
+//                 return function() {
+//                     infoWindow.setContent(infoWindowContent[i][0]);
+//                     infoWindow.open(map, marker);
+//                 }
+//             })(marker, i));
+
+//             // Automatically center the map fitting all markers on the screen
+//             map.fitBounds(bounds);
+//             }
+
+//             // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+//             var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+//                 this.setZoom(8);
+//                 google.maps.event.removeListener(boundsListener);
+//             });
+        
+
+//             var infoWindowContent = [
+//                 ['<div class="info_content">' +
+//                 '<h3><?php echo $res[0] ?></h3>' +
+//                 '<p><?php echo $res[2] ?></p>' +   '</div>']
+//             ];
+                
+//             var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+//           } 
+//         });
+//     <?php // } ?>
+//// }
 </script>
 
 

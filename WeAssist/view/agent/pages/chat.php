@@ -1,6 +1,12 @@
 <?php
   include '../../../model/dbConnect.php';
   session_start();
+  if(!isset($_SESSION['u_type']))
+  {
+    header('location:../../main/error_401.php');
+  }
+
+
 ?>
 
 <!-- Our WebRTC application styling -->
@@ -8,35 +14,33 @@
 
 
 <!-- Bootstrap 3.3.5 -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="../assets/dist/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
-<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="../assets/dist/css/skins/_all-skins.min.css">
 <!-- iCheck -->
-<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
-<!-- Morris chart -->
-<link rel="stylesheet" href="plugins/morris/morris.css">
+<link rel="stylesheet" href="../assets/dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="../assets/plugins/iCheck/flat/blue.css">
 <!-- jvectormap -->
-<link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+<!-- <link rel="stylesheet" href="../assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css"> -->
 <!-- Date Picker -->
-<link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+<!-- <link rel="stylesheet" href="../assets/plugins/datepicker/datepicker3.css"> -->
 <!-- Daterange picker -->
-<link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
+<!-- <link rel="stylesheet" href="../assets/plugins/daterangepicker/daterangepicker-bs3.css"> -->
 <!-- bootstrap wysihtml5 - text editor -->
-<link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<link rel="stylesheet" href="../assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
 <!-- Our WebRTC application styling -->
 <link rel="stylesheet" type="text/css" href="chat/style/datachannel-demo.css">
 
 <body onload="onCreateChannel()"> 
-  <div id="hbar">
+  <div id="hbar" style="/*width:340;height:380px;*/overflow:hidden;">
       <div class="box box-success">
         <div class="box-header">
           <i class="fa fa-comments-o"></i>
@@ -96,16 +100,17 @@
 <!-- Fill channel name -->
 
 <!-- jQuery 2.2.0 -->
-<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script src="../assets/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <!-- Bootstrap 3.3.5 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 
 
 
 <script type="text/javascript">
+
 $(document).ready(function(){
 $("#cat_id").change(function()
 {

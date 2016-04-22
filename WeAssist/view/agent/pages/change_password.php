@@ -1,6 +1,9 @@
 <?php 
 session_start();
-include 'header.php';
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
 ?>  
 <html>
 <head>
@@ -9,17 +12,17 @@ include 'header.php';
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../dist/css/profilelabel.css">
-  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../assets/dist/css/profilelabel.css">
+  <link rel="stylesheet" href="../assets/dist/css/skins/_all-skins.min.css">
   <style type="text/css">
   .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
     border-top: 0px;
@@ -34,6 +37,7 @@ include 'header.php';
 </head>
 <body class="hold-transition skin-red-light sidebar-mini">
 <div class="wrapper">
+  <?php include 'header.php';  ?>
     <!-- Content Wrapper -->
      <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -127,15 +131,15 @@ if(isset($_SESSION['registered']))
 ?>
 
 <!-- jQuery 2.2.0 -->
-<script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script src="../assets/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- Slimscroll -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
+<script src="../assets/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../dist/js/app.min.js"></script>
+<script src="../assets/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 
 <script type="text/javascript">

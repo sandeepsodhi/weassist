@@ -48,7 +48,7 @@
 		$email    = new SendGrid\Email();
 		//print_r($mytemp);
 		$email->addTo($u_name)
-		      ->setFrom("support-no-reply@weassist.com")
+		      ->setFrom("support@weassist.esy.es")
 		      ->setSubject("Congrats!!! Your Account has been successfully created  ")
 		      ->setHtml($mytemp);
 

@@ -19,20 +19,20 @@
 	 
     if (mysqli_num_rows($login) == 1) {
 		
-          $_SESSION['u_name']=$_POST['u_name'];
-	        $_SESSION['f_name']=$lo['f_name'];
-          $_SESSION['l_name']=$lo['l_name'];
-          $_SESSION['contact']=$lo['contact'];
-          $_SESSION['city']=$lo['city'];
-          $_SESSION['profile_pic']=$lo['profile_pic'];
-          $_SESSION['u_type'] = $lo['u_type'];
-          $_SESSION['u_id']=$lo['u_id'];
-    
+      $_SESSION['u_name']=$_POST['u_name'];
+      $_SESSION['f_name']=$lo['f_name'];
+      $_SESSION['l_name']=$lo['l_name'];
+      $_SESSION['contact']=$lo['contact'];
+      $_SESSION['city']=$lo['city'];
+      $_SESSION['profile_pic']=$lo['profile_pic'];
+      $_SESSION['u_type'] = $lo['u_type'];
+      $_SESSION['u_id']=$lo['u_id'];
+  
       if($_SESSION['u_type']=="worker")     
 	      header("location:../view/worker/pages/index.php");
       elseif($_SESSION['u_type']=="agent") 
         header("location:../view/agent/pages/index.php");
-      elseif($_SESSION['u_type']=="Customer")
+      elseif($_SESSION['u_type']=="customer")
         header("location:../view/customer/pages/index.php");
       else
         header("location:../view/main/index.php");

@@ -1,4 +1,9 @@
 <?php session_start();
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -164,7 +169,7 @@ $jobid=$row1['subcat_id'];
 
 
   echo "<h>Job Created </h><br/><br/><br/>";
-  //     include('emailagain.php');
+       include('emailagain.php');
 }
 else
 {

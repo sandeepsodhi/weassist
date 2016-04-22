@@ -1,4 +1,12 @@
+<?php
+require_once '../../../model/dbConnect.php'; 
+              
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
 
+?>
 <!-- Our WebRTC application styling -->
 <link rel="stylesheet" type="text/css" href="chat/style/datachannel-demo.css">
 
@@ -35,7 +43,7 @@
           <li class="dropdown user user-menu">
 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image" id="change_image3" >
+              <img src="../../image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image" id="change_image3" >
             <span class="hidden-xs"><?php echo $_SESSION['f_name']; ?></span>
             </a>
 					<!--	  <li>		  		  						<a href="logout.php">Logout  </a></li>-->
@@ -43,7 +51,7 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="image/<?php  echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image" id="change_image4" >
+                <img src="../../image/<?php  echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image" id="change_image4" >
 
                 <p>
                  <?php echo $_SESSION['f_name']; ?>
@@ -80,7 +88,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel"style="height:70px;">
         <div class="pull-left image">
-          <img src="image/<?php echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image"  id="change_imagee">
+          <img src="../../image/<?php echo $_SESSION['profile_pic']; ?>" class="img-circle" alt="User Image"  id="change_imagee">
         </div>
         <div class="pull-left info"><b>Worker &nbsp;</b>
           <p><?php echo $_SESSION['f_name']; ?></p>
@@ -155,7 +163,7 @@ if($_SESSION['u_type']=='Customer')
 <!--class ="demo-chat-create" for conneting -->
 <div style="position:fixed;z-index:20;width:280px;bottom:0px;right:2px;padding:2px;scroll-behavior:auto;">
           <!-- <div onclick="show()" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px"> -->
-          <div onclick="window.open('chat.php','width=100px', 'height=370px')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
+          <div onclick="window.open('chat.php','_blank','width=370,height=400,resizeable=no,toolbar=no,menubar=no,statusbar=no,location=no,titlebar=no')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
 
             <div>
               <strong><center>Help & Support</center></strong>
@@ -170,7 +178,7 @@ elseif($_SESSION['u_type']=='agent' || $_SESSION['u_type']=='worker'){
 
 <div style="position:fixed;z-index:20;width:280px;bottom:0px;right:2px;padding:2px;scroll-behavior:auto;">
           <!-- <div onclick="show()" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px"> -->
-          <div onclick="window.open('chat.php','width=100px', 'height=370px')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
+          <div onclick="window.open('chat.php','_blank','width=370,height=400,resizeable=no,toolbar=no,menubar=no,statusbar=no,location=no,titlebar=no')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
 
             <div>
               <strong><center>Help & Support</center></strong>

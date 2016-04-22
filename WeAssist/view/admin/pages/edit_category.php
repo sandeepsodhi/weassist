@@ -69,7 +69,7 @@
                 </tr>
                 <tr>
                   <td colspan=2><input style='width:90px;margin-left:180px' class='btn btn-primary' type='submit' value='Update'><input style='width:90px;margin-left:20px' class='btn btn-primary' type='button' value='Delete' onclick='window.location.href=\"../../../controller/delete_category.php?cat_id=".$_GET['cat_id']."\"'></td>
-                <tr>
+                </tr>
                 "; ?>
              </tbody></table>
             </div>

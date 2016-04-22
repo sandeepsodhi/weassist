@@ -24,7 +24,7 @@
   }
   else
   {
-    echo $_SESSION['wrong'] = 'r';
+   echo $_SESSION['wrong'] = 'r';
    header("location:../view/admin/");
   } 
 ?>

@@ -1,5 +1,4 @@
-<?php include '../../../model/dbConnect.php'; 
-
+<?php include '../../../model/dbConnect.php';
 ?>
 
                     
@@ -126,13 +125,13 @@
     <!-- /.sidebar -->
   </aside>
 <?php
-if(isset($_SESSION['u_type'])=='Customer')
+if(isset($_SESSION['u_type'])=='customer')
 {
 ?> 
 <!--class ="demo-chat-create" for conneting -->
 <div style="position:fixed;z-index:20;width:280px;bottom:0px;right:2px;padding:2px;scroll-behavior:auto;">
   <!-- <div onclick="show()" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px"> -->
-  <div onclick="window.open('chat.php','width=100px', 'height=370px')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
+  <div onclick="window.open('chat.php','_blank','width=370,height=400,resizeable=no,toolbar=no,menubar=no,statusbar=no,location=no,titlebar=no')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
     <div>
       <strong><center>Help & Support</center></strong>
     </div>

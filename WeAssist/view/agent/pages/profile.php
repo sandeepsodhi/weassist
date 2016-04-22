@@ -2,6 +2,11 @@
 <html>	
 <?php
     session_start();
+    if(!isset($_SESSION['u_type']))
+    {
+      header('location:../../main/error_401.php');
+    }
+
     require_once '../../../model/dbConnect.php';
     $qu = mysqli_query($conn,"select contact,city from users where u_name = '".$_SESSION['u_name']."'");
     $fe = mysqli_fetch_assoc($qu);
@@ -16,14 +21,14 @@
 <head>
   <title>WeAssist | Profile</title>
 
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="../dist/css/profilelabel.css">
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../assets/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../assets/dist/css/profilelabel.css">
 
   <!-- phone number validation -->
-  <link href="css1//bootstrap-form.css" rel="stylesheet">
-  <link href="css/bootstrapValidator.css" rel="stylesheet"/> 
+  <link href="../assets/css/bootstrap-form.css" rel="stylesheet">
+  <link href="../assets/css/bootstrapValidator.css" rel="stylesheet"/> 
  
   <!--<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
   <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
@@ -237,22 +242,21 @@ if(isset($_SESSION['update']))
 </div>
     
     
-    
 <!-- jQuery 2.2.0 -->
 <!--<script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
+<script src="../assets/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
-<script src="../dist/js/app.min.js"></script>
+<script src="../assets/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
+<script src="../assets/dist/js/demo.js"></script>
 <!--<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>-->
-<script src="js/jquery.validate.js"></script>
+<script src="../assets/js/jquery.validate.js"></script>
 
 </div>
 <!-- <script type="text/javascript" src="js/bootstrap-form.js"></script> -->
@@ -441,13 +445,13 @@ function phonenumber(inputtxt)
 
       if (isValid)
           nextStepWizard.removeAttr('disabled').trigger('click');
- //alert("Hello! I am an alert box!!");
- //$("#profileform").submit();
+          //alert("Hello! I am an alert box!!");
+         //$("#profileform").submit();
 
   });
 
   $('div.setup-panel div a.btn-primary').trigger('click');
-  	  					//$("#profileform").submit();
+		//$("#profileform").submit();
 
 });
   </script>

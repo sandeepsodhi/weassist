@@ -1,4 +1,20 @@
-<?php session_start() ?>
+<?php 
+session_start();
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
+
+require_once '../../../model/dbConnect.php'; 
+              
+if(isset($_SESSION['u_id']))
+{
+mysqli_query($conn,"update chat_USER set is_online='online' where pr_id in(select pr_id from profession where u_id = '".$_SESSION['u_id']."')");
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,28 +24,22 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../assets/dist/css/skins/_all-skins.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+  <link rel="stylesheet" href="../assets/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../assets/plugins/iCheck/flat/blue.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="../assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 </head>
 
  <?php include('header.php'); ?>
@@ -51,7 +61,7 @@
     <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-4">
           <!-- small box -->
           <div class="small-box bg-aqua">
 		  
@@ -75,7 +85,7 @@
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-4">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -98,12 +108,12 @@
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-4">
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>
-			  			 <?php 	require_once '../../../model/dbConnect.php'; 
+			  			 <?php 	
             $result=("select * from job_status where job_status.status='0' ");
             $r=mysqli_query($conn,$result);
               $count = mysqli_num_rows($r);
@@ -119,7 +129,7 @@
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-4">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
@@ -141,6 +151,57 @@
             </div>
             <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
+          </div>
+<div class="col-lg-4 col-xs-4">
+          <!-- small box -->
+          <div class="small-box bg-orange">
+            <div class="inner">
+        <h3>     
+        <?php   require_once '../../../model/dbConnect.php'; 
+   $u_idd  = $_SESSION['u_id'];
+   $que = mysqli_query($conn,"select sum(c.job_price) as total from createjob c join job_status j join users u  on j.workerassign = u.u_name and c.subcat_id = j.job_id where r_user in (select r_code from users where u_id ='$u_idd')");
+
+  $res = mysqli_fetch_assoc($que);
+echo '<i class="fa fa-rupee" style="font-size:28px;margin-left:1%;margin-right:2%"></i>';
+echo  $res['total']-(0.1*$res['total']);
+  
+?>
+  </h3>     
+
+              <p>Total Workers Earnings</p>
+            </div>
+
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+           
+          </div>
+        </div>
+        <div class="col-lg-4 col-xs-4">
+          <!-- small box -->
+          <div class="small-box bg-blue">
+            <div class="inner">
+        <h3>     
+        <?php   require_once '../../../model/dbConnect.php'; 
+  $u_idd  = $_SESSION['u_id'];
+   $que = mysqli_query($conn,"select sum(c.job_price) as total from createjob c join job_status j join users u  on j.workerassign = u.u_name and c.subcat_id = j.job_id where r_user in (select r_code from users where u_id ='$u_idd')");
+
+  $res = mysqli_fetch_assoc($que);
+  echo '<i class="fa fa-rupee" style="font-size:28px;margin-left:1%;margin-right:2%"></i>'.(0.1*$res['total']);
+  
+?>
+  </h3>     
+
+              <p>Your Total Earnings</p>
+            </div>
+
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+          
+          </div>
+        
+
         </div>
         <!-- ./col -->
       </div>
@@ -273,25 +334,21 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.0 -->
-<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script src="../assets/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="../assets/plugins/jQueryUI/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
 <!-- Bootstrap 3.3.5 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="plugins/knob/jquery.knob.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
+<script src="../assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
+<script src="../assets/dist/js/app.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
+<script src="../assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="../assets/dist/js/demo.js"></script>
 
 <!-- Fill channel name -->
 <script>

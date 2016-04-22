@@ -1,3 +1,9 @@
+<?php 
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
+?>
 
  <!-- Our WebRTC application styling  -->
 <link rel="stylesheet" type="text/css" href="chat/style/datachannel-demo.css">
@@ -20,7 +26,6 @@
      <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
-
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../../image/<?php  echo $_SESSION['profile_pic']; ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $_SESSION['f_name']; ?></span>
@@ -116,13 +121,13 @@
     <!-- /.sidebar -->
   </aside>
 <?php
-if($_SESSION['u_type']=='Customer')
+if($_SESSION['u_type']=='customer')
 {
 ?> 
 <!--class ="demo-chat-create" for conneting -->
 <div style="position:fixed;z-index:20;width:280px;bottom:0px;right:2px;padding:2px;scroll-behavior:auto;">
   <!-- <div onclick="show()" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px"> -->
-  <div onclick="window.open('chat.php','width=100px', 'height=370px')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
+  <div onclick="window.open('chat.php','_blank','width=370,height=400,resizeable=no,toolbar=no,menubar=no,statusbar=no,location=no,titlebar=no')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
     <div>
       <strong><center>Help & Support</center></strong>
     </div>
@@ -134,9 +139,9 @@ elseif($_SESSION['u_type']=='agent' || $_SESSION['u_type']=='worker'){
 ?>
 <!--class ="demo-chat-create" for conneting -->
 
-<div style="position:fixed;z-index:20;width:280px;bottom:0px;right:2px;padding:2px;scroll-behavior:auto;">
+<div style="position:fixed;z-index:20;width:280px;bottom:0px;right:2px;padding:2px;scrollbars:no;">
   <!-- <div onclick="show()" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px"> -->
-  <div onclick="window.open('chat.php','width=100px', 'height=370px')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
+  <div onclick="window.open('chat.php','_blank','width=370,height=400,resizeable=no,toolbar=no,menubar=no,statusbar=no,location=no,titlebar=no')" style="border-radius:4px;background-color:#dd4b39;color:white;height:25px">
     <div>
       <strong><center>Help & Support</center></strong>
     </div>
@@ -210,3 +215,5 @@ function sc_roll()
 }
 </script>
 </body>
+
+

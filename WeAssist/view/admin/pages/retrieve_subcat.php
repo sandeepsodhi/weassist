@@ -18,7 +18,7 @@ echo "</select>
 }
 ?>
 <script type="text/javascript">
-console.log("s");
+// console.log("s");
 $(document).ready(function(){
 function catchanged()
 {

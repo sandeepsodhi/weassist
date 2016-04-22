@@ -30,7 +30,7 @@
     $array = XML2Array($xml);
     $content = array($xml->getName() => $array);
     
-    include('html.inc');
+    include('html.php');
     exit;
     
     function XML2Array(SimpleXMLElement $parent)

@@ -12,7 +12,9 @@ require_once '../model/dbConnect.php';
 	$state = mysqli_real_escape_string($conn,$_POST['State']);
 	$country = mysqli_real_escape_string($conn,$_POST['Country']);
 
-	$subcat_name = mysqli_real_escape_string($conn,$_POST['subcategories']);
+	echo $subcat_name = mysqli_real_escape_string($conn,$_POST['subcategories']);
+
+	echo "<br>";
 
 	$u_name=$_SESSION['u_name'];
 	$u_id =$_SESSION['u_id'];
@@ -23,7 +25,6 @@ require_once '../model/dbConnect.php';
 	if(!empty($_FILES['image']) && $_FILES['image']['size']>0)
 	{
 		$name=$_FILES['image']['name'];
-		echo "in her ";
 		$type = $_FILES['image']['type'];
 		$error = $_FILES['image']['error'];
 		$size = $_FILES['image']['size'];
@@ -49,11 +50,13 @@ require_once '../model/dbConnect.php';
 	
 				for($i=0;$i<$size-1;$i++)
 				{
-					$subcatid = ltrim($sub[$i]);
-					$cat =  mysqli_fetch_assoc(mysqli_query($conn,"select cat_id,subcat_id from sub_category where subcat_name='$subcatid'"));
+					$subcatname = ltrim($sub[$i]);
+					$cat =  mysqli_fetch_assoc(mysqli_query($conn,"select cat_id,subcat_id from sub_category where subcat_name='$subcatname'"));
 					$cat_id = $cat['cat_id'];
 					$subcat_id = $cat['subcat_id'];
-					$login1=mysqli_query($conn,"call profession('".$u_id."','".$cat_id."','".$subcat_id."','".$u_name."')"); 
+
+					$login1=mysqli_query($conn,"call profession('".$u_id."','".$cat_id."','".$subcat_id."','".$u_name."')")or mysqli_error($conn);
+										
 				}
 			}		
 		}
@@ -70,13 +73,15 @@ require_once '../model/dbConnect.php';
 
 			for($i=0;$i<$size-1;$i++)
 			{
-				$subcatid = ltrim($sub[$i]);
-				$cat =  mysqli_fetch_assoc(mysqli_query($conn,"select cat_id,subcat_id from sub_category where subcat_name='$subcatid'"));
+				$subcatname = ltrim($sub[$i]);
+				$cat =  mysqli_fetch_assoc(mysqli_query($conn,"select cat_id,subcat_id from sub_category where subcat_name='$subcatname'"));
 				$cat_id = $cat['cat_id'];
 				$subcat_id = $cat['subcat_id'];
-				$login1=mysqli_query($conn,"call profession('".$u_id."','".$cat_id."','".$subcat_id."','".$u_name."')"); 
-			
+				
+				$login1=mysqli_query($conn,"call profession('".$u_id."','".$cat_id."','".$subcat_id."','".$u_name."')") or mysqli_error($conn);
+				
 			}
+
 		}
 		else
 		{
@@ -86,21 +91,34 @@ require_once '../model/dbConnect.php';
 			$sub = explode(",",$subcat_name);
 			$size = sizeof($sub);
 
+	
 			for($i=0;$i<$size-1;$i++)
 			{
-				$subcatid = ltrim($sub[$i]);
-				$cat =  mysqli_fetch_assoc(mysqli_query($conn,"select cat_id,subcat_id from sub_category where subcat_name='$subcatid'"));
+				$subcatname = ltrim($sub[$i]);
+				$cat =  mysqli_fetch_assoc(mysqli_query($conn,"select cat_id,subcat_id from sub_category where subcat_name='$subcatname'"));
 				$cat_id = $cat['cat_id'];
 				$subcat_id = $cat['subcat_id'];
-				$login1=mysqli_query($conn,"call profession('".$u_id."','".$cat_id."','".$subcat_id."','".$u_name."')"); 
+				$u_id;
+				
+				$dup_query = mysqli_query($conn,"select cat_id,subcat_id,u_id from profession");
+
+				$login1=mysqli_query($conn,"call profession('".$u_id."','".$cat_id."','".$subcat_id."','".$u_name."')");
 			}
 		}
 	}
 
-
-  	if ($login and $login1) {
+  	if ($login) {
 		
 		$pic = mysqli_fetch_row(mysqli_query($conn,"select u_id,profile_pic from users where u_name = '$u_name'"));
+
+
+		$pr_que = mysqli_query($conn,"select pr_id from profession where u_name='$u_name'");
+
+		while($pr_feth = mysqli_fetch_assoc($pr_que))
+		{
+			$ch_que = mysqli_query($conn,"insert into chat_user(pr_id,channel,is_online) values('".$pr_feth['pr_id']."','agent_".$u_id."','online')");
+		}
+
 		
 		$_SESSION['f_name'] = $f_name;
 	    $_SESSION['l_name']=$l_name;
@@ -109,12 +127,13 @@ require_once '../model/dbConnect.php';
       	$_SESSION['profile_pic'] = $pic[1];
 
 
-  		$_SESSION['update'] = "success";
-  		header('location:../view/agent/pages/index.php');
+  		echo $_SESSION['update'] = "success";
+ 		header('location:../view/agent/pages/index.php');
+ 		
  	} 
   	else
 	{
-		$_SESSION['update'] = "failed";
+		echo $_SESSION['update'] = "failed";
 		header('location:../view/agent/pages/profile.php');
 	}
 ?>

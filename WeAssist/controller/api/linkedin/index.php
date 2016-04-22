@@ -7,4 +7,4 @@ if ($config['linkedin_access'] === '' || CONSUMER_SECRET === '') {
 
 //$content = '<a href="linkedin.php"><img src="./images/linkedin_connect_button.png" alt="Sign in with LinkedIn"/></a>';
 
-//include('html.inc');
+// include('html.php');

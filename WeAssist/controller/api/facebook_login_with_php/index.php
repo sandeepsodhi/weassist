@@ -7,8 +7,8 @@ if(!$fbuser){
 	$loginUrl = $facebook->getLoginUrl(array('redirect_uri'=>$homeurl,'scope'=>$fbPermissions));
 	//echo $homeurl;
 //	echo '<a href="'.$loginUrl.'"></a>';
-header("location:".$loginUrl);
-//	$output = '<a href="'.$loginUrl.'"><img src="images/fb_login.png"></a>'; 	
+
+	$output = '<a href="'.$loginUrl.'"><img src="images/fb_login.png"></a>'; 	
 }else{
 	$user_profile = $facebook->api('/me?fields=id,first_name,last_name,email,gender,locale,picture');
 //	$user = new Users();

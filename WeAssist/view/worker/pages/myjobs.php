@@ -1,5 +1,11 @@
 <?php session_start();
 //echo $_SESSION['f_name'];
+require_once '../../../model/dbConnect.php'; 
+              
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
 
 ?>
 
@@ -112,7 +118,7 @@ $catid=$row1['cat_id'];
                          ."<td>".$row3['job_date']."</td>".
                         "<td>".$row3['target_date'].$row3['job_time']."</td>".
 						            "<td>".$username."<br/><a  "."onclick="."custdetail('$email')". " href='javascript:;' >More Details</a> "."</td>".
-						            "<td><img src='../image/$imag' style='border-radius:10px;width:60px;height:50px;'></td>".
+						            "<td><img src='../../image/$imag' style='border-radius:10px;width:60px;height:50px;'></td>".
                         "<td><input type='button' value='Accept' class='btn btn-success' style='color:white;font-family:Arial;margin-right:1px;width:75px;margin-bottom:2px' id='btnaccept'". "onclick='acceptfun(".$jobid.")' >".
                          "<input type='button' value='Reject'  class='btn btn-primary' style='color:white;font-family:Arial;margin-right:1px;width:75px;margin-bottom:2px' id='btnreject'". "onclick='rejectfun(".$jobid.")' >".
                          " </td>".

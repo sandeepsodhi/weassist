@@ -1,4 +1,11 @@
 <?php session_start();
+require_once '../../../model/dbConnect.php'; 
+              
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
+
  ?>
 <!DOCTYPE html>
 <html>

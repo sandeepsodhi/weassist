@@ -1,8 +1,25 @@
 <?php 
+
 session_start();
+if(isset($_SESSION['u_name']))
+$_SESSION['test']=$_SESSION['u_name'];
+else
+$_SESSION['test']='';
+
+require_once '../../model/dbConnect.php';
 ?>
 <!DOCTYPE html>
-<html class="not-ie no-js" lang="en">  
+<html>  
+<style type="text/css">
+#map_wrapper {
+    height: 500px;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 100%;
+}
+</style>
 
 <head>
 
@@ -65,6 +82,8 @@ session_start();
 <!-- timing display css -->
 	<link rel="stylesheet" href="css/timingstyle.css">
 
+
+
 <style>
 #myModl{
 height: 1000px;
@@ -109,22 +128,11 @@ margin-top: 20px;
 
 	<div class="site-wrapper">
 
-<?php include('header.php'); ?>		
-<!-- Header / End -->
-	<?php 
-		// if(isset($_SESSION['wrong'])=='r')
-		// {
-		// 	echo "<script>alert('Wrong Username or password :v')</script>";
-		// 	// echo "<div style='height:30px;background-color:red;color:white;margin-top:10px;padding-top:5px;padding-left:50px'><b>Wrong Username or password</b></div>";
-		// }
-		// unset($_SESSION['wrong']);
-
-	?>
+   <?php include('header.php'); ?>		
 
 
-					<!-- Main -->
+	<!-- Main -->
 		<div class="main" role="main">
-
 			<!-- Slider -->
 			<section class="slider-holder">
 				<div class="flexslider carousel">
@@ -186,7 +194,13 @@ margin-top: 20px;
 									<div class="counter-holder counter-dark">
 										<i class="fa fa-3x fa-suitcase"></i>
 										<span class="counter-wrap">
-											<span class="counter" data-to="42" data-speed="1500" data-refresh-interval="50">42</span>
+										      <?php
+                                              $q1=mysqli_query($conn,"select count(*) as total from createjob");
+                                              $row=mysqli_fetch_array($q1,MYSQLI_ASSOC);
+                                              ?>
+											<span class="counter" data-to="<?php echo $row['total']?>" data-speed="1500" data-refresh-interval="50">
+											<?php echo $row['total'];?>
+											</span>
 										</span>
 										<span class="counter-info">
 											<span class="counter-info-inner">All Jobs</span>
@@ -197,7 +211,13 @@ margin-top: 20px;
 									<div class="counter-holder counter-dark">
 										<i class="fa fa-3x fa-thumbs-o-up"></i>
 										<span class="counter-wrap">
-											<span class="counter" data-to="12" data-speed="1500" data-refresh-interval="50">12</span>
+											<span class="counter" data-to="
+                                            <?php
+											$q1=mysqli_query($conn,"select count(*) as total from job_status where status=1");
+                                              $row=mysqli_fetch_array($q1,MYSQLI_ASSOC);
+                                              echo $row['total']
+                                               ?>
+                                              " data-speed="1500" data-refresh-interval="50"><?phpecho $row['total']?></span>
 										</span>
 										<span class="counter-info">
 											<span class="counter-info-inner">Jobs Filled</span>
@@ -208,7 +228,12 @@ margin-top: 20px;
 									<div class="counter-holder counter-dark">
 										<i class="fa fa-3x fa-user"></i>
 										<span class="counter-wrap">
-											<span class="counter" data-to="48" data-speed="1500" data-refresh-interval="50">48</span>
+											<span class="counter" data-to=" <?php
+											$q1=mysqli_query($conn,"select count(*) as total from job_status where status=1");
+                                              $row=mysqli_fetch_array($q1,MYSQLI_ASSOC);
+                                              echo $row['total'] ?>
+
+											" data-speed="1500" data-refresh-interval="50">48</span>
 										</span>
 										<span class="counter-info">
 											<span class="counter-info-inner">Professionals</span>
@@ -219,7 +244,13 @@ margin-top: 20px;
 									<div class="counter-holder counter-dark">
 										<i class="fa fa-3x fa-users"></i>
 										<span class="counter-wrap">
-											<span class="counter" data-to="64" data-speed="1500" data-refresh-interval="50">64</span>
+											<span class="counter" data-to=" <?php
+											$q1=mysqli_query($conn,"select count(*) as total from sub_category");
+                                              $row=mysqli_fetch_array($q1,MYSQLI_ASSOC);
+                                              echo $row['total'] ?>
+
+
+											" data-speed="1500" data-refresh-interval="50"><?php echo $row['total'] ?></span>
 										</span>
 										<span class="counter-info">
 											<span class="counter-info-inner">Members</span>
@@ -345,7 +376,7 @@ margin-top: 20px;
 					<!-- Services / End -->
 
 					<!-- Clients -->
-					<div class="section-light section-bg2 section-overlay__yes section-overlay-color__primary section-overlay_opacity-90" data-stellar-background-ratio="0.5">
+<!-- 					<div class="section-light section-bg2 section-overlay__yes section-overlay-color__primary section-overlay_opacity-90" data-stellar-background-ratio="0.5">
 						<div class="section-inner">
 							<div class="row">
 								<div class="col-sm-3 col-md-3">
@@ -371,12 +402,12 @@ margin-top: 20px;
 							</div>
 						</div>
 					</div>
-					<!-- Clients / End -->
+ -->					<!-- Clients / End -->
 
-					<div class="spacer"></div>
+					<!-- <div class="spacer"></div> -->
 
 					<!-- Testimonials -->
-					<div class="title-bordered">
+<!-- 					<div class="title-bordered">
 						<h2>Testimonials <small>what clients say</small></h2>
 					</div>
 					<div class="row">
@@ -438,127 +469,28 @@ margin-top: 20px;
 							</div>
 						</div>
 					</div>
-					<!-- Testimonials / End -->
+ -->					<!-- Testimonials / End -->
 
 				</div>
 			</section>
 			<!-- Page Content / End -->
 
+
+			<div class="title-bordered">
+				<h2>Our Service Location<small>places where we provide services</small></h2>
+			</div>
+
+
+
+			<!-- map -->
+				<div id="map_wrapper" style="border-width: 5px solid black">
+			    <div id="map_canvas" class="mapping"></div>
+				</div>
+
 			<!-- Footer -->
-			<footer class="footer" id="footer">
-				<div class="footer-widgets">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-4 col-md-4">
-								<!-- Widget :: Contacts Info -->
-								<div class="contacts-widget widget widget__footer">
-									<h3 class="widget-title">Contact Us</h3>
-									<div class="widget-content">
-										<ul class="contacts-info-list">
-											<li>
-												<i class="fa fa-map-marker"></i>
-												<div class="info-item">
-													HandyMan Co., Old Town Avenue, New York, USA 23000
-												</div>
-											</li>
-											<li>
-												<i class="fa fa-phone"></i>
-												<div class="info-item">
-													+1700 124-5678<br>
-													+1700 124-5678
-												</div>
-											</li>
-											<li>
-												<i class="fa fa-envelope"></i>
-												<span class="info-item">
-													<a href="mailto:info@dan-fisher.com">support@dan-fisher.com</a>
-												</span>
-											</li>
-											<li>
-												<i class="fa fa-clock-o"></i>
-												<div class="info-item">
-													Monday - Friday 9:00 - 21:00
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<!-- /Widget :: Contacts Info -->
-							</div>
-							<div class="col-sm-4 col-md-4">
-								<!-- Widget :: Latest Posts -->
-								<div class="latest-posts-widget widget widget__footer">
-									<h3 class="widget-title">Recent Posts</h3>
-									<div class="widget-content">
-										<ul class="latest-posts-list">
-											<li>
-												<figure class="thumbnail"><a href="#"><img src="images/samples/post-img1-sm.jpg" alt=""></a></figure>
-												<h5 class="title"><a href="#">Three Simple Household Repairs That'll Save You Hundreds</a></h5>
-												<span class="date">April, 18 2015</span>
-											</li>
-											<li>
-												<figure class="thumbnail"><a href="#"><img src="images/samples/post-img2-sm.jpg" alt=""></a></figure>
-												<h5 class="title"><a href="#">Tools That Make Yard Work Easy: The Big Backpack Blower</a></h5>
-												<span class="date">March, 21 2015</span>
-											</li>
-											<li>
-												<figure class="thumbnail"><a href="#"><img src="images/samples/post-img3-sm.jpg" alt=""></a></figure>
-												<h5 class="title"><a href="#">11 Tips for Dealing With Water Damage, Mold and Mildew</a></h5>
-												<span class="date">March, 21 2015</span>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<!-- /Widget :: Latest Posts -->
-							</div>
 
-							<div class="clearfix visible-sm"></div>
+			<?php include 'footer.php '; ?>
 
-							<div class="col-sm-4 col-md-4">
-								<!-- Widget :: Newsletter -->
-								<div class="widget_newsletter widget widget__footer">
-									<h3 class="widget-title">Get Our Newsletter</h3>
-									<div class="widget-content">
-										<p>Get timely DIY projects for your home and yard delivered right to your inbox every week!</p>
-
-										<form action="http://handyman.dan-fisher.com/php/newsletter-form.php" method="POST" id="newsletter-form">
-
-											<div class="alert alert-success hidden" id="newsletter-alert-success">
-												<strong>Success!</strong> Thank you for subscribing.
-											</div>
-											<div class="alert alert-danger hidden" id="newsletter-alert-error">
-												<strong>Error!</strong> Something went wrong.
-											</div>
-
-											<div class="form-group">
-												<input type="email" 
-													value=""
-													data-msg-required="Please enter email address."
-													data-msg-email="Please enter a valid email address."
-													class="form-control"
-													placeholder="Enter your email here..."
-													name="subscribe-email"
-													id="subscribe-email">
-											</div>
-											<button type="submit" class="btn btn-primary btn-block" data-loading-text="Loading...">Subscribe</button>
-										</form>
-									</div>
-								</div>
-								<!-- /Widget :: Newsletter -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="footer-copyright">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-12">
-								Copyright &copy; 2015  <a href="index.php">HandyMan</a> &nbsp;| &nbsp;All Rights Reserved
-							</div>
-						</div>
-					</div>
-				</div>
-			</footer>
 			<!-- Footer / End -->
 			<div id="myModl" class="modal fade" role="dialog">
 <div class="modal-content">
@@ -740,8 +672,17 @@ margin-top: 20px;
 			unset($_SESSION['error']);
 		}
 	}	
-	?>
-
+ 
+// password change alert
+    if(isset($_SESSION['pwdchange']))
+		if($_SESSION['pwdchange']=='true')
+		{
+//		   $_SESSION['pwdchange']='false';
+			echo "<script>alert('Login with new password')</script>";
+ 			$_SESSION['pwdchange']='false';	
+ 			unset($_SESSION['pwdchange']);
+		}
+?>
 
 	
 	
@@ -1283,7 +1224,99 @@ window.location.href = "../customer/pages/index.php";
    	});
    </script>
 
+<script type="text/javascript">
+	
+	jQuery(function($) {
+    // Asynchronously Load the map API 
+    var script = document.createElement('script');
+    script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+    document.body.appendChild(script);
+});
+
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map.setTilt(45);
+        
+    var markersA = [];
+
+    <?php 
+
+        include '../../model/dbConnect.php';
+        $query = mysqli_query($conn,"select subcat_name,subcat_city,subcat_desc from sub_category");
+        while($res = mysqli_fetch_row($query))
+        {
+    ?>            
+
+    var latt,lng;
+
+    var geocoder =  new google.maps.Geocoder();
+    geocoder.geocode( { 'address': '<?php echo $res[1]?>'}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            
+            latt = results[0].geometry.location.lat();
+            lng = results[0].geometry.location.lng();
+
+
+
+            // Multiple Markers
+            var markers = [
+                ['<?php echo $res[0]?>',latt,lng]
+            ];
+
+            for( i = 0; i < markers.length; i++ ) {
+            var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+            bounds.extend(position);
+            marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: markers[i][0],
+			    animation:google.maps.Animation.BOUNCE
+            });
+            
+            // Allow each marker to have an info window    
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infoWindow.setContent(infoWindowContent[i][0]);
+                    infoWindow.open(map, marker);
+                }
+            })(marker, i));
+
+            // Automatically center the map fitting all markers on the screen
+            map.fitBounds(bounds);
+            }
+
+            // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+            var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+                this.setZoom(8);
+                var opt = { scrollwheel:false  };
+				map.setOptions(opt);
+                google.maps.event.removeListener(boundsListener);
+            });
+        
+
+            var infoWindowContent = [
+                ['<div class="info_content">' +
+                '<h3><?php echo $res[0] ?></h3>' +
+                '<p><?php echo $res[2] ?></p>' +   '</div>']
+            ];
+                
+            var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+          } 
+        });
+    <?php  } ?>
+}
+</script>
+
 </body>
+
 
 <!-- Mirrored from handyman.dan-fisher.com/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 22 Jan 2016 06:55:11 GMT -->
 </html>

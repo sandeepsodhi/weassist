@@ -1,5 +1,10 @@
 <?php session_start() ;
 require_once '../../../model/dbConnect.php';
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -102,7 +107,7 @@ require_once '../../../model/dbConnect.php';
               <p>ToTal Agent</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-person-add"></i>
             </div>
             <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           --> </div>

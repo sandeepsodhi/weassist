@@ -15,6 +15,6 @@ $res = mysqli_query($conn, $query1);
 $res = mysqli_query($conn, $query1);
  $r1=mysqli_fetch_assoc($res);
  $workernames=$r1['f_name'];              
-//include 'emailaccept.php' ; 
+include 'emailaccept.php' ; 
 echo 'true';
 ?>

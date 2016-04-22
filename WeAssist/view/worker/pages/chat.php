@@ -1,3 +1,11 @@
+<?php
+require_once '../../../model/dbConnect.php'; 
+              
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
+?>
 <!-- Our WebRTC application styling -->
 <link rel="stylesheet" type="text/css" href="chat/style/datachannel-demo.css">
 

@@ -1,7 +1,7 @@
 <?php
 
-$config['base_url']             =   'http://weassist.esy.es/WeAssist/controller/api/linkedin/'; 
-$config['callback_url']         =   'http://weassist.esy.es/WeAssist/controller/api/linkedin/index.php';
+$config['base_url']             =   'http://localhost/WeAssist/controller/api/linkedin/'; 
+$config['callback_url']         =   'http://localhost/WeAssist/controller/api/linkedin/index.php';
 
 //linkedin configuration
 $config['linkedin_access']      =   '75csvmhvp7iqpa';

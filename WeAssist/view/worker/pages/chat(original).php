@@ -1,3 +1,11 @@
+<?php
+require_once '../../../model/dbConnect.php'; 
+              
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
+?>
 <div style="display: none" id="hbar">
               <div class="box box-success">
                 <div class="box-header">

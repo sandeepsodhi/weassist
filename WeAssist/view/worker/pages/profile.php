@@ -1,7 +1,18 @@
+<?php 
+session_start();
+if(!isset($_SESSION['u_type']))
+{
+  header('location:../../main/error_401.php');
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html>	
+
 <?php
-    session_start();
+//    session_start();
     require_once '../../../model/dbConnect.php';
     $qu = mysqli_query($conn,"select contact,city from users where u_name = '".$_SESSION['u_name']."'");
     $fe = mysqli_fetch_assoc($qu);
