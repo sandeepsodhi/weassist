@@ -276,6 +276,8 @@ echo  $res['total']-(0.1*$res['total']);
 
           if($info[1] == null)
           {
+            if($i==0)
+              echo "No worker working under you";
             break;
           }
 
@@ -311,7 +313,7 @@ echo  $res['total']-(0.1*$res['total']);
           
 
           <div class="box-footer text-center">
-            <a href="javascript::" class="uppercase">View All Users</a>
+            <!-- <a href="javascript::" class="uppercase">View All Users</a> -->
           </div>
           <!-- /.box-footer -->
         </div>
