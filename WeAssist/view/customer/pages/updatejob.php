@@ -10,7 +10,7 @@ if(!isset($_SESSION['u_type']))
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Widgets</title>
+  <title>Customer | Jobs</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -120,7 +120,7 @@ $_SESSION['jobcategory']=$jobcateg;
   //  $res = $conn->prepare("call updatedetails(?,?,?,?,?,?,?,?)");
     //$res->bind_param("sssdssss",$f_name,$l_name,$email,$phone,$city,$uname,$state,$country);
     //echo $res->execute(); 
-        echo "frfr1";
+      //  echo "frfr1";
                     $sql=mysqli_query($conn,"Update createjob set jobcategory='$jobcategory',subcategory='$subcateg',jobtitle='$jobtitle',jobdesc='$jobdesc'
                                      where subcat_id='$jobid' " );
         $sql=mysqli_query($conn,"Update job_status set cat_id='$jobcategory',subcat_id='$subcategid'
@@ -146,7 +146,6 @@ $_SESSION['jobcategory']=$jobcateg;
                                    //   $_SESSION['image']=$name;
 //                               include('emailagain.php');
                       
-                               echo "<h>Job Updated </h>";
           
           }
           else
@@ -177,7 +176,8 @@ $_SESSION['jobcategory']=$jobcateg;
   }
 
   //        include('emailagain.php');
-
+                       echo "<h>Job Updated </h><br/>";
+        
    ?> 
 
 
