@@ -80,9 +80,13 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
-
-              <p>New Orders</p>
+              <h3>
+                <?php 
+                $c = mysqli_fetch_row(mysqli_query($conn,"select count(u_id) from users"));
+                echo $c[0];
+                ?>
+              </h3>
+              <p>User Registrations</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -95,10 +99,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
-            </div>
+        <?php
+                $q1="select count(*)  as num from users where u_type='agent'";
+                $r1=mysqli_query($conn,$q1);
+                $res=mysqli_fetch_assoc($r1);
+                echo "<h3>".$res['num']."</h3>";
+            ?>
+        <p>ToTal Agent</p>
+      </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
@@ -107,16 +115,16 @@
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
+          <!-- small box -->  
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>
-              	<?php 
-              	$c = mysqli_fetch_row(mysqli_query($conn,"select count(u_id) from users"));
-              	echo $c[0];
-              	?>
-              </h3>
-              <p>User Registrations</p>
+              <?php
+                $q1="select count(*)  as num from users where u_type='worker'";
+                $r1=mysqli_query($conn,$q1);
+                $res=mysqli_fetch_assoc($r1);
+                echo "<h3>".$res['num']."</h3>";
+            ?>
+        <p>ToTal Workers</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -129,10 +137,14 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
-            </div>
+          <?php
+                $q1="select count(*)  as num from users where u_type='customer'";
+                $r1=mysqli_query($conn,$q1);
+                $res=mysqli_fetch_assoc($r1);
+                echo "<h3>".$res['num']."</h3>";
+            ?>
+        <p>ToTal Customer</p>
+          </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
@@ -148,7 +160,7 @@
             <!-- quick email widget -->
             <div class="box box-info">
               <div class="box-header">
-                <h3 class="box-title">Visitors Report</h3>
+                <h3 class="box-title">Visitors Location</h3>
 
                 <!-- tools box -->
                 <div class="box-tools pull-right">
@@ -214,80 +226,80 @@
             </div>
             <div id="email"class="box-footer clearfix">
               <button type="button" class="pull-right btn btn-default" id="sendEmail">
-              	<i class="fa fa-arrow-circle-right"></i></button>
+                <i class="fa fa-arrow-circle-right"></i></button>
             </div>
           </div>
-	  </div>
-	  
-	  <div class="col-lg-4 col-xs-12">
-	      <!-- USERS LIST -->
-	      <div class="box box-info">
-	        <div class="box-header with-border">
-	          <h3 class="box-title">Latest Members</h3>
+    </div>
+    
+    <div class="col-lg-4 col-xs-12">
+        <!-- USERS LIST -->
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">Latest Members</h3>
 
-	          <div class="box-tools pull-right">
-	            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-	            </button>
-	            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
-	            </button>
-	          </div>
-	        </div>
-	        <!-- /.box-header -->
-	        
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          
 
 
-	        <div class="box-body no-padding">
-	          <ul class="users-list clearfix">
+          <div class="box-body no-padding">
+            <ul class="users-list clearfix">
 
         <?php 
-	        
-	        for($i=0;$i<8;$i++)
-	        {
+          
+          for($i=0;$i<8;$i++)
+          {
 
-	        $info = mysqli_fetch_row(mysqli_query($conn,"select f_name,profile_pic,datediff(now(),date(activation_date)) as pend from users order by pend limit 1 offset $i"));
+          $info = mysqli_fetch_row(mysqli_query($conn,"select f_name,profile_pic,datediff(now(),date(activation_date)) as pend from users order by pend limit 1 offset $i"));
 
-	        if($info[1] == null)
-	        {
-	        	break;
-	        }
+          if($info[1] == null)
+          {
+            break;
+          }
 
-	        // $start_date = mysqli_fetch_row(mysqli_query($conn,"select current_timestamp from dual"));
-	        // $end_date = mysqli_fetch_row(mysqli_query($conn,"select entry_date from users where u_id='$info[0]'")); 
-		    // $days = floor((strtotime($start_date[0]) - strtotime($end_date[0])) / (60 * 60 * 24));
-	        
-	    ?>
+          // $start_date = mysqli_fetch_row(mysqli_query($conn,"select current_timestamp from dual"));
+          // $end_date = mysqli_fetch_row(mysqli_query($conn,"select entry_date from users where u_id='$info[0]'")); 
+        // $days = floor((strtotime($start_date[0]) - strtotime($end_date[0])) / (60 * 60 * 24));
+          
+      ?>
 
 
-	            <li>
-	              <img style="width:60px;height:60px" src="../../image/<?php echo $info[1];?>" alt="User Image">
-	              <div class="user-list-name"> <?php echo $info[0];   ?></div>
-	              <!-- <a class="users-list-name" href="#">Alexander Pierce</a> -->
-	              <span class="users-list-date"><?php   
-	         if($info[2]==0)
-		    	{echo "Today";}
-		    elseif($info[2]==1)
-		    	{echo "Yesterday";}
-		    else
-		    	{echo $info[2]."days ago";}
-		    	 ?></span>
-	            </li>
-	          
-		<?php
-	       }
+              <li>
+                <img style="width:60px;height:60px" src="../../image/<?php echo $info[1];?>" alt="User Image">
+                <div class="user-list-name"> <?php echo $info[0];   ?></div>
+                <!-- <a class="users-list-name" href="#">Alexander Pierce</a> -->
+                <span class="users-list-date"><?php   
+           if($info[2]==0)
+          {echo "Today";}
+        elseif($info[2]==1)
+          {echo "Yesterday";}
+        else
+          {echo $info[2]."days ago";}
+           ?></span>
+              </li>
+            
+    <?php
+         }
         ?>
 
-	          </ul>
-	          <!-- /.users-list -->
-	        </div>
-	        <!-- /.box-body -->
-	        
+            </ul>
+            <!-- /.users-list -->
+          </div>
+          <!-- /.box-body -->
+          
 
-	        <div class="box-footer text-center">
-	          <!-- <a href="javascript::" class="uppercase">View All Users</a> -->
-	        </div>
-	        <!-- /.box-footer -->
-	      </div>
-	      <!-- /.box -->
+          <div class="box-footer text-center">
+            <!-- <a href="javascript::" class="uppercase">View All Users</a> -->
+          </div>
+          <!-- /.box-footer -->
+        </div>
+        <!-- /.box -->
       </div>
             <!-- /.col -->
 
@@ -505,23 +517,23 @@ function initialize() {
   }
 </script>
 <script type="text/javascript">
-	
+  
     $("#email").click(function(){
         var emailFrom = $("#emailfrom").val();
         var emailTo = $("#emailto").val();
-	    var subject = $("#subject").val();
-		var message = $("#message").val();
+      var subject = $("#subject").val();
+    var message = $("#message").val();
 
-		console.log(message);
+    console.log(message);
 
         $.post("sendemail.php", {from:emailFrom,to:emailTo,subjectt:subject,messagee:message}, function(result){
           //alert("d");
           // $("span").html(result);
-        	// document.getElementById("curBidUser"+bidID); 
-        	$("#emailfrom").val("");// = "";
-    			$("#emailto").val("");//= null;
-        	$("#subject").val(""); //= null;
-        	$("#message").val(""); //= null;
+          // document.getElementById("curBidUser"+bidID); 
+          $("#emailfrom").val("");// = "";
+          $("#emailto").val("");//= null;
+          $("#subject").val(""); //= null;
+          $("#message").val(""); //= null;
         });
     });
 
