@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2016 at 12:46 AM
+-- Generation Time: Apr 25, 2016 at 12:08 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -81,7 +81,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updatedetails`(IN `fname` VARCHAR(5
 UPDATE users SET f_name=fname,l_name=lname,uname=email,contact=phone,city=city,
 state=state,country=country where u_name=uname$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `worker`(IN `fname` VARCHAR(30), IN `lname` VARCHAR(30), IN `uname` VARCHAR(30), IN `pass` VARCHAR(30), IN `contact` VARCHAR(30), IN `utype` VARCHAR(30), IN `image` VARCHAR(255), IN `rcode` VARCHAR(255), IN `ruser` VARCHAR(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `worker`(IN `fname` VARCHAR(30), IN `lname` VARCHAR(30), IN `uname` VARCHAR(30), IN `pass` VARCHAR(30), IN `utype` VARCHAR(30), IN `image` VARCHAR(255), IN `rcode` VARCHAR(255), IN `ruser` VARCHAR(50))
 INSERT INTO users(f_name,l_name,u_name,pswd,u_type,profile_pic,r_code,r_user)VALUE(fname,lname,uname,pass,utype,image,rcode,ruser)$$
 
 DELIMITER ;
@@ -361,17 +361,17 @@ CREATE TABLE IF NOT EXISTS `sub_category` (
 --
 
 INSERT INTO `sub_category` (`subcat_id`, `cat_id`, `subcat_name`, `subcat_desc`, `subcat_image`, `subcat_city`, `subcat_isactive`) VALUES
-(1, 8, 'heart', 'Pain', 'heart.jpg', 'Jallandhar', 'YES'),
+(1, 8, 'heart', 'Pain', 'heart.jpg', 'Amritsar', 'YES'),
 (2, 9, 'subcatgory1', 'description for subcategory over here', 'photo4.jpg', 'Ludhiana', 'YES'),
-(3, 6, 'wall', 'Damage', 'wall1.jpg', 'chennai', 'YES'),
-(4, 6, 'roof', 'crack', 'roof1.jpg', 'Phagwara', 'YES'),
-(5, 4, 'bulb', 'fluctuating', 'bulb1.jpg', 'Amritsar', 'YES'),
+(3, 6, 'wall', 'Damage', 'wall1.jpg', 'Jalandhar', 'YES'),
+(4, 6, 'roof', 'crack', 'roof1.jpg', 'Patiala', 'YES'),
+(5, 4, 'bulb', 'fluctuating', 'bulb1.jpg', 'Ferozepur', 'YES'),
 (6, 11, 'subcategory3', 'Subcategory description', 'photo4.jpg', 'Jalandhar', 'YES'),
-(7, 3, 'damage', 'Floor', 'floor1.jpg', 'jrc', 'YES'),
-(8, 2, 'house', 'repair', 'house1.jpg', 'Chandigarh', 'YES'),
-(9, 7, 'construction', 'build', 'cons1.jpg', 'Ambala', 'YES'),
-(10, 4, 'fan', 'speed', 'photo4.jpg', 'jrc', 'YES'),
-(11, 5, 'construction', 'Any building construction', 'work2.jpg', 'Jallandhar', 'YES');
+(7, 3, 'damage', 'Floor', 'floor1.jpg', 'Ajitwal', 'YES'),
+(8, 2, 'house', 'repair', 'house1.jpg', 'Abohar', 'YES'),
+(9, 7, 'construction', 'build', 'cons1.jpg', 'Bathinda', 'YES'),
+(10, 4, 'fan', 'speed', 'photo4.jpg', 'Chandigarh', 'YES'),
+(11, 5, 'construction', 'Any building construction', 'work2.jpg', 'Chandigarh', 'YES');
 
 -- --------------------------------------------------------
 
@@ -396,7 +396,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_active` varchar(10) NOT NULL DEFAULT 'YES',
   `entry_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `activation_date` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -422,7 +422,8 @@ INSERT INTO `users` (`u_id`, `u_type`, `r_code`, `r_user`, `u_name`, `pswd`, `pr
 (34, 'worker', 'null', '8LZ8dug6', 'sumanjeet461@gmail.com', 'sodhi', 'avatar5.png', 'suman', 'jeet', 83635267227, 'Chandigarh', '', '', 'YES', '2016-04-22 20:02:31', '2016-04-12 07:00:00'),
 (35, 'worker', 'NULL', '', 'qsumanjeet46@gmail.com', '123', 'NewCandidateImage.jpg', 'Sandeep', 'sodhi', 0, '', '', '', 'YES', '2016-04-14 19:29:02', NULL),
 (36, 'agent', 'V3RZ4bwQ', 'NULL', 'testing@agent.com', '123', 'NewCandidateImage.jpg', 'testing', 'agent', 0, '', '', '', 'YES', '2016-04-14 19:31:14', NULL),
-(37, 'agent', '9QnsSIVi', 'NULL', '1testing@agent.com', '123', 'NewCandidateImage.jpg', 'testing', 'agent', 0, '', '', '', 'YES', '2016-04-14 19:35:09', NULL);
+(37, 'agent', '9QnsSIVi', 'NULL', '1testing@agent.com', '123', 'NewCandidateImage.jpg', 'testing', 'agent', 0, '', '', '', 'YES', '2016-04-14 19:35:09', NULL),
+(38, 'worker', 'NULL', '8LZ8dug6', 'shuvam.j@gmail.com', 'SpZayk5U', 'NewCandidateImage.jpg', 'hsiv', 'jah', 0, '', '', '', 'YES', '2016-04-24 22:03:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -559,7 +560,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- Constraints for dumped tables
 --
