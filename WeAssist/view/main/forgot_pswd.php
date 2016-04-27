@@ -74,7 +74,7 @@
         // $("#subject").val(""); //= null;
         // $("#message").val(""); //= null;
         if(result==0)  
-       { alert('Your are not sign up/inavlid email id  , please sign up first!!!');
+       { alert('Please sign up first, Your email id does not exist in our database');
         return false;
       }
       else
@@ -97,7 +97,7 @@
  }
  else
  {
-  alert('enter email id');
+  alert('Please enter your email-id');
  }       
     });
 

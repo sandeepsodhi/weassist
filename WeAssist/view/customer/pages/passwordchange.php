@@ -28,7 +28,7 @@ if(!isset($_SESSION['u_type']))
   <link rel="stylesheet" href="../dist/css/profilelabel.css">
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
   
-<style>
+<style>/*
 input[type='text'] { font-size: 140%;
 font-family: monospace; }
 
@@ -36,7 +36,20 @@ h1 {
   font-size: 140%;
 font-family: monospace;
 color:#000000;
+}*/
+
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  border-top: 0px;
+  }
+ .btn-border{
+  border-color:grey;
 }
+.font{
+  font-size: 20px;
+}
+
+
 </style>
 </head>
 <?php include('header.php');?>
@@ -61,60 +74,48 @@ color:#000000;
   <div class="row" style="margin:5% 10% 10% 10%">
     
        <div class="col-md-10">
-        <form class="form-inline"  id="editprofile"  method="post" name="editprofile" enctype="multipart/form-data" action="updateprofile.php" style="font-style: normal">
-              <div class="form-group" >
-                <table >
-                   <tr>
-                     <td>
-                       <label for="opwd" id="profile-label">Enter Old Password:</label></td>
-                     <td >
-                       <input type="password" class="form-control" id="opwd" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%" ></td>
-                       <td><div id="err1" style="margin-left:15%;color: red;"></div></td>
-                       </tr>
-                   <tr>
-                   
-                   <tr>
-                     <td>
-                       <label for="pwd" id="profile-label" style="margin-top:9%;">Enter New Password:</label></td>
-                     <td >
-                       <input type="password" class="form-control" id="pwd" onkeyup="checkl()" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%;;margin-top:9%;" ></td>
-                       <td><div id="err2" style="margin-left:150px;color: red;margin-top:5px;"></div></td>
-                       </tr>
-                   <tr>
-                     <td>
-                       <label for="npwd" id="profile-label" style="margin-top:9%;">Re-Enter New Password:</label></td>
-                     <td >
-                       <input type="password" class="form-control" id="cpwd" onkeyup="checkp()" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%;margin-top:9%;" ></td>
-                       <td><div id="err3" style="margin-left:150px;color: red;margin-top:5px;"></div></td>
-                       </tr>     
-                   </table>
-                   <table>
-                     <tr>
-                     <td>
-                     </td>
-                     <td >
-                     <div id="err4" style="margin-left:200px;color: red;margin-top:15px;width: 120%"></div>
-                     </td>
-                       <td></td>
-                       </tr>     
+        <form id="editprofile"  method="post" name="editprofile" enctype="multipart/form-data" action="updateprofile.php" >
+              <div class="box-body no-padding" >
+              <table class="table table-condensed" style="margin-top: 5%;">
+              <tbody>
+                <tr>
+                    <td class='col-xs-2 col-sm-3' style="padding-bottom:4%">Enter Old Password: </td>
+                  <td><input type='password' class='col-xs-8 col-sm-10 btn btn-border' id="opwd" required></td>
+                  <td>
+                    <div id="err1" style="margin-right:50%;color: red;"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class='col-xs-2 col-sm-3' style="padding-bottom:4%">Enter New Password:</td>
+                  <td><input type='password' class='col-xs-8 col-sm-10 btn btn-border' id='pwd' onkeyup="checkl()">
+                  </td>
+                  <td>
+                  <div id="err2" style="margin-left:-110px;color: red;margin-top:0%;"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class='col-xs-2 col-sm-3' style="padding-bottom:3%">Re-Enter New Password:</td>
+                  <td><input type='password' class='col-xs-8 col-sm-10 btn btn-border' id='cpwd' onkeyup='checkp()' required></td>
+                  <td>
+                  <div id="err3" style="margin-left:-110px;color: red;margin-top:0%;"></div>
+                  </td>
+                </tr>
+                <tr>
+                   <td>
+                   </td>
 
-                       <tr>
-                       <td></td>
-                     <td>
-                      <input type="button" name="btnch" class="btn btn-info" id="btnch" style="margin-top:15px;margin-left:200px;width:140px;"  value="Change"> </input>
-                      </td>
-                       </tr>                       
-                </table>
-<!--                 <table>
-                	                       <tr>
-                       <td></td>
-                     <td>
-                     <div id="note" style="margin-top:3%;margin-left:195px;color: red"><p>*You will be redirected to login page after password change</p> 
-                     </td></tr>                  
-
-                </table> -->
-              </div>
-              
+                   <td>
+                     <div id="err4" style="margin-left:0%;color: red;margin-top:0%;width:240px"></div>
+                   </td>
+                   <td>
+                   </td>
+                </tr>
+                <tr>
+                  <td colspan=2><input type="button" style='width:140px;margin-left:26%;margin-bottom:5%' id="btnch" class='btn btn-primary' name='btnch' value='Change Password'  ></td>
+                </tr>
+             </tbody>
+             </table>
+            </div>
         </form>
 <br/><br/><br/>
        </div>
@@ -212,7 +213,7 @@ color:#000000;
                 //old password matching
                 $.post('pwdmatch.php',{pw:opassword,npw:confirmPassword},function(res){
                  if(res=='1')
-{                  $('#err4').html('match');
+{          //        $('#err4').html('match');
                 $.post('pwdsame.php',{npw:confirmPassword},function(res){
                  if(res=='1')
  {              //    $('#err4').html('match');

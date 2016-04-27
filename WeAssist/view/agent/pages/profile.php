@@ -115,9 +115,101 @@ body {
     margin-top: 8px;
 }
 
-</style>
-</head>
+/*  css for tool tip*/
 
+#content{
+  background-color: #FFF;
+  border-radius: 4px;
+  padding: 40px;
+  margin: 0 auto;
+  max-width: 600px;
+  position: relative;
+  margin: 0 auto 100px;
+}
+
+.help-tip{
+    background-color: #bcdbea;
+    border-radius: 50%;
+    cursor: default;
+    font-size: 13px;
+    height: 17px;
+    line-height: 17px;
+    position: absolute;
+    right: 405px;
+    text-align: center;
+    top: 208px;
+    width: 17px;
+}
+
+.help-tip:before{
+  content:'?';
+  font-weight: bold;
+  color:#fff;
+}
+
+.help-tip:hover p{
+  display:block;
+  transform-origin: 100% 0%;
+
+  -webkit-animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out;
+
+}
+
+.help-tip p{
+  display: none;
+  text-align: left;
+  background-color: #1E2021;
+  padding: 20px;
+  width: 300px;
+  position: absolute;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  right: -4px;
+  color: #FFF;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.help-tip p:before{
+  position: absolute;
+  content: '';
+  width:0;
+  height: 0;
+  border:6px solid transparent;
+  border-bottom-color:#1E2021;
+  right:10px;
+  top:-12px;
+}
+
+.help-tip p:after{
+  width:100%;
+  height:40px;
+  content:'';
+  position: absolute;
+  top:-40px;
+  left:0;
+}
+
+@-webkit-keyframes fadeIn {
+  0% { 
+    opacity:0; 
+    transform: scale(0.6);
+  }
+
+  100% {
+    opacity:100%;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity:0; }
+  100% { opacity:100%; }
+}
+</style>
+
+</head>
 <body class="skin-red-light sidebar-mini">			 
   <?php include 'header.php';?>  
   
@@ -196,7 +288,11 @@ body {
                         <input type="hidden" name="Country" id="Country"/> 
                       </div>
                       <div class="form-group">
-                        <label class="control-label">Subcategory</label>
+                        <label class="control-label">Specialization
+                          <div class="help-tip">
+                            <p>Choose those services which are being offered by you and your workers.</p>
+                          </div>
+                        </label>
                         <input maxlength="200" value="<?php echo $subcat;?>" type="text"  class="form-control btn btn-border" placeholder="Enter Subcategory" id="subcategories"  name="subcategories" onkeydown="if (event.keyCode == 13) return false" />
                       </div>
                       <input class="btn btn-success btn-lg pull-right" style="background-color:#3c8dbc" type="submit" value="Submit">

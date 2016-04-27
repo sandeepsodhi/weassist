@@ -196,26 +196,23 @@ if(isset($_SESSION['registered']))
                 //old password matching
                 $.post('pwdmatch.php',{pw:opassword,npw:confirmPassword},function(res){
                  if(res=='1')
-{                  $('#err4').html('match');
-                $.post('pwdsame.php',{npw:confirmPassword},function(res){
-                 if(res=='1')
- {              //    $('#err4').html('match');
-                 window.location.href="../../../controller/sign_out_pwdchange.php";
- }
+                {
+                  // $('#err4').html('match');
+                  $.post('pwdsame.php',{npw:confirmPassword},function(res){
+                   if(res=='1')
+                   { 
+                    window.location.href="../../../controller/sign_out_pwdchange.php";
+                   }
+                   else
+                    $('#err4').html('<p>You Cant set same password</p>');             
+                   });
+                }
                 else
-                  $('#err4').html('<p>You Cant set same password</p>');             
-                     });
-
-                
- }
-                else
-             {     $('#err4').html('<p>Old Password is Wrong</p>');  
-                   return false;           
-                   
-              }
-                     });
-               
-
+                {
+                  $('#err4').html('<p>Old Password is Wrong</p>');  
+                  return false;           
+                }
+               });
             });
         });
         function checkp(){
