@@ -85,7 +85,7 @@
 								<li><a href="blog-post.php">Single Post</a></li>
 							</ul>
 						</li>-->
-						<li><a href="#">Category</a></li>
+						<li><a onclick="category_move();">Category</a></li>
 						<li>
 							<?php 
 							if(isset($_SESSION['f_name']))
@@ -145,7 +145,7 @@
 	                            <div class="input-group-addon">
 	                                <i class="fa fa-user"></i>
 	                            </div>
-                                <input type="email" class="form-control" id="u_name" name="u_name" onkeyup="showUser(this.value);"  placeholder="Username" required>
+                                <input type="email" class="form-control" id="u_name" name="u_name" onkeyup="showUser(this.value);"  placeholder="Email" required>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -159,8 +159,9 @@
 	                                    
 	                    <div class="form-group">
 	                        <div class="col-xs-offset-3 col-xs-6">
-	                            <button style="width:120px;margin-left:-30px"type="submit" class="btn btn-info btn-primary" id="btnsub">Login</button>
+	                            <button style="width:120px"type="submit" class="btn btn-info btn-primary" id="btnsub">Login</button>
 	                        </div>
+                   	        <a class="btn" onclick="window.open('forgot_pswd.php','_blank','width=450,height=400,resizeable=no,toolbar=no,menubar=no,statusbar=no,location=no,titlebar=no')">Forgot Password?</a>
 	                    </div>
 	                    <div class="form-group">
 	                      <label class="control-label col-xs-11 col-sm-7" style="font-size:17px;margin-left:-7px">or connect with</label>
@@ -486,4 +487,7 @@ function checkPasswordMatch() {
 	   	$('#s').addClass("has-success");
     }
 }
+
+
+
 </script>

@@ -681,7 +681,8 @@ margin-top: 20px;
 			echo "<script>alert('Login with new password')</script>";
  			$_SESSION['pwdchange']='false';	
  			unset($_SESSION['pwdchange']);
-		}
+	}
+
 ?>
 
 	
@@ -1235,6 +1236,7 @@ window.location.href = "../customer/pages/index.php";
 
 function initialize() {
     var map;
+    var prev_infowindow;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
         mapTypeId: 'roadmap'
@@ -1276,13 +1278,21 @@ function initialize() {
             marker = new google.maps.Marker({
                 position: position,
                 map: map,
-                title: markers[i][0],
-			    animation:google.maps.Animation.BOUNCE
+                title: markers[i][0]
+			    // animation:google.maps.Animation.BOUNCE
             });
             
+
             // Allow each marker to have an info window    
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
+
+   		        if( prev_infowindow ) {
+			           prev_infowindow.close();
+			        }
+
+			        prev_infowindow = infoWindow;
+
                     infoWindow.setContent(infoWindowContent[i][0]);
                     infoWindow.open(map, marker);
                 }
@@ -1315,8 +1325,39 @@ function initialize() {
 }
 </script>
 
+<script type="text/javascript">
+	
+    $("#subscribe").click(function(){
+       // var emailFrom = $("#emailfrom").val();
+        var emailTo = $("#subscribe-email").val();
+	    // var subject = $("#subject").val();
+		// var message = $("#message").val();
+
+		// console.log(message);
+
+        $.post("email/subscribe_email.php", {to:emailTo}, function(result){
+          // $("span").html(result);
+        	// document.getElementById("curBidUser"+bidID); 
+        	$("#subscribe-email").val("");// = "";
+    		// $("#emailto").val("");//= null;
+     		// $("#subject").val(""); //= null;
+     		// $("#message").val(""); //= null;
+      		
+     		alert('Email has been sent to your inbox!!!');
+      		
+      	});
+
+    });
+
+</script>
+
+<script type="text/javascript">
+function category_move()
+{
+	// $('html,body').animate({scrollTop:1000px});
+	$('html,body').animate({ scrollTop: $(document).height()-1850 }, 1200);
+
+}
+</script>
 </body>
-
-
-<!-- Mirrored from handyman.dan-fisher.com/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 22 Jan 2016 06:55:11 GMT -->
 </html>

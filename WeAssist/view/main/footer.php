@@ -74,7 +74,7 @@
 									<div class="widget-content">
 										<p>Get timely DIY projects for your home and yard delivered right to your inbox every week!</p>
 
-										<form action="http://handyman.dan-fisher.com/php/newsletter-form.php" method="POST" id="newsletter-form">
+										<!-- <form  id="newsletter-form"> -->
 
 											<div class="alert alert-success hidden" id="newsletter-alert-success">
 												<strong>Success!</strong> Thank you for subscribing.
@@ -86,15 +86,13 @@
 											<div class="form-group">
 												<input type="email" 
 													value=""
-													data-msg-required="Please enter email address."
-													data-msg-email="Please enter a valid email address."
 													class="form-control"
 													placeholder="Enter your email here..."
 													name="subscribe-email"
 													id="subscribe-email">
 											</div>
-											<button type="submit" class="btn btn-primary btn-block" data-loading-text="Loading...">Subscribe</button>
-										</form>
+											<button id="subscribe" class="btn btn-primary btn-block" data-loading-text="Loading...">Subscribe</button>
+										<!-- </form> -->
 									</div>
 								</div>
 								<!-- /Widget :: Newsletter -->

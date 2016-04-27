@@ -1,24 +1,12 @@
 <!DOCTYPE html>
-<!--[if IE 7]>                  <html class="ie7 no-js" lang="en">     <![endif]-->
-<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
+<html class="not-ie no-js" lang="en">
 
-<!-- Mirrored from handyman.dan-fisher.com/job-professionals.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 22 Jan 2016 06:56:34 GMT -->
 <head>
 
-	<!-- Basic Page Needs
-	================================================== -->
 	<meta charset="utf-8">
-	<title>Professionals List | Handyman - Job Board HTML Template</title>
-	<meta name="description" content="Handyman - Job Board HTML Template - 1.0">
-	<meta name="author" content="http://themeforest.net/user/dan_fisher">
+	<title>Professionals List | WeAssist</title>
 
-
-	<!-- Mobile Specific Metas
-	================================================== -->
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-	
-	
 	
 	<!-- CSS
 	================================================== -->
@@ -78,63 +66,7 @@
 			
 			<div id="loc" name="loc"><!--  data-toggle="modal" data-target="#myModl" > --> 
 					<h4  id="nosearch" style="display: none;" >Sorry No Data Found</h4>				 
-				</div>
-			<!-- professional div -->
-		<section class="page-content" id="pagec">
-				<div class="container">
-                	
-					<!-- Stats -->
-					<div class="section-light section-nomargin">
-						<div class="section-inner">
-							<div class="row">
-								<div class="col-md-3">
-									<div class="counter-holder counter-dark">
-										<i class="fa fa-3x fa-suitcase"></i>
-										<span class="counter-wrap">
-											<span class="counter" data-to="42" data-speed="1500" data-refresh-interval="50">42</span>
-										</span>
-										<span class="counter-info">
-											<span class="counter-info-inner">All Jobs</span>
-										</span>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="counter-holder counter-dark">
-										<i class="fa fa-3x fa-thumbs-o-up"></i>
-										<span class="counter-wrap">
-											<span class="counter" data-to="12" data-speed="1500" data-refresh-interval="50">12</span>
-										</span>
-										<span class="counter-info">
-											<span class="counter-info-inner">Jobs Filled</span>
-										</span>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="counter-holder counter-dark">
-										<i class="fa fa-3x fa-user"></i>
-										<span class="counter-wrap">
-											<span class="counter" data-to="48" data-speed="1500" data-refresh-interval="50">48</span>
-										</span>
-										<span class="counter-info">
-											<span class="counter-info-inner">Professionals</span>
-										</span>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="counter-holder counter-dark">
-										<i class="fa fa-3x fa-users"></i>
-										<span class="counter-wrap">
-											<span class="counter" data-to="64" data-speed="1500" data-refresh-interval="50">64</span>
-										</span>
-										<span class="counter-info">
-											<span class="counter-info-inner">Members</span>
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Stats / End -->
+			</div>
 					
 					<!-- Services -->
 					<div class="title-bordered">
@@ -922,17 +854,24 @@ window.location.href = "../customer/pages/index.php";
 });
     </script>
    <!-- back to calendar -->
-   <script type="text/javascript">
-   	function backtocal()
-   	{
-   	  $('#tdis').hide();	
-      $('#caldis').show();
-      $('#callab').show();
+<script type="text/javascript">
+	function backtocal()
+	{
+	  $('#tdis').hide();	
+  $('#caldis').show();
+  $('#callab').show();
 
-   	}
-   </script>
+	}
+</script>
+<script type="text/javascript">
+function category_move()
+{
+	// $('html,body').animate({scrollTop:1000px});
+	$('html,body').animate({ scrollTop: $(document).height()-1150 }, 1200);
+
+}
+</script>
+
 </body>
-
-<!-- Mirrored from handyman.dan-fisher.com/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 22 Jan 2016 06:55:11 GMT -->
 </html>
 
