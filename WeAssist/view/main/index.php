@@ -477,7 +477,7 @@ margin-top: 20px;
 
 
 			<div class="title-bordered">
-				<h2>Our Service Location<small>places where we provide services</small></h2>
+				<h2>Our Service Location<small>click marker to get contact information</small></h2>
 			</div>
 
 
@@ -1251,7 +1251,7 @@ function initialize() {
     <?php 
 
         include '../../model/dbConnect.php';
-        $query = mysqli_query($conn,"select subcat_name,subcat_city,subcat_desc from sub_category");
+        $query = mysqli_query($conn,"select concat(f_name,' ',l_name),city,u_name from users");
         while($res = mysqli_fetch_row($query))
         {
     ?>            
@@ -1313,8 +1313,8 @@ function initialize() {
 
             var infoWindowContent = [
                 ['<div class="info_content">' +
-                '<h3><?php echo $res[0] ?></h3>' +
-                '<p><?php echo $res[2] ?></p>' +   '</div>']
+                '<h6>Contact information:</h6><?php echo "Name: ".$res[0]."<br>" ?>' +
+                '<?php echo "Email: ".$res[2] ?>' +   '</div>']
             ];
                 
             var infoWindow = new google.maps.InfoWindow(), marker, i;

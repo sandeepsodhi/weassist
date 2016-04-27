@@ -93,6 +93,13 @@
 								echo "<a>".$_SESSION['f_name']."</a>
 								<ul>";
 								if($_SESSION['u_type']=='agent')
+									echo "<li><a href='../agent/pages/index.php'>Dashboard</a></li>";
+								elseif($_SESSION['u_type']=='worker')
+									echo "<li><a href='../worker/pages/index.php'>Dashboard</a></li>";
+								elseif($_SESSION['u_type']=='customer')
+									echo "<li><a href='../customer/pages/index.php'>Dashboard</a></li>";
+								
+								if($_SESSION['u_type']=='agent')
 									echo "<li><a href='../agent/pages/profile.php'>My Profile</a></li>";
 								elseif($_SESSION['u_type']=='worker')
 									echo "<li><a href='../worker/pages/profile.php'>My Profile</a></li>";
@@ -100,8 +107,7 @@
 									echo "<li><a href='../customer/pages/profile.php'>My Profile</a></li>";
 								
 								echo  "<li><a href='../../controller/sign_out.php'>Sign Out</a></li>
-								</ul>
-								";
+								</ul>";
 							}	
 							else
 							{
