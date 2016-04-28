@@ -69,7 +69,8 @@ if(!isset($_SESSION['u_type']))
             <div class="inner">
               <h3>
                 <?php
-                $q1="select count(*)  as num from createjob";
+                $uname=$_SESSION['u_name'];
+                $q1="select count(*)  as num from createjob where uname='$uname'";
                 $r1=mysqli_query($conn,$q1);
                 $res=mysqli_fetch_assoc($r1);
                 echo $res['num'];
@@ -90,60 +91,12 @@ if(!isset($_SESSION['u_type']))
         <!-- ./col -->
         <div class="col-lg-4 col-xs-4">
           <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>
-                <?php
-                $q1="select count(*)  as num from users where u_type='agent'";
-                $r1=mysqli_query($conn,$q1);
-                $res=mysqli_fetch_assoc($r1);
-                echo $res['num'];
-          
-                $_SESSION['logstat']='false';
-                $_SESSION['jvalid']='false';
-              ?>
-              </h3>
-
-              <p>ToTal Agent</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          --> </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-4">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><?php
-                $q1="select count(*)  as num from users where u_type='worker'";
-                $r1=mysqli_query($conn,$q1);
-                $res=mysqli_fetch_assoc($r1);
-                echo $res['num'];
-                $_SESSION['logstat']='false';
-                $_SESSION['jvalid']='false';
-              ?>
-              </h3>
-
-              <p>Total Worker</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-         <!--    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-         -->  </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-4">
-          <!-- small box -->
           <div class="small-box bg-blue">
             <div class="inner">
                         <h3>
               <?php
                 require_once '../../../model/dbConnect.php'; 
-                $result=("select * from job_status where job_status.status='1' ");
+                $result=("select * from job_status where job_status.status='1' and job_id in (select subcat_id from createjob where uname='$uname')");
                 $r=mysqli_query($conn,$result);
                 $count = mysqli_num_rows($r);
                 echo $count;
@@ -164,7 +117,7 @@ if(!isset($_SESSION['u_type']))
             <div class="inner">
               <h3>
                <?php  require_once '../../../model/dbConnect.php'; 
-            $result=("select * from job_status where job_status.status='0' ");
+            $result=("select * from job_status where job_status.status='0' and job_id in (select subcat_id from createjob where uname='$uname') ");
             $r=mysqli_query($conn,$result);
               $count = mysqli_num_rows($r);
               echo $count;
@@ -175,34 +128,6 @@ if(!isset($_SESSION['u_type']))
             <div class="icon">
                     <i class="ion-android-sad"></i>
             </div><!--             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
- -->          </div>
-        </div>
-        <div class="col-lg-4 col-xs-4">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-            <h3>
-                        <?php   require_once '../../../model/dbConnect.php'; 
-   $u_idd  = $_SESSION['u_id'];
-   $uname=$_SESSION['u_name'];
-   $que = mysqli_query($conn,"select count(*) as total from users where u_type='customer' ");
-
-  $res = mysqli_fetch_assoc($que);
-echo  $res['total'];
-  
-?>
-
-
-              </h3>
-
-              <p>Total Customers</p>
-            </div>
-            <div class="icon">
-                    <i class="ion ion-person-add"></i>
-
-            </div>
-
-<!--             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
  -->          </div>
         </div>
 

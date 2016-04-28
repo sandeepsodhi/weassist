@@ -75,14 +75,14 @@ if(!isset($_SESSION['u_type']))
                   <td><input type='password' class='col-xs-8 col-sm-6 btn btn-border' id='pwd' onkeyup="checkl()">
                   </td>
                   <td>
-                  <div id="err2" style="margin-left:-371%;color: red;margin-top:0%;"></div>
+                  <div id="err2" style="margin-left:-540%;color: red;margin-top:0%;"></div>
                   </td>
                 </tr>
                 <tr>
                   <td class='col-xs-2 col-sm-2' style="padding-bottom:3%">Re-Enter New Password:</td>
                   <td><input type='password' class='col-xs-8 col-sm-6 btn btn-border' id='cpwd' onkeyup='checkp()' required></td>
                   <td>
-                  <div id="err3" style="margin-left:-371%;color: red;margin-top:0%;"></div>
+                  <div id="err3" style="margin-left:-540%;color: red;margin-top:0%;"></div>
                   </td>
                 </tr>
                 <tr>
@@ -90,7 +90,7 @@ if(!isset($_SESSION['u_type']))
                    </td>
 
                    <td>
-                     <div id="err4" style="margin-left:0%;color: red;margin-top:0%;"></div>
+                     <div id="err4" style="margin-left:0%;color: red;margin-top:0%;width:240px"></div>
                    </td>
                    <td>
                    </td>
@@ -149,6 +149,11 @@ if(isset($_SESSION['registered']))
                 var opassword=$("#opwd").val();
                 var password = $("#pwd").val();
                 var confirmPassword = $("#cpwd").val();
+                var s1,s2,s3;
+                //s1=$("#opwd").val().length;
+                s2=$("#pwd").val().length;
+                s3=$("#cpwd").val().length;
+
                 console.log(opassword+password+confirmPassword);
                 if(!opassword)
                 {
@@ -160,40 +165,57 @@ if(isset($_SESSION['registered']))
                 {
                   $('#err4').html('');
                 }
-                // if(!password)
-                // {
-                //   $('#err2').html('<p>Enter Password it is mandatory</p>');
-                //   return false;
-                // }
-                // else
-                // {
-                //   $('#err2').html('');
-                // }
-                // if(!confirmPassword)
-                // {
-                //   $('#err3').html('<p>Enter Password it is mandatory</p>');
-                //   return false;
-                // }
-                // else
-                // {
-                //   $('#err3').html('');
-                // }
+                if(!password)
+                {
+                  $('#err2').html('<p>Enter Password !!</p>');
+                  return false;
+                }
+                else
+                {
+                  $('#err2').html('');
+                }
+                if(!confirmPassword)
+                {
+                  $('#err3').html('<p>Enter Password !!</p>');
+                  return false;
+                }
+                else
+                {
+                  $('#err3').html('');
+                }
                 
                  if (password != confirmPassword) {
                       $('#err4').html('<p>Passwords do not match.</p>');
                       //alert("Passwords do not match.");
                      return false;
                  }
-                //old password matching
+               //  //old password matching
+                 if((s2<8||s3<8))
+                    {  $('#err4').html('<p>Password should be greater than 8.</p>');
+                       return false;
+               }
+                old password matching
                 $.post('pwdmatch.php',{pw:opassword,npw:confirmPassword},function(res){
                  if(res=='1')
-                {
-                    $('#err4').html('match');
-                    window.location.href="../../../controller/sign_out_pwdchange.php";
-                }
+{         //         $('#err4').html('match');
+                $.post('pwdsame.php',{npw:confirmPassword},function(res){
+                 if(res=='1')
+ {              //    $('#err4').html('match');
+                 window.location.href="../../../controller/sign_out_pwdchange.php";
+ }
                 else
-                  $('#err4').html('<p>Old Password is Wrong</p>');             
+                  $('#err4').html('<p>You Cant set same password</p>');             
                      });
+
+                
+ }
+                else
+             {     $('#err4').html('<p>Old Password is Wrong</p>');  
+                   return false;           
+                   
+              }
+                     });
+               
 
             });
         });

@@ -81,7 +81,7 @@ mysqli_query($conn,"update chat_USER set is_online='online' where pr_id in(selec
     <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-4 col-xs-4">
+        <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
 		  
@@ -89,7 +89,8 @@ mysqli_query($conn,"update chat_USER set is_online='online' where pr_id in(selec
            <!--   <h3>150</h3>-->
  <h3>
 <?php 	require_once '../../../model/dbConnect.php'; 
-$result=("select * from createjob");
+$uname=$_SESSION['u_name'];
+$result=("SELECT job_id from job_status WHERE cat_id in (SELECT cat_id from profession WHERE u_name='sumanjeet461@gmail.com') AND subcat_id in ( SELECT subcat_id from profession WHERE u_name='$uname')");
 $r=mysqli_query($conn,$result);
   $count = mysqli_num_rows($r);
   echo $count;
@@ -117,7 +118,7 @@ $r=mysqli_query($conn,$result);
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-4 col-xs-4">
+        <div class="col-lg-3 col-xs-6">
           <!-- small box -->
             <div class="small-box bg-green">
             <div class="inner">
@@ -125,10 +126,10 @@ $r=mysqli_query($conn,$result);
              <h3>
               <?php
                 require_once '../../../model/dbConnect.php'; 
-                $result=("select * from job_status where job_status.status='1' ");
-                $r=mysqli_query($conn,$result);
-                $count = mysqli_num_rows($r);
-                echo $count;
+ $result=("select job_id from job_status where status='1' and workerassign='$uname' and job_id in (SELECT job_id from job_status WHERE  cat_id in (SELECT cat_id from profession WHERE u_name='$uname') AND subcat_id in ( SELECT subcat_id from profession WHERE u_name='$uname'))");
+ $r=mysqli_query($conn,$result);
+  $count = mysqli_num_rows($r);
+  echo $count;
               ?>
              </h3>
             <p>Completed Jobs</p>
@@ -141,16 +142,16 @@ $r=mysqli_query($conn,$result);
 
         </div>
         <!-- ./col -->
-        <div class="col-lg-4 col-xs-4">
+        <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>
                <?php  require_once '../../../model/dbConnect.php'; 
-            $result=("select * from job_status where job_status.status='0' ");
-            $r=mysqli_query($conn,$result);
-              $count = mysqli_num_rows($r);
-              echo $count;
+ $result=("select job_id from job_status where status='0' and job_id in (SELECT job_id from job_status WHERE  cat_id in (SELECT cat_id from profession WHERE u_name='$uname') AND subcat_id in ( SELECT subcat_id from profession WHERE u_name='$uname'))");
+ $r=mysqli_query($conn,$result);
+  $count = mysqli_num_rows($r);
+  echo $count;
             ?>
               </h3>
             <p>Pending Jobs</p>
@@ -161,7 +162,7 @@ $r=mysqli_query($conn,$result);
             <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
-        <div class="col-lg-4 col-xs-4">
+        <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-orange">
             <div class="inner">
@@ -178,67 +179,13 @@ echo  $res['total']-(0.1*$res['total']);
 ?>
   </h3>     
 
-              <p>Total Workers Earnings</p>
+              <p>yous Earnings</p>
             </div>
 
             <div class="icon">
               <i class="fa fa-money"></i>
             </div>
            
-          </div>
-        </div>
-        <div class="col-lg-4 col-xs-4">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>
-                        <?php   require_once '../../../model/dbConnect.php'; 
-   $u_idd  = $_SESSION['u_id'];
-   $uname=$_SESSION['u_name'];
-   $que = mysqli_query($conn,"select count(*) as total from users where u_type='customer' ");
-
-  $res = mysqli_fetch_assoc($que);
-echo  $res['total'];
-  
-?>
-
-
-              </h3>
-
-              <p>Total Customers</p>
-            </div>
-            <div class="icon">
-                    <i class="ion ion-person-add"></i>
-
-            </div>
-          </div>
-        </div>
-  
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-4">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>
-                        <?php   require_once '../../../model/dbConnect.php'; 
-   $u_idd  = $_SESSION['u_id'];
-   $uname=$_SESSION['u_name'];
-   $que = mysqli_query($conn,"select count(*) as total from users where u_type='worker' ");
-
-  $res = mysqli_fetch_assoc($que);
-echo  $res['total'];
-  
-?>
-
-
-              </h3>
-
-
-              <p>Total Workers</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
           </div>
         </div>
         <!-- ./col -->
@@ -254,10 +201,12 @@ echo  $res['total'];
           </div>
         </div>
         <div class="box-body">
-
         <div id="map_wrapper"  style="padding: 0%" >
 
-    <div id="map_canvas" class="mapping"></div>
+    <div id="map_canvas" class="mapping">
+      
+
+    </div>
 </div>
   </div>
 </div>
@@ -280,7 +229,7 @@ echo  $res['total'];
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.0 -->
-<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -316,8 +265,9 @@ function initialize() {
 //        $query = mysqli_query($conn,"select subcat_name,subcat_city,subcat_desc from sub_category limit 1,1");
         $query = mysqli_query($conn,"select  c.subcategory,u.city,c.jobtitle from users u ,createjob c  where u.u_name=c.uname && subcat_id in (select job_id from job_status where workerassign='$uname') ");
         // (select job_id from job_status where workerassign='$uname')");
-
-        while($res = mysqli_fetch_row($query))
+      //  echo "<script>alert(".$res[0].")</script>";
+      //if($res[0])
+       while($res = mysqli_fetch_row($query))
         {
 
     ?>            
@@ -376,8 +326,13 @@ function initialize() {
             var infoWindow = new google.maps.InfoWindow(), marker, i;
     
           } 
+
         });
-    <?php  } ?>
+    <?php  }
+
+//else
+
+     ?>
 }
 </script>
 

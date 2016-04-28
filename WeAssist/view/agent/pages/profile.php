@@ -163,16 +163,16 @@ body {
                       <h3> Step 1</h3>
                       <div class="form-group">
                         <label class="control-label">First Name</label>
-                        <input  maxlength="100" type="text" style="font-size:14px" required="required" class="btn btn-border form-control" id="f_name" name="f_name" placeholder="Enter first Name" value="<?php echo $_SESSION['f_name'];?>"/>
+                        <input  maxlength="100" type="text" style="font-size:14px" required="required" class="btn btn-border form-control" id="f_name" name="f_name" placeholder="Enter first Name" value="<?php echo $_SESSION['f_name'];?>" onkeydown="if (event.keyCode == 13) return false"/>
                       </div>
                       <div class="form-group">
                         <label class="control-label">Last Name</label>
-                        <input maxlength="100" type="text" required="required" class="btn btn-border form-control" placeholder="Enter Last Name" id="l_name" name="l_name" value="<?php echo $_SESSION['l_name'];?>" />
+                        <input maxlength="100" type="text" required="required" class="btn btn-border form-control" placeholder="Enter Last Name" id="l_name" name="l_name" value="<?php echo $_SESSION['l_name'];?>" onkeydown="if (event.keyCode == 13) return false" />
                       </div>
                       <div class="form-group">
                           <label class="control-label" style="margin-top:1%">Profile Pic</label>
                         
-                        <img src='../../image/<?php echo $_SESSION['profile_pic']; ?>' width='100' height='100' alt=''  style='border-radius:10px;position:absolute; z-index:1;margin-left: 5%;margin-top:1%' id='image' />
+                        <img src='../../image/<?php echo $_SESSION['profile_pic']; ?>' width='100' height='100' alt=''  style='border-radius:10px;position:absolute; z-index:1;margin-left: 5%;margin-top:1%' id='image' onkeydown="if (event.keyCode == 13) return false"/>
                         <input type='file' name='image' id="image" accept=".jpg,.jpeg,.png" style='border-radius:20px;width:100px;height:100px;position:relative;z-index:2;margin-top: -5%;opacity:0;margin-left: 19%;' onchange='readURL(this)' />
                         <!--<input type="file" required="required" class="form-control" placeholder="Image" name="image" id="image" accept=".jpg,.jpeg,.png" >-->
                       </div>
@@ -187,17 +187,17 @@ body {
                       
                       <div class="form-group">
                         <label class="control-label">Mobile No</label>
-                        <input maxlength="200" type="text" class="form-control btn btn-border" placeholder="Enter Contact" id="contact" name="contact" value="<?php echo $fe['contact'];?>" onkeyup="phonenumber(this)" sdata-error="Please give a correct phone number." />
+                        <input maxlength="200" type="text" class="form-control btn btn-border" placeholder="Enter Contact" id="contact" name="contact" value="<?php echo $fe['contact'];?>" onkeyup="phonenumber(this)" sdata-error="Please give a correct phone number." onkeydown="if (event.keyCode == 13) return false" />
                       </div>
                       <div class="form-group">
                         <label class="control-label">Address</label>
-                        <input type="text" value="<?php echo $fe['city']; ?>" class="form-control btn btn-border" placeholder="Enter your address" id="city" name="city" >
+                        <input type="text" value="<?php echo $fe['city']; ?>" class="form-control btn btn-border" placeholder="Enter your address" id="city" name="city" onkeydown="if (event.keyCode == 13) return false">
                         <input type="hidden" name="State" id="State"/> 
                         <input type="hidden" name="Country" id="Country"/> 
                       </div>
                       <div class="form-group">
                         <label class="control-label">Subcategory</label>
-                        <input maxlength="200" value="<?php echo $subcat;?>" type="text"  class="form-control btn btn-border" placeholder="Enter Subcategory" id="subcategories"  name="subcategories" />
+                        <input maxlength="200" value="<?php echo $subcat;?>" type="text"  class="form-control btn btn-border" placeholder="Enter Subcategory" id="subcategories"  name="subcategories" onkeydown="if (event.keyCode == 13) return false" />
                       </div>
                       <input class="btn btn-success btn-lg pull-right" style="background-color:#3c8dbc" type="submit" value="Submit">
                     </div>

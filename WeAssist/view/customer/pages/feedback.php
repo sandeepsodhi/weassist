@@ -74,7 +74,7 @@ b.g{
     
         <!-- left column -->
    </div>
-  <div class="row" id="con" style="margin:0% 5% 0% 5%"">
+  <div class="row" id="con" style="margin:0% 5% 0% 5%">
    <br/>
   <form class="form-horizontal"  id="editjob"  >
     <table width="70%" >
@@ -103,7 +103,7 @@ b.g{
   </div>
 </td>
 <td>
-<img  class="profile-user-img img-responsive img-circle" src="../../image/"  width='150' height='150' alt=''  style='border-radius:30px;position:absolute;margin-left: -5%;display:none'  id="pic">
+<img  class="profile-user-img img-responsive img-circle" src="../../image/"  width='150' height='150' alt=''  style='border-radius:30px;position:absolute;margin-left: -5%;display: none'  id="pic">
 
 </td>
 </tr>
@@ -209,21 +209,35 @@ var star=0;
         switch (star_id){
             case "star-1":
                 $("#star-1").addClass('star-checked');
+                    $("#star-2").removeClass('star-checked');
+                $("#star-3").removeClass('star-checked');
+                $("#star-4").removeClass('star-checked');
+                $("#star-5").removeClass('star-checked');
+              
                 break;
             case "star-2":
                 $("#star-1").addClass('star-checked');
                 $("#star-2").addClass('star-checked');
+                $("#star-3").removeClass('star-checked');
+                $("#star-4").removeClass('star-checked');
+                $("#star-5").removeClass('star-checked');
+      
                 break;
             case "star-3":
                 $("#star-1").addClass('star-checked');
                 $("#star-2").addClass('star-checked');
                 $("#star-3").addClass('star-checked');
+                $("#star-4").removeClass('star-checked');
+                $("#star-5").removeClass('star-checked');
+
                 break;
             case "star-4":
                 $("#star-1").addClass('star-checked');
                 $("#star-2").addClass('star-checked');
                 $("#star-3").addClass('star-checked');
                 $("#star-4").addClass('star-checked');
+                $("#star-5").removeClass('star-checked');
+
                 break;
             case "star-5":
                 $("#star-1").addClass('star-checked');
@@ -233,44 +247,6 @@ var star=0;
                 $("#star-5").addClass('star-checked');
                 break;
         }
-
-$('.star').on("mouseover",function(){
-        //get the id of star
-        fg=0;
-        var star_id = $(this).attr('id');
-        switch (star_id){
-            case "star-1":
-                $("#star-1").addClass('star-checked');
-                break;
-            case "star-2":
-                $("#star-1").addClass('star-checked');
-                $("#star-2").addClass('star-checked');
-                break;
-            case "star-3":
-                $("#star-1").addClass('star-checked');
-                $("#star-2").addClass('star-checked');
-                $("#star-3").addClass('star-checked');
-                break;
-            case "star-4":
-                $("#star-1").addClass('star-checked');
-                $("#star-2").addClass('star-checked');
-                $("#star-3").addClass('star-checked');
-                $("#star-4").addClass('star-checked');
-                break;
-            case "star-5":
-                $("#star-1").addClass('star-checked');
-                $("#star-2").addClass('star-checked');
-                $("#star-3").addClass('star-checked');
-                $("#star-4").addClass('star-checked');
-                $("#star-5").addClass('star-checked');
-                break;
-        }
-    }).mouseout(function(){
-        //remove the star checked class when mouseout
-        if(fg==0)
-        $('.star').removeClass('star-checked');
-    });
-
         var star_index = $(this).attr("id").split("-")[1],
             product_id = $("#product_id").val(), //store the product id in variable
             star_container = $(this).parent(), //get the parent container of the stars
