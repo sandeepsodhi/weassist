@@ -88,6 +88,13 @@ if(!isset($_SESSION['u_type']))
                 <span>Add Worker</span>
             </a>
         </li>
+        <li class="treeview">
+            <a href="all_users.php">
+                <i class="fa fa-user"></i>
+                <span>All Worker</span>
+            </a>
+        </li>
+
        <!--<li>
         <a href="jobcreation.php">
              <i class="fa fa-edit"></i> <span>Job Creation</span>
@@ -110,6 +117,12 @@ if(!isset($_SESSION['u_type']))
             <i class="fa fa-th"></i> <span>My Jobs</span>
           </a>
         </li>
+        <li>
+          <a href="../../../controller/sign_out.php">
+            <i class="fa fa-calendar"></i> <span>Logout</span>
+          </a>
+        </li>
+
         <!-- <li class="treeview">
             <a href="searchjob.php">
                 <i class="fa fa-pie-chart"></i>

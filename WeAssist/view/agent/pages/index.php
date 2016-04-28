@@ -70,13 +70,15 @@ mysqli_query($conn,"update chat_USER set is_online='online' where pr_id in(selec
               <h3>
               <?php
                	require_once '../../../model/dbConnect.php'; 
-                $result=("select * from createjob");
+                
+                 $result=("select * from job_status where workerassign in(select u_name from users where r_user in(select r_code from users where u_name = '".$_SESSION['u_name']."')) ");
+
                 $r=mysqli_query($conn,$result);
                 $count = mysqli_num_rows($r);
                 echo $count;
               ?>
           	  </h3>												
-              <p>Total Jobs</p>
+              <p>Jobs available for your workers</p>
             </div>
           <div class="icon">
               <i class="ion ion-bag"></i>
@@ -93,7 +95,7 @@ mysqli_query($conn,"update chat_USER set is_online='online' where pr_id in(selec
              <h3>
 			        <?php
                	require_once '../../../model/dbConnect.php'; 
-                $result=("select * from job_status where job_status.status='1' ");
+               	$result=("select * from job_status where job_status.status='1' and workerassign in(select u_name from users where r_user in(select r_code from users where u_name = '".$_SESSION['u_name']."')) ");
                 $r=mysqli_query($conn,$result);
                 $count = mysqli_num_rows($r);
                 echo $count;
@@ -114,7 +116,7 @@ mysqli_query($conn,"update chat_USER set is_online='online' where pr_id in(selec
             <div class="inner">
               <h3>
 			  			 <?php 	
-            $result=("select * from job_status where job_status.status='0' ");
+            $result=("select * from job_status where job_status.status='0' and workerassign in(select u_name from users where r_user in(select r_code from users where u_name = '".$_SESSION['u_name']."')) ");
             $r=mysqli_query($conn,$result);
               $count = mysqli_num_rows($r);
               echo $count;
@@ -313,7 +315,7 @@ echo  $res['total']-(0.1*$res['total']);
           
 
           <div class="box-footer text-center">
-            <!-- <a href="javascript::" class="uppercase">View All Users</a> -->
+            <a href="all_users.php" class="uppercase">View All Users</a>
           </div>
           <!-- /.box-footer -->
         </div>
