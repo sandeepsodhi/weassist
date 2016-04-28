@@ -1,4 +1,6 @@
-<?php session_start() ;
+<?php
+session_start() ;
+
 require_once '../../../model/dbConnect.php'; 
               
 if(!isset($_SESSION['u_type']))
@@ -11,6 +13,7 @@ if(isset($_SESSION['u_id']))
 {
 mysqli_query($conn,"update chat_USER set is_online='online' where pr_id in(select pr_id from profession where u_id = '".$_SESSION['u_id']."')");
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -94,7 +97,6 @@ $result=("SELECT job_id from job_status WHERE cat_id in (SELECT cat_id from prof
 $r=mysqli_query($conn,$result);
   $count = mysqli_num_rows($r);
   echo $count;
-
   
 ?>
 <!--if($result = mysqli_query($conn,"select COUNT(*) from createjob"))
@@ -175,7 +177,6 @@ $r=mysqli_query($conn,$result);
   $res = mysqli_fetch_assoc($que);
 echo '<i class="fa fa-rupee" style="font-size:28px;margin-left:1%;margin-right:2%"></i>';
 echo  $res['total']-(0.1*$res['total']);
-  
 ?>
   </h3>     
 
@@ -248,6 +249,7 @@ echo  $res['total']-(0.1*$res['total']);
 
 function initialize() {
     var map;
+    var prev_infowindow;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
         mapTypeId: 'roadmap'
@@ -260,16 +262,18 @@ function initialize() {
     var markersA = [];
 
     <?php 
-    $uname=$_SESSION['u_name'];
- //       include '../../model/dbConnect.php';
-//        $query = mysqli_query($conn,"select subcat_name,subcat_city,subcat_desc from sub_category limit 1,1");
-        $query = mysqli_query($conn,"select  c.subcategory,u.city,c.jobtitle from users u ,createjob c  where u.u_name=c.uname && subcat_id in (select job_id from job_status where workerassign='$uname') ");
-        // (select job_id from job_status where workerassign='$uname')");
-      //  echo "<script>alert(".$res[0].")</script>";
-      //if($res[0])
-       while($res = mysqli_fetch_row($query))
-        {
 
+        include '../../../model/dbConnect.php';
+        // $query = mysqli_query($conn,"select concat(f_name,' ',l_name),city,u_name from users");
+        
+        $uname = $_SESSION['u_name'];
+        $query = mysqli_query($conn,"select  c.jobtitle,u.city,c.subcategory from users u ,createjob c  where u.u_name=c.uname && subcat_id in (select job_id from job_status where workerassign='sumanjeet461@gmail.com') ");
+
+
+        // $query = mysqli_query($conn,"select  c.subcategory,u.city,c.jobtitle from users u ,createjob c  where u.u_name=c.uname && subcat_id in (select job_id from job_status where workerassign='$uname') ");
+
+        while($res = mysqli_fetch_row($query))
+        {
     ?>            
 
     var latt,lng;
@@ -287,7 +291,6 @@ function initialize() {
             var markers = [
                 ['<?php echo $res[0]?>',latt,lng]
             ];
-            console.log(markers[0]);
 
             for( i = 0; i < markers.length; i++ ) {
             var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
@@ -296,11 +299,20 @@ function initialize() {
                 position: position,
                 map: map,
                 title: markers[i][0]
+          // animation:google.maps.Animation.BOUNCE
             });
             
+
             // Allow each marker to have an info window    
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
+
+              if( prev_infowindow ) {
+                 prev_infowindow.close();
+              }
+
+              prev_infowindow = infoWindow;
+
                     infoWindow.setContent(infoWindowContent[i][0]);
                     infoWindow.open(map, marker);
                 }
@@ -313,28 +325,26 @@ function initialize() {
             // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
             var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
                 this.setZoom(8);
+                var opt = { scrollwheel:false  };
+        map.setOptions(opt);
                 google.maps.event.removeListener(boundsListener);
             });
         
 
             var infoWindowContent = [
                 ['<div class="info_content">' +
-                '<h3><?php echo $res[0] ?></h3>' +
-                '<p><?php echo $res[2] ?></p>' +   '</div>']
+                '<h5>Job information:</h5><?php echo "Job title: ".$res[0]."<br>" ?>' +
+                '<?php echo "Category: ".$res[2] ?>' +   '</div>']
             ];
                 
             var infoWindow = new google.maps.InfoWindow(), marker, i;
     
           } 
-
         });
-    <?php  }
-
-//else
-
-     ?>
+    <?php  } ?>
 }
 </script>
+
 
 <!-- Bootstrap 3.3.5 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
