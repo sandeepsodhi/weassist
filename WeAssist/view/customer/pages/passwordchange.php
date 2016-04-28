@@ -78,14 +78,14 @@ color:#000000;
                        <label for="pwd" id="profile-label" style="margin-top:9%;">Enter New Password:</label></td>
                      <td >
                        <input type="password" class="form-control" id="pwd" onkeyup="checkl()" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%;;margin-top:9%;" ></td>
-                       <td><div id="err2" style="margin-left:150px;color: red;margin-top:4%;"></div></td>
+                       <td><div id="err2" style="margin-left:150px;color: red;margin-top:5px;"></div></td>
                        </tr>
                    <tr>
                      <td>
                        <label for="npwd" id="profile-label" style="margin-top:9%;">Re-Enter New Password:</label></td>
                      <td >
                        <input type="password" class="form-control" id="cpwd" onkeyup="checkp()" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%;margin-top:9%;" ></td>
-                       <td><div id="err3" style="margin-left:150px;color: red;margin-top:4%;"></div></td>
+                       <td><div id="err3" style="margin-left:150px;color: red;margin-top:5px;"></div></td>
                        </tr>     
                    </table>
                    <table>
@@ -240,22 +240,22 @@ color:#000000;
 
                 if(!confirmPassword)
                 {
-                  $('#err3').html('<p><span class="glyphicon glyphicon-remove" style="margin-left:75%;margin-top:20%"></span></p>');
+                  $('#err3').html('<p><span class="glyphicon glyphicon-remove" style="margin-left:40px;margin-top:10px"></span></p>');
                   return false;
                 }
                 else
                 {
-                  $('#err3').html('<span class="glyphicon glyphicon-ok" style="margin-left:75%;margin-top:20%;color:blue"></span>');
+                  $('#err3').html('<span class="glyphicon glyphicon-ok" style="margin-left:40px;margin-top:10px;color:blue"></span>');
                 }
                      if (password != confirmPassword) {
 //                     $('#err4').html('<p>Passwords do not match.</p>');
-                     $('#err3').html('<span class="glyphicon glyphicon-remove" style="margin-left:75%;margin-top:20%"></span>');
+                     $('#err3').html('<span class="glyphicon glyphicon-remove" style="margin-left:40px;margin-top:10px"></span>');
                      //alert("Passwords do not match.");
                     return false;
                 }
                 else
                 {
-                  $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:75%;margin-top:20%;color:blue"></span>');
+                  $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:40px;margin-top:10px;color:blue"></span>');
                 }
 
             }
@@ -264,12 +264,12 @@ color:#000000;
                   var password = $("#pwd").val();
                   if(!password)
                 {
-                  $('#err2').html('<span class="glyphicon glyphicon-remove" style="margin-left:75%;margin-top:20%"></span>');
+                  $('#err2').html('<span class="glyphicon glyphicon-remove" style="margin-left:40px;margin-top:10px"></span>');
                   return false;
                 }
                 else
                 {
-                  $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:75%;margin-top:20%;color:blue"></span>');
+                  $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:40px;margin-top:10px;color:blue"></span>');
                 }
               
 

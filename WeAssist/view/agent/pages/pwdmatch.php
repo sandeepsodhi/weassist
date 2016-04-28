@@ -14,8 +14,8 @@ $r1=mysqli_fetch_assoc($res);
 //header("Location:index.php");
 if($r1['f_name'])
 {	
-    $query="update users  set pswd='$npwd' where u_name='$uname'";
-    $res = mysqli_query($conn, $query);
+   // $query="update users  set pswd='$npwd' where u_name='$uname'";
+    //$res = mysqli_query($conn, $query);
 //    $_SESSION['pwdchange']='true';
 	echo '1';
 }

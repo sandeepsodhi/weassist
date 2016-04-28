@@ -75,7 +75,7 @@ color:#000000;
                      <td>
                        <label for="opwd" id="profile-label">Enter Old Password:</label></td>
                      <td >
-                       <input type="password" class="form-control" id="opwd" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%"></td>
+                       <input type="password" class="form-control" id="opwd" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%" ></td>
                        <td><div id="err1" style="margin-left:15%;color: red;"></div></td>
                        </tr>
                    <tr>
@@ -84,32 +84,33 @@ color:#000000;
                      <td>
                        <label for="pwd" id="profile-label" style="margin-top:9%;">Enter New Password:</label></td>
                      <td >
-                       <input type="password" class="form-control" id="pwd" onkeyup="checkl()" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%;;margin-top:9%;"></td>
-                       <td><div id="err2" style="margin-left:73%;color: red;margin-top:4%;"></div></td>
+                       <input type="password" class="form-control" id="pwd" onkeyup="checkl()" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%;;margin-top:9%;" ></td>
+                       <td><div id="err2" style="margin-left:150px;color: red;margin-top:5px;"></div></td>
                        </tr>
                    <tr>
                      <td>
                        <label for="npwd" id="profile-label" style="margin-top:9%;">Re-Enter New Password:</label></td>
                      <td >
-                       <input type="password" class="form-control" id="cpwd" onkeyup="checkp()" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%;margin-top:9%;"></td>
-                       <td><div id="err3" style="margin-left:73%;color: red;margin-top:4%;"></div></td>
+                       <input type="password" class="form-control" id="cpwd" onkeyup="checkp()" style="margin-left:15%;width:180%;border:1 px solid  black;height:90%;margin-top:9%;" ></td>
+                       <td><div id="err3" style="margin-left:150px;color: red;margin-top:5px;"></div></td>
                        </tr>     
+                   </table>
+                   <table>
                      <tr>
                      <td>
                      </td>
                      <td >
-                     <div id="err4" style="margin-left:15%;color: red;margin-top:9%;"></div>
+                     <div id="err4" style="margin-left:200px;color: red;margin-top:15px;width: 120%"></div>
                      </td>
                        <td></td>
                        </tr>     
-                   
+
                        <tr>
                        <td></td>
                      <td>
-                      <input type="button" name="btnch" class="btn btn-info" id="btnch" style="margin-top:9%;margin-left:15%;width:70%;"  value="Change"> </input>
+                      <input type="button" name="btnch" class="btn btn-info" id="btnch" style="margin-top:15px;margin-left:200px;width:140px;"  value="Change"> </input>
                       </td>
                        </tr>                       
-                  
                 </table>
                 
               </div>
@@ -159,48 +160,71 @@ color:#000000;
                 var opassword=$("#opwd").val();
                 var password = $("#pwd").val();
                 var confirmPassword = $("#cpwd").val();
+                var s1,s2,s3;
+                //s1=$("#opwd").val().length;
+                s2=$("#pwd").val().length;
+                s3=$("#cpwd").val().length;
+                
                 if(!opassword)
                 {
-                  $('#err1').html('<p>Enter Password it is mandatory</p>');
+                  $('#err4').html('<p>Enter Password !!</p>');
                   return false;
                 }
                 else
                 {
-                  $('#err1').html('');
+                  $('#err4').html('');
                 }
-                // if(!password)
-                // {
-                //   $('#err2').html('<p>Enter Password it is mandatory</p>');
-                //   return false;
-                // }
-                // else
-                // {
-                //   $('#err2').html('');
-                // }
-                // if(!confirmPassword)
-                // {
-                //   $('#err3').html('<p>Enter Password it is mandatory</p>');
-                //   return false;
-                // }
-                // else
-                // {
-                //   $('#err3').html('');
-                // }
+                if(!password)
+                {
+                  $('#err4').html('<p>Enter Password !!</p>');
+                  return false;
+                }
+                else
+                {
+                  $('#err4').html('');
+                }
+                if(!confirmPassword)
+                {
+                  $('#err4').html('<p>Enter Password !!</p>');
+                  return false;
+                }
+                else
+                {
+                  $('#err4').html('');
+                }
                 
+                 
                  if (password != confirmPassword) {
-                      $('#err4').html('<p>Passwords do not match.</p>');
+                      $('#err4').html('<p>Password do not match.</p>');
                       //alert("Passwords do not match.");
                      return false;
                  }
+                 if((s2<8||s3<8))
+                    {  $('#err4').html('<p>Password should be greater than 8.</p>');
+                       return false;
+               }
                 //old password matching
                 $.post('pwdmatch.php',{pw:opassword,npw:confirmPassword},function(res){
                  if(res=='1')
 {                  $('#err4').html('match');
+                $.post('pwdsame.php',{npw:confirmPassword},function(res){
+                 if(res=='1')
+ {              //    $('#err4').html('match');
                  window.location.href="../../../controller/sign_out_pwdchange.php";
  }
                 else
-                  $('#err4').html('<p>Old Password is Wrong</p>');             
+                  $('#err4').html('<p>You Cant set same password</p>');             
                      });
+
+                
+ }
+                else
+             {     $('#err4').html('<p>Old Password is Wrong</p>');  
+                   return false;           
+                   
+              }
+                     });
+               
 
             });
         });
@@ -210,22 +234,22 @@ color:#000000;
 
                 if(!confirmPassword)
                 {
-                  $('#err3').html('<p><span class="glyphicon glyphicon-remove" style="margin-left:75%;margin-top:20%"></span></p>');
+                  $('#err3').html('<p><span class="glyphicon glyphicon-remove" style="margin-left:40px;margin-top:10px"></span></p>');
                   return false;
                 }
                 else
                 {
-                  $('#err3').html('<span class="glyphicon glyphicon-ok" style="margin-left:75%;margin-top:20%;color:blue"></span>');
+                  $('#err3').html('<span class="glyphicon glyphicon-ok" style="margin-left:40px;margin-top:10px;color:blue"></span>');
                 }
                      if (password != confirmPassword) {
 //                     $('#err4').html('<p>Passwords do not match.</p>');
-                     $('#err3').html('<span class="glyphicon glyphicon-remove" style="margin-left:75%;margin-top:20%"></span>');
+                     $('#err3').html('<span class="glyphicon glyphicon-remove" style="margin-left:40px;margin-top:10px"></span>');
                      //alert("Passwords do not match.");
                     return false;
                 }
                 else
                 {
-                  $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:75%;margin-top:20%;color:blue"></span>');
+                  $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:40px;margin-top:10px;color:blue"></span>');
                 }
 
             }
@@ -234,12 +258,12 @@ color:#000000;
                   var password = $("#pwd").val();
                   if(!password)
                 {
-                  $('#err2').html('<span class="glyphicon glyphicon-remove" style="margin-left:75%;margin-top:20%"></span>');
+                  $('#err2').html('<span class="glyphicon glyphicon-remove" style="margin-left:40px;margin-top:10px"></span>');
                   return false;
                 }
                 else
                 {
-                  $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:75%;margin-top:20%;color:blue"></span>');
+                  $('#err2').html('<span class="glyphicon glyphicon-ok" style="margin-left:40px;margin-top:10px;color:blue"></span>');
                 }
               
 
