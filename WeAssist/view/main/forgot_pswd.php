@@ -65,20 +65,40 @@
       var emailTo = $("#u_name").val();
 	    // var subject = $("#subject").val();
 		  // var message = $("#message").val();
-
-
+     if(emailTo)
+{        $.post("checkemail.php", {to:emailTo}, function(result){
+          // $("span").html(result);
+          // document.getElementById("curBidUser"+bidID); 
+          //$("#u_name").val("");// = "";
+        // $("#emailto").val("");//= null;
+        // $("#subject").val(""); //= null;
+        // $("#message").val(""); //= null;
+        if(result==0)  
+       { alert('Your are not sign up/inavlid email id  , please sign up first!!!');
+        return false;
+      }
+      else
+      {
         $.post("email/forgot_email.php", {to:emailTo}, function(result){
           // $("span").html(result);
-        	// document.getElementById("curBidUser"+bidID); 
-        	$("#u_name").val("");// = "";
-    		// $("#emailto").val("");//= null;
-     		// $("#subject").val(""); //= null;
-     		// $("#message").val(""); //= null;
-      		
-    		alert('Email has been sent to your inbox!!!');
-        window.close();	
-      	});
+          // document.getElementById("curBidUser"+bidID); 
+          $("#u_name").val("");// = "";
+        // $("#emailto").val("");//= null;
+        // $("#subject").val(""); //= null;
+        // $("#message").val(""); //= null;
+          
+        alert('Email has been sent to your inbox!!!');
+        window.close(); 
+        });
 
+      }
+        });
+ 
+ }
+ else
+ {
+  alert('enter email id');
+ }       
     });
 
 </script>
