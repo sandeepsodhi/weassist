@@ -88,7 +88,7 @@ body {
 		
         <!-- left column -->
 	 </div>
-	<div class="row" style="margin:0% 5% 0% 5%"">
+	<div class="row" style="margin:0% 5% 0% 5%">
 	
 
 	<form class="form-horizontal"  id="editjob"  method="post"  enctype="multipart/form-data" action="insertjob.php">
@@ -136,20 +136,26 @@ body {
         <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="false"></span>
   <label id="profile-label"  for="tapp" style="margin-left:5%; width:11%">Select Time</label>         
 <input type="text" id="tapp" name="tapp"   placeholder="E.g 00:00" style="font-family:none;" class="row"  aria-describedby="inputSuccess2Status" onkeydown="if (event.keyCode == 13) return false" required>
-                            <span class="glyphicon glyphicon-time form-control-feedback right" aria-hidden="false"></span>
-
-        </div>
+  <span class="glyphicon glyphicon-time form-control-feedback right" aria-hidden="false"></span>
+</div>
 
 
 
 
 <div class="form-group">
 <label id="profile-label"  for="jobphoto" style="margin-left:5%; width:11%" >Upload Job Photo</label>
- <input type="file" class="btn-primary" id="jobphoto" name="jobphoto" style="background-color:white;border:1px solid grey; color:black ;width:25%; margin-left:19%; margin-top:-3%"  accept=".jpg,.jpeg,.png," onchange="readURL(this)" >  
+ 
+<img src='../../image/NewCandidateImage.jpg' width='100' height='100' alt=''  style='border-radius:20px;position:absolute;  z-index:1;margin-left: 3%;' id='jobshow' name='jobshow' />
+<input type='file' name='jobphoto' style='width:100px; height:100px; position:relative;  z-index:2; opacity:0;margin-left: 19%;margin-top: -5%;'  accept=".jpg,.jpeg,.png,"  onchange='readURL(this)' />
+
+
+ <!-- <input type="file" class="btn-primary" id="jobphoto" name="jobphoto" style="background-color:white;border:1px solid grey; color:black ;width:25%; margin-left:19%; margin-top:-3%"  accept=".jpg,.jpeg,.png," onchange="readURL(this)" >   -->
 </div>
- <div class="form-group" style="margin-left:19%;width:20%;height:5%">
-<img id="jobshow" src="../../image/NewCandidateImage.jpg" style="width:50%;height:30%;">  
-</div>
+ <!-- <div class="form-group" style="margin-left:19%;width:20%;height:5%"> -->
+<!-- <img id="jobshow" src="../../image/NewCandidateImage.jpg" style="width:50%;height:30%;">   -->
+<!-- </div> -->
+
+
 
  <br/>
 <div class="form-group">

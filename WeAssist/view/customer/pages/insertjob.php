@@ -8,8 +8,6 @@ if(!isset($_SESSION['u_type']))
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Customer | Job</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -60,7 +58,7 @@ color:#000000;
     
         <!-- left column -->
    </div>
-  <div class="row" style="margin:0% 5% 0% 5%"">
+  <div class="row" style="margin:0% 5% 0% 5%">
   
 <?php
 //    session_start();
@@ -178,7 +176,6 @@ echo "<h>Please First  Create Job </h><br/><br/>";
 
 
 ?>
-
 
   </div>
    </div>

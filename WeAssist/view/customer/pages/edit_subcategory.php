@@ -87,7 +87,7 @@ select option { padding: 1px 5px 1px 3px;}
 		
         <!-- left column -->
 	 </div>
-	<div class="row" style="margin:0% 5% 0% 5%"">
+	<div class="row" style="margin:0% 5% 0% 5%">
 	
   
 

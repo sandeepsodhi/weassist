@@ -194,7 +194,7 @@ $rs=mysqli_fetch_row($res);
 ?>
 <br/>
 <img class="profile-user-img img-responsive img-circle" src="../../image/<?php echo $_SESSION['profile_pic']?>"  width='150' height='150' alt=''  style='border-radius:30px;position:absolute;  z-index:1;'  id="pic">
-<input type='file' name='image' id="image" style='width:130px; height:110px; position:relative;  z-index:2; opacity:0;' onchange='readURL(this)'  accept=".jpg,.jpeg,.png,"/>
+<input type='file' name='image' id="image" style='width:100px; height:100; position:relative;  z-index:2; opacity:0;' onchange='readURL(this)'  accept=".jpg,.jpeg,.png,"/>
 
         </div>
 </form> 
