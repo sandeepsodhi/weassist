@@ -39,7 +39,7 @@ color:#000000;
 </style>
 </head>
 <?php include('header.php');?>
-<div class="content-wrapper"> 
+<!--<div class="content-wrapper"> 
   <section class="content-header">
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -56,10 +56,10 @@ color:#000000;
    
         
     
-        <!-- left column -->
+         left column 
    </div>
   <div class="row" style="margin:0% 5% 0% 5%">
-  
+  -->
 <?php
 //    session_start();
 if(isset($_SESSION['jvalid']))
@@ -179,14 +179,14 @@ echo "<h>Please First  Create Job </h><br/><br/>";
 
 ?>
 
-  </div>
+ <!--  </div>
    </div>
     </div>
      </section>    
   
      
      </div>
-   
+  -->  
 
   <!-- /.content-wrapper -->
    <?php include 'footer_sidebar.php'; ?>

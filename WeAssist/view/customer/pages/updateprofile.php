@@ -41,6 +41,7 @@ color:#000000;
 </style>
 </head>
 <?php include('header.php');?>
+<!--
 <div class="content-wrapper"> 
   <section class="content-header">
       <ol class="breadcrumb">
@@ -58,10 +59,10 @@ color:#000000;
    
         
     
-        <!-- left column -->
+         left column 
    </div>
   <div class="row" style="margin:0% 5% 0% 5%"">
-
+-->
 <?php
 //    session_start();
   if(isset($_SESSION['logstat'])) 
@@ -196,7 +197,7 @@ else
 echo "<br/> <h>First Update Profile</h><br/><br/>";
 }
 ?>
-  </div>
+<!--  </div>
    </div>
     </div>
      </section>    
