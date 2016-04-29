@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['u_id']))
+{
+  header('location:../../main/error_401.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,13 +31,6 @@
   <link href="css/dataTables.foundation.min.css" rel="stylesheet" />
 
 
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
 <div class="wrapper">
@@ -63,7 +63,7 @@
                   <th>Job Title</th>
                   <th>Job Description</th>
                   <th>Job Image</th>
-                  <th>Update</th>
+                  <!-- <th>Update</th> -->
                   <th>Status</th>
                   </tr>
                 </thead>
@@ -92,9 +92,10 @@
                         <td>$row[3]</td>
                         <td>$row[4]</td>
                         <td><img style='border-radius:10px;width:60px;height:50px;' src='../../image/$row[5]'>
-                        <td><input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_subcategory.php?cat_id=$row[0]\"'>
-                        <input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"delete_category.php?cat_id=$row[0]\"'></td>
-                      ";
+                        ";
+                      //<td> <input type='button' style='margin-right:5px;width:63px;margin-bottom:2px' class='btn btn-primary' value='Edit' id='edit' onclick='window.location.href=\"edit_subcategory.php?cat_id=$row[0]\"'>
+                      //"<input type='button' class='btn btn-primary' value='Delete' onclick='window.location.href=\"delete_category.php?cat_id=$row[0]\"'></td>
+                      //   ";
                       if($statuss=="Not Assign")
                       echo  "<td>$statuss</td>";
                       else 

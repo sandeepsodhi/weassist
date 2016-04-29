@@ -1,4 +1,12 @@
-<?php include '../../../model/dbConnect.php'  ?>
+<?php 
+session_start();
+if(!isset($_SESSION['u_id']))
+{
+  header('location:../../main/error_401.php');
+}
+
+include '../../../model/dbConnect.php'; 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,10 +89,10 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>
-                <?php 
-                $c = mysqli_fetch_row(mysqli_query($conn,"select count(u_id) from users"));
-                echo $c[0];
-                ?>
+              	<?php 
+              	$c = mysqli_fetch_row(mysqli_query($conn,"select count(u_id) from users"));
+              	echo $c[0];
+              	?>
               </h3>
               <p>User Registrations</p>
             </div>
@@ -99,14 +107,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-        <?php
+    		<?php
                 $q1="select count(*)  as num from users where u_type='agent'";
                 $r1=mysqli_query($conn,$q1);
                 $res=mysqli_fetch_assoc($r1);
                 echo "<h3>".$res['num']."</h3>";
-            ?>
-        <p>ToTal Agent</p>
-      </div>
+          	?>
+	    	<p>ToTal Agent</p>
+			</div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
@@ -115,7 +123,7 @@
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->  
+          <!-- small box -->	
           <div class="small-box bg-yellow">
             <div class="inner">
               <?php
@@ -123,8 +131,8 @@
                 $r1=mysqli_query($conn,$q1);
                 $res=mysqli_fetch_assoc($r1);
                 echo "<h3>".$res['num']."</h3>";
-            ?>
-        <p>ToTal Workers</p>
+          	?>
+	    	<p>ToTal Workers</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -137,13 +145,13 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-          <?php
+      		<?php
                 $q1="select count(*)  as num from users where u_type='customer'";
                 $r1=mysqli_query($conn,$q1);
                 $res=mysqli_fetch_assoc($r1);
                 echo "<h3>".$res['num']."</h3>";
-            ?>
-        <p>ToTal Customer</p>
+          	?>
+    	  <p>ToTal Customer</p>
           </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -177,20 +185,6 @@
             </div>
           </div>
        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <!-- Main row -->
       <div class="row col-xs-12 col-lg-8">
           <!-- quick email widget -->
@@ -226,80 +220,80 @@
             </div>
             <div id="email"class="box-footer clearfix">
               <button type="button" class="pull-right btn btn-default" id="sendEmail">
-                <i class="fa fa-arrow-circle-right"></i></button>
+              	<i class="fa fa-arrow-circle-right"></i></button>
             </div>
           </div>
-    </div>
-    
-    <div class="col-lg-4 col-xs-12">
-        <!-- USERS LIST -->
-        <div class="box box-info">
-          <div class="box-header with-border">
-            <h3 class="box-title">Latest Members</h3>
+	  </div>
+	  
+	  <div class="col-lg-4 col-xs-12">
+	      <!-- USERS LIST -->
+	      <div class="box box-info">
+	        <div class="box-header with-border">
+	          <h3 class="box-title">Latest Members</h3>
 
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
-              </button>
-            </div>
-          </div>
-          <!-- /.box-header -->
-          
+	          <div class="box-tools pull-right">
+	            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+	            </button>
+	            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+	            </button>
+	          </div>
+	        </div>
+	        <!-- /.box-header -->
+	        
 
 
-          <div class="box-body no-padding">
-            <ul class="users-list clearfix">
+	        <div class="box-body no-padding">
+	          <ul class="users-list clearfix">
 
         <?php 
-          
-          for($i=0;$i<8;$i++)
-          {
+	        
+	        for($i=0;$i<8;$i++)
+	        {
 
-          $info = mysqli_fetch_row(mysqli_query($conn,"select f_name,profile_pic,datediff(now(),date(activation_date)) as pend from users order by pend limit 1 offset $i"));
+	        $info = mysqli_fetch_row(mysqli_query($conn,"select f_name,profile_pic,datediff(now(),date(activation_date)) as pend from users order by pend limit 1 offset $i"));
 
-          if($info[1] == null)
-          {
-            break;
-          }
+	        if($info[1] == null)
+	        {
+	        	break;
+	        }
 
-          // $start_date = mysqli_fetch_row(mysqli_query($conn,"select current_timestamp from dual"));
-          // $end_date = mysqli_fetch_row(mysqli_query($conn,"select entry_date from users where u_id='$info[0]'")); 
-        // $days = floor((strtotime($start_date[0]) - strtotime($end_date[0])) / (60 * 60 * 24));
-          
-      ?>
+	        // $start_date = mysqli_fetch_row(mysqli_query($conn,"select current_timestamp from dual"));
+	        // $end_date = mysqli_fetch_row(mysqli_query($conn,"select entry_date from users where u_id='$info[0]'")); 
+		    // $days = floor((strtotime($start_date[0]) - strtotime($end_date[0])) / (60 * 60 * 24));
+	        
+	    ?>
 
 
-              <li>
-                <img style="width:60px;height:60px" src="../../image/<?php echo $info[1];?>" alt="User Image">
-                <div class="user-list-name"> <?php echo $info[0];   ?></div>
-                <!-- <a class="users-list-name" href="#">Alexander Pierce</a> -->
-                <span class="users-list-date"><?php   
-           if($info[2]==0)
-          {echo "Today";}
-        elseif($info[2]==1)
-          {echo "Yesterday";}
-        else
-          {echo $info[2]."days ago";}
-           ?></span>
-              </li>
-            
-    <?php
-         }
+	            <li>
+	              <img style="width:60px;height:60px" src="../../image/<?php echo $info[1];?>" alt="User Image">
+	              <div class="user-list-name"> <?php echo $info[0];   ?></div>
+	              <!-- <a class="users-list-name" href="#">Alexander Pierce</a> -->
+	              <span class="users-list-date"><?php   
+	         if($info[2]==0)
+		    	{echo "Today";}
+		    elseif($info[2]==1)
+		    	{echo "Yesterday";}
+		    else
+		    	{echo $info[2]."days ago";}
+		    	 ?></span>
+	            </li>
+	          
+		<?php
+	       }
         ?>
 
-            </ul>
-            <!-- /.users-list -->
-          </div>
-          <!-- /.box-body -->
-          
+	          </ul>
+	          <!-- /.users-list -->
+	        </div>
+	        <!-- /.box-body -->
+	        
 
-          <div class="box-footer text-center">
-            <!-- <a href="javascript::" class="uppercase">View All Users</a> -->
-          </div>
-          <!-- /.box-footer -->
-        </div>
-        <!-- /.box -->
+	        <div class="box-footer text-center">
+	          <a href="users.php" class="uppercase">View All Users</a>
+	        </div>
+	        <!-- /.box-footer -->
+	      </div>
+	      <!-- /.box -->
       </div>
             <!-- /.col -->
 
@@ -362,6 +356,7 @@
 
 function initialize() {
     var map;
+    var prev_infowindow;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
         mapTypeId: 'roadmap'
@@ -376,7 +371,7 @@ function initialize() {
     <?php 
 
         include '../../../model/dbConnect.php';
-        $query = mysqli_query($conn,"select subcat_name,subcat_city,subcat_desc from sub_category");
+        $query = mysqli_query($conn,"select concat(f_name,' ',l_name),city,u_name from users");
         while($res = mysqli_fetch_row($query))
         {
     ?>            
@@ -404,11 +399,20 @@ function initialize() {
                 position: position,
                 map: map,
                 title: markers[i][0]
+          // animation:google.maps.Animation.BOUNCE
             });
             
+
             // Allow each marker to have an info window    
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
+
+              if( prev_infowindow ) {
+                 prev_infowindow.close();
+              }
+
+              prev_infowindow = infoWindow;
+
                     infoWindow.setContent(infoWindowContent[i][0]);
                     infoWindow.open(map, marker);
                 }
@@ -420,20 +424,17 @@ function initialize() {
 
             // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
             var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-                this.setZoom(8);
+                this.setZoom(7);
                 var opt = { scrollwheel:false  };
-                map.setOptions(opt);
+        map.setOptions(opt);
                 google.maps.event.removeListener(boundsListener);
-       
-
-
             });
         
 
             var infoWindowContent = [
                 ['<div class="info_content">' +
-                '<h3><?php echo $res[0] ?></h3>' +
-                '<p><?php echo $res[2] ?></p>' +   '</div>']
+                '<h6>Contact information:</h6><?php echo "Name: ".$res[0]."<br>" ?>' +
+                '<?php echo "Email: ".$res[2] ?>' +   '</div>']
             ];
                 
             var infoWindow = new google.maps.InfoWindow(), marker, i;
@@ -443,21 +444,6 @@ function initialize() {
     <?php  } ?>
 }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <!-- Bootstrap 3.3.5 -->
@@ -517,119 +503,27 @@ function initialize() {
   }
 </script>
 <script type="text/javascript">
-  
+	
     $("#email").click(function(){
         var emailFrom = $("#emailfrom").val();
         var emailTo = $("#emailto").val();
-      var subject = $("#subject").val();
-    var message = $("#message").val();
+	    var subject = $("#subject").val();
+		var message = $("#message").val();
 
-    console.log(message);
+		console.log(message);
 
         $.post("sendemail.php", {from:emailFrom,to:emailTo,subjectt:subject,messagee:message}, function(result){
           //alert("d");
           // $("span").html(result);
-          // document.getElementById("curBidUser"+bidID); 
-          $("#emailfrom").val("");// = "";
-          $("#emailto").val("");//= null;
-          $("#subject").val(""); //= null;
-          $("#message").val(""); //= null;
+        	// document.getElementById("curBidUser"+bidID); 
+        	$("#emailfrom").val("");// = "";
+    			$("#emailto").val("");//= null;
+        	$("#subject").val(""); //= null;
+        	$("#message").val(""); //= null;
         });
     });
 
 </script>
-
-
-
-<script type="text/javascript">
-  
-//   jQuery(function($) {
-//     // Asynchronously Load the map API 
-//     var script = document.createElement('script');
-//     script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
-//     document.body.appendChild(script);
-// });
-
-// function initialize() {
-//     var map;
-//     var bounds = new google.maps.LatLngBounds();
-//     var mapOptions = {
-//         mapTypeId: 'roadmap'
-//     };
-                    
-//     // Display a map on the page
-//     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-//     map.setTilt(45);
-        
-//     var markersA = [];
-
-//     <?php 
-
-//         include '../../../model/dbConnect.php';
-//         $query = mysqli_query($conn,"select subcat_name,subcat_city,subcat_desc from sub_category");
-//         while($res = mysqli_fetch_row($query))
-//         {
-//     ?>            
-
-//     var latt,lng;
-
-//     var geocoder =  new google.maps.Geocoder();
-//     geocoder.geocode( { 'address': '<?php echo $res[1]?>'}, function(results, status) {
-//           if (status == google.maps.GeocoderStatus.OK) {
-            
-//             latt = results[0].geometry.location.lat();
-//             lng = results[0].geometry.location.lng();
-
-
-
-//             // Multiple Markers
-//             var markers = [
-//                 ['<?php echo $res[0]?>',latt,lng]
-//             ];
-
-//             for( i = 0; i < markers.length; i++ ) {
-//             var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-//             bounds.extend(position);
-//             marker = new google.maps.Marker({
-//                 position: position,
-//                 map: map,
-//                 title: markers[i][0]
-//             });
-            
-//             // Allow each marker to have an info window    
-//             google.maps.event.addListener(marker, 'click', (function(marker, i) {
-//                 return function() {
-//                     infoWindow.setContent(infoWindowContent[i][0]);
-//                     infoWindow.open(map, marker);
-//                 }
-//             })(marker, i));
-
-//             // Automatically center the map fitting all markers on the screen
-//             map.fitBounds(bounds);
-//             }
-
-//             // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
-//             var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-//                 this.setZoom(8);
-//                 google.maps.event.removeListener(boundsListener);
-//             });
-        
-
-//             var infoWindowContent = [
-//                 ['<div class="info_content">' +
-//                 '<h3><?php echo $res[0] ?></h3>' +
-//                 '<p><?php echo $res[2] ?></p>' +   '</div>']
-//             ];
-                
-//             var infoWindow = new google.maps.InfoWindow(), marker, i;
-    
-//           } 
-//         });
-//     <?php // } ?>
-//// }
-</script>
-
-
 
 </body>
 </html>

@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['u_id']))
+{
+  header('location:../../main/error_401.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +76,7 @@
                 <tbody>
                 <?php
                 include  '../../../model/dbConnect.php';
-                $rs = mysqli_query($conn,"select a.f_name,a.l_name,a.r_user,a.profile_pic,concat(b.f_name,' ',b.l_name),a.u_id from users a join users b where a.u_type='worker' and a.r_user=b.r_code
+                $rs = mysqli_query($conn,"select a.f_name,a.l_name,a.r_user,a.profile_pic,concat(b.f_name,' ',b.l_name),a.u_id from users a inner join users b on  a.r_user=b.r_code where a.u_type='worker'
 ");
                 while($row=mysqli_fetch_row($rs))
                 {   

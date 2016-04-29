@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['u_id']))
+{
+  header('location:../../main/error_401.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

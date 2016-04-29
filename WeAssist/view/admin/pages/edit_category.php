@@ -1,4 +1,10 @@
-<?php include 'header.php'; ?>
+<?php
+session_start();
+if(!isset($_SESSION['u_id']))
+{
+  header('location:../../main/error_401.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +28,7 @@
   </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
 <div class="wrapper">
+<?php include 'header.php'; ?>
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

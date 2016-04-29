@@ -1,4 +1,10 @@
-<?php include 'header.php'; ?>
+<?php
+session_start();
+if(!isset($_SESSION['u_id']))
+{
+  header('location:../../main/error_401.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +25,14 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
 
+
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
   </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
 <div class="wrapper">
+ <?php include 'header.php'; ?>
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -61,24 +72,31 @@
                   <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='l_name' value='$row[1]' required></td>
                 </tr>
                 <td class='col-xs-2'>Contact</td>
-                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='contact' value='$row[2]' required></td>
+                  <td>
+                  <input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='contact' value='$row[2]' required>
+                  </td>                      
                 </tr>
                 <tr>
                 <td class='col-xs-2'>City</td>
-                  <td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='city' value='$row[3]' required></td>
-                </tr>
+                <td>
+                  <input type='text' value='$row[3]' class='col-xs-10 col-sm-4 btn btn-border' placeholder='City Name'  id='city' name='city' onkeydown='if (event.keyCode == 13) return false'>
+                  <input type='hidden' name='State' id='State'/> 
+                  <input type='hidden' name='Country' id='Country'/> 
+                </td>";
+                //<td><input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='city' value='$row[3]' required></td>
+          echo "</tr>
                 <tr>
                 <td class='col-xs-2'>Referred Agent</td>
                   <td>";
-                 echo "  <select name='ref_user' class='col-xs-10 col-sm-4 btn btn-border' required>
-                    <option value=''  selected >$row[4]</option>";
-                    $rs=mysqli_query($conn,"select concat('f_name', ,'l_name') from users");
-                    while($row1=mysqli_fetch_assoc($rs))
-                    {
-                        echo "<option>".$row1[0]."</option>";
-                    }
+                 // echo "  <select name='ref_user' class='col-xs-10 col-sm-4 btn btn-border' required>
+                 //    <option value=''  selected >$row[4]</option>";
+                 //    $rs=mysqli_query($conn,"select concat('f_name', ,'l_name') from users");
+                 //    while($row1=mysqli_fetch_assoc($rs))
+                 //    {
+                 //        echo "<option>".$row1[0]."</option>";
+                 //    }
 
-                //  echo "<input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='city' value='$row[4]' required>";
+                 echo "<input type='text' class='col-xs-10 col-sm-4 btn btn-border' name='ref_user' value='$row[4]' required>";
 
                    echo "</td>
                 </tr>
@@ -197,6 +215,55 @@
     $(document).ready(function () {
         $(".table").dataTable();
     });
+</script>
+<script type="text/javascript">
+    function initialize() {
+      var options = {
+            types: ['(cities)'],
+            //componentRestrictions: {country: "in"}
+        };
+        var input = document.getElementById('city');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+            
+    //console.log(autocomplete);
+  }
+  
+  //$("#city").val(function(){alert("kuch hua");});
+  
+  $('input[name=city]').change(function () {
+        setTimeout(function () {
+            console.log($("#city").val());
+            console.log(($("#city").val().match(/,/g) || []).length); //logs 3
+            var val=[];
+            if(($("#city").val().match(/,/g) || []).length==2)
+            {
+                //All City, State, Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val(val[1]);
+                $("#Country").val(val[2]);
+          //     console.log($("#Country").val());
+            }
+            else if (($("#city").val().match(/,/g) || []).length == 1)
+            {
+                //Only City and Country Exists
+                val=$("#city").val().split(',');
+                $("#city").val(val[0]);
+                $("#State").val('NA');
+                $("#Country").val(val[1]);
+
+            }
+
+        }, 1000);
+    });
+
+    $('input[name=city]').click(function () {
+        document.getElementById('city').value = '';
+        document.getElementById('State').value = '';
+        document.getElementById('Country').value = '';
+    });
+
+    google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
 
