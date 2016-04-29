@@ -756,7 +756,7 @@ margin-top: 20px;
 <script>
   var client = algoliasearch("IWAHMM52HK", "194fa6150b9718afc0236eb74f5e7fb8");
   var index = client.initIndex('category');
- var res = client.initIndex('category');
+  var res = client.initIndex('category');
   var params={hitsPerPage:5};
   autocomplete('#search-input', { hint: false }, [
     {

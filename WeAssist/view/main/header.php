@@ -37,6 +37,8 @@
 				<div class="nav-main-inner">
 					<ul data-breakpoint="992" class="flexnav">
 						<li class="active"><a href="index.php">Home</a></li>
+						<li><a href="aboutus.php">About Us</a></li>
+						
 						<!--<li><a href="#">Pages</a>
 							<ul>
 								<li><a href="page-about.php">About Us</a></li>
