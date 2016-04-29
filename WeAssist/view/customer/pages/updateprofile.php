@@ -174,7 +174,7 @@ color:#000000;
 	
 	} 
 		
-		echo "<br/><h>Profile Updated";	
+//		echo "<br/><h>Profile Updated";	
 //echo $name;	
 //echo $_FILES['image']; 
 $_SESSION['f_name']=$f_name;
@@ -186,6 +186,9 @@ if($city)
 $_SESSION['state']=$state;
 $_SESSION['country']=$country;
 }
+$_SESSION['prof']='true';
+echo "<script>window.location.href='profile.php'</script>";
+//header('Location:profile.php');
 }
 else
 {

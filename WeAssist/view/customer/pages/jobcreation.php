@@ -4,6 +4,7 @@ if(!isset($_SESSION['u_type']))
   header('location:../../main/error_401.php');
 }
 
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -174,7 +175,14 @@ body {
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
+<?php
+if(isset($_SESSION['jobcreate']))
+{
+echo "<script>alert('Job Created sucessfully'); </script>";
+unset($_SESSION['jobcreate']);
+}
 
+?>
 
 
 <!-- wrapper -->

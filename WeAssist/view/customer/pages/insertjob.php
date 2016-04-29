@@ -166,8 +166,10 @@ $jobid=$row1['subcat_id'];
 
 
 
-  echo "<h>Job Created </h><br/><br/><br/>";
+//  echo "<h>Job Created </h><br/><br/><br/>";
        include('emailagain.php');
+$_SESSION['jobcreate']='true';
+echo "<script>window.location.href='jobcreation.php'</script>";
 }
 else
 {

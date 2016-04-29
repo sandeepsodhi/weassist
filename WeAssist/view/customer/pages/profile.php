@@ -128,7 +128,7 @@ color:black;
 		<div class="form-group" >
 		<div class="col-md-3"><label id="profile-label"  for="phone">Phone No :&nbsp</label></div>
 	    <div class="col-md-8"><input  type="text" class="form-control" name="phone" id="phone" size="28%" value="<?php if(isset($_SESSION['contact'])){
-      echo $_SESSION['contact']; }?>"  onkeyup="isalphanum(this)" onkeyup="phonevalid()" required readonly ></div>
+      echo $_SESSION['contact']; }?>"    required readonly ></div>
 	     <div class="col-md-1">		
 		<a href="#" onclick="changephone()">
           <span class="glyphicon glyphicon-pencil" style="margin-top:7px"></span>
@@ -191,6 +191,12 @@ $_SESSION['logstat']='true';
 include('../../../model/dbConnect.php');
 $res=mysqli_query($conn,"select profile_pic from users where u_name='".$_SESSION['u_name']."'");
 $rs=mysqli_fetch_row($res);
+if(isset($_SESSION['prof']))
+{
+echo "<script>alert('Profile Updated sucessfully'); </script>";
+unset($_SESSION['prof']);
+}
+
 ?>
 <br/>
 <img class="profile-user-img img-responsive img-circle" src="../../image/<?php echo $_SESSION['profile_pic']?>"  width='150' height='150' alt=''  style='border-radius:30px;position:absolute;  z-index:1;'  id="pic">
@@ -338,6 +344,15 @@ $rs=mysqli_fetch_row($res);
 
 </script>
 <script type="text/javascript">
+$('#btnupdate').click(function(){
+   var ph=$('#phone').val(); 
+       intRegex = /[0-9 -()+]+$/;
+if((ph.length < 9 ) || (!intRegex.test(ph))||(ph.length > 14 ))
+{
+     alert('Please enter a valid phone number.');
+     return false;
+}
+});
   function fnamevalid()
   {
 
@@ -348,9 +363,11 @@ $rs=mysqli_fetch_row($res);
   }
   function phonevalid()
   {
-    var ph=$('phone').val();
+ 
+
     
   }
+
 </script>
 <script type="text/javascript">
   //$(document).ready(function() {
