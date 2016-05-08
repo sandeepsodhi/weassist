@@ -8,6 +8,7 @@ $_SESSION['subcat']=$subcateg;
 $_SESSION['jobti']=$jobtitle;
 $_SESSION['jobdes']=$jobdesc;
 $_SESSION['jobph']=$name;
+$emal=$_SESSION['u_name'];
  //$timezone = $_SESSION['time'];
 //echo $_SESSION['f_name'] . " " . $_SESSION['l_name'];
 
@@ -29,7 +30,7 @@ $mytemp=str_replace("{{date}}",$time,$mytemp);
 $sendgrid = new SendGrid("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");
 $email    = new SendGrid\Email();
 //print_r($mytemp);
-$email->addTo("shuvam.jha007@gmail.com")
+$email->addTo($emal)
       ->setFrom("support@weassist.esy.es")
       ->setSubject("Sucessfully Created job  "."  " . $jobtitle)
       ->setHtml($mytemp);

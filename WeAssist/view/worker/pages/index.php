@@ -93,7 +93,7 @@ mysqli_query($conn,"update chat_USER set is_online='online' where pr_id in(selec
  <h3>
 <?php 	require_once '../../../model/dbConnect.php'; 
 $uname=$_SESSION['u_name'];
-$result=("SELECT job_id from job_status WHERE cat_id in (SELECT cat_id from profession WHERE u_name='sumanjeet461@gmail.com') AND subcat_id in ( SELECT subcat_id from profession WHERE u_name='$uname')");
+$result=("SELECT job_id from job_status WHERE cat_id in (SELECT cat_id from profession WHERE u_name='$uname') AND subcat_id in ( SELECT subcat_id from profession WHERE u_name='$uname')");
 $r=mysqli_query($conn,$result);
   $count = mysqli_num_rows($r);
   echo $count;
@@ -267,7 +267,7 @@ function initialize() {
         // $query = mysqli_query($conn,"select concat(f_name,' ',l_name),city,u_name from users");
         
         $uname = $_SESSION['u_name'];
-        $query = mysqli_query($conn,"select  c.jobtitle,u.city,c.subcategory from users u ,createjob c  where u.u_name=c.uname && subcat_id in (select job_id from job_status where workerassign='sumanjeet461@gmail.com') ");
+        $query = mysqli_query($conn,"select  c.jobtitle,u.city,c.subcategory from users u ,createjob c  where u.u_name=c.uname && subcat_id in (select job_id from job_status where workerassign='$uname')");
 
 
         // $query = mysqli_query($conn,"select  c.subcategory,u.city,c.jobtitle from users u ,createjob c  where u.u_name=c.uname && subcat_id in (select job_id from job_status where workerassign='$uname') ");

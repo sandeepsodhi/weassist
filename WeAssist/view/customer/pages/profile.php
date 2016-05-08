@@ -4,6 +4,13 @@ if(!isset($_SESSION['u_type']))
   header('location:../../main/error_401.php');
 }
 
+include('../../../model/dbConnect.php');
+$res1=mysqli_query($conn,"select city from users where u_name='".$_SESSION['u_name']."'");
+$rs1=mysqli_fetch_row($res1);
+// echo $rs1[0];
+
+
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -154,7 +161,7 @@ color:black;
   <input  type="hidden"  name="State" id="State"  size="0px"  >
     <input  type="hidden"  name="Country" id="Country" size="0px"    >
 		</div>
-	    <div class="col-md-8"><input  type="text" class="form-control" name="city" id="city" size="28%" value=" " placeholder="Enter Your City" onkeydown="if (event.keyCode == 13) return false" ></div>
+	    <div class="col-md-8"><input  type="text" class="form-control" name="city" id="city" size="28%"  placeholder="Enter Your City" value="<?php echo $rs1[0]; ?>" onkeydown="if (event.keyCode == 13) return false" ></div>
 	    </div>
 		</div>
 	    

@@ -1,3 +1,6 @@
+<?php session_start(); 
+//echo $_SESSION['u_type']
+?>
 <!DOCTYPE html>
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
 <head>
@@ -15,7 +18,7 @@
 	<!-- CSS
 	================================================== -->
 	<!-- Base + Vendors CSS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/fonts/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" href="css/fonts/entypo/css/entypo.css">
 	<link rel="stylesheet" href="vendor/owl-carousel/owl.carousel.css" media="screen">
@@ -24,18 +27,28 @@
 	<link rel="stylesheet" href="vendor/flexslider/flexslider.css" media="screen">
 	<link rel="stylesheet" href="vendor/job-manager/frontend.css" media="screen">
 
+	<!-- slider button-->
+	<link href="css/bootstrap-switch.css" rel="stylesheet">
+    	
+    <!--  calendar -->
+    <link rel="stylesheet" href="example-page_files/dateTimePicker.css">
+
 	<!-- Theme CSS-->
 	<link rel="stylesheet" href="css/theme.css">
 	<link rel="stylesheet" href="css/theme-elements.css">
 	<link rel="stylesheet" href="css/animate.min.css">
-   
-    	<link href="assets/css/login.css" rel="stylesheet" />
+
+	<!-- login dialog -->
+	<link href="assets/css/login.css" rel="stylesheet" />
     <link href="assets/css/social.css" rel="stylesheet" />
     <link href="assets/css/padd.css" rel="stylesheet" />
-    <link href="assets/js/validate.js" rel="stylesheet" />
+        
+    <!-- FONT AWESOME ICONS STYLE SHEET -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    
 
-  <!-- Head Libs -->
-	<script src="vendor/modernizr.js"></script>
+	<!-- Head Libs -->
+	<!-- <script src="vendor/modernizr.js"></script> -->
 
 	
 	<!-- Favicons
@@ -43,6 +56,14 @@
 	<link rel="shortcut icon" href="images/favicons/favicon.ico">
 	<link rel="apple-touch-icon" sizes="120x120" href="images/favicons/favicon-120.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="images/favicons/favicon-152.png">
+
+   	<!-- validation -->
+	    <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" media="screen"> -->
+	<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.css" rel="stylesheet"/>	 -->
+	
+<!-- timing display css -->
+	<link rel="stylesheet" href="css/timingstyle.css">
+
 	
 </head>
 <body>
@@ -393,4 +414,47 @@
 			</footer>
 
 </body>
+<script type="text/javascript">
+function category_move()
+{
+	// $('html,body').animate({scrollTop:1000px});
+	$('html,body').animate({ scrollTop: $(document).height()-1220 }, 1200);
+
+}
+</script>
+	<script src="vendor/jquery-migrate-1.2.1.min.js"></script>
+	<!-- <script src="vendor/bootstrap.js"></script> -->
+	<script src="vendor/jquery.flexnav.min.js"></script>
+	<script src="vendor/jquery.hoverIntent.minified.js"></script>
+	<script src="vendor/jquery.flickrfeed.js"></script>
+	<script src="vendor/isotope/jquery.isotope.min.js"></script>
+	<script src="vendor/isotope/jquery.isotope.sloppy-masonry.min.js"></script>
+	<script src="vendor/isotope/jquery.imagesloaded.min.js"></script>
+	<script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
+	<script src="vendor/owl-carousel/owl.carousel.min.js"></script>
+	<script src="vendor/jquery.fitvids.js"></script>
+	<script src="vendor/jquery.appear.js"></script>
+	<script src="vendor/jquery.stellar.min.js"></script>
+	<script src="vendor/flexslider/jquery.flexslider-min.js"></script>
+	<script src="vendor/jquery.countTo.js"></script>
+	<script src="js/jquery-ui.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+	<!-- slider button -->
+	<script src="js/highlight.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/main.js"></script>
+
+<!-- calendar js -->
+ 
+
+
+
+	<!-- Newsletter Form -->
+	<script src="vendor/jquery.validate.js"></script>
+	<script src="js/newsletter.js"></script>
+
+
+	<script src="js/custom.js"></script>
+
 </html>

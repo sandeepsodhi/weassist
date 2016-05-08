@@ -105,6 +105,7 @@ $catid=$row1['cat_id'];
   $row3 =mysqli_fetch_assoc($que3);
   $imag=$row3['photo'];
   $email=$row3['uname'];
+  $_SESSION['cust_email']=$email;
  // echo $email;
   $que5=mysqli_query($conn,"select * from users where u_name='$email'");
   $row5=mysqli_fetch_assoc($que5);

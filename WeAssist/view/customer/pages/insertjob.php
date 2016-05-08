@@ -39,27 +39,16 @@ color:#000000;
 </style>
 </head>
 <?php include('header.php');?>
-<!--<div class="content-wrapper"> 
-  <section class="content-header">
-      <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="joblist.php">Job List</a></li>
-        <li class="active">Edit</li>
-      </ol>
-    </section>
+<div class="content-wrapper"> 
   <br/>
  
- <section class="content">
-  <div class="box box-primary">
-   <div class="box-header ">
-          
    
         
     
-         left column 
-   </div>
+        <!-- left column -->
+ <!-- </div> -->
   <div class="row" style="margin:0% 5% 0% 5%">
-  -->
+  
 <?php
 //    session_start();
 if(isset($_SESSION['jvalid']))
@@ -179,14 +168,11 @@ echo "<h>Please First  Create Job </h><br/><br/>";
 
 ?>
 
- <!--  </div>
-   </div>
-    </div>
-     </section>    
+  <!-- </div> -->
   
      
-     </div>
-  -->  
+     <!-- </div> -->
+   
 
   <!-- /.content-wrapper -->
    <?php include 'footer_sidebar.php'; ?>
@@ -194,6 +180,7 @@ echo "<h>Please First  Create Job </h><br/><br/>";
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
+</div>
 </div>
 
 

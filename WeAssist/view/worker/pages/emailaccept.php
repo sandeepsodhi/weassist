@@ -10,7 +10,7 @@ require 'sendgrid-php/vendor/autoload.php';
 // $_SESSION['jobph']=$name;
  //$timezone = $_SESSION['time'];
 //echo $_SESSION['f_name'] . " " . $_SESSION['l_name'];
-
+$uname=$_SESSION['cust_email'];
 $mytemp=fopen("acceptjobtemp.php","r+") ;
 //$mytemp= file_get_contents("jobcreated.php");
  //$date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
@@ -29,8 +29,8 @@ $mytemp= str_replace("{{workername}}",ucfirst($workernames),$mytemp);
 $sendgrid = new SendGrid("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");
 $email    = new SendGrid\Email();
 //print_r($mytemp);
-$email->addTo("shuvam.jha007@gmail.com")
-      ->setFrom("shuviru219@gmail.com")
+$email->addTo($uname)
+      ->setFrom("support@weassist.esy.es")
       ->setSubject("Congrats Your Job have been accepted  ")
       ->setHtml($mytemp);
 

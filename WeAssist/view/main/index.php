@@ -842,7 +842,7 @@ for(var i=0;i<response.length;i++)
 						'	<li class="job_listing" id="c">'+
 								'<a >'+
 								'	<div class="job_img" style="width:15%" >'+
-								'	<img src="images/'+ cont[i][4] +'" alt="" class="company_logo">'+
+								'	<img src="../image/'+ cont[i][4] +'" alt="" class="company_logo">'+
 								'	</div>'+
 								'	<div class="position" id="d"  style="height:100%;width:20%">'+
 								'		<h3 id="namec" style="margin-left:4%">' + cont[i][0] + "  " + cont[i][1] +'</h3>'+
@@ -980,7 +980,7 @@ for(var i=0;i<response.length;i++)
 						'	<li class="job_listing" id="c">'+
 								'<a >'+
 								'	<div class="job_img" style="width:15%" >'+
-								'	<img src="images/'+ cont[i][4] +'" alt="" class="company_logo">'+
+								'	<img src="../image/'+ cont[i][4] +'" alt="" class="company_logo">'+
 								'	</div>'+
 								'	<div class="position" id="d"  style="height:100%;width:20%">'+
 								'		<h3 id="namec" style="margin-left:4%">' + cont[i][0] + "  " + cont[i][1] +'</h3>'+
